@@ -1,21 +1,21 @@
 NULL =
 
-backenddir = $(libdir)/libmatemixer
+backenddir = $(libdir)/libcafemixer
 
-backend_LTLIBRARIES = libmatemixer-pulse.la
+backend_LTLIBRARIES = libcafemixer-pulse.la
 
 AM_CPPFLAGS =							\
 	-I$(top_srcdir)						\
-	-DG_LOG_DOMAIN=\"libmatemixer-pulse\"			\
+	-DG_LOG_DOMAIN=\"libcafemixer-pulse\"			\
 	$(GLIB_CFLAGS)						\
 	$(PULSEAUDIO_CFLAGS)					\
 	$(NULL)
 
-libmatemixer_pulse_la_CFLAGS =					\
+libcafemixer_pulse_la_CFLAGS =					\
 	$(WARN_CFLAGS)						\
 	$(NULL)
 
-libmatemixer_pulse_la_SOURCES =                                 \
+libcafemixer_pulse_la_SOURCES =                                 \
 	pulse-backend.c                                         \
 	pulse-backend.h                                         \
 	pulse-connection.c                                      \
@@ -61,11 +61,11 @@ libmatemixer_pulse_la_SOURCES =                                 \
 	pulse-source-switch.h                                   \
 	pulse-types.h
 
-libmatemixer_pulse_la_LIBADD =                                  \
+libcafemixer_pulse_la_LIBADD =                                  \
 	$(GLIB_LIBS)                                            \
 	$(PULSEAUDIO_LIBS)
 
-libmatemixer_pulse_la_LDFLAGS =                                 \
+libcafemixer_pulse_la_LDFLAGS =                                 \
 	-avoid-version                                          \
 	-no-undefined                                           \
 	-export-dynamic                                         \

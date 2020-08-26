@@ -15,18 +15,18 @@
  * License along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "matemixer-app-info.h"
-#include "matemixer-app-info-private.h"
+#include "cafemixer-app-info.h"
+#include "cafemixer-app-info-private.h"
 
 /**
- * SECTION:matemixer-app-info
+ * SECTION:cafemixer-app-info
  * @short_description: Application information
- * @include: libmatemixer/matemixer.h
+ * @include: libcafemixer/cafemixer.h
  * @see_also: #MateMixerStreamControl
  *
  * The #MateMixerAppInfo structure describes application properties.
  *
- * See #MateMixerStreamControl and the mate_mixer_stream_control_get_app_info()
+ * See #MateMixerStreamControl and the cafe_mixer_stream_control_get_app_info()
  * function for more information.
  */
 
@@ -36,12 +36,12 @@
  * The #MateMixerAppInfo structure contains only private data and should only
  * be accessed using the provided API.
  */
-G_DEFINE_BOXED_TYPE (MateMixerAppInfo, mate_mixer_app_info,
-                     _mate_mixer_app_info_copy,
-                     _mate_mixer_app_info_free)
+G_DEFINE_BOXED_TYPE (MateMixerAppInfo, cafe_mixer_app_info,
+                     _cafe_mixer_app_info_copy,
+                     _cafe_mixer_app_info_free)
 
 /**
- * mate_mixer_app_info_get_name:
+ * cafe_mixer_app_info_get_name:
  * @info: a #MateMixerAppInfo
  *
  * Gets the name of the application described by @info.
@@ -49,7 +49,7 @@ G_DEFINE_BOXED_TYPE (MateMixerAppInfo, mate_mixer_app_info,
  * Returns: name of the application or %NULL if it is unknown.
  */
 const gchar *
-mate_mixer_app_info_get_name (MateMixerAppInfo *info)
+cafe_mixer_app_info_get_name (MateMixerAppInfo *info)
 {
     g_return_val_if_fail (info != NULL, NULL);
 
@@ -57,7 +57,7 @@ mate_mixer_app_info_get_name (MateMixerAppInfo *info)
 }
 
 /**
- * mate_mixer_app_info_get_id:
+ * cafe_mixer_app_info_get_id:
  * @info: a #MateMixerAppInfo
  *
  * Gets the identifier of the application described by @info
@@ -66,7 +66,7 @@ mate_mixer_app_info_get_name (MateMixerAppInfo *info)
  * Returns: identifier of the application or %NULL if it is unknown.
  */
 const gchar *
-mate_mixer_app_info_get_id (MateMixerAppInfo *info)
+cafe_mixer_app_info_get_id (MateMixerAppInfo *info)
 {
     g_return_val_if_fail (info != NULL, NULL);
 
@@ -74,7 +74,7 @@ mate_mixer_app_info_get_id (MateMixerAppInfo *info)
 }
 
 /**
- * mate_mixer_app_info_get_version:
+ * cafe_mixer_app_info_get_version:
  * @info: a #MateMixerAppInfo
  *
  * Gets the version of the application described by @info.
@@ -82,7 +82,7 @@ mate_mixer_app_info_get_id (MateMixerAppInfo *info)
  * Returns: version of the application or %NULL if it is unknown.
  */
 const gchar *
-mate_mixer_app_info_get_version (MateMixerAppInfo *info)
+cafe_mixer_app_info_get_version (MateMixerAppInfo *info)
 {
     g_return_val_if_fail (info != NULL, NULL);
 
@@ -90,7 +90,7 @@ mate_mixer_app_info_get_version (MateMixerAppInfo *info)
 }
 
 /**
- * mate_mixer_app_info_get_icon:
+ * cafe_mixer_app_info_get_icon:
  * @info: a #MateMixerAppInfo
  *
  * Gets the XDG icon name of the application described by @info.
@@ -98,7 +98,7 @@ mate_mixer_app_info_get_version (MateMixerAppInfo *info)
  * Returns: icon name of the application or %NULL if it is unknown.
  */
 const gchar *
-mate_mixer_app_info_get_icon (MateMixerAppInfo *info)
+cafe_mixer_app_info_get_icon (MateMixerAppInfo *info)
 {
     g_return_val_if_fail (info != NULL, NULL);
 
@@ -106,27 +106,27 @@ mate_mixer_app_info_get_icon (MateMixerAppInfo *info)
 }
 
 /**
- * _mate_mixer_app_info_new:
+ * _cafe_mixer_app_info_new:
  *
  * Creates a new empty #MateMixerAppInfo structure.
  *
  * Returns: a new #MateMixerAppInfo.
  */
 MateMixerAppInfo *
-_mate_mixer_app_info_new (void)
+_cafe_mixer_app_info_new (void)
 {
     return g_slice_new0 (MateMixerAppInfo);
 }
 
 /**
- * _mate_mixer_app_info_set_name:
+ * _cafe_mixer_app_info_set_name:
  * @info: a #MateMixerAppInfo
  * @name: the application name to set
  *
  * Sets the name of the application described by @info.
  */
 void
-_mate_mixer_app_info_set_name (MateMixerAppInfo *info, const gchar *name)
+_cafe_mixer_app_info_set_name (MateMixerAppInfo *info, const gchar *name)
 {
     g_return_if_fail (info != NULL);
 
@@ -136,14 +136,14 @@ _mate_mixer_app_info_set_name (MateMixerAppInfo *info, const gchar *name)
 }
 
 /**
- * _mate_mixer_app_info_set_id:
+ * _cafe_mixer_app_info_set_id:
  * @info: a #MateMixerAppInfo
  * @id: the application identifier to set
  *
  * Sets the identifier of the application described by @info.
  */
 void
-_mate_mixer_app_info_set_id (MateMixerAppInfo *info, const gchar *id)
+_cafe_mixer_app_info_set_id (MateMixerAppInfo *info, const gchar *id)
 {
     g_return_if_fail (info != NULL);
 
@@ -153,14 +153,14 @@ _mate_mixer_app_info_set_id (MateMixerAppInfo *info, const gchar *id)
 }
 
 /**
- * _mate_mixer_app_info_set_version:
+ * _cafe_mixer_app_info_set_version:
  * @info: a #MateMixerAppInfo
  * @version: the application version to set
  *
  * Sets the version of the application described by @info.
  */
 void
-_mate_mixer_app_info_set_version (MateMixerAppInfo *info, const gchar *version)
+_cafe_mixer_app_info_set_version (MateMixerAppInfo *info, const gchar *version)
 {
     g_return_if_fail (info != NULL);
 
@@ -170,14 +170,14 @@ _mate_mixer_app_info_set_version (MateMixerAppInfo *info, const gchar *version)
 }
 
 /**
- * _mate_mixer_app_info_set_version:
+ * _cafe_mixer_app_info_set_version:
  * @info: a #MateMixerAppInfo
  * @icon: the application icon name to set
  *
  * Sets the XDG icon name of the application described by @info.
  */
 void
-_mate_mixer_app_info_set_icon (MateMixerAppInfo *info, const gchar *icon)
+_cafe_mixer_app_info_set_icon (MateMixerAppInfo *info, const gchar *icon)
 {
     g_return_if_fail (info != NULL);
 
@@ -187,7 +187,7 @@ _mate_mixer_app_info_set_icon (MateMixerAppInfo *info, const gchar *icon)
 }
 
 /**
- * _mate_mixer_app_info_copy:
+ * _cafe_mixer_app_info_copy:
  * @info: a #MateMixerAppInfo
  *
  * Creates a copy of the #MateMixerAppInfo.
@@ -195,13 +195,13 @@ _mate_mixer_app_info_set_icon (MateMixerAppInfo *info, const gchar *icon)
  * Returns: a copy of the given @info.
  */
 MateMixerAppInfo *
-_mate_mixer_app_info_copy (MateMixerAppInfo *info)
+_cafe_mixer_app_info_copy (MateMixerAppInfo *info)
 {
     MateMixerAppInfo *info2;
 
     g_return_val_if_fail (info != NULL, NULL);
 
-    info2 = _mate_mixer_app_info_new ();
+    info2 = _cafe_mixer_app_info_new ();
     info2->name     = g_strdup (info->name);
     info2->id       = g_strdup (info->id);
     info2->version  = g_strdup (info->version);
@@ -211,13 +211,13 @@ _mate_mixer_app_info_copy (MateMixerAppInfo *info)
 }
 
 /**
- * _mate_mixer_app_info_free:
+ * _cafe_mixer_app_info_free:
  * @info: a #MateMixerAppInfo
  *
  * Frees the #MateMixerAppInfo.
  */
 void
-_mate_mixer_app_info_free (MateMixerAppInfo *info)
+_cafe_mixer_app_info_free (MateMixerAppInfo *info)
 {
     g_return_if_fail (info != NULL);
 

@@ -20,7 +20,7 @@
 
 #include <glib.h>
 #include <alsa/asoundlib.h>
-#include <libmatemixer/matemixer.h>
+#include <libcafemixer/cafemixer.h>
 
 G_BEGIN_DECLS
 

@@ -19,8 +19,8 @@
 #include <glib.h>
 #include <glib-object.h>
 
-#include <libmatemixer/matemixer.h>
-#include <libmatemixer/matemixer-private.h>
+#include <libcafemixer/cafemixer.h>
+#include <libcafemixer/cafemixer-private.h>
 
 #include <pulse/pulseaudio.h>
 #include <pulse/ext-stream-restore.h>
@@ -62,57 +62,57 @@ struct _PulseBackendPrivate
 };
 
 #define PULSE_CHANGE_STATE(p, s)        \
-    (_mate_mixer_backend_set_state (CAFE_MIXER_BACKEND (p), (s)))
+    (_cafe_mixer_backend_set_state (CAFE_MIXER_BACKEND (p), (s)))
 #define PULSE_GET_DEFAULT_SINK(p)       \
-    (mate_mixer_backend_get_default_output_stream (CAFE_MIXER_BACKEND (p)))
+    (cafe_mixer_backend_get_default_output_stream (CAFE_MIXER_BACKEND (p)))
 #define PULSE_GET_DEFAULT_SOURCE(p)     \
-    (mate_mixer_backend_get_default_input_stream (CAFE_MIXER_BACKEND (p)))
+    (cafe_mixer_backend_get_default_input_stream (CAFE_MIXER_BACKEND (p)))
 #define PULSE_SET_DEFAULT_SINK(p, s)    \
-    (_mate_mixer_backend_set_default_output_stream (CAFE_MIXER_BACKEND (p), CAFE_MIXER_STREAM (s)))
+    (_cafe_mixer_backend_set_default_output_stream (CAFE_MIXER_BACKEND (p), CAFE_MIXER_STREAM (s)))
 #define PULSE_SET_DEFAULT_SOURCE(p, s)  \
-    (_mate_mixer_backend_set_default_input_stream (CAFE_MIXER_BACKEND (p), CAFE_MIXER_STREAM (s)))
+    (_cafe_mixer_backend_set_default_input_stream (CAFE_MIXER_BACKEND (p), CAFE_MIXER_STREAM (s)))
 
 #define PULSE_GET_PENDING_SINK(p)                                       \
         (g_object_get_data (G_OBJECT (p),                               \
-                            "__matemixer_pulse_pending_sink"))          \
+                            "__cafemixer_pulse_pending_sink"))          \
 
 #define PULSE_SET_PENDING_SINK(p,name)                                  \
         (g_object_set_data_full (G_OBJECT (p),                          \
-                                 "__matemixer_pulse_pending_sink",      \
+                                 "__cafemixer_pulse_pending_sink",      \
                                  g_strdup (name),                       \
                                  g_free))
 
 #define PULSE_SET_PENDING_SINK_NULL(p)                                  \
         (g_object_set_data (G_OBJECT (p),                               \
-                            "__matemixer_pulse_pending_sink",           \
+                            "__cafemixer_pulse_pending_sink",           \
                             NULL))
 
 #define PULSE_GET_PENDING_SOURCE(p)                                     \
         (g_object_get_data (G_OBJECT (p),                               \
-                            "__matemixer_pulse_pending_source"))        \
+                            "__cafemixer_pulse_pending_source"))        \
 
 #define PULSE_SET_PENDING_SOURCE(p,name)                                \
         (g_object_set_data_full (G_OBJECT (p),                          \
-                                 "__matemixer_pulse_pending_source",    \
+                                 "__cafemixer_pulse_pending_source",    \
                                  g_strdup (name),                       \
                                  g_free))
 
 #define PULSE_SET_PENDING_SOURCE_NULL(p)                                \
         (g_object_set_data (G_OBJECT (p),                               \
-                            "__matemixer_pulse_pending_source",         \
+                            "__cafemixer_pulse_pending_source",         \
                             NULL))
 
 #define PULSE_GET_HANGING(o)                                            \
-        ((gboolean) GPOINTER_TO_UINT (g_object_get_data (G_OBJECT (o), "__matemixer_pulse_hanging")))
+        ((gboolean) GPOINTER_TO_UINT (g_object_get_data (G_OBJECT (o), "__cafemixer_pulse_hanging")))
 
 #define PULSE_SET_HANGING(o)                                            \
         (g_object_set_data (G_OBJECT (o),                               \
-                            "__matemixer_pulse_hanging",                \
+                            "__cafemixer_pulse_hanging",                \
                             GUINT_TO_POINTER (1)))
 
 #define PULSE_UNSET_HANGING(o)                                          \
         (g_object_steal_data (G_OBJECT (o),                             \
-                              "__matemixer_pulse_hanging"))
+                              "__cafemixer_pulse_hanging"))
 
 static void pulse_backend_dispose        (GObject           *object);
 static void pulse_backend_finalize       (GObject           *object);
@@ -304,7 +304,7 @@ pulse_backend_dispose (GObject *object)
 
     backend = CAFE_MIXER_BACKEND (object);
 
-    state = mate_mixer_backend_get_state (backend);
+    state = cafe_mixer_backend_get_state (backend);
     if (state != CAFE_MIXER_STATE_IDLE)
         pulse_backend_close (backend);
 
@@ -319,7 +319,7 @@ pulse_backend_finalize (GObject *object)
     pulse = PULSE_BACKEND (object);
 
     if (pulse->priv->app_info != NULL)
-        _mate_mixer_app_info_free (pulse->priv->app_info);
+        _cafe_mixer_app_info_free (pulse->priv->app_info);
 
     g_hash_table_unref (pulse->priv->devices);
     g_hash_table_unref (pulse->priv->sinks);
@@ -331,10 +331,10 @@ pulse_backend_finalize (GObject *object)
     G_OBJECT_CLASS (pulse_backend_parent_class)->finalize (object);
 }
 
-#define PULSE_APP_NAME(p)    (mate_mixer_app_info_get_name (p->priv->app_info))
-#define PULSE_APP_ID(p)      (mate_mixer_app_info_get_id (p->priv->app_info))
-#define PULSE_APP_VERSION(p) (mate_mixer_app_info_get_version (p->priv->app_info))
-#define PULSE_APP_ICON(p)    (mate_mixer_app_info_get_icon (p->priv->app_info))
+#define PULSE_APP_NAME(p)    (cafe_mixer_app_info_get_name (p->priv->app_info))
+#define PULSE_APP_ID(p)      (cafe_mixer_app_info_get_id (p->priv->app_info))
+#define PULSE_APP_VERSION(p) (cafe_mixer_app_info_get_version (p->priv->app_info))
+#define PULSE_APP_ICON(p)    (cafe_mixer_app_info_get_icon (p->priv->app_info))
 
 static gboolean
 pulse_backend_open (MateMixerBackend *backend)
@@ -488,9 +488,9 @@ pulse_backend_set_app_info (MateMixerBackend *backend, MateMixerAppInfo *info)
     pulse = PULSE_BACKEND (backend);
 
     if (pulse->priv->app_info != NULL)
-        _mate_mixer_app_info_free (pulse->priv->app_info);
+        _cafe_mixer_app_info_free (pulse->priv->app_info);
 
-    pulse->priv->app_info = _mate_mixer_app_info_copy (info);
+    pulse->priv->app_info = _cafe_mixer_app_info_copy (info);
 }
 
 static void
@@ -575,7 +575,7 @@ pulse_backend_set_default_input_stream (MateMixerBackend *backend,
 
     pulse = PULSE_BACKEND (backend);
 
-    name = mate_mixer_stream_get_name (stream);
+    name = cafe_mixer_stream_get_name (stream);
     if (pulse_connection_set_default_source (pulse->priv->connection, name) == FALSE)
         return FALSE;
 
@@ -598,7 +598,7 @@ pulse_backend_set_default_output_stream (MateMixerBackend *backend,
 
     pulse = PULSE_BACKEND (backend);
 
-    name = mate_mixer_stream_get_name (stream);
+    name = cafe_mixer_stream_get_name (stream);
     if (pulse_connection_set_default_sink (pulse->priv->connection, name) == FALSE)
         return FALSE;
 
@@ -676,7 +676,7 @@ on_connection_server_info (PulseConnection      *connection,
 
     stream = PULSE_GET_DEFAULT_SOURCE (pulse);
     if (stream != NULL)
-        name_source = mate_mixer_stream_get_name (stream);
+        name_source = cafe_mixer_stream_get_name (stream);
 
     if (g_strcmp0 (name_source, info->default_source_name) != 0) {
         if (info->default_source_name != NULL) {
@@ -712,7 +712,7 @@ on_connection_server_info (PulseConnection      *connection,
 
     stream = PULSE_GET_DEFAULT_SINK (pulse);
     if (stream != NULL)
-        name_sink = mate_mixer_stream_get_name (stream);
+        name_sink = cafe_mixer_stream_get_name (stream);
 
     if (g_strcmp0 (name_sink, info->default_sink_name) != 0) {
         if (info->default_sink_name != NULL) {
@@ -746,7 +746,7 @@ on_connection_server_info (PulseConnection      *connection,
             PULSE_SET_DEFAULT_SINK (pulse, NULL);
     }
 
-    if (mate_mixer_backend_get_state (CAFE_MIXER_BACKEND (pulse)) != CAFE_MIXER_STATE_READY)
+    if (cafe_mixer_backend_get_state (CAFE_MIXER_BACKEND (pulse)) != CAFE_MIXER_STATE_READY)
         g_debug ("Sound server is %s version %s, running on %s",
                  info->server_name,
                  info->server_version,
@@ -771,7 +771,7 @@ on_connection_card_info (PulseConnection    *connection,
         free_list_devices (pulse);
         g_signal_emit_by_name (G_OBJECT (pulse),
                                "device-added",
-                               mate_mixer_device_get_name (CAFE_MIXER_DEVICE (device)));
+                               cafe_mixer_device_get_name (CAFE_MIXER_DEVICE (device)));
     } else
         pulse_device_update (device, info);
 }
@@ -788,7 +788,7 @@ on_connection_card_removed (PulseConnection *connection,
     if (G_UNLIKELY (device == NULL))
         return;
 
-    name = g_strdup (mate_mixer_device_get_name (CAFE_MIXER_DEVICE (device)));
+    name = g_strdup (cafe_mixer_device_get_name (CAFE_MIXER_DEVICE (device)));
 
     g_hash_table_remove (pulse->priv->devices, GUINT_TO_POINTER (index));
 
@@ -825,7 +825,7 @@ on_connection_sink_info (PulseConnection    *connection,
             pulse_device_add_stream (device, stream);
         } else {
             const gchar *name =
-                mate_mixer_stream_get_name (CAFE_MIXER_STREAM (stream));
+                cafe_mixer_stream_get_name (CAFE_MIXER_STREAM (stream));
 
             /* Only emit when not a part of the device, otherwise emitted by
              * the main library */
@@ -862,7 +862,7 @@ on_connection_sink_removed (PulseConnection *connection,
     } else {
         g_signal_emit_by_name (G_OBJECT (pulse),
                                "stream-removed",
-                               mate_mixer_stream_get_name (CAFE_MIXER_STREAM (stream)));
+                               cafe_mixer_stream_get_name (CAFE_MIXER_STREAM (stream)));
     }
 
     /* The removed stream might be one of the default streams, this happens
@@ -895,7 +895,7 @@ on_connection_sink_input_info (PulseConnection          *connection,
         if (prev != NULL) {
             g_debug ("Sink input %u moved from sink %s to an unknown sink %u, removing",
                      info->index,
-                     mate_mixer_stream_get_name (CAFE_MIXER_STREAM (prev)),
+                     cafe_mixer_stream_get_name (CAFE_MIXER_STREAM (prev)),
                      info->sink);
 
             remove_sink_input (pulse, prev, info->index);
@@ -910,8 +910,8 @@ on_connection_sink_input_info (PulseConnection          *connection,
     prev = g_hash_table_lookup (pulse->priv->sink_input_map, GUINT_TO_POINTER (info->index));
     if (prev != NULL && sink != prev) {
         g_debug ("Sink input moved from sink %s to %s",
-                 mate_mixer_stream_get_name (CAFE_MIXER_STREAM (prev)),
-                 mate_mixer_stream_get_name (CAFE_MIXER_STREAM (sink)));
+                 cafe_mixer_stream_get_name (CAFE_MIXER_STREAM (prev)),
+                 cafe_mixer_stream_get_name (CAFE_MIXER_STREAM (sink)));
 
         remove_sink_input (pulse, prev, info->index);
     }
@@ -962,7 +962,7 @@ on_connection_source_info (PulseConnection      *connection,
             pulse_device_add_stream (device, stream);
         } else {
             const gchar *name =
-                mate_mixer_stream_get_name (CAFE_MIXER_STREAM (stream));
+                cafe_mixer_stream_get_name (CAFE_MIXER_STREAM (stream));
 
             /* Only emit when not a part of the device, otherwise emitted by
              * the main library */
@@ -999,7 +999,7 @@ on_connection_source_removed (PulseConnection *connection,
     } else {
         g_signal_emit_by_name (G_OBJECT (pulse),
                                "stream-removed",
-                               mate_mixer_stream_get_name (CAFE_MIXER_STREAM (stream)));
+                               cafe_mixer_stream_get_name (CAFE_MIXER_STREAM (stream)));
     }
 
     /* The removed stream might be one of the default streams, this happens
@@ -1032,7 +1032,7 @@ on_connection_source_output_info (PulseConnection             *connection,
         if (prev != NULL) {
             g_debug ("Source output %u moved from source %s to an unknown source %u, removing",
                      info->index,
-                     mate_mixer_stream_get_name (CAFE_MIXER_STREAM (prev)),
+                     cafe_mixer_stream_get_name (CAFE_MIXER_STREAM (prev)),
                      info->source);
 
             remove_source_output (pulse, prev, info->index);
@@ -1047,8 +1047,8 @@ on_connection_source_output_info (PulseConnection             *connection,
     prev = g_hash_table_lookup (pulse->priv->source_output_map, GUINT_TO_POINTER (info->index));
     if (prev != NULL && source != prev) {
         g_debug ("Source output moved from source %s to %s",
-                 mate_mixer_stream_get_name (CAFE_MIXER_STREAM (prev)),
-                 mate_mixer_stream_get_name (CAFE_MIXER_STREAM (source)));
+                 cafe_mixer_stream_get_name (CAFE_MIXER_STREAM (prev)),
+                 cafe_mixer_stream_get_name (CAFE_MIXER_STREAM (source)));
 
         remove_source_output (pulse, prev, info->index);
     }
@@ -1102,7 +1102,7 @@ on_connection_ext_stream_info (PulseConnection                  *connection,
 
         g_signal_emit_by_name (G_OBJECT (pulse),
                                "stored-control-added",
-                               mate_mixer_stream_control_get_name (CAFE_MIXER_STREAM_CONTROL (ext)));
+                               cafe_mixer_stream_control_get_name (CAFE_MIXER_STREAM_CONTROL (ext)));
     } else {
         pulse_ext_stream_update (ext, info, parent);
 
@@ -1171,7 +1171,7 @@ check_pending_sink (PulseBackend *pulse, PulseStream *stream)
     if (pending == NULL)
         return;
 
-    name = mate_mixer_stream_get_name (CAFE_MIXER_STREAM (stream));
+    name = cafe_mixer_stream_get_name (CAFE_MIXER_STREAM (stream));
     if (g_strcmp0 (pending, name) != 0)
         return;
 
@@ -1193,7 +1193,7 @@ check_pending_source (PulseBackend *pulse, PulseStream *stream)
     if (pending == NULL)
         return;
 
-    name = mate_mixer_stream_get_name (CAFE_MIXER_STREAM (stream));
+    name = cafe_mixer_stream_get_name (CAFE_MIXER_STREAM (stream));
     if (g_strcmp0 (pending, name) != 0)
         return;
 
@@ -1257,5 +1257,5 @@ compare_stream_names (gpointer key, gpointer value, gpointer user_data)
 {
     MateMixerStream *stream = CAFE_MIXER_STREAM (value);
 
-    return strcmp (mate_mixer_stream_get_name (stream), (const gchar *) user_data) == 0;
+    return strcmp (cafe_mixer_stream_get_name (stream), (const gchar *) user_data) == 0;
 }

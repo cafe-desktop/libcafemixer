@@ -1,21 +1,21 @@
 NULL =
 
-backenddir = $(libdir)/libmatemixer
+backenddir = $(libdir)/libcafemixer
 
-backend_LTLIBRARIES = libmatemixer-oss.la
+backend_LTLIBRARIES = libcafemixer-oss.la
 
 AM_CPPFLAGS =							\
 	-I$(top_srcdir)						\
-	-DG_LOG_DOMAIN=\"libmatemixer-oss\"			\
+	-DG_LOG_DOMAIN=\"libcafemixer-oss\"			\
 	$(GLIB_CFLAGS)						\
 	$(OSS_CFLAGS)						\
 	$(NULL)
 
-libmatemixer_oss_la_CFLAGS =					\
+libcafemixer_oss_la_CFLAGS =					\
 	$(WARN_CFLAGS)						\
 	$(NULL)
 
-libmatemixer_oss_la_SOURCES =                                   \
+libcafemixer_oss_la_SOURCES =                                   \
 	oss-common.h                                            \
 	oss-backend.c                                           \
 	oss-backend.h                                           \
@@ -31,11 +31,11 @@ libmatemixer_oss_la_SOURCES =                                   \
 	oss-switch-option.h                                     \
 	oss-types.h
 
-libmatemixer_oss_la_LIBADD =                                    \
+libcafemixer_oss_la_LIBADD =                                    \
 	$(GLIB_LIBS)                                            \
 	$(OSS_LIBS)
 
-libmatemixer_oss_la_LDFLAGS =                                   \
+libcafemixer_oss_la_LDFLAGS =                                   \
 	-avoid-version                                          \
 	-no-undefined                                           \
 	-export-dynamic                                         \

@@ -1,57 +1,57 @@
 <SECTION>
-<FILE>matemixer</FILE>
+<FILE>cafemixer</FILE>
 <TITLE>MateMixer</TITLE>
-mate_mixer_init
-mate_mixer_is_initialized
+cafe_mixer_init
+cafe_mixer_is_initialized
 LIBCAFEMIXER_CHECK_VERSION
 </SECTION>
 
 <SECTION>
-<FILE>matemixer-app-info</FILE>
+<FILE>cafemixer-app-info</FILE>
 <TITLE>MateMixerAppInfo</TITLE>
 MateMixerAppInfo
-mate_mixer_app_info_get_name
-mate_mixer_app_info_get_id
-mate_mixer_app_info_get_version
-mate_mixer_app_info_get_icon
+cafe_mixer_app_info_get_name
+cafe_mixer_app_info_get_id
+cafe_mixer_app_info_get_version
+cafe_mixer_app_info_get_icon
 <SUBSECTION Standard>
 CAFE_MIXER_APP_INFO
 CAFE_MIXER_TYPE_APP_INFO
 <SUBSECTION Private>
-mate_mixer_app_info_get_type
+cafe_mixer_app_info_get_type
 </SECTION>
 
 <SECTION>
-<FILE>matemixer-context</FILE>
+<FILE>cafemixer-context</FILE>
 <TITLE>MateMixerContext</TITLE>
 MateMixerState
 MateMixerBackendType
 MateMixerBackendFlags
 MateMixerContext
 MateMixerContextClass
-mate_mixer_context_new
-mate_mixer_context_set_backend_type
-mate_mixer_context_set_app_name
-mate_mixer_context_set_app_id
-mate_mixer_context_set_app_version
-mate_mixer_context_set_app_icon
-mate_mixer_context_set_server_address
-mate_mixer_context_open
-mate_mixer_context_close
-mate_mixer_context_get_state
-mate_mixer_context_get_device
-mate_mixer_context_get_stream
-mate_mixer_context_get_stored_control
-mate_mixer_context_list_devices
-mate_mixer_context_list_streams
-mate_mixer_context_list_stored_controls
-mate_mixer_context_get_default_input_stream
-mate_mixer_context_set_default_input_stream
-mate_mixer_context_get_default_output_stream
-mate_mixer_context_set_default_output_stream
-mate_mixer_context_get_backend_name
-mate_mixer_context_get_backend_type
-mate_mixer_context_get_backend_flags
+cafe_mixer_context_new
+cafe_mixer_context_set_backend_type
+cafe_mixer_context_set_app_name
+cafe_mixer_context_set_app_id
+cafe_mixer_context_set_app_version
+cafe_mixer_context_set_app_icon
+cafe_mixer_context_set_server_address
+cafe_mixer_context_open
+cafe_mixer_context_close
+cafe_mixer_context_get_state
+cafe_mixer_context_get_device
+cafe_mixer_context_get_stream
+cafe_mixer_context_get_stored_control
+cafe_mixer_context_list_devices
+cafe_mixer_context_list_streams
+cafe_mixer_context_list_stored_controls
+cafe_mixer_context_get_default_input_stream
+cafe_mixer_context_set_default_input_stream
+cafe_mixer_context_get_default_output_stream
+cafe_mixer_context_set_default_output_stream
+cafe_mixer_context_get_backend_name
+cafe_mixer_context_get_backend_type
+cafe_mixer_context_get_backend_flags
 <SUBSECTION Standard>
 CAFE_MIXER_CONTEXT
 CAFE_MIXER_CONTEXT_CLASS
@@ -61,21 +61,21 @@ CAFE_MIXER_IS_CONTEXT_CLASS
 CAFE_MIXER_TYPE_CONTEXT
 <SUBSECTION Private>
 MateMixerContextPrivate
-mate_mixer_context_get_type
+cafe_mixer_context_get_type
 </SECTION>
 
 <SECTION>
-<FILE>matemixer-device</FILE>
+<FILE>cafemixer-device</FILE>
 <TITLE>MateMixerDevice</TITLE>
 MateMixerDevice
 MateMixerDeviceClass
-mate_mixer_device_get_name
-mate_mixer_device_get_label
-mate_mixer_device_get_icon
-mate_mixer_device_get_stream
-mate_mixer_device_get_switch
-mate_mixer_device_list_streams
-mate_mixer_device_list_switches
+cafe_mixer_device_get_name
+cafe_mixer_device_get_label
+cafe_mixer_device_get_icon
+cafe_mixer_device_get_stream
+cafe_mixer_device_get_switch
+cafe_mixer_device_list_streams
+cafe_mixer_device_list_switches
 <SUBSECTION Standard>
 CAFE_MIXER_DEVICE
 CAFE_MIXER_DEVICE_CLASS
@@ -85,17 +85,17 @@ CAFE_MIXER_IS_DEVICE_CLASS
 CAFE_MIXER_TYPE_DEVICE
 <SUBSECTION Private>
 MateMixerDevicePrivate
-mate_mixer_device_get_type
+cafe_mixer_device_get_type
 </SECTION>
 
 <SECTION>
-<FILE>matemixer-device-switch</FILE>
+<FILE>cafemixer-device-switch</FILE>
 <TITLE>MateMixerDeviceSwitch</TITLE>
 MateMixerDeviceSwitchRole
 MateMixerDeviceSwitch
 MateMixerDeviceSwitchClass
-mate_mixer_device_switch_get_role
-mate_mixer_device_switch_get_device
+cafe_mixer_device_switch_get_role
+cafe_mixer_device_switch_get_device
 <SUBSECTION Standard>
 CAFE_MIXER_IS_DEVICE_SWITCH
 CAFE_MIXER_IS_DEVICE_SWITCH_CLASS
@@ -105,15 +105,15 @@ CAFE_MIXER_DEVICE_SWITCH_GET_CLASS
 CAFE_MIXER_TYPE_DEVICE_SWITCH
 <SUBSECTION Private>
 MateMixerDeviceSwitchPrivate
-mate_mixer_device_switch_get_type
+cafe_mixer_device_switch_get_type
 </SECTION>
 
 <SECTION>
-<FILE>matemixer-stored-control</FILE>
+<FILE>cafemixer-stored-control</FILE>
 <TITLE>MateMixerStoredControl</TITLE>
 MateMixerStoredControl
 MateMixerStoredControlClass
-mate_mixer_stored_control_get_direction
+cafe_mixer_stored_control_get_direction
 <SUBSECTION Standard>
 CAFE_MIXER_STORED_CONTROL
 CAFE_MIXER_STORED_CONTROL_CLASS
@@ -123,24 +123,24 @@ CAFE_MIXER_IS_STORED_CONTROL_CLASS
 CAFE_MIXER_TYPE_STORED_CONTROL
 <SUBSECTION Private>
 MateMixerStoredControlPrivate
-mate_mixer_stored_control_get_type
+cafe_mixer_stored_control_get_type
 </SECTION>
 
 <SECTION>
-<FILE>matemixer-stream</FILE>
+<FILE>cafemixer-stream</FILE>
 <TITLE>MateMixerStream</TITLE>
 MateMixerDirection
 MateMixerStream
 MateMixerStreamClass
-mate_mixer_stream_get_name
-mate_mixer_stream_get_label
-mate_mixer_stream_get_direction
-mate_mixer_stream_get_device
-mate_mixer_stream_get_control
-mate_mixer_stream_get_switch
-mate_mixer_stream_get_default_control
-mate_mixer_stream_list_controls
-mate_mixer_stream_list_switches
+cafe_mixer_stream_get_name
+cafe_mixer_stream_get_label
+cafe_mixer_stream_get_direction
+cafe_mixer_stream_get_device
+cafe_mixer_stream_get_control
+cafe_mixer_stream_get_switch
+cafe_mixer_stream_get_default_control
+cafe_mixer_stream_list_controls
+cafe_mixer_stream_list_switches
 <SUBSECTION Standard>
 CAFE_MIXER_IS_STREAM
 CAFE_MIXER_IS_STREAM_CLASS
@@ -150,11 +150,11 @@ CAFE_MIXER_STREAM_GET_CLASS
 CAFE_MIXER_TYPE_STREAM
 <SUBSECTION Private>
 MateMixerStreamPrivate
-mate_mixer_stream_get_type
+cafe_mixer_stream_get_type
 </SECTION>
 
 <SECTION>
-<FILE>matemixer-stream-control</FILE>
+<FILE>cafemixer-stream-control</FILE>
 <TITLE>MateMixerStreamControl</TITLE>
 CAFE_MIXER_INFINITY
 MateMixerStreamControlFlags
@@ -163,37 +163,37 @@ MateMixerStreamControlMediaRole
 MateMixerChannelPosition
 MateMixerStreamControl
 MateMixerStreamControlClass
-mate_mixer_stream_control_get_name
-mate_mixer_stream_control_get_label
-mate_mixer_stream_control_get_flags
-mate_mixer_stream_control_get_role
-mate_mixer_stream_control_get_media_role
-mate_mixer_stream_control_get_app_info
-mate_mixer_stream_control_get_stream
-mate_mixer_stream_control_set_stream
-mate_mixer_stream_control_get_mute
-mate_mixer_stream_control_set_mute
-mate_mixer_stream_control_get_num_channels
-mate_mixer_stream_control_get_volume
-mate_mixer_stream_control_set_volume
-mate_mixer_stream_control_get_decibel
-mate_mixer_stream_control_set_decibel
-mate_mixer_stream_control_has_channel_position
-mate_mixer_stream_control_get_channel_position
-mate_mixer_stream_control_get_channel_volume
-mate_mixer_stream_control_set_channel_volume
-mate_mixer_stream_control_get_channel_decibel
-mate_mixer_stream_control_set_channel_decibel
-mate_mixer_stream_control_get_balance
-mate_mixer_stream_control_set_balance
-mate_mixer_stream_control_get_fade
-mate_mixer_stream_control_set_fade
-mate_mixer_stream_control_get_monitor_enabled
-mate_mixer_stream_control_set_monitor_enabled
-mate_mixer_stream_control_get_min_volume
-mate_mixer_stream_control_get_max_volume
-mate_mixer_stream_control_get_normal_volume
-mate_mixer_stream_control_get_base_volume
+cafe_mixer_stream_control_get_name
+cafe_mixer_stream_control_get_label
+cafe_mixer_stream_control_get_flags
+cafe_mixer_stream_control_get_role
+cafe_mixer_stream_control_get_media_role
+cafe_mixer_stream_control_get_app_info
+cafe_mixer_stream_control_get_stream
+cafe_mixer_stream_control_set_stream
+cafe_mixer_stream_control_get_mute
+cafe_mixer_stream_control_set_mute
+cafe_mixer_stream_control_get_num_channels
+cafe_mixer_stream_control_get_volume
+cafe_mixer_stream_control_set_volume
+cafe_mixer_stream_control_get_decibel
+cafe_mixer_stream_control_set_decibel
+cafe_mixer_stream_control_has_channel_position
+cafe_mixer_stream_control_get_channel_position
+cafe_mixer_stream_control_get_channel_volume
+cafe_mixer_stream_control_set_channel_volume
+cafe_mixer_stream_control_get_channel_decibel
+cafe_mixer_stream_control_set_channel_decibel
+cafe_mixer_stream_control_get_balance
+cafe_mixer_stream_control_set_balance
+cafe_mixer_stream_control_get_fade
+cafe_mixer_stream_control_set_fade
+cafe_mixer_stream_control_get_monitor_enabled
+cafe_mixer_stream_control_set_monitor_enabled
+cafe_mixer_stream_control_get_min_volume
+cafe_mixer_stream_control_get_max_volume
+cafe_mixer_stream_control_get_normal_volume
+cafe_mixer_stream_control_get_base_volume
 <SUBSECTION Standard>
 CAFE_MIXER_IS_STREAM_CONTROL
 CAFE_MIXER_IS_STREAM_CONTROL_CLASS
@@ -203,19 +203,19 @@ CAFE_MIXER_STREAM_CONTROL_GET_CLASS
 CAFE_MIXER_TYPE_STREAM_CONTROL
 <SUBSECTION Private>
 MateMixerStreamControlPrivate
-mate_mixer_stream_control_get_type
+cafe_mixer_stream_control_get_type
 </SECTION>
 
 <SECTION>
-<FILE>matemixer-stream-switch</FILE>
+<FILE>cafemixer-stream-switch</FILE>
 <TITLE>MateMixerStreamSwitch</TITLE>
 MateMixerStreamSwitchFlags
 MateMixerStreamSwitchRole
 MateMixerStreamSwitch
 MateMixerStreamSwitchClass
-mate_mixer_stream_switch_get_flags
-mate_mixer_stream_switch_get_role
-mate_mixer_stream_switch_get_stream
+cafe_mixer_stream_switch_get_flags
+cafe_mixer_stream_switch_get_role
+cafe_mixer_stream_switch_get_stream
 <SUBSECTION Standard>
 CAFE_MIXER_IS_STREAM_SWITCH
 CAFE_MIXER_IS_STREAM_SWITCH_CLASS
@@ -225,17 +225,17 @@ CAFE_MIXER_STREAM_SWITCH_GET_CLASS
 CAFE_MIXER_TYPE_STREAM_SWITCH
 <SUBSECTION Private>
 MateMixerStreamSwitchPrivate
-mate_mixer_stream_switch_get_type
+cafe_mixer_stream_switch_get_type
 </SECTION>
 
 <SECTION>
-<FILE>matemixer-stream-toggle</FILE>
+<FILE>cafemixer-stream-toggle</FILE>
 <TITLE>MateMixerStreamToggle</TITLE>
 MateMixerStreamToggle
 MateMixerStreamToggleClass
-mate_mixer_stream_toggle_get_state
-mate_mixer_stream_toggle_set_state
-mate_mixer_stream_toggle_get_state_option
+cafe_mixer_stream_toggle_get_state
+cafe_mixer_stream_toggle_set_state
+cafe_mixer_stream_toggle_get_state_option
 <SUBSECTION Standard>
 CAFE_MIXER_IS_STREAM_TOGGLE
 CAFE_MIXER_IS_STREAM_TOGGLE_CLASS
@@ -245,20 +245,20 @@ CAFE_MIXER_STREAM_TOGGLE_GET_CLASS
 CAFE_MIXER_TYPE_STREAM_TOGGLE
 <SUBSECTION Private>
 MateMixerStreamTogglePrivate
-mate_mixer_stream_toggle_get_type
+cafe_mixer_stream_toggle_get_type
 </SECTION>
 
 <SECTION>
-<FILE>matemixer-switch</FILE>
+<FILE>cafemixer-switch</FILE>
 <TITLE>MateMixerSwitch</TITLE>
 MateMixerSwitch
 MateMixerSwitchClass
-mate_mixer_switch_get_name
-mate_mixer_switch_get_label
-mate_mixer_switch_get_option
-mate_mixer_switch_list_options
-mate_mixer_switch_get_active_option
-mate_mixer_switch_set_active_option
+cafe_mixer_switch_get_name
+cafe_mixer_switch_get_label
+cafe_mixer_switch_get_option
+cafe_mixer_switch_list_options
+cafe_mixer_switch_get_active_option
+cafe_mixer_switch_set_active_option
 <SUBSECTION Standard>
 CAFE_MIXER_IS_SWITCH
 CAFE_MIXER_IS_SWITCH_CLASS
@@ -268,17 +268,17 @@ CAFE_MIXER_SWITCH_GET_CLASS
 CAFE_MIXER_TYPE_SWITCH
 <SUBSECTION Private>
 MateMixerSwitchPrivate
-mate_mixer_switch_get_type
+cafe_mixer_switch_get_type
 </SECTION>
 
 <SECTION>
-<FILE>matemixer-switch-option</FILE>
+<FILE>cafemixer-switch-option</FILE>
 <TITLE>MateMixerSwitchOption</TITLE>
 MateMixerSwitchOption
 MateMixerSwitchOptionClass
-mate_mixer_switch_option_get_name
-mate_mixer_switch_option_get_label
-mate_mixer_switch_option_get_icon
+cafe_mixer_switch_option_get_name
+cafe_mixer_switch_option_get_label
+cafe_mixer_switch_option_get_icon
 <SUBSECTION Standard>
 CAFE_MIXER_IS_SWITCH_OPTION
 CAFE_MIXER_IS_SWITCH_OPTION_CLASS
@@ -288,5 +288,5 @@ CAFE_MIXER_SWITCH_OPTION_GET_CLASS
 CAFE_MIXER_TYPE_SWITCH_OPTION
 <SUBSECTION Private>
 MateMixerSwitchOptionPrivate
-mate_mixer_switch_option_get_type
+cafe_mixer_switch_option_get_type
 </SECTION>

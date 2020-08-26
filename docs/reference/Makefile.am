@@ -4,7 +4,7 @@
 AUTOMAKE_OPTIONS = 1.6
 
 # The name of the module, e.g. 'glib'.
-DOC_MODULE=libmatemixer
+DOC_MODULE=libcafemixer
 
 # Uncomment for versioned docs and specify the version of the module, e.g. '2'.
 #DOC_MODULE_VERSION=2
@@ -16,7 +16,7 @@ DOC_MAIN_SGML_FILE=$(DOC_MODULE)-docs.xml
 # gtk-doc will search all .c and .h files beneath these paths
 # for inline comments documenting functions and macros.
 # e.g. DOC_SOURCE_DIR=$(top_srcdir)/gtk $(top_srcdir)/gdk
-DOC_SOURCE_DIR=$(top_srcdir)/libmatemixer
+DOC_SOURCE_DIR=$(top_srcdir)/libcafemixer
 
 # Extra options to pass to gtkdoc-scangobj. Not normally needed.
 SCANGOBJ_OPTIONS=
@@ -43,8 +43,8 @@ FIXXREF_OPTIONS=
 # Used for dependencies. The docs will be rebuilt if any of these change.
 # e.g. HFILE_GLOB=$(top_srcdir)/gtk/*.h
 # e.g. CFILE_GLOB=$(top_srcdir)/gtk/*.c
-HFILE_GLOB=$(top_srcdir)/libmatemixer/*.h
-CFILE_GLOB=$(top_srcdir)/libmatemixer/*.c
+HFILE_GLOB=$(top_srcdir)/libcafemixer/*.h
+CFILE_GLOB=$(top_srcdir)/libcafemixer/*.c
 
 # Extra header to include when scanning, which are not under DOC_SOURCE_DIR
 # e.g. EXTRA_HFILES=$(top_srcdir}/contrib/extra.h
@@ -53,15 +53,15 @@ EXTRA_HFILES=
 # Header files or dirs to ignore when scanning. Use base file/dir names
 # e.g. IGNORE_HFILES=gtkdebug.h gtkintl.h private_code
 IGNORE_HFILES=                                          \
-	matemixer-app-info-private.h                    \
-	matemixer-backend.h                             \
-	matemixer-backend-module.h                      \
-	matemixer-enum-types.h                          \
-	matemixer-stream-control-private.h              \
-	matemixer-stream-private.h                      \
-	matemixer-switch-option-private.h               \
-	matemixer-switch-private.h                      \
-	matemixer-private.h
+	cafemixer-app-info-private.h                    \
+	cafemixer-backend.h                             \
+	cafemixer-backend-module.h                      \
+	cafemixer-enum-types.h                          \
+	cafemixer-stream-control-private.h              \
+	cafemixer-stream-private.h                      \
+	cafemixer-switch-option-private.h               \
+	cafemixer-switch-private.h                      \
+	cafemixer-private.h
 
 # Images to copy into HTML directory.
 # e.g. HTML_IMAGES=$(top_srcdir)/gtk/stock-icons/stock_about_24.png
@@ -87,7 +87,7 @@ GTKDOC_CFLAGS=                                          \
 	$(GLIB_CFLAGS)
 
 GTKDOC_LIBS=                                            \
-	$(top_builddir)/libmatemixer/libmatemixer.la    \
+	$(top_builddir)/libcafemixer/libcafemixer.la    \
 	$(GLIB_LIBS)
 
 # This includes the standard gtk-doc make rules, copied by gtkdocize.

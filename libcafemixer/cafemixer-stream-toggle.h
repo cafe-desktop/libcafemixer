@@ -21,13 +21,13 @@
 #include <glib.h>
 #include <glib-object.h>
 
-#include <libmatemixer/matemixer-stream-switch.h>
-#include <libmatemixer/matemixer-types.h>
+#include <libcafemixer/cafemixer-stream-switch.h>
+#include <libcafemixer/cafemixer-types.h>
 
 G_BEGIN_DECLS
 
 #define CAFE_MIXER_TYPE_STREAM_TOGGLE           \
-        (mate_mixer_stream_toggle_get_type ())
+        (cafe_mixer_stream_toggle_get_type ())
 #define CAFE_MIXER_STREAM_TOGGLE(o)             \
         (G_TYPE_CHECK_INSTANCE_CAST ((o), CAFE_MIXER_TYPE_STREAM_TOGGLE, MateMixerStreamToggle))
 #define CAFE_MIXER_IS_STREAM_TOGGLE(o)          \
@@ -67,13 +67,13 @@ struct _MateMixerStreamToggleClass
     MateMixerStreamSwitchClass parent_class;
 };
 
-GType                  mate_mixer_stream_toggle_get_type         (void) G_GNUC_CONST;
+GType                  cafe_mixer_stream_toggle_get_type         (void) G_GNUC_CONST;
 
-gboolean               mate_mixer_stream_toggle_get_state        (MateMixerStreamToggle *toggle);
-gboolean               mate_mixer_stream_toggle_set_state        (MateMixerStreamToggle *toggle,
+gboolean               cafe_mixer_stream_toggle_get_state        (MateMixerStreamToggle *toggle);
+gboolean               cafe_mixer_stream_toggle_set_state        (MateMixerStreamToggle *toggle,
                                                                   gboolean               state);
 
-MateMixerSwitchOption *mate_mixer_stream_toggle_get_state_option (MateMixerStreamToggle *toggle,
+MateMixerSwitchOption *cafe_mixer_stream_toggle_get_state_option (MateMixerStreamToggle *toggle,
                                                                   gboolean               state);
 
 G_END_DECLS

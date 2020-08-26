@@ -3,9 +3,9 @@ exec_prefix=@exec_prefix@
 libdir=@libdir@
 includedir=@includedir@
 
-Name: libmatemixer
+Name: libcafemixer
 Description: Mixer library for CAFE Desktop
 Version: @VERSION@
 Requires: glib-2.0 gobject-2.0 gmodule-2.0
-Libs: -L${libdir} -lmatemixer
-Cflags: -I${includedir}/mate-mixer
+Libs: -L${libdir} -lcafemixer
+Cflags: -I${includedir}/cafe-mixer

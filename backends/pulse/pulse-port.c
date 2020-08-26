@@ -19,8 +19,8 @@
 #include <glib.h>
 #include <glib-object.h>
 
-#include <libmatemixer/matemixer.h>
-#include <libmatemixer/matemixer-private.h>
+#include <libcafemixer/cafemixer.h>
+#include <libcafemixer/cafemixer-private.h>
 
 #include <pulse/pulseaudio.h>
 
@@ -71,7 +71,7 @@ pulse_port_get_name (PulsePort *port)
 {
     g_return_val_if_fail (PULSE_IS_PORT (port), NULL);
 
-    return mate_mixer_switch_option_get_name (CAFE_MIXER_SWITCH_OPTION (port));
+    return cafe_mixer_switch_option_get_name (CAFE_MIXER_SWITCH_OPTION (port));
 }
 
 guint

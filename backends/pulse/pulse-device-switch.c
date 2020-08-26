@@ -19,8 +19,8 @@
 #include <glib.h>
 #include <glib-object.h>
 
-#include <libmatemixer/matemixer.h>
-#include <libmatemixer/matemixer-private.h>
+#include <libcafemixer/cafemixer.h>
+#include <libcafemixer/cafemixer-private.h>
 
 #include "pulse-connection.h"
 #include "pulse-device.h"
@@ -113,7 +113,7 @@ pulse_device_switch_set_active_profile (PulseDeviceSwitch  *swtch,
     g_return_if_fail (PULSE_IS_DEVICE_SWITCH (swtch));
     g_return_if_fail (PULSE_IS_DEVICE_PROFILE (profile));
 
-    _mate_mixer_switch_set_active_option (CAFE_MIXER_SWITCH (swtch),
+    _cafe_mixer_switch_set_active_option (CAFE_MIXER_SWITCH (swtch),
                                           CAFE_MIXER_SWITCH_OPTION (profile));
 }
 
@@ -143,12 +143,12 @@ pulse_device_switch_set_active_option (MateMixerSwitch *mms, MateMixerSwitchOpti
     g_return_val_if_fail (PULSE_IS_DEVICE_SWITCH (mms), FALSE);
     g_return_val_if_fail (PULSE_IS_DEVICE_PROFILE (mmso), FALSE);
 
-    device = mate_mixer_device_switch_get_device (CAFE_MIXER_DEVICE_SWITCH (mms));
+    device = cafe_mixer_device_switch_get_device (CAFE_MIXER_DEVICE_SWITCH (mms));
     if (G_UNLIKELY (device == NULL))
         return FALSE;
 
-    device_name  = mate_mixer_device_get_name (device);
-    profile_name = mate_mixer_switch_option_get_name (mmso);
+    device_name  = cafe_mixer_device_get_name (device);
+    profile_name = cafe_mixer_switch_option_get_name (mmso);
 
     return pulse_connection_set_card_profile (pulse_device_get_connection (PULSE_DEVICE (device)),
                                               device_name,

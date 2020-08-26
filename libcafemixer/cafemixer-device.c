@@ -19,15 +19,15 @@
 #include <glib.h>
 #include <glib-object.h>
 
-#include "matemixer-device.h"
-#include "matemixer-device-switch.h"
-#include "matemixer-stream.h"
-#include "matemixer-switch.h"
+#include "cafemixer-device.h"
+#include "cafemixer-device-switch.h"
+#include "cafemixer-stream.h"
+#include "cafemixer-switch.h"
 
 /**
- * SECTION:matemixer-device
+ * SECTION:cafemixer-device
  * @short_description: Hardware or software device in the sound system
- * @include: libmatemixer/matemixer.h
+ * @include: libcafemixer/cafemixer.h
  *
  * A #MateMixerDevice represents a sound device, most typically a sound card.
  *
@@ -61,36 +61,36 @@ enum {
 
 static guint signals[N_SIGNALS] = { 0, };
 
-static void mate_mixer_device_get_property (GObject              *object,
+static void cafe_mixer_device_get_property (GObject              *object,
                                             guint                 param_id,
                                             GValue               *value,
                                             GParamSpec           *pspec);
-static void mate_mixer_device_set_property (GObject              *object,
+static void cafe_mixer_device_set_property (GObject              *object,
                                             guint                 param_id,
                                             const GValue         *value,
                                             GParamSpec           *pspec);
 
-static void mate_mixer_device_finalize     (GObject              *object);
+static void cafe_mixer_device_finalize     (GObject              *object);
 
-G_DEFINE_ABSTRACT_TYPE_WITH_PRIVATE (MateMixerDevice, mate_mixer_device, G_TYPE_OBJECT)
+G_DEFINE_ABSTRACT_TYPE_WITH_PRIVATE (MateMixerDevice, cafe_mixer_device, G_TYPE_OBJECT)
 
-static MateMixerStream *      mate_mixer_device_real_get_stream (MateMixerDevice *device,
+static MateMixerStream *      cafe_mixer_device_real_get_stream (MateMixerDevice *device,
                                                                  const gchar     *name);
-static MateMixerDeviceSwitch *mate_mixer_device_real_get_switch (MateMixerDevice *device,
+static MateMixerDeviceSwitch *cafe_mixer_device_real_get_switch (MateMixerDevice *device,
                                                                  const gchar     *name);
 
 static void
-mate_mixer_device_class_init (MateMixerDeviceClass *klass)
+cafe_mixer_device_class_init (MateMixerDeviceClass *klass)
 {
     GObjectClass *object_class;
 
-    klass->get_stream = mate_mixer_device_real_get_stream;
-    klass->get_switch = mate_mixer_device_real_get_switch;
+    klass->get_stream = cafe_mixer_device_real_get_stream;
+    klass->get_switch = cafe_mixer_device_real_get_switch;
 
     object_class = G_OBJECT_CLASS (klass);
-    object_class->finalize     = mate_mixer_device_finalize;
-    object_class->get_property = mate_mixer_device_get_property;
-    object_class->set_property = mate_mixer_device_set_property;
+    object_class->finalize     = cafe_mixer_device_finalize;
+    object_class->get_property = cafe_mixer_device_get_property;
+    object_class->set_property = cafe_mixer_device_set_property;
 
     /**
      * MateMixerDevice:name:
@@ -169,8 +169,8 @@ mate_mixer_device_class_init (MateMixerDeviceClass *klass)
      *
      * When this signal is emitted, the stream is no longer known to the library,
      * it will not be included in the stream list provided by the
-     * mate_mixer_device_list_streams() function and it is not possible to get
-     * the stream with mate_mixer_device_get_stream().
+     * cafe_mixer_device_list_streams() function and it is not possible to get
+     * the stream with cafe_mixer_device_get_stream().
      */
     signals[STREAM_REMOVED] =
         g_signal_new ("stream-removed",
@@ -212,8 +212,8 @@ mate_mixer_device_class_init (MateMixerDeviceClass *klass)
      *
      * When this signal is emitted, the switch is no longer known to the library,
      * it will not be included in the switch list provided by the
-     * mate_mixer_device_list_switches() function and it is not possible to get
-     * the switch with mate_mixer_device_get_switch().
+     * cafe_mixer_device_list_switches() function and it is not possible to get
+     * the switch with cafe_mixer_device_get_switch().
      */
     signals[SWITCH_REMOVED] =
         g_signal_new ("switch-removed",
@@ -229,7 +229,7 @@ mate_mixer_device_class_init (MateMixerDeviceClass *klass)
 }
 
 static void
-mate_mixer_device_get_property (GObject    *object,
+cafe_mixer_device_get_property (GObject    *object,
                                 guint       param_id,
                                 GValue     *value,
                                 GParamSpec *pspec)
@@ -256,7 +256,7 @@ mate_mixer_device_get_property (GObject    *object,
 }
 
 static void
-mate_mixer_device_set_property (GObject      *object,
+cafe_mixer_device_set_property (GObject      *object,
                                 guint         param_id,
                                 const GValue *value,
                                 GParamSpec   *pspec)
@@ -286,13 +286,13 @@ mate_mixer_device_set_property (GObject      *object,
 }
 
 static void
-mate_mixer_device_init (MateMixerDevice *device)
+cafe_mixer_device_init (MateMixerDevice *device)
 {
-    device->priv = mate_mixer_device_get_instance_private (device);
+    device->priv = cafe_mixer_device_get_instance_private (device);
 }
 
 static void
-mate_mixer_device_finalize (GObject *object)
+cafe_mixer_device_finalize (GObject *object)
 {
     MateMixerDevice *device;
 
@@ -302,11 +302,11 @@ mate_mixer_device_finalize (GObject *object)
     g_free (device->priv->label);
     g_free (device->priv->icon);
 
-    G_OBJECT_CLASS (mate_mixer_device_parent_class)->finalize (object);
+    G_OBJECT_CLASS (cafe_mixer_device_parent_class)->finalize (object);
 }
 
 /**
- * mate_mixer_device_get_name:
+ * cafe_mixer_device_get_name:
  * @device: a #MateMixerDevice
  *
  * Gets the name of the device.
@@ -316,12 +316,12 @@ mate_mixer_device_finalize (GObject *object)
  *
  * The returned name is guaranteed to be unique across all the known devices
  * and may be used to get the #MateMixerDevice using
- * mate_mixer_context_get_device().
+ * cafe_mixer_context_get_device().
  *
  * Returns: the name of the device.
  */
 const gchar *
-mate_mixer_device_get_name (MateMixerDevice *device)
+cafe_mixer_device_get_name (MateMixerDevice *device)
 {
     g_return_val_if_fail (CAFE_MIXER_IS_DEVICE (device), NULL);
 
@@ -329,7 +329,7 @@ mate_mixer_device_get_name (MateMixerDevice *device)
 }
 
 /**
- * mate_mixer_device_get_label:
+ * cafe_mixer_device_get_label:
  * @device: a #MateMixerDevice
  *
  * Gets the label of the device.
@@ -340,7 +340,7 @@ mate_mixer_device_get_name (MateMixerDevice *device)
  * Returns: the label of the device.
  */
 const gchar *
-mate_mixer_device_get_label (MateMixerDevice *device)
+cafe_mixer_device_get_label (MateMixerDevice *device)
 {
     g_return_val_if_fail (CAFE_MIXER_IS_DEVICE (device), NULL);
 
@@ -348,7 +348,7 @@ mate_mixer_device_get_label (MateMixerDevice *device)
 }
 
 /**
- * mate_mixer_device_get_icon:
+ * cafe_mixer_device_get_icon:
  * @device: a #MateMixerDevice
  *
  * Gets the XDG icon name of the device.
@@ -356,7 +356,7 @@ mate_mixer_device_get_label (MateMixerDevice *device)
  * Returns: the icon name or %NULL.
  */
 const gchar *
-mate_mixer_device_get_icon (MateMixerDevice *device)
+cafe_mixer_device_get_icon (MateMixerDevice *device)
 {
     g_return_val_if_fail (CAFE_MIXER_IS_DEVICE (device), NULL);
 
@@ -364,7 +364,7 @@ mate_mixer_device_get_icon (MateMixerDevice *device)
 }
 
 /**
- * mate_mixer_device_get_stream:
+ * cafe_mixer_device_get_stream:
  * @device: a #MateMixerDevice
  * @name: a stream name
  *
@@ -373,7 +373,7 @@ mate_mixer_device_get_icon (MateMixerDevice *device)
  * Returns: a #MateMixerStream or %NULL if there is no such stream.
  */
 MateMixerStream *
-mate_mixer_device_get_stream (MateMixerDevice *device, const gchar *name)
+cafe_mixer_device_get_stream (MateMixerDevice *device, const gchar *name)
 {
     g_return_val_if_fail (CAFE_MIXER_IS_DEVICE (device), NULL);
     g_return_val_if_fail (name != NULL, NULL);
@@ -382,23 +382,23 @@ mate_mixer_device_get_stream (MateMixerDevice *device, const gchar *name)
 }
 
 /**
- * mate_mixer_device_get_switch:
+ * cafe_mixer_device_get_switch:
  * @device: a #MateMixerDevice
  * @name: a switch name
  *
  * Gets the device switch with the given name.
  *
  * Note that this function will only return a switch that belongs to the device
- * and not to a stream of the device. See mate_mixer_device_list_switches() for
+ * and not to a stream of the device. See cafe_mixer_device_list_switches() for
  * information about the difference between device and stream switches.
  *
  * To get a stream switch, rather than a device switch, use
- * mate_mixer_stream_get_switch().
+ * cafe_mixer_stream_get_switch().
  *
  * Returns: a #MateMixerDeviceSwitch or %NULL if there is no such device switch.
  */
 MateMixerDeviceSwitch *
-mate_mixer_device_get_switch (MateMixerDevice *device, const gchar *name)
+cafe_mixer_device_get_switch (MateMixerDevice *device, const gchar *name)
 {
     g_return_val_if_fail (CAFE_MIXER_IS_DEVICE (device), NULL);
     g_return_val_if_fail (name != NULL, NULL);
@@ -407,7 +407,7 @@ mate_mixer_device_get_switch (MateMixerDevice *device, const gchar *name)
 }
 
 /**
- * mate_mixer_device_list_streams:
+ * cafe_mixer_device_list_streams:
  * @device: a #MateMixerDevice
  *
  * Gets the list of streams that belong to the device.
@@ -419,7 +419,7 @@ mate_mixer_device_get_switch (MateMixerDevice *device, const gchar *name)
  * any streams.
  */
 const GList *
-mate_mixer_device_list_streams (MateMixerDevice *device)
+cafe_mixer_device_list_streams (MateMixerDevice *device)
 {
     MateMixerDeviceClass *klass;
 
@@ -434,7 +434,7 @@ mate_mixer_device_list_streams (MateMixerDevice *device)
 }
 
 /**
- * mate_mixer_device_list_switches:
+ * cafe_mixer_device_list_switches:
  * @device: a #MateMixerDevice
  *
  * Gets the list of switches the belong to the device.
@@ -443,7 +443,7 @@ mate_mixer_device_list_streams (MateMixerDevice *device)
  * stream switches, device switches returned by this function are not classified
  * as input or output (as streams are), but they operate on the whole device.
  *
- * Use mate_mixer_stream_list_switches() to get a list of switches that belong
+ * Use cafe_mixer_stream_list_switches() to get a list of switches that belong
  * to a stream.
  *
  * The returned #GList is owned by the #MateMixerDevice and may be invalidated
@@ -453,7 +453,7 @@ mate_mixer_device_list_streams (MateMixerDevice *device)
  * any switches.
  */
 const GList *
-mate_mixer_device_list_switches (MateMixerDevice *device)
+cafe_mixer_device_list_switches (MateMixerDevice *device)
 {
     MateMixerDeviceClass *klass;
 
@@ -468,18 +468,18 @@ mate_mixer_device_list_switches (MateMixerDevice *device)
 }
 
 static MateMixerStream *
-mate_mixer_device_real_get_stream (MateMixerDevice *device, const gchar *name)
+cafe_mixer_device_real_get_stream (MateMixerDevice *device, const gchar *name)
 {
     const GList *list;
 
     g_return_val_if_fail (CAFE_MIXER_IS_DEVICE (device), NULL);
     g_return_val_if_fail (name != NULL, NULL);
 
-    list = mate_mixer_device_list_streams (device);
+    list = cafe_mixer_device_list_streams (device);
     while (list != NULL) {
         MateMixerStream *stream = CAFE_MIXER_STREAM (list->data);
 
-        if (strcmp (name, mate_mixer_stream_get_name (stream)) == 0)
+        if (strcmp (name, cafe_mixer_stream_get_name (stream)) == 0)
             return stream;
 
         list = list->next;
@@ -488,18 +488,18 @@ mate_mixer_device_real_get_stream (MateMixerDevice *device, const gchar *name)
 }
 
 static MateMixerDeviceSwitch *
-mate_mixer_device_real_get_switch (MateMixerDevice *device, const gchar *name)
+cafe_mixer_device_real_get_switch (MateMixerDevice *device, const gchar *name)
 {
     const GList *list;
 
     g_return_val_if_fail (CAFE_MIXER_IS_DEVICE (device), NULL);
     g_return_val_if_fail (name != NULL, NULL);
 
-    list = mate_mixer_device_list_switches (device);
+    list = cafe_mixer_device_list_switches (device);
     while (list != NULL) {
         MateMixerSwitch *swtch = CAFE_MIXER_SWITCH (list->data);
 
-        if (strcmp (name, mate_mixer_switch_get_name (swtch)) == 0)
+        if (strcmp (name, cafe_mixer_switch_get_name (swtch)) == 0)
             return CAFE_MIXER_DEVICE_SWITCH (swtch);
 
         list = list->next;

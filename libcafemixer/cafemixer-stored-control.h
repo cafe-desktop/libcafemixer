@@ -21,14 +21,14 @@
 #include <glib.h>
 #include <glib-object.h>
 
-#include <libmatemixer/matemixer-enums.h>
-#include <libmatemixer/matemixer-stream-control.h>
-#include <libmatemixer/matemixer-types.h>
+#include <libcafemixer/cafemixer-enums.h>
+#include <libcafemixer/cafemixer-stream-control.h>
+#include <libcafemixer/cafemixer-types.h>
 
 G_BEGIN_DECLS
 
 #define CAFE_MIXER_TYPE_STORED_CONTROL          \
-        (mate_mixer_stored_control_get_type ())
+        (cafe_mixer_stored_control_get_type ())
 #define CAFE_MIXER_STORED_CONTROL(o)            \
         (G_TYPE_CHECK_INSTANCE_CAST ((o), CAFE_MIXER_TYPE_STORED_CONTROL, MateMixerStoredControl))
 #define CAFE_MIXER_IS_STORED_CONTROL(o)         \
@@ -68,9 +68,9 @@ struct _MateMixerStoredControlClass
     MateMixerStreamControlClass parent_class;
 };
 
-GType              mate_mixer_stored_control_get_type      (void) G_GNUC_CONST;
+GType              cafe_mixer_stored_control_get_type      (void) G_GNUC_CONST;
 
-MateMixerDirection mate_mixer_stored_control_get_direction (MateMixerStoredControl *control);
+MateMixerDirection cafe_mixer_stored_control_get_direction (MateMixerStoredControl *control);
 
 G_END_DECLS
 

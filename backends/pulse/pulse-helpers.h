@@ -19,7 +19,7 @@
 #define PULSE_HELPERS_H
 
 #include <glib.h>
-#include <libmatemixer/matemixer.h>
+#include <libcafemixer/cafemixer.h>
 
 #include <pulse/pulseaudio.h>
 

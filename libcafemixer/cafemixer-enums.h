@@ -52,7 +52,7 @@ typedef enum {
  *     Unknown or undefined sound system backend type.
  * @CAFE_MIXER_BACKEND_PULSEAUDIO:
  *     PulseAudio sound system backend. It has the highest priority and
- *     will be the first one to try when you call mate_mixer_context_open(),
+ *     will be the first one to try when you call cafe_mixer_context_open(),
  *     unless you select a specific sound system to connect to.
  * @CAFE_MIXER_BACKEND_ALSA:
  *     The Advanced Linux Sound Architecture sound system.
@@ -88,10 +88,10 @@ typedef enum {
  *     in the sound system's configuration.
  * @CAFE_MIXER_BACKEND_CAN_SET_DEFAULT_INPUT_STREAM:
  *     The sound system backend is able to change the current default input stream
- *     using the mate_mixer_context_set_default_input_stream() function.
+ *     using the cafe_mixer_context_set_default_input_stream() function.
  * @CAFE_MIXER_BACKEND_CAN_SET_DEFAULT_OUTPUT_STREAM:
  *     The sound system backend is able to change the current default output stream
- *     using the mate_mixer_context_set_default_output_stream() function.
+ *     using the cafe_mixer_context_set_default_output_stream() function.
  *
  * Flags describing capabilities of a sound system.
  */
@@ -140,7 +140,7 @@ typedef enum {
  *     volume fading.
  * @CAFE_MIXER_STREAM_CONTROL_MOVABLE:
  *     It is possible to move the stream control to a different stream using the
- *     mate_mixer_stream_control_set_stream() function. See the function description
+ *     cafe_mixer_stream_control_set_stream() function. See the function description
  *     for details.
  * @CAFE_MIXER_STREAM_CONTROL_HAS_DECIBEL:
  *     The stream controls supports decibel values and it is possible to successfully

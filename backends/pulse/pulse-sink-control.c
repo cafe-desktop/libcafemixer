@@ -17,8 +17,8 @@
 
 #include <glib.h>
 #include <glib-object.h>
-#include <libmatemixer/matemixer.h>
-#include <libmatemixer/matemixer-private.h>
+#include <libcafemixer/cafemixer.h>
+#include <libcafemixer/cafemixer-private.h>
 
 #include <pulse/pulseaudio.h>
 
@@ -104,7 +104,7 @@ pulse_sink_control_update (PulseSinkControl *control, const pa_sink_info *info)
     /* Let all the information update before emitting notify signals */
     g_object_freeze_notify (G_OBJECT (control));
 
-    _mate_mixer_stream_control_set_mute (CAFE_MIXER_STREAM_CONTROL (control),
+    _cafe_mixer_stream_control_set_mute (CAFE_MIXER_STREAM_CONTROL (control),
                                          info->mute ? TRUE : FALSE);
 
     pulse_stream_control_set_channel_map (PULSE_STREAM_CONTROL (control),
@@ -146,12 +146,12 @@ pulse_sink_control_create_monitor (PulseStreamControl *psc)
 
     g_return_val_if_fail (PULSE_IS_SINK_CONTROL (psc), NULL);
 
-    sink = PULSE_SINK (mate_mixer_stream_control_get_stream (CAFE_MIXER_STREAM_CONTROL (psc)));
+    sink = PULSE_SINK (cafe_mixer_stream_control_get_stream (CAFE_MIXER_STREAM_CONTROL (psc)));
 
     index = pulse_sink_get_index_monitor (sink);
     if (G_UNLIKELY (index == PA_INVALID_INDEX)) {
         g_debug ("Monitor of stream control %s is not available",
-                 mate_mixer_stream_control_get_name (CAFE_MIXER_STREAM_CONTROL (psc)));
+                 cafe_mixer_stream_control_get_name (CAFE_MIXER_STREAM_CONTROL (psc)));
         return NULL;
     }
 

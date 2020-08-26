@@ -1,26 +1,26 @@
 NULL =
 
-backenddir = $(libdir)/libmatemixer
+backenddir = $(libdir)/libcafemixer
 
-backend_LTLIBRARIES = libmatemixer-null.la
+backend_LTLIBRARIES = libcafemixer-null.la
 
 AM_CPPFLAGS =							\
 	-I$(top_srcdir)						\
-	-DG_LOG_DOMAIN=\"libmatemixer-null\"			\
+	-DG_LOG_DOMAIN=\"libcafemixer-null\"			\
 	$(GLIB_CFLAGS)						\
 	$(NULL)
 
-libmatemixer_null_la_CFLAGS =					\
+libcafemixer_null_la_CFLAGS =					\
 	$(WARN_CFLAGS)						\
 	$(NULL)
 
-libmatemixer_null_la_SOURCES =                                  \
+libcafemixer_null_la_SOURCES =                                  \
 	null-backend.c                                          \
 	null-backend.h
 
-libmatemixer_null_la_LIBADD = $(GLIB_LIBS)
+libcafemixer_null_la_LIBADD = $(GLIB_LIBS)
 
-libmatemixer_null_la_LDFLAGS =                                  \
+libcafemixer_null_la_LDFLAGS =                                  \
 	-avoid-version                                          \
 	-no-undefined                                           \
 	-export-dynamic                                         \

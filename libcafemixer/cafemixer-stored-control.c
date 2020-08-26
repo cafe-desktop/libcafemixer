@@ -18,10 +18,10 @@
 #include <glib.h>
 #include <glib-object.h>
 
-#include "matemixer-enums.h"
-#include "matemixer-enum-types.h"
-#include "matemixer-stream-control.h"
-#include "matemixer-stored-control.h"
+#include "cafemixer-enums.h"
+#include "cafemixer-enum-types.h"
+#include "cafemixer-stream-control.h"
+#include "cafemixer-stored-control.h"
 
 struct _MateMixerStoredControlPrivate
 {
@@ -36,25 +36,25 @@ enum {
 
 static GParamSpec *properties[N_PROPERTIES] = { NULL, };
 
-static void mate_mixer_stored_control_get_property (GObject                     *object,
+static void cafe_mixer_stored_control_get_property (GObject                     *object,
                                                     guint                        param_id,
                                                     GValue                      *value,
                                                     GParamSpec                  *pspec);
-static void mate_mixer_stored_control_set_property (GObject                     *object,
+static void cafe_mixer_stored_control_set_property (GObject                     *object,
                                                     guint                        param_id,
                                                     const GValue                *value,
                                                     GParamSpec                  *pspec);
 
-G_DEFINE_ABSTRACT_TYPE_WITH_PRIVATE (MateMixerStoredControl, mate_mixer_stored_control, CAFE_MIXER_TYPE_STREAM_CONTROL)
+G_DEFINE_ABSTRACT_TYPE_WITH_PRIVATE (MateMixerStoredControl, cafe_mixer_stored_control, CAFE_MIXER_TYPE_STREAM_CONTROL)
 
 static void
-mate_mixer_stored_control_class_init (MateMixerStoredControlClass *klass)
+cafe_mixer_stored_control_class_init (MateMixerStoredControlClass *klass)
 {
     GObjectClass *object_class;
 
     object_class = G_OBJECT_CLASS (klass);
-    object_class->get_property = mate_mixer_stored_control_get_property;
-    object_class->set_property = mate_mixer_stored_control_set_property;
+    object_class->get_property = cafe_mixer_stored_control_get_property;
+    object_class->set_property = cafe_mixer_stored_control_set_property;
 
     properties[PROP_DIRECTION] =
         g_param_spec_enum ("direction",
@@ -70,7 +70,7 @@ mate_mixer_stored_control_class_init (MateMixerStoredControlClass *klass)
 }
 
 static void
-mate_mixer_stored_control_get_property (GObject    *object,
+cafe_mixer_stored_control_get_property (GObject    *object,
                                         guint       param_id,
                                         GValue     *value,
                                         GParamSpec *pspec)
@@ -90,7 +90,7 @@ mate_mixer_stored_control_get_property (GObject    *object,
 }
 
 static void
-mate_mixer_stored_control_set_property (GObject      *object,
+cafe_mixer_stored_control_set_property (GObject      *object,
                                         guint         param_id,
                                         const GValue *value,
                                         GParamSpec   *pspec)
@@ -110,17 +110,17 @@ mate_mixer_stored_control_set_property (GObject      *object,
 }
 
 static void
-mate_mixer_stored_control_init (MateMixerStoredControl *control)
+cafe_mixer_stored_control_init (MateMixerStoredControl *control)
 {
-    control->priv = mate_mixer_stored_control_get_instance_private (control);
+    control->priv = cafe_mixer_stored_control_get_instance_private (control);
 }
 
 /**
- * mate_mixer_stored_control_get_direction:
+ * cafe_mixer_stored_control_get_direction:
  * @control: a #MateMixerStoredControl
  */
 MateMixerDirection
-mate_mixer_stored_control_get_direction (MateMixerStoredControl *control)
+cafe_mixer_stored_control_get_direction (MateMixerStoredControl *control)
 {
     g_return_val_if_fail (CAFE_MIXER_IS_STORED_CONTROL (control), CAFE_MIXER_DIRECTION_UNKNOWN);
 

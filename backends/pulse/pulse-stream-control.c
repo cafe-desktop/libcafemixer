@@ -17,8 +17,8 @@
 
 #include <glib.h>
 #include <glib-object.h>
-#include <libmatemixer/matemixer.h>
-#include <libmatemixer/matemixer-private.h>
+#include <libcafemixer/cafemixer.h>
+#include <libcafemixer/cafemixer-private.h>
 
 #include <pulse/pulseaudio.h>
 
@@ -256,7 +256,7 @@ pulse_stream_control_finalize (GObject *object)
     control = PULSE_STREAM_CONTROL (object);
 
     if (control->priv->app_info != NULL)
-        _mate_mixer_app_info_free (control->priv->app_info);
+        _cafe_mixer_app_info_free (control->priv->app_info);
 
     G_OBJECT_CLASS (pulse_stream_control_parent_class)->finalize (object);
 }
@@ -276,7 +276,7 @@ pulse_stream_control_get_stream_index (PulseStreamControl *control)
 
     g_return_val_if_fail (PULSE_IS_STREAM_CONTROL (control), PA_INVALID_INDEX);
 
-    stream = mate_mixer_stream_control_get_stream (CAFE_MIXER_STREAM_CONTROL (control));
+    stream = cafe_mixer_stream_control_get_stream (CAFE_MIXER_STREAM_CONTROL (control));
     if (G_UNLIKELY (stream == NULL))
         return PA_INVALID_INDEX;
 
@@ -323,12 +323,12 @@ pulse_stream_control_set_app_info (PulseStreamControl *control,
     g_return_if_fail (PULSE_IS_STREAM_CONTROL (control));
 
     if (G_UNLIKELY (control->priv->app_info != NULL))
-        _mate_mixer_app_info_free (control->priv->app_info);
+        _cafe_mixer_app_info_free (control->priv->app_info);
 
     if (take == TRUE)
         control->priv->app_info = info;
     else
-        control->priv->app_info = _mate_mixer_app_info_copy (info);
+        control->priv->app_info = _cafe_mixer_app_info_copy (info);
 }
 
 void
@@ -338,7 +338,7 @@ pulse_stream_control_set_channel_map (PulseStreamControl *control, const pa_chan
 
     g_return_if_fail (PULSE_IS_STREAM_CONTROL (control));
 
-    flags = mate_mixer_stream_control_get_flags (CAFE_MIXER_STREAM_CONTROL (control));
+    flags = cafe_mixer_stream_control_get_flags (CAFE_MIXER_STREAM_CONTROL (control));
 
     if (map != NULL && pa_channel_map_valid (map)) {
         if (pa_channel_map_can_balance (map))
@@ -360,7 +360,7 @@ pulse_stream_control_set_channel_map (PulseStreamControl *control, const pa_chan
         pa_channel_map_init (&control->priv->channel_map);
     }
 
-    _mate_mixer_stream_control_set_flags (CAFE_MIXER_STREAM_CONTROL (control), flags);
+    _cafe_mixer_stream_control_set_flags (CAFE_MIXER_STREAM_CONTROL (control), flags);
 }
 
 void
@@ -375,7 +375,7 @@ pulse_stream_control_set_cvolume (PulseStreamControl *control,
     /* The base volume is not a property */
     control->priv->base_volume = base_volume;
 
-    flags = mate_mixer_stream_control_get_flags (CAFE_MIXER_STREAM_CONTROL (control));
+    flags = cafe_mixer_stream_control_get_flags (CAFE_MIXER_STREAM_CONTROL (control));
 
     g_object_freeze_notify (G_OBJECT (control));
 
@@ -406,7 +406,7 @@ pulse_stream_control_set_cvolume (PulseStreamControl *control,
         }
     }
 
-    _mate_mixer_stream_control_set_flags (CAFE_MIXER_STREAM_CONTROL (control), flags);
+    _cafe_mixer_stream_control_set_flags (CAFE_MIXER_STREAM_CONTROL (control), flags);
 
     /* Changing volume may change the balance and fade values as well */
     set_balance_fade (control);
@@ -681,7 +681,7 @@ pulse_stream_control_get_max_volume (MateMixerStreamControl *mmsc)
 
     g_return_val_if_fail (PULSE_IS_STREAM_CONTROL (mmsc), (guint) PA_VOLUME_MUTED);
 
-    flags = mate_mixer_stream_control_get_flags (mmsc);
+    flags = cafe_mixer_stream_control_get_flags (mmsc);
 
     /*
      * From PulseAudio wiki:
@@ -738,12 +738,12 @@ set_balance_fade (PulseStreamControl *control)
     value = pa_cvolume_get_balance (&control->priv->cvolume,
                                     &control->priv->channel_map);
 
-    _mate_mixer_stream_control_set_balance (CAFE_MIXER_STREAM_CONTROL (control), value);
+    _cafe_mixer_stream_control_set_balance (CAFE_MIXER_STREAM_CONTROL (control), value);
 
     value = pa_cvolume_get_fade (&control->priv->cvolume,
                                  &control->priv->channel_map);
 
-    _mate_mixer_stream_control_set_fade (CAFE_MIXER_STREAM_CONTROL (control), value);
+    _cafe_mixer_stream_control_set_fade (CAFE_MIXER_STREAM_CONTROL (control), value);
 }
 
 static gboolean

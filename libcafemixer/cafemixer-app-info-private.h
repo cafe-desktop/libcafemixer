@@ -20,7 +20,7 @@
 
 #include <glib.h>
 
-#include "matemixer-types.h"
+#include "cafemixer-types.h"
 
 G_BEGIN_DECLS
 
@@ -32,19 +32,19 @@ struct _MateMixerAppInfo
     gchar *icon;
 };
 
-MateMixerAppInfo *_mate_mixer_app_info_new         (void);
+MateMixerAppInfo *_cafe_mixer_app_info_new         (void);
 
-void              _mate_mixer_app_info_set_name    (MateMixerAppInfo *info,
+void              _cafe_mixer_app_info_set_name    (MateMixerAppInfo *info,
                                                     const gchar      *name);
-void              _mate_mixer_app_info_set_id      (MateMixerAppInfo *info,
+void              _cafe_mixer_app_info_set_id      (MateMixerAppInfo *info,
                                                     const gchar      *id);
-void              _mate_mixer_app_info_set_version (MateMixerAppInfo *info,
+void              _cafe_mixer_app_info_set_version (MateMixerAppInfo *info,
                                                     const gchar      *version);
-void              _mate_mixer_app_info_set_icon    (MateMixerAppInfo *info,
+void              _cafe_mixer_app_info_set_icon    (MateMixerAppInfo *info,
                                                     const gchar      *icon);
 
-MateMixerAppInfo *_mate_mixer_app_info_copy        (MateMixerAppInfo *info);
-void              _mate_mixer_app_info_free        (MateMixerAppInfo *info);
+MateMixerAppInfo *_cafe_mixer_app_info_copy        (MateMixerAppInfo *info);
+void              _cafe_mixer_app_info_free        (MateMixerAppInfo *info);
 
 G_END_DECLS
 

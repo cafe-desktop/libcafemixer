@@ -21,18 +21,18 @@
 #include <glib.h>
 #include <glib-object.h>
 
-#include "matemixer-types.h"
+#include "cafemixer-types.h"
 
 G_BEGIN_DECLS
 
-#define CAFE_MIXER_TYPE_APP_INFO (mate_mixer_app_info_get_type ())
+#define CAFE_MIXER_TYPE_APP_INFO (cafe_mixer_app_info_get_type ())
 
-GType        mate_mixer_app_info_get_type    (void) G_GNUC_CONST;
+GType        cafe_mixer_app_info_get_type    (void) G_GNUC_CONST;
 
-const gchar *mate_mixer_app_info_get_name    (MateMixerAppInfo *info);
-const gchar *mate_mixer_app_info_get_id      (MateMixerAppInfo *info);
-const gchar *mate_mixer_app_info_get_version (MateMixerAppInfo *info);
-const gchar *mate_mixer_app_info_get_icon    (MateMixerAppInfo *info);
+const gchar *cafe_mixer_app_info_get_name    (MateMixerAppInfo *info);
+const gchar *cafe_mixer_app_info_get_id      (MateMixerAppInfo *info);
+const gchar *cafe_mixer_app_info_get_version (MateMixerAppInfo *info);
+const gchar *cafe_mixer_app_info_get_icon    (MateMixerAppInfo *info);
 
 G_END_DECLS
 

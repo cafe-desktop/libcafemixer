@@ -17,8 +17,8 @@
 
 #include <glib.h>
 #include <glib-object.h>
-#include <libmatemixer/matemixer.h>
-#include <libmatemixer/matemixer-private.h>
+#include <libcafemixer/cafemixer.h>
+#include <libcafemixer/cafemixer-private.h>
 
 #include <pulse/pulseaudio.h>
 
@@ -97,25 +97,25 @@ pulse_source_output_new (PulseConnection             *connection,
     }
 
     if (info->client != PA_INVALID_INDEX) {
-        app_info = _mate_mixer_app_info_new ();
+        app_info = _cafe_mixer_app_info_new ();
 
         role = CAFE_MIXER_STREAM_CONTROL_ROLE_APPLICATION;
 
         prop = pa_proplist_gets (info->proplist, PA_PROP_APPLICATION_NAME);
         if (prop != NULL)
-            _mate_mixer_app_info_set_name (app_info, prop);
+            _cafe_mixer_app_info_set_name (app_info, prop);
 
         prop = pa_proplist_gets (info->proplist, PA_PROP_APPLICATION_ID);
         if (prop != NULL)
-            _mate_mixer_app_info_set_id (app_info, prop);
+            _cafe_mixer_app_info_set_id (app_info, prop);
 
         prop = pa_proplist_gets (info->proplist, PA_PROP_APPLICATION_VERSION);
         if (prop != NULL)
-            _mate_mixer_app_info_set_version (app_info, prop);
+            _cafe_mixer_app_info_set_version (app_info, prop);
 
         prop = pa_proplist_gets (info->proplist, PA_PROP_APPLICATION_ICON_NAME);
         if (prop != NULL)
-            _mate_mixer_app_info_set_icon (app_info, prop);
+            _cafe_mixer_app_info_set_icon (app_info, prop);
     }
 
     prop = pa_proplist_gets (info->proplist, PA_PROP_MEDIA_ROLE);
@@ -155,7 +155,7 @@ pulse_source_output_update (PulseSourceOutput           *output,
     /* Let all the information update before emitting notify signals */
     g_object_freeze_notify (G_OBJECT (output));
 
-    _mate_mixer_stream_control_set_mute (CAFE_MIXER_STREAM_CONTROL (output),
+    _cafe_mixer_stream_control_set_mute (CAFE_MIXER_STREAM_CONTROL (output),
                                          info->mute ? TRUE : FALSE);
 
     pulse_stream_control_set_channel_map (PULSE_STREAM_CONTROL (output),

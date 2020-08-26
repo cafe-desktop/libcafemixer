@@ -17,8 +17,8 @@
 
 #include <glib.h>
 #include <glib-object.h>
-#include <libmatemixer/matemixer.h>
-#include <libmatemixer/matemixer-private.h>
+#include <libcafemixer/cafemixer.h>
+#include <libcafemixer/cafemixer-private.h>
 
 #include <pulse/pulseaudio.h>
 
@@ -100,7 +100,7 @@ pulse_source_control_update (PulseSourceControl *control, const pa_source_info *
     /* Let all the information update before emitting notify signals */
     g_object_freeze_notify (G_OBJECT (control));
 
-    _mate_mixer_stream_control_set_mute (CAFE_MIXER_STREAM_CONTROL (control),
+    _cafe_mixer_stream_control_set_mute (CAFE_MIXER_STREAM_CONTROL (control),
                                          info->mute ? TRUE : FALSE);
 
     pulse_stream_control_set_channel_map (PULSE_STREAM_CONTROL (control),
@@ -144,7 +144,7 @@ pulse_source_control_create_monitor (PulseStreamControl *psc)
     index = pulse_stream_control_get_stream_index (psc);
     if (G_UNLIKELY (index == PA_INVALID_INDEX)) {
         g_debug ("Monitor of stream control %s is not available",
-                 mate_mixer_stream_control_get_name (CAFE_MIXER_STREAM_CONTROL (psc)));
+                 cafe_mixer_stream_control_get_name (CAFE_MIXER_STREAM_CONTROL (psc)));
         return NULL;
     }
 

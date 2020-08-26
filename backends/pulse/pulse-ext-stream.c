@@ -19,8 +19,8 @@
 #include <glib.h>
 #include <glib-object.h>
 
-#include <libmatemixer/matemixer.h>
-#include <libmatemixer/matemixer-private.h>
+#include <libcafemixer/cafemixer.h>
+#include <libcafemixer/cafemixer-private.h>
 
 #include <pulse/pulseaudio.h>
 #include <pulse/ext-stream-restore.h>
@@ -232,7 +232,7 @@ pulse_ext_stream_finalize (GObject *object)
     ext = PULSE_EXT_STREAM (object);
 
     if (ext->priv->app_info != NULL)
-        _mate_mixer_app_info_free (ext->priv->app_info);
+        _cafe_mixer_app_info_free (ext->priv->app_info);
 
     G_OBJECT_CLASS (pulse_ext_stream_parent_class)->finalize (object);
 }
@@ -289,10 +289,10 @@ pulse_ext_stream_new (PulseConnection                  *connection,
          * structure available, even in the case no application info is
          * available */
         if (app_info == NULL)
-            app_info = _mate_mixer_app_info_new ();
+            app_info = _cafe_mixer_app_info_new ();
 
         if (G_LIKELY (suffix != NULL))
-            _mate_mixer_app_info_set_name (app_info, suffix);
+            _cafe_mixer_app_info_set_name (app_info, suffix);
     }
     else if (strstr (info->name, "-by-application-id:")) {
         role = CAFE_MIXER_STREAM_CONTROL_ROLE_APPLICATION;
@@ -301,10 +301,10 @@ pulse_ext_stream_new (PulseConnection                  *connection,
          * structure available, even in the case no application info is
          * available */
         if (app_info == NULL)
-            app_info = _mate_mixer_app_info_new ();
+            app_info = _cafe_mixer_app_info_new ();
 
         if (G_LIKELY (suffix != NULL))
-            _mate_mixer_app_info_set_id (app_info, suffix);
+            _cafe_mixer_app_info_set_id (app_info, suffix);
     }
 
     ext = g_object_new (PULSE_TYPE_EXT_STREAM,
@@ -319,7 +319,7 @@ pulse_ext_stream_new (PulseConnection                  *connection,
                         NULL);
 
     if (app_info != NULL)
-        _mate_mixer_app_info_free (app_info);
+        _cafe_mixer_app_info_free (app_info);
 
     /* Store values which are expected to be changed */
     pulse_ext_stream_update (ext, info, parent);
@@ -341,10 +341,10 @@ pulse_ext_stream_update (PulseExtStream                   *ext,
     /* Let all the information update before emitting notify signals */
     g_object_freeze_notify (G_OBJECT (ext));
 
-    _mate_mixer_stream_control_set_mute (CAFE_MIXER_STREAM_CONTROL (ext),
+    _cafe_mixer_stream_control_set_mute (CAFE_MIXER_STREAM_CONTROL (ext),
                                          info->mute ? TRUE : FALSE);
 
-    flags = mate_mixer_stream_control_get_flags (CAFE_MIXER_STREAM_CONTROL (ext));
+    flags = cafe_mixer_stream_control_get_flags (CAFE_MIXER_STREAM_CONTROL (ext));
 
     if (pa_channel_map_valid (&info->channel_map) != 0) {
         if (pa_channel_map_can_balance (&info->channel_map) != 0)
@@ -383,14 +383,14 @@ pulse_ext_stream_update (PulseExtStream                   *ext,
     if (volume_changed == TRUE)
         store_cvolume (ext, &info->volume);
 
-    _mate_mixer_stream_control_set_flags (CAFE_MIXER_STREAM_CONTROL (ext), flags);
+    _cafe_mixer_stream_control_set_flags (CAFE_MIXER_STREAM_CONTROL (ext), flags);
 
     /* Also set initially, but may change at any time */
     if (parent != NULL)
-        _mate_mixer_stream_control_set_stream (CAFE_MIXER_STREAM_CONTROL (ext),
+        _cafe_mixer_stream_control_set_stream (CAFE_MIXER_STREAM_CONTROL (ext),
                                                CAFE_MIXER_STREAM (parent));
     else
-        _mate_mixer_stream_control_set_stream (CAFE_MIXER_STREAM_CONTROL (ext),
+        _cafe_mixer_stream_control_set_stream (CAFE_MIXER_STREAM_CONTROL (ext),
                                                NULL);
 
     g_object_thaw_notify (G_OBJECT (ext));
@@ -417,7 +417,7 @@ pulse_ext_stream_set_stream (MateMixerStreamControl *mmsc, MateMixerStream *mms)
 
     fill_ext_stream_restore_info (ext, &info);
     if (mms != NULL)
-        info.device = mate_mixer_stream_get_name (mms);
+        info.device = cafe_mixer_stream_get_name (mms);
     else
         info.device = NULL;
 
@@ -625,14 +625,14 @@ fill_ext_stream_restore_info (PulseExtStream             *ext,
 
     mmsc = CAFE_MIXER_STREAM_CONTROL (ext);
 
-    info->name = mate_mixer_stream_control_get_name (mmsc);
-    info->mute = mate_mixer_stream_control_get_mute (mmsc);
+    info->name = cafe_mixer_stream_control_get_name (mmsc);
+    info->mute = cafe_mixer_stream_control_get_mute (mmsc);
     info->volume      = ext->priv->cvolume;
     info->channel_map = ext->priv->channel_map;
 
-    mms = mate_mixer_stream_control_get_stream (mmsc);
+    mms = cafe_mixer_stream_control_get_stream (mmsc);
     if (mms != NULL)
-        info->device = mate_mixer_stream_get_name (mms);
+        info->device = cafe_mixer_stream_get_name (mms);
     else
         info->device = NULL;
 }
@@ -675,10 +675,10 @@ store_cvolume (PulseExtStream *ext, const pa_cvolume *cvolume)
     value = pa_cvolume_get_balance (&ext->priv->cvolume,
                                     &ext->priv->channel_map);
 
-    _mate_mixer_stream_control_set_balance (CAFE_MIXER_STREAM_CONTROL (ext), value);
+    _cafe_mixer_stream_control_set_balance (CAFE_MIXER_STREAM_CONTROL (ext), value);
 
     value = pa_cvolume_get_fade (&ext->priv->cvolume,
                                  &ext->priv->channel_map);
 
-    _mate_mixer_stream_control_set_fade (CAFE_MIXER_STREAM_CONTROL (ext), value);
+    _cafe_mixer_stream_control_set_fade (CAFE_MIXER_STREAM_CONTROL (ext), value);
 }

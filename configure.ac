@@ -6,15 +6,15 @@ AC_PREREQ([2.60])
 # Versioning
 # =======================================================================
 
-m4_define(libmatemixer_major_version, 1)
-m4_define(libmatemixer_minor_version, 24)
-m4_define(libmatemixer_micro_version, 1)
-m4_define(libmatemixer_version,
-         [libmatemixer_major_version.libmatemixer_minor_version.libmatemixer_micro_version])
+m4_define(libcafemixer_major_version, 1)
+m4_define(libcafemixer_minor_version, 24)
+m4_define(libcafemixer_micro_version, 1)
+m4_define(libcafemixer_version,
+         [libcafemixer_major_version.libcafemixer_minor_version.libcafemixer_micro_version])
 
-AC_INIT([libmatemixer],
-        [libmatemixer_version],
-        [https://mate-desktop.org])
+AC_INIT([libcafemixer],
+        [libcafemixer_version],
+        [https://cafe-desktop.org])
 
 # Before making a release, the LT_VERSION string should be modified.
 # The string is of the form C:R:A.
@@ -26,21 +26,21 @@ AC_INIT([libmatemixer],
 
 LT_VERSION=0:0:0
 
-AC_DEFINE(LIBCAFEMIXER_MAJOR_VERSION, libmatemixer_major_version, [Libmatemixer major version])
-AC_DEFINE(LIBCAFEMIXER_MINOR_VERSION, libmatemixer_minor_version, [Libmatemixer minor version])
-AC_DEFINE(LIBCAFEMIXER_MICRO_VERSION, libmatemixer_micro_version, [Libmatemixer micro version])
+AC_DEFINE(LIBCAFEMIXER_MAJOR_VERSION, libcafemixer_major_version, [Libcafemixer major version])
+AC_DEFINE(LIBCAFEMIXER_MINOR_VERSION, libcafemixer_minor_version, [Libcafemixer minor version])
+AC_DEFINE(LIBCAFEMIXER_MICRO_VERSION, libcafemixer_micro_version, [Libcafemixer micro version])
 
-AC_SUBST(LIBCAFEMIXER_MAJOR_VERSION, libmatemixer_major_version)
-AC_SUBST(LIBCAFEMIXER_MINOR_VERSION, libmatemixer_minor_version)
-AC_SUBST(LIBCAFEMIXER_MICRO_VERSION, libmatemixer_micro_version)
-AC_SUBST(LIBCAFEMIXER_VERSION,       libmatemixer_version)
+AC_SUBST(LIBCAFEMIXER_MAJOR_VERSION, libcafemixer_major_version)
+AC_SUBST(LIBCAFEMIXER_MINOR_VERSION, libcafemixer_minor_version)
+AC_SUBST(LIBCAFEMIXER_MICRO_VERSION, libcafemixer_micro_version)
+AC_SUBST(LIBCAFEMIXER_VERSION,       libcafemixer_version)
 
 AC_SUBST(LT_VERSION)
 
 AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_MACRO_DIR([m4])
 AC_CONFIG_AUX_DIR([build-aux])
-AC_CONFIG_SRCDIR([libmatemixer/matemixer.c])
+AC_CONFIG_SRCDIR([libcafemixer/cafemixer.c])
 
 AM_INIT_AUTOMAKE([1.9 no-dist-gzip dist-xz foreign tar-ustar check-news])
 
@@ -72,7 +72,7 @@ LT_INIT
 # Gettext
 # =======================================================================
 
-GETTEXT_PACKAGE=libmatemixer
+GETTEXT_PACKAGE=libcafemixer
 AC_SUBST(GETTEXT_PACKAGE)
 AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE, "$GETTEXT_PACKAGE", [Gettext Package])
 
@@ -238,14 +238,14 @@ AC_SUBST(OSS_LIBS)
 # =======================================================================
 AC_CONFIG_FILES([
 Makefile
-libmatemixer/Makefile
+libcafemixer/Makefile
 backends/Makefile
 backends/null/Makefile
 backends/pulse/Makefile
 backends/alsa/Makefile
 backends/oss/Makefile
 data/Makefile
-data/libmatemixer.pc
+data/libcafemixer.pc
 docs/Makefile
 docs/reference/Makefile
 docs/reference/version.xml

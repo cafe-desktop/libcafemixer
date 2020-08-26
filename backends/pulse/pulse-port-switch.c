@@ -19,8 +19,8 @@
 #include <glib.h>
 #include <glib-object.h>
 
-#include <libmatemixer/matemixer.h>
-#include <libmatemixer/matemixer-private.h>
+#include <libcafemixer/cafemixer.h>
+#include <libcafemixer/cafemixer-private.h>
 
 #include "pulse-connection.h"
 #include "pulse-port.h"
@@ -85,7 +85,7 @@ pulse_port_switch_get_stream (PulsePortSwitch *swtch)
 {
     g_return_val_if_fail (PULSE_IS_PORT_SWITCH (swtch), NULL);
 
-    return PULSE_STREAM (mate_mixer_stream_switch_get_stream (CAFE_MIXER_STREAM_SWITCH (swtch)));
+    return PULSE_STREAM (cafe_mixer_stream_switch_get_stream (CAFE_MIXER_STREAM_SWITCH (swtch)));
 }
 
 void
@@ -105,7 +105,7 @@ pulse_port_switch_set_active_port (PulsePortSwitch *swtch, PulsePort *port)
     g_return_if_fail (PULSE_IS_PORT_SWITCH (swtch));
     g_return_if_fail (PULSE_IS_PORT (port));
 
-    _mate_mixer_switch_set_active_option (CAFE_MIXER_SWITCH (swtch),
+    _cafe_mixer_switch_set_active_option (CAFE_MIXER_SWITCH (swtch),
                                           CAFE_MIXER_SWITCH_OPTION (port));
 }
 

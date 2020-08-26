@@ -21,13 +21,13 @@
 #include <glib.h>
 #include <glib-object.h>
 
-#include <libmatemixer/matemixer-enums.h>
-#include <libmatemixer/matemixer-types.h>
+#include <libcafemixer/cafemixer-enums.h>
+#include <libcafemixer/cafemixer-types.h>
 
 G_BEGIN_DECLS
 
 #define CAFE_MIXER_TYPE_CONTEXT                 \
-        (mate_mixer_context_get_type ())
+        (cafe_mixer_context_get_type ())
 #define CAFE_MIXER_CONTEXT(o)                   \
         (G_TYPE_CHECK_INSTANCE_CAST ((o), CAFE_MIXER_TYPE_CONTEXT, MateMixerContext))
 #define CAFE_MIXER_IS_CONTEXT(o)                \
@@ -81,50 +81,50 @@ struct _MateMixerContextClass
                                     const gchar      *name);
 };
 
-GType                   mate_mixer_context_get_type                  (void) G_GNUC_CONST;
+GType                   cafe_mixer_context_get_type                  (void) G_GNUC_CONST;
 
-MateMixerContext *      mate_mixer_context_new                       (void);
+MateMixerContext *      cafe_mixer_context_new                       (void);
 
-gboolean                mate_mixer_context_set_backend_type          (MateMixerContext     *context,
+gboolean                cafe_mixer_context_set_backend_type          (MateMixerContext     *context,
                                                                       MateMixerBackendType  backend_type);
-gboolean                mate_mixer_context_set_app_name              (MateMixerContext     *context,
+gboolean                cafe_mixer_context_set_app_name              (MateMixerContext     *context,
                                                                       const gchar          *app_name);
-gboolean                mate_mixer_context_set_app_id                (MateMixerContext     *context,
+gboolean                cafe_mixer_context_set_app_id                (MateMixerContext     *context,
                                                                       const gchar          *app_id);
-gboolean                mate_mixer_context_set_app_version           (MateMixerContext     *context,
+gboolean                cafe_mixer_context_set_app_version           (MateMixerContext     *context,
                                                                       const gchar          *app_version);
-gboolean                mate_mixer_context_set_app_icon              (MateMixerContext     *context,
+gboolean                cafe_mixer_context_set_app_icon              (MateMixerContext     *context,
                                                                       const gchar          *app_icon);
-gboolean                mate_mixer_context_set_server_address        (MateMixerContext     *context,
+gboolean                cafe_mixer_context_set_server_address        (MateMixerContext     *context,
                                                                       const gchar          *address);
 
-gboolean                mate_mixer_context_open                      (MateMixerContext     *context);
-void                    mate_mixer_context_close                     (MateMixerContext     *context);
+gboolean                cafe_mixer_context_open                      (MateMixerContext     *context);
+void                    cafe_mixer_context_close                     (MateMixerContext     *context);
 
-MateMixerState          mate_mixer_context_get_state                 (MateMixerContext     *context);
+MateMixerState          cafe_mixer_context_get_state                 (MateMixerContext     *context);
 
-MateMixerDevice *       mate_mixer_context_get_device                (MateMixerContext     *context,
+MateMixerDevice *       cafe_mixer_context_get_device                (MateMixerContext     *context,
                                                                       const gchar          *name);
-MateMixerStream *       mate_mixer_context_get_stream                (MateMixerContext     *context,
+MateMixerStream *       cafe_mixer_context_get_stream                (MateMixerContext     *context,
                                                                       const gchar          *name);
-MateMixerStoredControl *mate_mixer_context_get_stored_control        (MateMixerContext     *context,
+MateMixerStoredControl *cafe_mixer_context_get_stored_control        (MateMixerContext     *context,
                                                                       const gchar          *name);
 
-const GList *           mate_mixer_context_list_devices              (MateMixerContext     *context);
-const GList *           mate_mixer_context_list_streams              (MateMixerContext     *context);
-const GList *           mate_mixer_context_list_stored_controls      (MateMixerContext     *context);
+const GList *           cafe_mixer_context_list_devices              (MateMixerContext     *context);
+const GList *           cafe_mixer_context_list_streams              (MateMixerContext     *context);
+const GList *           cafe_mixer_context_list_stored_controls      (MateMixerContext     *context);
 
-MateMixerStream *       mate_mixer_context_get_default_input_stream  (MateMixerContext     *context);
-gboolean                mate_mixer_context_set_default_input_stream  (MateMixerContext     *context,
+MateMixerStream *       cafe_mixer_context_get_default_input_stream  (MateMixerContext     *context);
+gboolean                cafe_mixer_context_set_default_input_stream  (MateMixerContext     *context,
                                                                       MateMixerStream      *stream);
 
-MateMixerStream *       mate_mixer_context_get_default_output_stream (MateMixerContext     *context);
-gboolean                mate_mixer_context_set_default_output_stream (MateMixerContext     *context,
+MateMixerStream *       cafe_mixer_context_get_default_output_stream (MateMixerContext     *context);
+gboolean                cafe_mixer_context_set_default_output_stream (MateMixerContext     *context,
                                                                       MateMixerStream      *stream);
 
-const gchar *           mate_mixer_context_get_backend_name          (MateMixerContext     *context);
-MateMixerBackendType    mate_mixer_context_get_backend_type          (MateMixerContext     *context);
-MateMixerBackendFlags   mate_mixer_context_get_backend_flags         (MateMixerContext     *context);
+const gchar *           cafe_mixer_context_get_backend_name          (MateMixerContext     *context);
+MateMixerBackendType    cafe_mixer_context_get_backend_type          (MateMixerContext     *context);
+MateMixerBackendFlags   cafe_mixer_context_get_backend_flags         (MateMixerContext     *context);
 
 G_END_DECLS
 

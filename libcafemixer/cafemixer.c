@@ -21,24 +21,24 @@
 #include <glib-object.h>
 #include <gmodule.h>
 
-#include "matemixer.h"
-#include "matemixer-private.h"
-#include "matemixer-backend-module.h"
+#include "cafemixer.h"
+#include "cafemixer-private.h"
+#include "cafemixer-backend-module.h"
 
 /**
- * SECTION:matemixer
+ * SECTION:cafemixer
  * @short_description: Library initialization and support functions
- * @include: libmatemixer/matemixer.h
+ * @include: libcafemixer/cafemixer.h
  * @see_also: #MateMixerContext
  *
- * The libmatemixer library must be initialized before it is used by an
+ * The libcafemixer library must be initialized before it is used by an
  * application. The initialization function loads dynamic modules which provide
  * access to sound systems (also called backends) and it only succeeds if there
  * is at least one usable module present on the target system.
  *
  * To connect to a sound system and access the mixer functionality after the
  * library is initialized, create a #MateMixerContext using the
- * mate_mixer_context_new() function.
+ * cafe_mixer_context_new() function.
  */
 
 static void       load_modules     (void);
@@ -49,7 +49,7 @@ static GList     *modules = NULL;
 static gboolean   initialized = FALSE;
 
 /**
- * mate_mixer_init:
+ * cafe_mixer_init:
  *
  * Initializes the library. You must call this function before using any other
  * function from the library.
@@ -58,7 +58,7 @@ static gboolean   initialized = FALSE;
  * provide support for any sound system backends.
  */
 gboolean
-mate_mixer_init (void)
+cafe_mixer_init (void)
 {
     if (initialized == TRUE)
         return TRUE;
@@ -93,33 +93,33 @@ mate_mixer_init (void)
 }
 
 /**
- * mate_mixer_is_initialized:
+ * cafe_mixer_is_initialized:
  *
  * Returns %TRUE if the library has been initialized.
  *
  * Returns: %TRUE or %FALSE.
  */
 gboolean
-mate_mixer_is_initialized (void)
+cafe_mixer_is_initialized (void)
 {
     return initialized;
 }
 
 /**
- * _mate_mixer_list_modules:
+ * _cafe_mixer_list_modules:
  *
  * Gets a list of loaded backend modules.
  *
  * Returns: a #GList.
  */
 const GList *
-_mate_mixer_list_modules (void)
+_cafe_mixer_list_modules (void)
 {
     return (const GList *) modules;
 }
 
 /**
- * _mate_mixer_create_channel_mask:
+ * _cafe_mixer_create_channel_mask:
  * @positions: an array of channel positions
  * @n: number of channel positions in the array
  *
@@ -128,7 +128,7 @@ _mate_mixer_list_modules (void)
  * Returns: a channel mask.
  */
 guint32
-_mate_mixer_create_channel_mask (MateMixerChannelPosition *positions, guint n)
+_cafe_mixer_create_channel_mask (MateMixerChannelPosition *positions, guint n)
 {
     guint32 mask = 0;
     guint   i = 0;
@@ -167,7 +167,7 @@ load_modules (void)
 
                 file = g_build_filename (LIBCAFEMIXER_BACKEND_DIR, name, NULL);
                 modules = g_list_prepend (modules,
-                                          mate_mixer_backend_module_new (file));
+                                          cafe_mixer_backend_module_new (file));
                 g_free (file);
             }
 
@@ -190,8 +190,8 @@ compare_modules (gconstpointer a, gconstpointer b)
 {
     const MateMixerBackendInfo *info1, *info2;
 
-    info1 = mate_mixer_backend_module_get_info (CAFE_MIXER_BACKEND_MODULE (a));
-    info2 = mate_mixer_backend_module_get_info (CAFE_MIXER_BACKEND_MODULE (b));
+    info1 = cafe_mixer_backend_module_get_info (CAFE_MIXER_BACKEND_MODULE (a));
+    info2 = cafe_mixer_backend_module_get_info (CAFE_MIXER_BACKEND_MODULE (b));
 
     return info2->priority - info1->priority;
 }

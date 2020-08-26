@@ -18,8 +18,8 @@
 #include <errno.h>
 #include <glib.h>
 #include <glib-object.h>
-#include <libmatemixer/matemixer.h>
-#include <libmatemixer/matemixer-private.h>
+#include <libcafemixer/cafemixer.h>
+#include <libcafemixer/cafemixer-private.h>
 
 #include "oss-common.h"
 #include "oss-stream.h"
@@ -162,7 +162,7 @@ oss_switch_load (OssSwitch *swtch)
                 /* It is possible that some hardware might allow and have more recording
                  * sources active at the same time, but we only support one active
                  * source at a time */
-                _mate_mixer_switch_set_active_option (CAFE_MIXER_SWITCH (swtch),
+                _cafe_mixer_switch_set_active_option (CAFE_MIXER_SWITCH (swtch),
                                                       CAFE_MIXER_SWITCH_OPTION (option));
                 return;
             }
@@ -170,13 +170,13 @@ oss_switch_load (OssSwitch *swtch)
         }
 
         g_debug ("Switch %s has an unknown device as the active option",
-                 mate_mixer_switch_get_name (CAFE_MIXER_SWITCH (swtch)));
+                 cafe_mixer_switch_get_name (CAFE_MIXER_SWITCH (swtch)));
 
         /* OSS shouldn't let a non-record device be selected, let's step in and select
          * something reasonable instead... */
     } else {
          g_debug ("Switch %s has no active device",
-                  mate_mixer_switch_get_name (CAFE_MIXER_SWITCH (swtch)));
+                  cafe_mixer_switch_get_name (CAFE_MIXER_SWITCH (swtch)));
 
         /* According to the OSS Programmer's Guide, if the recsrc value is 0, the
          * microphone will be selected implicitly.
@@ -186,14 +186,14 @@ oss_switch_load (OssSwitch *swtch)
     option = choose_default_option (swtch);
 
     g_debug ("Selecting default device %s as active for switch %s",
-             mate_mixer_switch_option_get_name (CAFE_MIXER_SWITCH_OPTION (option)),
-             mate_mixer_switch_get_name (CAFE_MIXER_SWITCH (swtch)));
+             cafe_mixer_switch_option_get_name (CAFE_MIXER_SWITCH_OPTION (option)),
+             cafe_mixer_switch_get_name (CAFE_MIXER_SWITCH (swtch)));
 
-    if (mate_mixer_switch_set_active_option (CAFE_MIXER_SWITCH (swtch),
+    if (cafe_mixer_switch_set_active_option (CAFE_MIXER_SWITCH (swtch),
                                              CAFE_MIXER_SWITCH_OPTION (option)) == FALSE) {
         g_debug ("Failed to set the default device, assuming it is selected anyway");
 
-        _mate_mixer_switch_set_active_option (CAFE_MIXER_SWITCH (swtch),
+        _cafe_mixer_switch_set_active_option (CAFE_MIXER_SWITCH (swtch),
                                               CAFE_MIXER_SWITCH_OPTION (option));
     }
 }

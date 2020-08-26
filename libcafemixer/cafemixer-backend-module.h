@@ -21,12 +21,12 @@
 #include <glib.h>
 #include <glib-object.h>
 
-#include "matemixer-enums.h"
+#include "cafemixer-enums.h"
 
 G_BEGIN_DECLS
 
 #define CAFE_MIXER_TYPE_BACKEND_MODULE          \
-        (mate_mixer_backend_module_get_type ())
+        (cafe_mixer_backend_module_get_type ())
 #define CAFE_MIXER_BACKEND_MODULE(o)            \
         (G_TYPE_CHECK_INSTANCE_CAST ((o), CAFE_MIXER_TYPE_BACKEND_MODULE, MateMixerBackendModule))
 #define CAFE_MIXER_IS_BACKEND_MODULE(o)         \
@@ -65,12 +65,12 @@ struct _MateMixerBackendInfo
     MateMixerBackendType  backend_type;
 };
 
-GType                       mate_mixer_backend_module_get_type (void) G_GNUC_CONST;
+GType                       cafe_mixer_backend_module_get_type (void) G_GNUC_CONST;
 
-MateMixerBackendModule *    mate_mixer_backend_module_new      (const gchar            *path);
+MateMixerBackendModule *    cafe_mixer_backend_module_new      (const gchar            *path);
 
-const MateMixerBackendInfo *mate_mixer_backend_module_get_info (MateMixerBackendModule *module);
-const gchar *               mate_mixer_backend_module_get_path (MateMixerBackendModule *module);
+const MateMixerBackendInfo *cafe_mixer_backend_module_get_info (MateMixerBackendModule *module);
+const gchar *               cafe_mixer_backend_module_get_path (MateMixerBackendModule *module);
 
 G_END_DECLS
 

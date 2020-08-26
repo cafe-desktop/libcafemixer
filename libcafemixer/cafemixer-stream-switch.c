@@ -18,15 +18,15 @@
 #include <glib.h>
 #include <glib-object.h>
 
-#include "matemixer-enums.h"
-#include "matemixer-enum-types.h"
-#include "matemixer-stream.h"
-#include "matemixer-switch.h"
-#include "matemixer-stream-switch.h"
+#include "cafemixer-enums.h"
+#include "cafemixer-enum-types.h"
+#include "cafemixer-stream.h"
+#include "cafemixer-switch.h"
+#include "cafemixer-stream-switch.h"
 
 /**
- * SECTION:matemixer-stream-switch
- * @include: libmatemixer/matemixer.h
+ * SECTION:cafemixer-stream-switch
+ * @include: libcafemixer/cafemixer.h
  */
 
 struct _MateMixerStreamSwitchPrivate
@@ -46,25 +46,25 @@ enum {
 
 static GParamSpec *properties[N_PROPERTIES] = { NULL, };
 
-static void mate_mixer_stream_switch_get_property (GObject                    *object,
+static void cafe_mixer_stream_switch_get_property (GObject                    *object,
                                                    guint                       param_id,
                                                    GValue                     *value,
                                                    GParamSpec                 *pspec);
-static void mate_mixer_stream_switch_set_property (GObject                    *object,
+static void cafe_mixer_stream_switch_set_property (GObject                    *object,
                                                    guint                       param_id,
                                                    const GValue               *value,
                                                    GParamSpec                 *pspec);
 
-G_DEFINE_ABSTRACT_TYPE_WITH_PRIVATE (MateMixerStreamSwitch, mate_mixer_stream_switch, CAFE_MIXER_TYPE_SWITCH)
+G_DEFINE_ABSTRACT_TYPE_WITH_PRIVATE (MateMixerStreamSwitch, cafe_mixer_stream_switch, CAFE_MIXER_TYPE_SWITCH)
 
 static void
-mate_mixer_stream_switch_class_init (MateMixerStreamSwitchClass *klass)
+cafe_mixer_stream_switch_class_init (MateMixerStreamSwitchClass *klass)
 {
     GObjectClass *object_class;
 
     object_class = G_OBJECT_CLASS (klass);
-    object_class->get_property = mate_mixer_stream_switch_get_property;
-    object_class->set_property = mate_mixer_stream_switch_set_property;
+    object_class->get_property = cafe_mixer_stream_switch_get_property;
+    object_class->set_property = cafe_mixer_stream_switch_set_property;
 
     properties[PROP_FLAGS] =
         g_param_spec_flags ("flags",
@@ -99,7 +99,7 @@ mate_mixer_stream_switch_class_init (MateMixerStreamSwitchClass *klass)
 }
 
 static void
-mate_mixer_stream_switch_get_property (GObject    *object,
+cafe_mixer_stream_switch_get_property (GObject    *object,
                                        guint       param_id,
                                        GValue     *value,
                                        GParamSpec *pspec)
@@ -125,7 +125,7 @@ mate_mixer_stream_switch_get_property (GObject    *object,
 }
 
 static void
-mate_mixer_stream_switch_set_property (GObject      *object,
+cafe_mixer_stream_switch_set_property (GObject      *object,
                                        guint         param_id,
                                        const GValue *value,
                                        GParamSpec   *pspec)
@@ -156,13 +156,13 @@ mate_mixer_stream_switch_set_property (GObject      *object,
 }
 
 static void
-mate_mixer_stream_switch_init (MateMixerStreamSwitch *swtch)
+cafe_mixer_stream_switch_init (MateMixerStreamSwitch *swtch)
 {
-    swtch->priv = mate_mixer_stream_switch_get_instance_private (swtch);
+    swtch->priv = cafe_mixer_stream_switch_get_instance_private (swtch);
 }
 
 /**
- * mate_mixer_stream_switch_get_flags:
+ * cafe_mixer_stream_switch_get_flags:
  * @swtch: a #MateMixerStreamSwitch
  *
  * Gets the flags of the switch. See #MateMixerStreamSwitchFlags for information
@@ -171,7 +171,7 @@ mate_mixer_stream_switch_init (MateMixerStreamSwitch *swtch)
  * Returns: the flags of the switch.
  */
 MateMixerStreamSwitchFlags
-mate_mixer_stream_switch_get_flags (MateMixerStreamSwitch *swtch)
+cafe_mixer_stream_switch_get_flags (MateMixerStreamSwitch *swtch)
 {
     g_return_val_if_fail (CAFE_MIXER_IS_STREAM_SWITCH (swtch), CAFE_MIXER_STREAM_SWITCH_NO_FLAGS);
 
@@ -179,7 +179,7 @@ mate_mixer_stream_switch_get_flags (MateMixerStreamSwitch *swtch)
 }
 
 /**
- * mate_mixer_stream_switch_get_role:
+ * cafe_mixer_stream_switch_get_role:
  * @swtch: a #MateMixerStreamSwitch
  *
  * Gets the role of the switch. The role identifies the purpose of the switch.
@@ -187,7 +187,7 @@ mate_mixer_stream_switch_get_flags (MateMixerStreamSwitch *swtch)
  * Returns: the switch role.
  */
 MateMixerStreamSwitchRole
-mate_mixer_stream_switch_get_role (MateMixerStreamSwitch *swtch)
+cafe_mixer_stream_switch_get_role (MateMixerStreamSwitch *swtch)
 {
     g_return_val_if_fail (CAFE_MIXER_IS_STREAM_SWITCH (swtch), CAFE_MIXER_STREAM_SWITCH_ROLE_UNKNOWN);
 
@@ -195,11 +195,11 @@ mate_mixer_stream_switch_get_role (MateMixerStreamSwitch *swtch)
 }
 
 /**
- * mate_mixer_stream_switch_get_stream:
+ * cafe_mixer_stream_switch_get_stream:
  * @swtch: a #MateMixerStreamSwitch
  */
 MateMixerStream *
-mate_mixer_stream_switch_get_stream (MateMixerStreamSwitch *swtch)
+cafe_mixer_stream_switch_get_stream (MateMixerStreamSwitch *swtch)
 {
     g_return_val_if_fail (CAFE_MIXER_IS_STREAM_SWITCH (swtch), NULL);
 

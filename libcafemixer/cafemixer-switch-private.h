@@ -20,11 +20,11 @@
 
 #include <glib.h>
 
-#include "matemixer-types.h"
+#include "cafemixer-types.h"
 
 G_BEGIN_DECLS
 
-void _mate_mixer_switch_set_active_option (MateMixerSwitch       *sw,
+void _cafe_mixer_switch_set_active_option (MateMixerSwitch       *sw,
                                            MateMixerSwitchOption *option);
 
 G_END_DECLS

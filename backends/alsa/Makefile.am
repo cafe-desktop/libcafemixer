@@ -1,21 +1,21 @@
 NULL =
 
-backenddir = $(libdir)/libmatemixer
+backenddir = $(libdir)/libcafemixer
 
-backend_LTLIBRARIES = libmatemixer-alsa.la
+backend_LTLIBRARIES = libcafemixer-alsa.la
 
 AM_CPPFLAGS =							\
 	-I$(top_srcdir)						\
-	-DG_LOG_DOMAIN=\"libmatemixer-alsa\"			\
+	-DG_LOG_DOMAIN=\"libcafemixer-alsa\"			\
 	$(GLIB_CFLAGS)						\
 	$(ALSA_CFLAGS)						\
 	$(NULL)
 
-libmatemixer_alsa_la_CFLAGS =					\
+libcafemixer_alsa_la_CFLAGS =					\
 	$(WARN_CFLAGS)						\
 	$(NULL)
 
-libmatemixer_alsa_la_SOURCES =                                  \
+libcafemixer_alsa_la_SOURCES =                                  \
 	alsa-backend.c                                          \
 	alsa-backend.h                                          \
 	alsa-compat.h                                           \
@@ -41,11 +41,11 @@ libmatemixer_alsa_la_SOURCES =                                  \
 	alsa-toggle.h                                           \
 	alsa-types.h
 
-libmatemixer_alsa_la_LIBADD =                                   \
+libcafemixer_alsa_la_LIBADD =                                   \
 	$(GLIB_LIBS)                                            \
 	$(ALSA_LIBS)
 
-libmatemixer_alsa_la_LDFLAGS =                                  \
+libcafemixer_alsa_la_LDFLAGS =                                  \
 	-avoid-version                                          \
 	-no-undefined                                           \
 	-export-dynamic                                         \

@@ -18,7 +18,7 @@
 #include <string.h>
 #include <glib.h>
 
-#include <libmatemixer/matemixer-enums.h>
+#include <libcafemixer/cafemixer-enums.h>
 
 #include <pulse/pulseaudio.h>
 

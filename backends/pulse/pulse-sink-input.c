@@ -17,8 +17,8 @@
 
 #include <glib.h>
 #include <glib-object.h>
-#include <libmatemixer/matemixer.h>
-#include <libmatemixer/matemixer-private.h>
+#include <libcafemixer/cafemixer.h>
+#include <libcafemixer/cafemixer-private.h>
 
 #include <pulse/pulseaudio.h>
 
@@ -98,25 +98,25 @@ pulse_sink_input_new (PulseConnection          *connection,
     }
 
     if (info->client != PA_INVALID_INDEX) {
-        app_info = _mate_mixer_app_info_new ();
+        app_info = _cafe_mixer_app_info_new ();
 
         role = CAFE_MIXER_STREAM_CONTROL_ROLE_APPLICATION;
 
         prop = pa_proplist_gets (info->proplist, PA_PROP_APPLICATION_NAME);
         if (prop != NULL)
-            _mate_mixer_app_info_set_name (app_info, prop);
+            _cafe_mixer_app_info_set_name (app_info, prop);
 
         prop = pa_proplist_gets (info->proplist, PA_PROP_APPLICATION_ID);
         if (prop != NULL)
-            _mate_mixer_app_info_set_id (app_info, prop);
+            _cafe_mixer_app_info_set_id (app_info, prop);
 
         prop = pa_proplist_gets (info->proplist, PA_PROP_APPLICATION_VERSION);
         if (prop != NULL)
-            _mate_mixer_app_info_set_version (app_info, prop);
+            _cafe_mixer_app_info_set_version (app_info, prop);
 
         prop = pa_proplist_gets (info->proplist, PA_PROP_APPLICATION_ICON_NAME);
         if (prop != NULL)
-            _mate_mixer_app_info_set_icon (app_info, prop);
+            _cafe_mixer_app_info_set_icon (app_info, prop);
     }
 
     prop = pa_proplist_gets (info->proplist, PA_PROP_MEDIA_ROLE);
@@ -167,7 +167,7 @@ pulse_sink_input_update (PulseSinkInput *input, const pa_sink_input_info *info)
     /* Let all the information update before emitting notify signals */
     g_object_freeze_notify (G_OBJECT (input));
 
-    _mate_mixer_stream_control_set_mute (CAFE_MIXER_STREAM_CONTROL (input),
+    _cafe_mixer_stream_control_set_mute (CAFE_MIXER_STREAM_CONTROL (input),
                                          info->mute ? TRUE : FALSE);
 
     pulse_stream_control_set_channel_map (PULSE_STREAM_CONTROL (input),
@@ -222,12 +222,12 @@ pulse_sink_input_create_monitor (PulseStreamControl *psc)
 
     g_return_val_if_fail (PULSE_IS_SINK_INPUT (psc), NULL);
 
-    sink = PULSE_SINK (mate_mixer_stream_control_get_stream (CAFE_MIXER_STREAM_CONTROL (psc)));
+    sink = PULSE_SINK (cafe_mixer_stream_control_get_stream (CAFE_MIXER_STREAM_CONTROL (psc)));
 
     index = pulse_sink_get_index_monitor (sink);
     if (G_UNLIKELY (index == PA_INVALID_INDEX)) {
         g_debug ("Monitor of stream control %s is not available",
-                 mate_mixer_stream_control_get_name (CAFE_MIXER_STREAM_CONTROL (psc)));
+                 cafe_mixer_stream_control_get_name (CAFE_MIXER_STREAM_CONTROL (psc)));
         return NULL;
     }
 

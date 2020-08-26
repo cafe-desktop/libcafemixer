@@ -1,67 +1,67 @@
 NULL =
 
-lib_LTLIBRARIES = libmatemixer.la
+lib_LTLIBRARIES = libcafemixer.la
 
 AM_CPPFLAGS =							\
 	-I$(top_srcdir)						\
-	-I$(top_srcdir)/libmatemixer				\
-	-DG_LOG_DOMAIN=\"libmatemixer\"				\
-	-DLIBCAFEMIXER_BACKEND_DIR=\"$(libdir)/libmatemixer\"	\
+	-I$(top_srcdir)/libcafemixer				\
+	-DG_LOG_DOMAIN=\"libcafemixer\"				\
+	-DLIBCAFEMIXER_BACKEND_DIR=\"$(libdir)/libcafemixer\"	\
 	$(GLIB_CFLAGS)						\
 	$(NULL)
 
-libmatemixer_includedir = $(includedir)/mate-mixer/libmatemixer
+libcafemixer_includedir = $(includedir)/cafe-mixer/libcafemixer
 
-libmatemixer_include_HEADERS =                                  \
-	matemixer.h                                             \
-	matemixer-app-info.h                                    \
-	matemixer-context.h                                     \
-	matemixer-device.h                                      \
-	matemixer-device-switch.h                               \
-	matemixer-enums.h                                       \
-	matemixer-enum-types.h                                  \
-	matemixer-stored-control.h                              \
-	matemixer-stream.h                                      \
-	matemixer-stream-control.h                              \
-	matemixer-stream-switch.h                               \
-	matemixer-stream-toggle.h                               \
-	matemixer-switch.h                                      \
-	matemixer-switch-option.h                               \
-	matemixer-types.h                                       \
-	matemixer-version.h
+libcafemixer_include_HEADERS =                                  \
+	cafemixer.h                                             \
+	cafemixer-app-info.h                                    \
+	cafemixer-context.h                                     \
+	cafemixer-device.h                                      \
+	cafemixer-device-switch.h                               \
+	cafemixer-enums.h                                       \
+	cafemixer-enum-types.h                                  \
+	cafemixer-stored-control.h                              \
+	cafemixer-stream.h                                      \
+	cafemixer-stream-control.h                              \
+	cafemixer-stream-switch.h                               \
+	cafemixer-stream-toggle.h                               \
+	cafemixer-switch.h                                      \
+	cafemixer-switch-option.h                               \
+	cafemixer-types.h                                       \
+	cafemixer-version.h
 
-libmatemixer_la_CFLAGS =					\
+libcafemixer_la_CFLAGS =					\
 	$(WARN_CFLAGS)						\
 	$(NULL)
 
-libmatemixer_la_SOURCES =                                       \
-	matemixer.c                                             \
-	matemixer-private.h                                     \
-	matemixer-app-info.c                                    \
-	matemixer-app-info-private.h                            \
-	matemixer-backend.c                                     \
-	matemixer-backend.h                                     \
-	matemixer-backend-module.c                              \
-	matemixer-backend-module.h                              \
-	matemixer-context.c                                     \
-	matemixer-device.c                                      \
-	matemixer-device-switch.c                               \
-	matemixer-enum-types.c                                  \
-	matemixer-stored-control.c                              \
-	matemixer-stream.c                                      \
-	matemixer-stream-private.h                              \
-	matemixer-stream-control.c                              \
-	matemixer-stream-control-private.h                      \
-	matemixer-stream-switch.c                               \
-	matemixer-stream-toggle.c                               \
-	matemixer-switch.c                                      \
-	matemixer-switch-private.h                              \
-	matemixer-switch-option.c                               \
-	matemixer-switch-option-private.h
+libcafemixer_la_SOURCES =                                       \
+	cafemixer.c                                             \
+	cafemixer-private.h                                     \
+	cafemixer-app-info.c                                    \
+	cafemixer-app-info-private.h                            \
+	cafemixer-backend.c                                     \
+	cafemixer-backend.h                                     \
+	cafemixer-backend-module.c                              \
+	cafemixer-backend-module.h                              \
+	cafemixer-context.c                                     \
+	cafemixer-device.c                                      \
+	cafemixer-device-switch.c                               \
+	cafemixer-enum-types.c                                  \
+	cafemixer-stored-control.c                              \
+	cafemixer-stream.c                                      \
+	cafemixer-stream-private.h                              \
+	cafemixer-stream-control.c                              \
+	cafemixer-stream-control-private.h                      \
+	cafemixer-stream-switch.c                               \
+	cafemixer-stream-toggle.c                               \
+	cafemixer-switch.c                                      \
+	cafemixer-switch-private.h                              \
+	cafemixer-switch-option.c                               \
+	cafemixer-switch-option-private.h
 
-libmatemixer_la_LIBADD = $(GLIB_LIBS)
+libcafemixer_la_LIBADD = $(GLIB_LIBS)
 
-libmatemixer_la_LDFLAGS =                                       \
+libcafemixer_la_LDFLAGS =                                       \
 	-version-info $(LT_VERSION)                             \
 	-no-undefined                                           \
 	-export-dynamic

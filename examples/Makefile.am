@@ -5,17 +5,17 @@ AM_CPPFLAGS =							\
 	$(GLIB_CFLAGS)						\
 	$(NULL)
 
-noinst_PROGRAMS = matemixer-monitor
+noinst_PROGRAMS = cafemixer-monitor
 
-matemixer_monitor_SOURCES = monitor.c
+cafemixer_monitor_SOURCES = monitor.c
 
-matemixer_monitor_CFLAGS =					\
+cafemixer_monitor_CFLAGS =					\
 	$(WARN_CFLAGS)						\
 	$(NULL)
 
-matemixer_monitor_LDADD =                                       \
+cafemixer_monitor_LDADD =                                       \
 	$(GLIB_LIBS)                                            \
-	$(top_builddir)/libmatemixer/libmatemixer.la
+	$(top_builddir)/libcafemixer/libcafemixer.la
 
 EXTRA_DIST = monitor.c
 

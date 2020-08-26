@@ -17,8 +17,8 @@
 
 #include <glib.h>
 #include <glib-object.h>
-#include <libmatemixer/matemixer.h>
-#include <libmatemixer/matemixer-private.h>
+#include <libcafemixer/cafemixer.h>
+#include <libcafemixer/cafemixer-private.h>
 
 #include "null-backend.h"
 
@@ -75,6 +75,6 @@ null_backend_init (NullBackend *null)
 static gboolean
 null_backend_open (MateMixerBackend *backend)
 {
-    _mate_mixer_backend_set_state (backend, CAFE_MIXER_STATE_READY);
+    _cafe_mixer_backend_set_state (backend, CAFE_MIXER_STATE_READY);
     return TRUE;
 }

@@ -23,8 +23,8 @@
 #include <glib/gi18n.h>
 #include <glib-object.h>
 
-#include <libmatemixer/matemixer.h>
-#include <libmatemixer/matemixer-private.h>
+#include <libcafemixer/cafemixer.h>
+#include <libcafemixer/cafemixer-private.h>
 
 #include "oss-backend.h"
 #include "oss-common.h"
@@ -169,7 +169,7 @@ oss_backend_dispose (GObject *object)
 
     backend = CAFE_MIXER_BACKEND (object);
 
-    state = mate_mixer_backend_get_state (backend);
+    state = cafe_mixer_backend_get_state (backend);
     if (state != CAFE_MIXER_STATE_IDLE)
         oss_backend_close (backend);
 
@@ -211,7 +211,7 @@ oss_backend_open (MateMixerBackend *backend)
      * be a device-related problem so make the backend always open successfully */
     read_devices (oss);
 
-    _mate_mixer_backend_set_state (backend, CAFE_MIXER_STATE_READY);
+    _cafe_mixer_backend_set_state (backend, CAFE_MIXER_STATE_READY);
     return TRUE;
 }
 
@@ -239,7 +239,7 @@ oss_backend_close (MateMixerBackend *backend)
 
     g_hash_table_remove_all (oss->priv->devices_paths);
 
-    _mate_mixer_backend_set_state (backend, CAFE_MIXER_STATE_IDLE);
+    _cafe_mixer_backend_set_state (backend, CAFE_MIXER_STATE_IDLE);
 }
 
 static const GList *
@@ -498,7 +498,7 @@ add_device (OssBackend *oss, OssDevice *device)
 
     g_signal_emit_by_name (G_OBJECT (oss),
                            "device-added",
-                           mate_mixer_device_get_name (CAFE_MIXER_DEVICE (device)));
+                           cafe_mixer_device_get_name (CAFE_MIXER_DEVICE (device)));
 
     /* Load the device elements after emitting device-added, because the load
      * function will most likely emit stream-added on the device and backend */
@@ -559,7 +559,7 @@ remove_device_by_list_item (OssBackend *oss, GList *item)
 
     g_signal_emit_by_name (G_OBJECT (oss),
                            "device-removed",
-                           mate_mixer_device_get_name (CAFE_MIXER_DEVICE (device)));
+                           cafe_mixer_device_get_name (CAFE_MIXER_DEVICE (device)));
 
     g_object_unref (device);
 }
@@ -569,14 +569,14 @@ remove_stream (OssBackend *oss, const gchar *name)
 {
     MateMixerStream *stream;
 
-    stream = mate_mixer_backend_get_default_input_stream (CAFE_MIXER_BACKEND (oss));
+    stream = cafe_mixer_backend_get_default_input_stream (CAFE_MIXER_BACKEND (oss));
 
-    if (stream != NULL && strcmp (mate_mixer_stream_get_name (stream), name) == 0)
+    if (stream != NULL && strcmp (cafe_mixer_stream_get_name (stream), name) == 0)
         select_default_input_stream (oss);
 
-    stream = mate_mixer_backend_get_default_output_stream (CAFE_MIXER_BACKEND (oss));
+    stream = cafe_mixer_backend_get_default_output_stream (CAFE_MIXER_BACKEND (oss));
 
-    if (stream != NULL && strcmp (mate_mixer_stream_get_name (stream), name) == 0)
+    if (stream != NULL && strcmp (cafe_mixer_stream_get_name (stream), name) == 0)
         select_default_output_stream (oss);
 }
 
@@ -608,7 +608,7 @@ select_default_input_stream (OssBackend *oss)
     if (device != NULL) {
         stream = oss_device_get_input_stream (device);
         if (stream != NULL) {
-            _mate_mixer_backend_set_default_input_stream (CAFE_MIXER_BACKEND (oss),
+            _cafe_mixer_backend_set_default_input_stream (CAFE_MIXER_BACKEND (oss),
                                                           CAFE_MIXER_STREAM (stream));
             return;
         }
@@ -620,7 +620,7 @@ select_default_input_stream (OssBackend *oss)
         stream = oss_device_get_input_stream (device);
 
         if (stream != NULL) {
-            _mate_mixer_backend_set_default_input_stream (CAFE_MIXER_BACKEND (oss),
+            _cafe_mixer_backend_set_default_input_stream (CAFE_MIXER_BACKEND (oss),
                                                           CAFE_MIXER_STREAM (stream));
             return;
         }
@@ -628,7 +628,7 @@ select_default_input_stream (OssBackend *oss)
     }
 
     /* In the worst case unset the default stream */
-    _mate_mixer_backend_set_default_input_stream (CAFE_MIXER_BACKEND (oss), NULL);
+    _cafe_mixer_backend_set_default_input_stream (CAFE_MIXER_BACKEND (oss), NULL);
 }
 
 static void
@@ -642,7 +642,7 @@ select_default_output_stream (OssBackend *oss)
     if (device != NULL) {
         stream = oss_device_get_output_stream (device);
         if (stream != NULL) {
-            _mate_mixer_backend_set_default_output_stream (CAFE_MIXER_BACKEND (oss),
+            _cafe_mixer_backend_set_default_output_stream (CAFE_MIXER_BACKEND (oss),
                                                            CAFE_MIXER_STREAM (stream));
             return;
         }
@@ -654,7 +654,7 @@ select_default_output_stream (OssBackend *oss)
         stream = oss_device_get_output_stream (device);
 
         if (stream != NULL) {
-            _mate_mixer_backend_set_default_output_stream (CAFE_MIXER_BACKEND (oss),
+            _cafe_mixer_backend_set_default_output_stream (CAFE_MIXER_BACKEND (oss),
                                                            CAFE_MIXER_STREAM (stream));
             return;
         }
@@ -662,7 +662,7 @@ select_default_output_stream (OssBackend *oss)
     }
 
     /* In the worst case unset the default stream */
-    _mate_mixer_backend_set_default_output_stream (CAFE_MIXER_BACKEND (oss), NULL);
+    _cafe_mixer_backend_set_default_output_stream (CAFE_MIXER_BACKEND (oss), NULL);
 }
 
 static void
@@ -682,7 +682,7 @@ compare_devices (gconstpointer a, gconstpointer b)
     MateMixerDevice *d1 = CAFE_MIXER_DEVICE (a);
     MateMixerDevice *d2 = CAFE_MIXER_DEVICE (b);
 
-    return strcmp (mate_mixer_device_get_name (d1), mate_mixer_device_get_name (d2));
+    return strcmp (cafe_mixer_device_get_name (d1), cafe_mixer_device_get_name (d2));
 }
 
 static gint

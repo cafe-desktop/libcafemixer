@@ -19,8 +19,8 @@
 #include <glib-object.h>
 #include <alsa/asoundlib.h>
 
-#include <libmatemixer/matemixer.h>
-#include <libmatemixer/matemixer-private.h>
+#include <libcafemixer/cafemixer.h>
+#include <libcafemixer/cafemixer-private.h>
 
 #include "alsa-element.h"
 #include "alsa-stream.h"
@@ -217,13 +217,13 @@ alsa_toggle_load (AlsaElement *element)
         MateMixerSwitchOption *active;
 
         if (value > 0)
-            active = mate_mixer_stream_toggle_get_state_option (CAFE_MIXER_STREAM_TOGGLE (toggle),
+            active = cafe_mixer_stream_toggle_get_state_option (CAFE_MIXER_STREAM_TOGGLE (toggle),
                                                                 TRUE);
         else
-            active = mate_mixer_stream_toggle_get_state_option (CAFE_MIXER_STREAM_TOGGLE (toggle),
+            active = cafe_mixer_stream_toggle_get_state_option (CAFE_MIXER_STREAM_TOGGLE (toggle),
                                                                 FALSE);
 
-        _mate_mixer_switch_set_active_option (CAFE_MIXER_SWITCH (toggle), active);
+        _cafe_mixer_switch_set_active_option (CAFE_MIXER_SWITCH (toggle), active);
         return TRUE;
     }
 

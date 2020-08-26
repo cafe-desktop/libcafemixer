@@ -18,14 +18,14 @@
 #include <glib.h>
 #include <glib-object.h>
 
-#include "matemixer-switch.h"
-#include "matemixer-switch-option.h"
-#include "matemixer-stream-toggle.h"
+#include "cafemixer-switch.h"
+#include "cafemixer-switch-option.h"
+#include "cafemixer-stream-toggle.h"
 
 /**
- * SECTION:matemixer-stream-toggle
+ * SECTION:cafemixer-stream-toggle
  * @short_description: On/Off switch
- * @include: libmatemixer/matemixer.h
+ * @include: libcafemixer/cafemixer.h
  */
 
 struct _MateMixerStreamTogglePrivate
@@ -45,38 +45,38 @@ enum {
 
 static GParamSpec *properties[N_PROPERTIES] = { NULL, };
 
-static void mate_mixer_stream_toggle_get_property (GObject                    *object,
+static void cafe_mixer_stream_toggle_get_property (GObject                    *object,
                                                    guint                       param_id,
                                                    GValue                     *value,
                                                    GParamSpec                 *pspec);
-static void mate_mixer_stream_toggle_set_property (GObject                    *object,
+static void cafe_mixer_stream_toggle_set_property (GObject                    *object,
                                                    guint                       param_id,
                                                    const GValue               *value,
                                                    GParamSpec                 *pspec);
 
-static void mate_mixer_stream_toggle_dispose      (GObject                    *object);
+static void cafe_mixer_stream_toggle_dispose      (GObject                    *object);
 
-G_DEFINE_ABSTRACT_TYPE_WITH_PRIVATE (MateMixerStreamToggle, mate_mixer_stream_toggle, CAFE_MIXER_TYPE_STREAM_SWITCH)
+G_DEFINE_ABSTRACT_TYPE_WITH_PRIVATE (MateMixerStreamToggle, cafe_mixer_stream_toggle, CAFE_MIXER_TYPE_STREAM_SWITCH)
 
-static MateMixerSwitchOption *mate_mixer_stream_toggle_get_option   (MateMixerSwitch *swtch,
+static MateMixerSwitchOption *cafe_mixer_stream_toggle_get_option   (MateMixerSwitch *swtch,
                                                                      const gchar     *name);
 
-static const GList *          mate_mixer_stream_toggle_list_options (MateMixerSwitch *swtch);
+static const GList *          cafe_mixer_stream_toggle_list_options (MateMixerSwitch *swtch);
 
 static void
-mate_mixer_stream_toggle_class_init (MateMixerStreamToggleClass *klass)
+cafe_mixer_stream_toggle_class_init (MateMixerStreamToggleClass *klass)
 {
     GObjectClass         *object_class;
     MateMixerSwitchClass *switch_class;
 
     object_class = G_OBJECT_CLASS (klass);
-    object_class->dispose      = mate_mixer_stream_toggle_dispose;
-    object_class->get_property = mate_mixer_stream_toggle_get_property;
-    object_class->set_property = mate_mixer_stream_toggle_set_property;
+    object_class->dispose      = cafe_mixer_stream_toggle_dispose;
+    object_class->get_property = cafe_mixer_stream_toggle_get_property;
+    object_class->set_property = cafe_mixer_stream_toggle_set_property;
 
     switch_class = CAFE_MIXER_SWITCH_CLASS (klass);
-    switch_class->get_option   = mate_mixer_stream_toggle_get_option;
-    switch_class->list_options = mate_mixer_stream_toggle_list_options;
+    switch_class->get_option   = cafe_mixer_stream_toggle_get_option;
+    switch_class->list_options = cafe_mixer_stream_toggle_list_options;
 
     /**
      * MateMixerStreamToggle:state:
@@ -124,7 +124,7 @@ mate_mixer_stream_toggle_class_init (MateMixerStreamToggleClass *klass)
 }
 
 static void
-mate_mixer_stream_toggle_get_property (GObject    *object,
+cafe_mixer_stream_toggle_get_property (GObject    *object,
                                        guint       param_id,
                                        GValue     *value,
                                        GParamSpec *pspec)
@@ -135,7 +135,7 @@ mate_mixer_stream_toggle_get_property (GObject    *object,
 
     switch (param_id) {
     case PROP_STATE:
-        g_value_set_boolean (value, mate_mixer_stream_toggle_get_state (toggle));
+        g_value_set_boolean (value, cafe_mixer_stream_toggle_get_state (toggle));
         break;
     case PROP_ON_STATE_OPTION:
         g_value_set_object (value, toggle->priv->on);
@@ -151,7 +151,7 @@ mate_mixer_stream_toggle_get_property (GObject    *object,
 }
 
 static void
-mate_mixer_stream_toggle_set_property (GObject      *object,
+cafe_mixer_stream_toggle_set_property (GObject      *object,
                                        guint         param_id,
                                        const GValue *value,
                                        GParamSpec   *pspec)
@@ -162,7 +162,7 @@ mate_mixer_stream_toggle_set_property (GObject      *object,
 
     switch (param_id) {
     case PROP_STATE:
-        mate_mixer_stream_toggle_set_state (toggle, g_value_get_boolean (value));
+        cafe_mixer_stream_toggle_set_state (toggle, g_value_get_boolean (value));
         break;
     case PROP_ON_STATE_OPTION:
         /* Construct-only object */
@@ -180,13 +180,13 @@ mate_mixer_stream_toggle_set_property (GObject      *object,
 }
 
 static void
-mate_mixer_stream_toggle_init (MateMixerStreamToggle *toggle)
+cafe_mixer_stream_toggle_init (MateMixerStreamToggle *toggle)
 {
-    toggle->priv = mate_mixer_stream_toggle_get_instance_private (toggle);
+    toggle->priv = cafe_mixer_stream_toggle_get_instance_private (toggle);
 }
 
 static void
-mate_mixer_stream_toggle_dispose (GObject *object)
+cafe_mixer_stream_toggle_dispose (GObject *object)
 {
     MateMixerStreamToggle *toggle;
 
@@ -200,11 +200,11 @@ mate_mixer_stream_toggle_dispose (GObject *object)
     g_clear_object (&toggle->priv->on);
     g_clear_object (&toggle->priv->off);
 
-    G_OBJECT_CLASS (mate_mixer_stream_toggle_parent_class)->dispose (object);
+    G_OBJECT_CLASS (cafe_mixer_stream_toggle_parent_class)->dispose (object);
 }
 
 /**
- * mate_mixer_stream_toggle_get_state:
+ * cafe_mixer_stream_toggle_get_state:
  * @toggle: a #MateMixerStreamToggle
  *
  * Gets the current state of the toggle. %TRUE corresponds to the 'on' state and
@@ -213,13 +213,13 @@ mate_mixer_stream_toggle_dispose (GObject *object)
  * Returns: %TRUE or %FALSE.
  */
 gboolean
-mate_mixer_stream_toggle_get_state (MateMixerStreamToggle *toggle)
+cafe_mixer_stream_toggle_get_state (MateMixerStreamToggle *toggle)
 {
     MateMixerSwitchOption *active;
 
     g_return_val_if_fail (CAFE_MIXER_IS_STREAM_TOGGLE (toggle), FALSE);
 
-    active = mate_mixer_switch_get_active_option (CAFE_MIXER_SWITCH (toggle));
+    active = cafe_mixer_switch_get_active_option (CAFE_MIXER_SWITCH (toggle));
     if (G_UNLIKELY (active == NULL))
         return FALSE;
 
@@ -230,7 +230,7 @@ mate_mixer_stream_toggle_get_state (MateMixerStreamToggle *toggle)
 }
 
 /**
- * mate_mixer_stream_toggle_get_state_option:
+ * cafe_mixer_stream_toggle_get_state_option:
  * @toggle: a #MateMixerStreamToggle
  * @state: the state to get the #MateMixerSwitchOption for
  *
@@ -239,7 +239,7 @@ mate_mixer_stream_toggle_get_state (MateMixerStreamToggle *toggle)
  * Returns: a #MateMixerSwitchOption.
  */
 MateMixerSwitchOption *
-mate_mixer_stream_toggle_get_state_option (MateMixerStreamToggle *toggle, gboolean state)
+cafe_mixer_stream_toggle_get_state_option (MateMixerStreamToggle *toggle, gboolean state)
 {
     g_return_val_if_fail (CAFE_MIXER_IS_STREAM_TOGGLE (toggle), NULL);
 
@@ -250,19 +250,19 @@ mate_mixer_stream_toggle_get_state_option (MateMixerStreamToggle *toggle, gboole
 }
 
 /**
- * mate_mixer_stream_toggle_set_state:
+ * cafe_mixer_stream_toggle_set_state:
  * @toggle: a #MateMixerStreamToggle
  * @state: the state to set
  *
  * Sets the @toggle to the selected state.
  *
- * This function is equivalent to using mate_mixer_switch_set_active_option()
+ * This function is equivalent to using cafe_mixer_switch_set_active_option()
  * with a #MateMixerSwitchOption representing the selected state.
  *
  * Returns: %TRUE on success or %FALSE on failure.
  */
 gboolean
-mate_mixer_stream_toggle_set_state (MateMixerStreamToggle *toggle, gboolean state)
+cafe_mixer_stream_toggle_set_state (MateMixerStreamToggle *toggle, gboolean state)
 {
     MateMixerSwitchOption *active;
 
@@ -276,11 +276,11 @@ mate_mixer_stream_toggle_set_state (MateMixerStreamToggle *toggle, gboolean stat
     if (G_UNLIKELY (active == NULL))
         return FALSE;
 
-    return mate_mixer_switch_set_active_option (CAFE_MIXER_SWITCH (toggle), active);
+    return cafe_mixer_switch_set_active_option (CAFE_MIXER_SWITCH (toggle), active);
 }
 
 static MateMixerSwitchOption *
-mate_mixer_stream_toggle_get_option (MateMixerSwitch *swtch, const gchar *name)
+cafe_mixer_stream_toggle_get_option (MateMixerSwitch *swtch, const gchar *name)
 {
     MateMixerStreamToggle *toggle;
 
@@ -289,16 +289,16 @@ mate_mixer_stream_toggle_get_option (MateMixerSwitch *swtch, const gchar *name)
 
     toggle = CAFE_MIXER_STREAM_TOGGLE (swtch);
 
-    if (g_strcmp0 (name, mate_mixer_switch_option_get_name (toggle->priv->on)) == 0)
+    if (g_strcmp0 (name, cafe_mixer_switch_option_get_name (toggle->priv->on)) == 0)
         return toggle->priv->on;
-    if (g_strcmp0 (name, mate_mixer_switch_option_get_name (toggle->priv->off)) == 0)
+    if (g_strcmp0 (name, cafe_mixer_switch_option_get_name (toggle->priv->off)) == 0)
         return toggle->priv->off;
 
     return NULL;
 }
 
 static const GList *
-mate_mixer_stream_toggle_list_options (MateMixerSwitch *swtch)
+cafe_mixer_stream_toggle_list_options (MateMixerSwitch *swtch)
 {
     MateMixerStreamToggle *toggle;
 

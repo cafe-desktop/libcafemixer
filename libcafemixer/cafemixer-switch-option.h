@@ -21,12 +21,12 @@
 #include <glib.h>
 #include <glib-object.h>
 
-#include <libmatemixer/matemixer-types.h>
+#include <libcafemixer/cafemixer-types.h>
 
 G_BEGIN_DECLS
 
 #define CAFE_MIXER_TYPE_SWITCH_OPTION           \
-        (mate_mixer_switch_option_get_type ())
+        (cafe_mixer_switch_option_get_type ())
 #define CAFE_MIXER_SWITCH_OPTION(o)             \
         (G_TYPE_CHECK_INSTANCE_CAST ((o), CAFE_MIXER_TYPE_SWITCH_OPTION, MateMixerSwitchOption))
 #define CAFE_MIXER_IS_SWITCH_OPTION(o)          \
@@ -66,11 +66,11 @@ struct _MateMixerSwitchOptionClass
     GObjectClass parent_class;
 };
 
-GType        mate_mixer_switch_option_get_type  (void) G_GNUC_CONST;
+GType        cafe_mixer_switch_option_get_type  (void) G_GNUC_CONST;
 
-const gchar *mate_mixer_switch_option_get_name  (MateMixerSwitchOption *option);
-const gchar *mate_mixer_switch_option_get_label (MateMixerSwitchOption *option);
-const gchar *mate_mixer_switch_option_get_icon  (MateMixerSwitchOption *option);
+const gchar *cafe_mixer_switch_option_get_name  (MateMixerSwitchOption *option);
+const gchar *cafe_mixer_switch_option_get_label (MateMixerSwitchOption *option);
+const gchar *cafe_mixer_switch_option_get_icon  (MateMixerSwitchOption *option);
 
 G_END_DECLS
 

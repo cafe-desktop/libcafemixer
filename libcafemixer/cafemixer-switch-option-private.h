@@ -20,11 +20,11 @@
 
 #include <glib.h>
 
-#include "matemixer-types.h"
+#include "cafemixer-types.h"
 
 G_BEGIN_DECLS
 
-MateMixerSwitchOption *_mate_mixer_switch_option_new (const gchar *name,
+MateMixerSwitchOption *_cafe_mixer_switch_option_new (const gchar *name,
                                                       const gchar *label,
                                                       const gchar *icon);
 

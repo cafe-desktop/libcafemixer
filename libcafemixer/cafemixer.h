@@ -21,27 +21,27 @@
 #include <glib.h>
 #include <glib-object.h>
 
-#include <libmatemixer/matemixer-types.h>
+#include <libcafemixer/cafemixer-types.h>
 
-#include <libmatemixer/matemixer-app-info.h>
-#include <libmatemixer/matemixer-context.h>
-#include <libmatemixer/matemixer-device.h>
-#include <libmatemixer/matemixer-device-switch.h>
-#include <libmatemixer/matemixer-enums.h>
-#include <libmatemixer/matemixer-enum-types.h>
-#include <libmatemixer/matemixer-stored-control.h>
-#include <libmatemixer/matemixer-stream.h>
-#include <libmatemixer/matemixer-stream-control.h>
-#include <libmatemixer/matemixer-stream-switch.h>
-#include <libmatemixer/matemixer-stream-toggle.h>
-#include <libmatemixer/matemixer-switch.h>
-#include <libmatemixer/matemixer-switch-option.h>
-#include <libmatemixer/matemixer-version.h>
+#include <libcafemixer/cafemixer-app-info.h>
+#include <libcafemixer/cafemixer-context.h>
+#include <libcafemixer/cafemixer-device.h>
+#include <libcafemixer/cafemixer-device-switch.h>
+#include <libcafemixer/cafemixer-enums.h>
+#include <libcafemixer/cafemixer-enum-types.h>
+#include <libcafemixer/cafemixer-stored-control.h>
+#include <libcafemixer/cafemixer-stream.h>
+#include <libcafemixer/cafemixer-stream-control.h>
+#include <libcafemixer/cafemixer-stream-switch.h>
+#include <libcafemixer/cafemixer-stream-toggle.h>
+#include <libcafemixer/cafemixer-switch.h>
+#include <libcafemixer/cafemixer-switch-option.h>
+#include <libcafemixer/cafemixer-version.h>
 
 G_BEGIN_DECLS
 
-gboolean mate_mixer_init           (void);
-gboolean mate_mixer_is_initialized (void);
+gboolean cafe_mixer_init           (void);
+gboolean cafe_mixer_is_initialized (void);
 
 G_END_DECLS
 

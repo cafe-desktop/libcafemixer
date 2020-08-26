@@ -21,8 +21,8 @@
 #include <glib/gstdio.h>
 #include <glib-object.h>
 
-#include <libmatemixer/matemixer.h>
-#include <libmatemixer/matemixer-private.h>
+#include <libcafemixer/cafemixer.h>
+#include <libcafemixer/cafemixer-private.h>
 
 #include "oss-common.h"
 #include "oss-device.h"
@@ -304,7 +304,7 @@ oss_device_open (OssDevice *device)
 
     g_debug ("Opening device %s (%s)",
              device->priv->path,
-             mate_mixer_device_get_label (CAFE_MIXER_DEVICE (device)));
+             cafe_mixer_device_get_label (CAFE_MIXER_DEVICE (device)));
 
     /* Read the essential information about the device, these values are not
      * expected to change and will not be queried */
@@ -359,7 +359,7 @@ oss_device_close (OssDevice *device)
     /* Make each stream remove its controls and switch */
     if (device->priv->input != NULL) {
         const gchar *name =
-            mate_mixer_stream_get_name (CAFE_MIXER_STREAM (device->priv->input));
+            cafe_mixer_stream_get_name (CAFE_MIXER_STREAM (device->priv->input));
 
         oss_stream_remove_all (device->priv->input);
         free_stream_list (device);
@@ -373,7 +373,7 @@ oss_device_close (OssDevice *device)
 
     if (device->priv->output != NULL) {
         const gchar *name =
-            mate_mixer_stream_get_name (CAFE_MIXER_STREAM (device->priv->output));
+            cafe_mixer_stream_get_name (CAFE_MIXER_STREAM (device->priv->output));
 
         oss_stream_remove_all (device->priv->output);
         free_stream_list (device);
@@ -407,7 +407,7 @@ oss_device_load (OssDevice *device)
 
     g_return_if_fail (OSS_IS_DEVICE (device));
 
-    name = mate_mixer_device_get_name (CAFE_MIXER_DEVICE (device));
+    name = cafe_mixer_device_get_name (CAFE_MIXER_DEVICE (device));
 
     stream_name = g_strdup_printf ("oss-input-%s", name);
     device->priv->input = oss_stream_new (stream_name,
@@ -425,7 +425,7 @@ oss_device_load (OssDevice *device)
 
     /* Set default input control */
     if (oss_stream_has_controls (device->priv->input) == TRUE) {
-        controls = mate_mixer_stream_list_controls (CAFE_MIXER_STREAM (device->priv->input));
+        controls = cafe_mixer_stream_list_controls (CAFE_MIXER_STREAM (device->priv->input));
 
         for (i = 0; i < G_N_ELEMENTS (oss_input_priority); i++) {
             GList *item = g_list_find_custom ((GList *) controls,
@@ -447,7 +447,7 @@ oss_device_load (OssDevice *device)
 
     /* Set default output control */
     if (oss_stream_has_controls (device->priv->output) == TRUE) {
-        controls = mate_mixer_stream_list_controls (CAFE_MIXER_STREAM (device->priv->output));
+        controls = cafe_mixer_stream_list_controls (CAFE_MIXER_STREAM (device->priv->output));
 
         for (i = 0; i < G_N_ELEMENTS (oss_output_priority); i++) {
             GList *item = g_list_find_custom ((GList *) controls,
@@ -550,7 +550,7 @@ read_mixer_devices (OssDevice *device)
     const gchar      *name;
     guint             i;
 
-    name = mate_mixer_device_get_name (CAFE_MIXER_DEVICE (device));
+    name = cafe_mixer_device_get_name (CAFE_MIXER_DEVICE (device));
 
     for (i = 0; i < OSS_N_DEVICES; i++) {
         OssStream *stream;
@@ -593,7 +593,7 @@ read_mixer_devices (OssDevice *device)
 
         if (oss_stream_has_controls (stream) == FALSE) {
             const gchar *name =
-                mate_mixer_stream_get_name (CAFE_MIXER_STREAM (stream));
+                cafe_mixer_stream_get_name (CAFE_MIXER_STREAM (stream));
 
             free_stream_list (device);
 
@@ -606,7 +606,7 @@ read_mixer_devices (OssDevice *device)
 
         g_debug ("Adding device %s control %s",
                  name,
-                 mate_mixer_stream_control_get_name (CAFE_MIXER_STREAM_CONTROL (control)));
+                 cafe_mixer_stream_control_get_name (CAFE_MIXER_STREAM_CONTROL (control)));
 
         oss_stream_add_control (stream, control);
         oss_stream_control_load (control);

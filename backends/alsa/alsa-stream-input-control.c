@@ -19,8 +19,8 @@
 #include <glib-object.h>
 #include <alsa/asoundlib.h>
 
-#include <libmatemixer/matemixer.h>
-#include <libmatemixer/matemixer-private.h>
+#include <libcafemixer/cafemixer.h>
+#include <libcafemixer/cafemixer-private.h>
 
 #include "alsa-compat.h"
 #include "alsa-constants.h"

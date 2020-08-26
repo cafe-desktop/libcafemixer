@@ -1,6 +1,6 @@
 pkgconfigdir = $(libdir)/pkgconfig
-pkgconfig_DATA = libmatemixer.pc
+pkgconfig_DATA = libcafemixer.pc
 
-EXTRA_DIST = libmatemixer.pc.in
+EXTRA_DIST = libcafemixer.pc.in
 
 -include $(top_srcdir)/git.mk

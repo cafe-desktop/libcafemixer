@@ -21,13 +21,13 @@
 #include <glib.h>
 #include <glib-object.h>
 
-#include <libmatemixer/matemixer-enums.h>
-#include <libmatemixer/matemixer-types.h>
+#include <libcafemixer/cafemixer-enums.h>
+#include <libcafemixer/cafemixer-types.h>
 
 G_BEGIN_DECLS
 
 #define CAFE_MIXER_TYPE_SWITCH                  \
-        (mate_mixer_switch_get_type ())
+        (cafe_mixer_switch_get_type ())
 #define CAFE_MIXER_SWITCH(o)                    \
         (G_TYPE_CHECK_INSTANCE_CAST ((o), CAFE_MIXER_TYPE_SWITCH, MateMixerSwitch))
 #define CAFE_MIXER_IS_SWITCH(o)                 \
@@ -76,18 +76,18 @@ struct _MateMixerSwitchClass
                                                  MateMixerSwitchOption *option);
 };
 
-GType                  mate_mixer_switch_get_type          (void) G_GNUC_CONST;
+GType                  cafe_mixer_switch_get_type          (void) G_GNUC_CONST;
 
-const gchar *          mate_mixer_switch_get_name          (MateMixerSwitch       *swtch);
-const gchar *          mate_mixer_switch_get_label         (MateMixerSwitch       *swtch);
+const gchar *          cafe_mixer_switch_get_name          (MateMixerSwitch       *swtch);
+const gchar *          cafe_mixer_switch_get_label         (MateMixerSwitch       *swtch);
 
-MateMixerSwitchOption *mate_mixer_switch_get_option        (MateMixerSwitch       *swtch,
+MateMixerSwitchOption *cafe_mixer_switch_get_option        (MateMixerSwitch       *swtch,
                                                             const gchar           *name);
 
-const GList *          mate_mixer_switch_list_options      (MateMixerSwitch       *swtch);
+const GList *          cafe_mixer_switch_list_options      (MateMixerSwitch       *swtch);
 
-MateMixerSwitchOption *mate_mixer_switch_get_active_option (MateMixerSwitch       *swtch);
-gboolean               mate_mixer_switch_set_active_option (MateMixerSwitch       *swtch,
+MateMixerSwitchOption *cafe_mixer_switch_get_active_option (MateMixerSwitch       *swtch);
+gboolean               cafe_mixer_switch_set_active_option (MateMixerSwitch       *swtch,
                                                             MateMixerSwitchOption *option);
 
 G_END_DECLS

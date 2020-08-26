@@ -21,13 +21,13 @@
 #include <glib.h>
 #include <glib-object.h>
 
-#include <libmatemixer/matemixer-switch.h>
-#include <libmatemixer/matemixer-types.h>
+#include <libcafemixer/cafemixer-switch.h>
+#include <libcafemixer/cafemixer-types.h>
 
 G_BEGIN_DECLS
 
 #define CAFE_MIXER_TYPE_STREAM_SWITCH           \
-        (mate_mixer_stream_switch_get_type ())
+        (cafe_mixer_stream_switch_get_type ())
 #define CAFE_MIXER_STREAM_SWITCH(o)             \
         (G_TYPE_CHECK_INSTANCE_CAST ((o), CAFE_MIXER_TYPE_STREAM_SWITCH, MateMixerStreamSwitch))
 #define CAFE_MIXER_IS_STREAM_SWITCH(o)          \
@@ -67,11 +67,11 @@ struct _MateMixerStreamSwitchClass
     MateMixerSwitchClass parent_class;
 };
 
-GType                      mate_mixer_stream_switch_get_type   (void) G_GNUC_CONST;
+GType                      cafe_mixer_stream_switch_get_type   (void) G_GNUC_CONST;
 
-MateMixerStreamSwitchFlags mate_mixer_stream_switch_get_flags  (MateMixerStreamSwitch *swtch);
-MateMixerStreamSwitchRole  mate_mixer_stream_switch_get_role   (MateMixerStreamSwitch *swtch);
-MateMixerStream *          mate_mixer_stream_switch_get_stream (MateMixerStreamSwitch *swtch);
+MateMixerStreamSwitchFlags cafe_mixer_stream_switch_get_flags  (MateMixerStreamSwitch *swtch);
+MateMixerStreamSwitchRole  cafe_mixer_stream_switch_get_role   (MateMixerStreamSwitch *swtch);
+MateMixerStream *          cafe_mixer_stream_switch_get_stream (MateMixerStreamSwitch *swtch);
 
 G_END_DECLS
 

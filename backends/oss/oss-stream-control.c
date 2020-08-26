@@ -20,8 +20,8 @@
 #include <glib/gstdio.h>
 #include <glib-object.h>
 
-#include <libmatemixer/matemixer.h>
-#include <libmatemixer/matemixer-private.h>
+#include <libcafemixer/cafemixer.h>
+#include <libcafemixer/cafemixer-private.h>
 
 #include "oss-common.h"
 #include "oss-stream.h"
@@ -436,7 +436,7 @@ update_balance (OssStreamControl *control)
     else
         balance = +1.0f - ((gfloat) left / (gfloat) right);
 
-    _mate_mixer_stream_control_set_balance (CAFE_MIXER_STREAM_CONTROL (control),
+    _cafe_mixer_stream_control_set_balance (CAFE_MIXER_STREAM_CONTROL (control),
                                             balance);
 }
 

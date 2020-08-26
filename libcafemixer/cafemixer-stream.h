@@ -21,13 +21,13 @@
 #include <glib.h>
 #include <glib-object.h>
 
-#include <libmatemixer/matemixer-enums.h>
-#include <libmatemixer/matemixer-types.h>
+#include <libcafemixer/cafemixer-enums.h>
+#include <libcafemixer/cafemixer-types.h>
 
 G_BEGIN_DECLS
 
 #define CAFE_MIXER_TYPE_STREAM                  \
-        (mate_mixer_stream_get_type ())
+        (cafe_mixer_stream_get_type ())
 #define CAFE_MIXER_STREAM(o)                    \
         (G_TYPE_CHECK_INSTANCE_CAST ((o), CAFE_MIXER_TYPE_STREAM, MateMixerStream))
 #define CAFE_MIXER_IS_STREAM(o)                 \
@@ -87,23 +87,23 @@ struct _MateMixerStreamClass
                              const gchar     *name);
 };
 
-GType                   mate_mixer_stream_get_type            (void) G_GNUC_CONST;
+GType                   cafe_mixer_stream_get_type            (void) G_GNUC_CONST;
 
-const gchar *           mate_mixer_stream_get_name            (MateMixerStream *stream);
-const gchar *           mate_mixer_stream_get_label           (MateMixerStream *stream);
+const gchar *           cafe_mixer_stream_get_name            (MateMixerStream *stream);
+const gchar *           cafe_mixer_stream_get_label           (MateMixerStream *stream);
 
-MateMixerDirection      mate_mixer_stream_get_direction       (MateMixerStream *stream);
+MateMixerDirection      cafe_mixer_stream_get_direction       (MateMixerStream *stream);
 
-MateMixerDevice *       mate_mixer_stream_get_device          (MateMixerStream *stream);
-MateMixerStreamControl *mate_mixer_stream_get_control         (MateMixerStream *stream,
+MateMixerDevice *       cafe_mixer_stream_get_device          (MateMixerStream *stream);
+MateMixerStreamControl *cafe_mixer_stream_get_control         (MateMixerStream *stream,
                                                                const gchar     *name);
-MateMixerStreamSwitch * mate_mixer_stream_get_switch          (MateMixerStream *stream,
+MateMixerStreamSwitch * cafe_mixer_stream_get_switch          (MateMixerStream *stream,
                                                                const gchar     *name);
 
-MateMixerStreamControl *mate_mixer_stream_get_default_control (MateMixerStream *stream);
+MateMixerStreamControl *cafe_mixer_stream_get_default_control (MateMixerStream *stream);
 
-const GList *           mate_mixer_stream_list_controls       (MateMixerStream *stream);
-const GList *           mate_mixer_stream_list_switches       (MateMixerStream *stream);
+const GList *           cafe_mixer_stream_list_controls       (MateMixerStream *stream);
+const GList *           cafe_mixer_stream_list_switches       (MateMixerStream *stream);
 
 G_END_DECLS
 

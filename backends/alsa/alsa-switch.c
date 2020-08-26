@@ -19,8 +19,8 @@
 #include <glib-object.h>
 #include <alsa/asoundlib.h>
 
-#include <libmatemixer/matemixer.h>
-#include <libmatemixer/matemixer-private.h>
+#include <libcafemixer/cafemixer.h>
+#include <libcafemixer/cafemixer-private.h>
 
 #include "alsa-element.h"
 #include "alsa-stream.h"
@@ -246,7 +246,7 @@ alsa_switch_load (AlsaElement *element)
         /* Mark the selected option when we find it, ALSA indentifies them
          * by numeric indices */
         if (alsa_switch_option_get_id (option) == item) {
-            _mate_mixer_switch_set_active_option (CAFE_MIXER_SWITCH (swtch),
+            _cafe_mixer_switch_set_active_option (CAFE_MIXER_SWITCH (swtch),
                                                   CAFE_MIXER_SWITCH_OPTION (option));
             return TRUE;
         }
@@ -254,7 +254,7 @@ alsa_switch_load (AlsaElement *element)
     }
 
     g_warning ("Unknown active option of switch %s: %d",
-               mate_mixer_switch_get_name (CAFE_MIXER_SWITCH (swtch)),
+               cafe_mixer_switch_get_name (CAFE_MIXER_SWITCH (swtch)),
                item);
 
     return FALSE;

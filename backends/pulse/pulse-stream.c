@@ -17,8 +17,8 @@
 
 #include <glib.h>
 #include <glib-object.h>
-#include <libmatemixer/matemixer.h>
-#include <libmatemixer/matemixer-private.h>
+#include <libcafemixer/cafemixer.h>
+#include <libcafemixer/cafemixer-private.h>
 
 #include <pulse/pulseaudio.h>
 
@@ -177,7 +177,7 @@ pulse_stream_get_device (PulseStream *stream)
 
     g_return_val_if_fail (PULSE_IS_STREAM (stream), NULL);
 
-    device = mate_mixer_stream_get_device (CAFE_MIXER_STREAM (stream));
+    device = cafe_mixer_stream_get_device (CAFE_MIXER_STREAM (stream));
     if (device != NULL)
         return PULSE_DEVICE (device);
 

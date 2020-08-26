@@ -19,8 +19,8 @@
 #include <glib-object.h>
 #include <alsa/asoundlib.h>
 
-#include <libmatemixer/matemixer.h>
-#include <libmatemixer/matemixer-private.h>
+#include <libcafemixer/cafemixer.h>
+#include <libcafemixer/cafemixer-private.h>
 
 #include "alsa-constants.h"
 #include "alsa-element.h"
@@ -195,7 +195,7 @@ alsa_stream_control_set_data (AlsaStreamControl *control, AlsaControlData *data)
         if (data->max_decibel > -CAFE_MIXER_INFINITY)
             flags |= CAFE_MIXER_STREAM_CONTROL_HAS_DECIBEL;
 
-        control->priv->channel_mask = _mate_mixer_create_channel_mask (data->c, data->channels);
+        control->priv->channel_mask = _cafe_mixer_create_channel_mask (data->c, data->channels);
 
         if (data->volume_joined == FALSE) {
             if (CAFE_MIXER_CHANNEL_MASK_HAS_LEFT (control->priv->channel_mask) &&
@@ -212,13 +212,13 @@ alsa_stream_control_set_data (AlsaStreamControl *control, AlsaControlData *data)
         control->priv->channel_mask = 0;
     }
 
-    _mate_mixer_stream_control_set_mute (mmsc, mute);
-    _mate_mixer_stream_control_set_flags (mmsc, flags);
+    _cafe_mixer_stream_control_set_mute (mmsc, mute);
+    _cafe_mixer_stream_control_set_flags (mmsc, flags);
 
     if (flags & CAFE_MIXER_STREAM_CONTROL_CAN_BALANCE)
-        _mate_mixer_stream_control_set_balance (mmsc, control_data_get_balance (data));
+        _cafe_mixer_stream_control_set_balance (mmsc, control_data_get_balance (data));
     if (flags & CAFE_MIXER_STREAM_CONTROL_CAN_FADE)
-        _mate_mixer_stream_control_set_fade (mmsc, control_data_get_fade (data));
+        _cafe_mixer_stream_control_set_fade (mmsc, control_data_get_fade (data));
 
     g_object_thaw_notify (G_OBJECT (control));
 }

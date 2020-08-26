@@ -20,8 +20,8 @@
 #include <glib/gi18n.h>
 #include <glib-object.h>
 
-#include <libmatemixer/matemixer.h>
-#include <libmatemixer/matemixer-private.h>
+#include <libcafemixer/cafemixer.h>
+#include <libcafemixer/cafemixer-private.h>
 
 #include <pulse/pulseaudio.h>
 
@@ -266,7 +266,7 @@ pulse_device_add_stream (PulseDevice *device, PulseStream *stream)
     g_return_if_fail (PULSE_IS_DEVICE (device));
     g_return_if_fail (PULSE_IS_STREAM (stream));
 
-    name = mate_mixer_stream_get_name (CAFE_MIXER_STREAM (stream));
+    name = cafe_mixer_stream_get_name (CAFE_MIXER_STREAM (stream));
 
     g_hash_table_insert (device->priv->streams,
                          g_strdup (name),
@@ -287,7 +287,7 @@ pulse_device_remove_stream (PulseDevice *device, PulseStream *stream)
     g_return_if_fail (PULSE_IS_DEVICE (device));
     g_return_if_fail (PULSE_IS_STREAM (stream));
 
-    name = mate_mixer_stream_get_name (CAFE_MIXER_STREAM (stream));
+    name = cafe_mixer_stream_get_name (CAFE_MIXER_STREAM (stream));
 
     free_list_streams (device);
 

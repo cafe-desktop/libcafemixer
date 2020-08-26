@@ -1,7 +1,7 @@
-libmatemixer
+libcafemixer
 ============
 
-libmatemixer is a mixer library for CAFE desktop.
+libcafemixer is a mixer library for CAFE desktop.
 
 It provides an abstract API allowing access to mixer functionality available
 in the PulseAudio, ALSA and OSS sound systems.
@@ -31,4 +31,4 @@ How to report bugs
 
 Bugs should be reported to the CAFE bug tracking system on GitHub:
 
-   https://github.com/mate-desktop/libmatemixer/issues/
+   https://github.com/cafe-desktop/libcafemixer/issues/

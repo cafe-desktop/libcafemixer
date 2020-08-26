@@ -17,8 +17,8 @@
 
 #include <glib.h>
 #include <glib-object.h>
-#include <libmatemixer/matemixer.h>
-#include <libmatemixer/matemixer-private.h>
+#include <libcafemixer/cafemixer.h>
+#include <libcafemixer/cafemixer-private.h>
 
 #include "alsa-device.h"
 #include "alsa-element.h"
@@ -94,7 +94,7 @@ alsa_stream_new (const gchar       *name,
     g_return_val_if_fail (name != NULL, NULL);
     g_return_val_if_fail (ALSA_IS_DEVICE (device), NULL);
 
-    label = mate_mixer_device_get_label (device);
+    label = cafe_mixer_device_get_label (device);
 
     return g_object_new (ALSA_TYPE_STREAM,
                          "name", name,
@@ -112,7 +112,7 @@ alsa_stream_add_control (AlsaStream *stream, AlsaStreamControl *control)
     g_return_if_fail (ALSA_IS_STREAM (stream));
     g_return_if_fail (ALSA_IS_STREAM_CONTROL (control));
 
-    name = mate_mixer_stream_control_get_name (CAFE_MIXER_STREAM_CONTROL (control));
+    name = cafe_mixer_stream_control_get_name (CAFE_MIXER_STREAM_CONTROL (control));
 
     stream->priv->controls =
         g_list_append (stream->priv->controls, g_object_ref (control));
@@ -133,7 +133,7 @@ alsa_stream_add_switch (AlsaStream *stream, AlsaSwitch *swtch)
     g_return_if_fail (ALSA_IS_STREAM (stream));
     g_return_if_fail (ALSA_IS_SWITCH (swtch));
 
-    name = mate_mixer_switch_get_name (CAFE_MIXER_SWITCH (swtch));
+    name = cafe_mixer_switch_get_name (CAFE_MIXER_SWITCH (swtch));
 
     stream->priv->switches =
         g_list_append (stream->priv->switches, g_object_ref (swtch));
@@ -151,7 +151,7 @@ alsa_stream_add_toggle (AlsaStream *stream, AlsaToggle *toggle)
     g_return_if_fail (ALSA_IS_STREAM (stream));
     g_return_if_fail (ALSA_IS_TOGGLE (toggle));
 
-    name = mate_mixer_switch_get_name (CAFE_MIXER_SWITCH (toggle));
+    name = cafe_mixer_switch_get_name (CAFE_MIXER_SWITCH (toggle));
 
     /* Toggle is MateMixerSwitch, but not AlsaSwitch */
     stream->priv->switches =
@@ -201,7 +201,7 @@ alsa_stream_has_default_control (AlsaStream *stream)
 {
     g_return_val_if_fail (ALSA_IS_STREAM (stream), FALSE);
 
-    if (mate_mixer_stream_get_default_control (CAFE_MIXER_STREAM (stream)) != NULL)
+    if (cafe_mixer_stream_get_default_control (CAFE_MIXER_STREAM (stream)) != NULL)
         return TRUE;
 
     return FALSE;
@@ -214,7 +214,7 @@ alsa_stream_get_default_control (AlsaStream *stream)
 
     g_return_val_if_fail (ALSA_IS_STREAM (stream), NULL);
 
-    control = mate_mixer_stream_get_default_control (CAFE_MIXER_STREAM (stream));
+    control = cafe_mixer_stream_get_default_control (CAFE_MIXER_STREAM (stream));
     if (control != NULL)
         return ALSA_STREAM_CONTROL (control);
 
@@ -228,9 +228,9 @@ alsa_stream_set_default_control (AlsaStream *stream, AlsaStreamControl *control)
     g_return_if_fail (control == NULL || ALSA_IS_STREAM_CONTROL (control));
 
     if (control == NULL)
-        _mate_mixer_stream_set_default_control (CAFE_MIXER_STREAM (stream), NULL);
+        _cafe_mixer_stream_set_default_control (CAFE_MIXER_STREAM (stream), NULL);
     else
-        _mate_mixer_stream_set_default_control (CAFE_MIXER_STREAM (stream),
+        _cafe_mixer_stream_set_default_control (CAFE_MIXER_STREAM (stream),
                                                 CAFE_MIXER_STREAM_CONTROL (control));
 }
 
@@ -268,7 +268,7 @@ alsa_stream_remove_elements (AlsaStream *stream, const gchar *name)
         stream->priv->controls = g_list_delete_link (stream->priv->controls, item);
 
         /* Change the default control if we have just removed it */
-        if (control == mate_mixer_stream_get_default_control (CAFE_MIXER_STREAM (stream))) {
+        if (control == cafe_mixer_stream_get_default_control (CAFE_MIXER_STREAM (stream))) {
             AlsaStreamControl *first = NULL;
 
             if (stream->priv->controls != NULL)
@@ -279,7 +279,7 @@ alsa_stream_remove_elements (AlsaStream *stream, const gchar *name)
 
         g_signal_emit_by_name (G_OBJECT (stream),
                                "control-removed",
-                               mate_mixer_stream_control_get_name (control));
+                               cafe_mixer_stream_control_get_name (control));
 
         g_object_unref (control);
         removed = TRUE;
@@ -294,7 +294,7 @@ alsa_stream_remove_elements (AlsaStream *stream, const gchar *name)
         stream->priv->switches = g_list_delete_link (stream->priv->switches, item);
         g_signal_emit_by_name (G_OBJECT (stream),
                                "switch-removed",
-                               mate_mixer_switch_get_name (swtch));
+                               cafe_mixer_switch_get_name (swtch));
 
         g_object_unref (swtch);
         removed = TRUE;
@@ -321,7 +321,7 @@ alsa_stream_remove_all (AlsaStream *stream)
         stream->priv->controls = g_list_delete_link (stream->priv->controls, list);
         g_signal_emit_by_name (G_OBJECT (stream),
                                "control-removed",
-                               mate_mixer_stream_control_get_name (control));
+                               cafe_mixer_stream_control_get_name (control));
 
         g_object_unref (control);
         list = next;
@@ -341,7 +341,7 @@ alsa_stream_remove_all (AlsaStream *stream)
         stream->priv->switches = g_list_delete_link (stream->priv->switches, list);
         g_signal_emit_by_name (G_OBJECT (stream),
                                "switch-removed",
-                               mate_mixer_switch_get_name (swtch));
+                               cafe_mixer_switch_get_name (swtch));
 
         g_object_unref (swtch);
         list = next;
@@ -370,7 +370,7 @@ compare_control_name (gconstpointer a, gconstpointer b)
     MateMixerStreamControl *control = CAFE_MIXER_STREAM_CONTROL (a);
     const gchar            *name    = (const gchar *) b;
 
-    return strcmp (mate_mixer_stream_control_get_name (control), name);
+    return strcmp (cafe_mixer_stream_control_get_name (control), name);
 }
 
 static gint
@@ -379,5 +379,5 @@ compare_switch_name (gconstpointer a, gconstpointer b)
     MateMixerSwitch *swtch = CAFE_MIXER_SWITCH (a);
     const gchar     *name  = (const gchar *) b;
 
-    return strcmp (mate_mixer_switch_get_name (swtch), name);
+    return strcmp (cafe_mixer_switch_get_name (swtch), name);
 }

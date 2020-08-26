@@ -22,7 +22,7 @@
 #include <glib/gi18n.h>
 #include <glib-object.h>
 #include <alsa/asoundlib.h>
-#include <libmatemixer/matemixer.h>
+#include <libcafemixer/cafemixer.h>
 
 #include "alsa-compat.h"
 #include "alsa-constants.h"
@@ -40,11 +40,11 @@
 
 #define ALSA_STREAM_CONTROL_GET_SCORE(c)                        \
         (GPOINTER_TO_INT (g_object_get_data (G_OBJECT (c),      \
-                                             "__matemixer_alsa_control_score")))
+                                             "__cafemixer_alsa_control_score")))
 
 #define ALSA_STREAM_CONTROL_SET_SCORE(c,score)                  \
         (g_object_set_data (G_OBJECT (c),                       \
-                            "__matemixer_alsa_control_score",   \
+                            "__cafemixer_alsa_control_score",   \
                             GINT_TO_POINTER (score)))
 
 #define ALSA_STREAM_DEFAULT_CONTROL_GET_SCORE(s)                \
@@ -267,11 +267,11 @@ alsa_device_open (AlsaDevice *device)
     g_return_val_if_fail (ALSA_IS_DEVICE (device), FALSE);
     g_return_val_if_fail (device->priv->handle == NULL, FALSE);
 
-    name = mate_mixer_device_get_name (CAFE_MIXER_DEVICE (device));
+    name = cafe_mixer_device_get_name (CAFE_MIXER_DEVICE (device));
 
     g_debug ("Opening device %s (%s)",
              name,
-             mate_mixer_device_get_label (CAFE_MIXER_DEVICE (device)));
+             cafe_mixer_device_get_label (CAFE_MIXER_DEVICE (device)));
 
     /* Open the mixer for the current device */
     ret = snd_mixer_open (&handle, 0);
@@ -333,7 +333,7 @@ alsa_device_close (AlsaDevice *device)
     /* Make each stream remove its controls and switches */
     if (alsa_stream_has_controls_or_switches (device->priv->input) == TRUE) {
         const gchar *name =
-            mate_mixer_stream_get_name (CAFE_MIXER_STREAM (device->priv->input));
+            cafe_mixer_stream_get_name (CAFE_MIXER_STREAM (device->priv->input));
 
         alsa_stream_remove_all (device->priv->input);
         free_stream_list (device);
@@ -345,7 +345,7 @@ alsa_device_close (AlsaDevice *device)
 
     if (alsa_stream_has_controls_or_switches (device->priv->output) == TRUE) {
         const gchar *name =
-            mate_mixer_stream_get_name (CAFE_MIXER_STREAM (device->priv->output));
+            cafe_mixer_stream_get_name (CAFE_MIXER_STREAM (device->priv->output));
 
         alsa_stream_remove_all (device->priv->output);
         free_stream_list (device);
@@ -386,7 +386,7 @@ alsa_device_load (AlsaDevice *device)
     snd_mixer_set_callback_private (device->priv->handle, device);
 
     /* Start the polling thread */
-    thread = g_thread_try_new ("matemixer-alsa-poll",
+    thread = g_thread_try_new ("cafemixer-alsa-poll",
                                (GThreadFunc) handle_poll,
                                device,
                                &error);
@@ -476,7 +476,7 @@ add_element (AlsaDevice *device, AlsaStream *stream, AlsaElement *element)
 
     if (add_stream == TRUE) {
         const gchar *name =
-            mate_mixer_stream_get_name (CAFE_MIXER_STREAM (stream));
+            cafe_mixer_stream_get_name (CAFE_MIXER_STREAM (stream));
 
         free_stream_list (device);
 
@@ -506,7 +506,7 @@ add_stream_input_control (AlsaDevice *device, snd_mixer_elem_t *el)
     get_input_control_info (el, &name, &label, &role, &score);
 
     g_debug ("Reading device %s input control %s",
-             mate_mixer_device_get_name (CAFE_MIXER_DEVICE (device)),
+             cafe_mixer_device_get_name (CAFE_MIXER_DEVICE (device)),
              name);
 
     control = alsa_stream_input_control_new (name, label, role, device->priv->input);
@@ -534,7 +534,7 @@ add_stream_output_control (AlsaDevice *device, snd_mixer_elem_t *el)
     get_output_control_info (el, &name, &label, &role, &score);
 
     g_debug ("Reading device %s output control %s",
-             mate_mixer_device_get_name (CAFE_MIXER_DEVICE (device)),
+             cafe_mixer_device_get_name (CAFE_MIXER_DEVICE (device)),
              name);
 
     control = alsa_stream_output_control_new (name, label, role, device->priv->output);
@@ -653,7 +653,7 @@ static void
 add_stream_input_switch (AlsaDevice *device, snd_mixer_elem_t *el)
 {
     g_debug ("Reading device %s input switch %s (%d items)",
-             mate_mixer_device_get_name (CAFE_MIXER_DEVICE (device)),
+             cafe_mixer_device_get_name (CAFE_MIXER_DEVICE (device)),
              snd_mixer_selem_get_name (el),
              snd_mixer_selem_get_enum_items (el));
 
@@ -664,7 +664,7 @@ static void
 add_stream_output_switch (AlsaDevice *device, snd_mixer_elem_t *el)
 {
     g_debug ("Reading device %s output switch %s (%d items)",
-             mate_mixer_device_get_name (CAFE_MIXER_DEVICE (device)),
+             cafe_mixer_device_get_name (CAFE_MIXER_DEVICE (device)),
              snd_mixer_selem_get_name (el),
              snd_mixer_selem_get_enum_items (el));
 
@@ -675,7 +675,7 @@ static void
 add_stream_input_toggle (AlsaDevice *device, snd_mixer_elem_t *el)
 {
     g_debug ("Reading device %s input toggle %s",
-             mate_mixer_device_get_name (CAFE_MIXER_DEVICE (device)),
+             cafe_mixer_device_get_name (CAFE_MIXER_DEVICE (device)),
              snd_mixer_selem_get_name (el));
 
     add_toggle (device, device->priv->input, ALSA_TOGGLE_CAPTURE, el);
@@ -685,7 +685,7 @@ static void
 add_stream_output_toggle (AlsaDevice *device, snd_mixer_elem_t *el)
 {
     g_debug ("Reading device %s output toggle %s",
-             mate_mixer_device_get_name (CAFE_MIXER_DEVICE (device)),
+             cafe_mixer_device_get_name (CAFE_MIXER_DEVICE (device)),
              snd_mixer_selem_get_name (el));
 
     add_toggle (device, device->priv->output, ALSA_TOGGLE_PLAYBACK, el);
@@ -759,7 +759,7 @@ remove_elements_by_name (AlsaDevice *device, const gchar *name)
         /* Removing last stream element "removes" the stream */
         if (alsa_stream_has_controls_or_switches (device->priv->input) == FALSE) {
             const gchar *stream_name =
-                mate_mixer_stream_get_name (CAFE_MIXER_STREAM (device->priv->input));
+                cafe_mixer_stream_get_name (CAFE_MIXER_STREAM (device->priv->input));
 
             free_stream_list (device);
             g_signal_emit_by_name (G_OBJECT (device),
@@ -772,7 +772,7 @@ remove_elements_by_name (AlsaDevice *device, const gchar *name)
         /* Removing last stream element "removes" the stream */
         if (alsa_stream_has_controls_or_switches (device->priv->output) == FALSE) {
             const gchar *stream_name =
-                mate_mixer_stream_get_name (CAFE_MIXER_STREAM (device->priv->output));
+                cafe_mixer_stream_get_name (CAFE_MIXER_STREAM (device->priv->output));
 
             free_stream_list (device);
             g_signal_emit_by_name (G_OBJECT (device),
@@ -825,7 +825,7 @@ handle_poll (AlsaDevice *device)
     }
 
     g_debug ("Terminating poll thread for device %s",
-             mate_mixer_device_get_name (CAFE_MIXER_DEVICE (device)));
+             cafe_mixer_device_get_name (CAFE_MIXER_DEVICE (device)));
 
     g_object_unref (device);
 }
@@ -942,7 +942,7 @@ validate_default_controls (AlsaDevice *device)
         /* See if the best element would make a good default one */
         if (best_score > -1) {
             g_debug ("Found usable default input element %s (score %d)",
-                     mate_mixer_stream_control_get_name (CAFE_MIXER_STREAM_CONTROL (best)),
+                     cafe_mixer_stream_control_get_name (CAFE_MIXER_STREAM_CONTROL (best)),
                      best_score);
 
             if (current_score == -1 || best_score < current_score)
@@ -959,7 +959,7 @@ validate_default_controls (AlsaDevice *device)
         /* See if the best element would make a good default one */
         if (best_score > -1) {
             g_debug ("Found usable default output element %s (score %d)",
-                     mate_mixer_stream_control_get_name (CAFE_MIXER_STREAM_CONTROL (best)),
+                     cafe_mixer_stream_control_get_name (CAFE_MIXER_STREAM_CONTROL (best)),
                      best_score);
 
             if (current_score == -1 || best_score < current_score)
@@ -975,7 +975,7 @@ get_best_stream_control (AlsaStream *stream)
     AlsaStreamControl *best = NULL;
     guint              best_score = -1;
 
-    list = mate_mixer_stream_list_controls (CAFE_MIXER_STREAM (stream));
+    list = cafe_mixer_stream_list_controls (CAFE_MIXER_STREAM (stream));
     while (list != NULL) {
         AlsaStreamControl *current;
         guint              current_score;

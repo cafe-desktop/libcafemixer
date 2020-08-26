@@ -2,7 +2,7 @@ ACLOCAL_AMFLAGS = -I m4 ${ACLOCAL_FLAGS}
 
 SUBDIRS =                               \
 	po                              \
-	libmatemixer                    \
+	libcafemixer                    \
 	backends                        \
 	data                            \
 	docs                            \

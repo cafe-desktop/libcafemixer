@@ -18,8 +18,8 @@
 #include <glib.h>
 #include <glib/gi18n.h>
 #include <glib-object.h>
-#include <libmatemixer/matemixer.h>
-#include <libmatemixer/matemixer-private.h>
+#include <libcafemixer/cafemixer.h>
+#include <libcafemixer/cafemixer-private.h>
 
 #include "oss-device.h"
 #include "oss-stream.h"
@@ -95,7 +95,7 @@ oss_stream_new (const gchar       *name,
     g_return_val_if_fail (name != NULL, NULL);
     g_return_val_if_fail (OSS_IS_DEVICE (device), NULL);
 
-    label = mate_mixer_device_get_label (device);
+    label = cafe_mixer_device_get_label (device);
 
     return g_object_new (OSS_TYPE_STREAM,
                          "name", name,
@@ -113,7 +113,7 @@ oss_stream_add_control (OssStream *stream, OssStreamControl *control)
     g_return_if_fail (OSS_IS_STREAM (stream));
     g_return_if_fail (OSS_IS_STREAM_CONTROL (control));
 
-    name = mate_mixer_stream_control_get_name (CAFE_MIXER_STREAM_CONTROL (control));
+    name = cafe_mixer_stream_control_get_name (CAFE_MIXER_STREAM_CONTROL (control));
 
     stream->priv->controls =
         g_list_append (stream->priv->controls, g_object_ref (control));
@@ -158,7 +158,7 @@ oss_stream_has_default_control (OssStream *stream)
 {
     g_return_val_if_fail (OSS_IS_STREAM (stream), FALSE);
 
-    if (mate_mixer_stream_get_default_control (CAFE_MIXER_STREAM (stream)) != NULL)
+    if (cafe_mixer_stream_get_default_control (CAFE_MIXER_STREAM (stream)) != NULL)
         return TRUE;
 
     return FALSE;
@@ -171,7 +171,7 @@ oss_stream_get_default_control (OssStream *stream)
 
     g_return_val_if_fail (OSS_IS_STREAM (stream), NULL);
 
-    control = mate_mixer_stream_get_default_control (CAFE_MIXER_STREAM (stream));
+    control = cafe_mixer_stream_get_default_control (CAFE_MIXER_STREAM (stream));
     if (control != NULL)
         return OSS_STREAM_CONTROL (control);
 
@@ -185,9 +185,9 @@ oss_stream_set_default_control (OssStream *stream, OssStreamControl *control)
     g_return_if_fail (control == NULL || OSS_IS_STREAM_CONTROL (control));
 
     if (control == NULL)
-        _mate_mixer_stream_set_default_control (CAFE_MIXER_STREAM (stream), NULL);
+        _cafe_mixer_stream_set_default_control (CAFE_MIXER_STREAM (stream), NULL);
     else
-        _mate_mixer_stream_set_default_control (CAFE_MIXER_STREAM (stream),
+        _cafe_mixer_stream_set_default_control (CAFE_MIXER_STREAM (stream),
                                                 CAFE_MIXER_STREAM_CONTROL (control));
 }
 
@@ -239,7 +239,7 @@ oss_stream_remove_all (OssStream *stream)
         stream->priv->controls = g_list_delete_link (stream->priv->controls, list);
         g_signal_emit_by_name (G_OBJECT (stream),
                                "control-removed",
-                               mate_mixer_stream_control_get_name (control));
+                               cafe_mixer_stream_control_get_name (control));
 
         g_object_unref (control);
         list = next;

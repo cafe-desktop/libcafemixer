@@ -1215,7 +1215,7 @@ create_app_name (void)
     if (pa_get_binary_name (name_buf, sizeof (name_buf)) != NULL)
         return g_strdup (name_buf);
 
-    return g_strdup_printf ("libmatemixer-%lu", (gulong) getpid ());
+    return g_strdup_printf ("libcafemixer-%lu", (gulong) getpid ());
 }
 
 static gboolean

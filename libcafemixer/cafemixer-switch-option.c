@@ -18,12 +18,12 @@
 #include <glib.h>
 #include <glib-object.h>
 
-#include "matemixer-switch-option.h"
-#include "matemixer-switch-option-private.h"
+#include "cafemixer-switch-option.h"
+#include "cafemixer-switch-option-private.h"
 
 /**
- * SECTION:matemixer-switch-option
- * @include: libmatemixer/matemixer.h
+ * SECTION:cafemixer-switch-option
+ * @include: libcafemixer/cafemixer.h
  */
 
 struct _MateMixerSwitchOptionPrivate
@@ -43,28 +43,28 @@ enum {
 
 static GParamSpec *properties[N_PROPERTIES] = { NULL, };
 
-static void mate_mixer_switch_option_get_property (GObject                    *object,
+static void cafe_mixer_switch_option_get_property (GObject                    *object,
                                                    guint                       param_id,
                                                    GValue                     *value,
                                                    GParamSpec                 *pspec);
-static void mate_mixer_switch_option_set_property (GObject                    *object,
+static void cafe_mixer_switch_option_set_property (GObject                    *object,
                                                    guint                       param_id,
                                                    const GValue               *value,
                                                    GParamSpec                 *pspec);
 
-static void mate_mixer_switch_option_finalize     (GObject                    *object);
+static void cafe_mixer_switch_option_finalize     (GObject                    *object);
 
-G_DEFINE_TYPE_WITH_PRIVATE (MateMixerSwitchOption, mate_mixer_switch_option, G_TYPE_OBJECT)
+G_DEFINE_TYPE_WITH_PRIVATE (MateMixerSwitchOption, cafe_mixer_switch_option, G_TYPE_OBJECT)
 
 static void
-mate_mixer_switch_option_class_init (MateMixerSwitchOptionClass *klass)
+cafe_mixer_switch_option_class_init (MateMixerSwitchOptionClass *klass)
 {
     GObjectClass *object_class;
 
     object_class = G_OBJECT_CLASS (klass);
-    object_class->finalize     = mate_mixer_switch_option_finalize;
-    object_class->get_property = mate_mixer_switch_option_get_property;
-    object_class->set_property = mate_mixer_switch_option_set_property;
+    object_class->finalize     = cafe_mixer_switch_option_finalize;
+    object_class->get_property = cafe_mixer_switch_option_get_property;
+    object_class->set_property = cafe_mixer_switch_option_set_property;
 
     /**
      * MateMixerSwitchOption:name:
@@ -114,7 +114,7 @@ mate_mixer_switch_option_class_init (MateMixerSwitchOptionClass *klass)
 }
 
 static void
-mate_mixer_switch_option_get_property (GObject    *object,
+cafe_mixer_switch_option_get_property (GObject    *object,
                                        guint       param_id,
                                        GValue     *value,
                                        GParamSpec *pspec)
@@ -141,7 +141,7 @@ mate_mixer_switch_option_get_property (GObject    *object,
 }
 
 static void
-mate_mixer_switch_option_set_property (GObject      *object,
+cafe_mixer_switch_option_set_property (GObject      *object,
                                        guint         param_id,
                                        const GValue *value,
                                        GParamSpec   *pspec)
@@ -171,13 +171,13 @@ mate_mixer_switch_option_set_property (GObject      *object,
 }
 
 static void
-mate_mixer_switch_option_init (MateMixerSwitchOption *option)
+cafe_mixer_switch_option_init (MateMixerSwitchOption *option)
 {
-    option->priv = mate_mixer_switch_option_get_instance_private (option);
+    option->priv = cafe_mixer_switch_option_get_instance_private (option);
 }
 
 static void
-mate_mixer_switch_option_finalize (GObject *object)
+cafe_mixer_switch_option_finalize (GObject *object)
 {
     MateMixerSwitchOption *option;
 
@@ -187,11 +187,11 @@ mate_mixer_switch_option_finalize (GObject *object)
     g_free (option->priv->label);
     g_free (option->priv->icon);
 
-    G_OBJECT_CLASS (mate_mixer_switch_option_parent_class)->finalize (object);
+    G_OBJECT_CLASS (cafe_mixer_switch_option_parent_class)->finalize (object);
 }
 
 /**
- * mate_mixer_switch_option_get_name:
+ * cafe_mixer_switch_option_get_name:
  * @option: a #MateMixerSwitchOption
  *
  * Gets the name of the switch option. The name serves as a unique identifier
@@ -199,12 +199,12 @@ mate_mixer_switch_option_finalize (GObject *object)
  *
  * The returned name is guaranteed to be unique across all the switch options
  * of a particular #MateMixerSwitch and may be used to get the #MateMixerSwitchOption
- * using mate_mixer_switch_get_option().
+ * using cafe_mixer_switch_get_option().
  *
  * Returns: the name of the switch option.
  */
 const gchar *
-mate_mixer_switch_option_get_name (MateMixerSwitchOption *option)
+cafe_mixer_switch_option_get_name (MateMixerSwitchOption *option)
 {
     g_return_val_if_fail (CAFE_MIXER_IS_SWITCH_OPTION (option), NULL);
 
@@ -212,7 +212,7 @@ mate_mixer_switch_option_get_name (MateMixerSwitchOption *option)
 }
 
 /**
- * mate_mixer_switch_option_get_label:
+ * cafe_mixer_switch_option_get_label:
  * @option: a #MateMixerSwitchOption
  *
  * Gets the label of the switch option. This is a potentially translated string
@@ -221,7 +221,7 @@ mate_mixer_switch_option_get_name (MateMixerSwitchOption *option)
  * Returns: the label of the switch option.
  */
 const gchar *
-mate_mixer_switch_option_get_label (MateMixerSwitchOption *option)
+cafe_mixer_switch_option_get_label (MateMixerSwitchOption *option)
 {
     g_return_val_if_fail (CAFE_MIXER_IS_SWITCH_OPTION (option), NULL);
 
@@ -229,7 +229,7 @@ mate_mixer_switch_option_get_label (MateMixerSwitchOption *option)
 }
 
 /**
- * mate_mixer_switch_option_get_icon:
+ * cafe_mixer_switch_option_get_icon:
  * @option: a #MateMixerSwitchOption
  *
  * Gets the XDG icon name of the switch option.
@@ -237,7 +237,7 @@ mate_mixer_switch_option_get_label (MateMixerSwitchOption *option)
  * Returns: the icon name or %NULL.
  */
 const gchar *
-mate_mixer_switch_option_get_icon (MateMixerSwitchOption *option)
+cafe_mixer_switch_option_get_icon (MateMixerSwitchOption *option)
 {
     g_return_val_if_fail (CAFE_MIXER_IS_SWITCH_OPTION (option), NULL);
 
@@ -245,7 +245,7 @@ mate_mixer_switch_option_get_icon (MateMixerSwitchOption *option)
 }
 
 MateMixerSwitchOption *
-_mate_mixer_switch_option_new (const gchar *name,
+_cafe_mixer_switch_option_new (const gchar *name,
                                const gchar *label,
                                const gchar *icon)
 {

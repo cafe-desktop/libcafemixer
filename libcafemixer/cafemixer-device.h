@@ -21,12 +21,12 @@
 #include <glib.h>
 #include <glib-object.h>
 
-#include <libmatemixer/matemixer-types.h>
+#include <libcafemixer/cafemixer-types.h>
 
 G_BEGIN_DECLS
 
 #define CAFE_MIXER_TYPE_DEVICE                  \
-        (mate_mixer_device_get_type ())
+        (cafe_mixer_device_get_type ())
 #define CAFE_MIXER_DEVICE(o)                    \
         (G_TYPE_CHECK_INSTANCE_CAST ((o), CAFE_MIXER_TYPE_DEVICE, MateMixerDevice))
 #define CAFE_MIXER_IS_DEVICE(o)                 \
@@ -85,20 +85,20 @@ struct _MateMixerDeviceClass
                             const gchar     *name);
 };
 
-GType                  mate_mixer_device_get_type      (void) G_GNUC_CONST;
+GType                  cafe_mixer_device_get_type      (void) G_GNUC_CONST;
 
-const gchar *          mate_mixer_device_get_name      (MateMixerDevice *device);
-const gchar *          mate_mixer_device_get_label     (MateMixerDevice *device);
-const gchar *          mate_mixer_device_get_icon      (MateMixerDevice *device);
+const gchar *          cafe_mixer_device_get_name      (MateMixerDevice *device);
+const gchar *          cafe_mixer_device_get_label     (MateMixerDevice *device);
+const gchar *          cafe_mixer_device_get_icon      (MateMixerDevice *device);
 
-MateMixerStream *      mate_mixer_device_get_stream    (MateMixerDevice *device,
+MateMixerStream *      cafe_mixer_device_get_stream    (MateMixerDevice *device,
                                                         const gchar     *name);
 
-MateMixerDeviceSwitch *mate_mixer_device_get_switch    (MateMixerDevice *device,
+MateMixerDeviceSwitch *cafe_mixer_device_get_switch    (MateMixerDevice *device,
                                                         const gchar     *name);
 
-const GList *          mate_mixer_device_list_streams  (MateMixerDevice *device);
-const GList *          mate_mixer_device_list_switches (MateMixerDevice *device);
+const GList *          cafe_mixer_device_list_streams  (MateMixerDevice *device);
+const GList *          cafe_mixer_device_list_switches (MateMixerDevice *device);
 
 G_END_DECLS
 

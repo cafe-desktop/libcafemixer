@@ -21,13 +21,13 @@
 #include <glib.h>
 #include <glib-object.h>
 
-#include <libmatemixer/matemixer-switch.h>
-#include <libmatemixer/matemixer-types.h>
+#include <libcafemixer/cafemixer-switch.h>
+#include <libcafemixer/cafemixer-types.h>
 
 G_BEGIN_DECLS
 
 #define CAFE_MIXER_TYPE_DEVICE_SWITCH           \
-        (mate_mixer_device_switch_get_type ())
+        (cafe_mixer_device_switch_get_type ())
 #define CAFE_MIXER_DEVICE_SWITCH(o)             \
         (G_TYPE_CHECK_INSTANCE_CAST ((o), CAFE_MIXER_TYPE_DEVICE_SWITCH, MateMixerDeviceSwitch))
 #define CAFE_MIXER_IS_DEVICE_SWITCH(o)          \
@@ -67,10 +67,10 @@ struct _MateMixerDeviceSwitchClass
     MateMixerSwitchClass parent_class;
 };
 
-GType                     mate_mixer_device_switch_get_type   (void) G_GNUC_CONST;
+GType                     cafe_mixer_device_switch_get_type   (void) G_GNUC_CONST;
 
-MateMixerDeviceSwitchRole mate_mixer_device_switch_get_role   (MateMixerDeviceSwitch *swtch);
-MateMixerDevice *         mate_mixer_device_switch_get_device (MateMixerDeviceSwitch *swtch);
+MateMixerDeviceSwitchRole cafe_mixer_device_switch_get_role   (MateMixerDeviceSwitch *swtch);
+MateMixerDevice *         cafe_mixer_device_switch_get_device (MateMixerDeviceSwitch *swtch);
 
 G_END_DECLS
 

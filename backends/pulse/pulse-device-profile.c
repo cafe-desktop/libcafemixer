@@ -19,8 +19,8 @@
 #include <glib.h>
 #include <glib-object.h>
 
-#include <libmatemixer/matemixer.h>
-#include <libmatemixer/matemixer-private.h>
+#include <libcafemixer/cafemixer.h>
+#include <libcafemixer/cafemixer-private.h>
 
 #include <pulse/pulseaudio.h>
 
@@ -70,7 +70,7 @@ pulse_device_profile_get_name (PulseDeviceProfile *profile)
 {
     g_return_val_if_fail (PULSE_IS_DEVICE_PROFILE (profile), NULL);
 
-    return mate_mixer_switch_option_get_name (CAFE_MIXER_SWITCH_OPTION (profile));
+    return cafe_mixer_switch_option_get_name (CAFE_MIXER_SWITCH_OPTION (profile));
 }
 
 guint

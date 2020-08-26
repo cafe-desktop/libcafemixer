@@ -20,11 +20,11 @@
 
 #include <glib.h>
 
-#include "matemixer-types.h"
+#include "cafemixer-types.h"
 
 G_BEGIN_DECLS
 
-void _mate_mixer_stream_set_default_control (MateMixerStream        *stream,
+void _cafe_mixer_stream_set_default_control (MateMixerStream        *stream,
                                              MateMixerStreamControl *control);
 
 G_END_DECLS

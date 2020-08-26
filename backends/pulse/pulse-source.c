@@ -18,8 +18,8 @@
 #include <glib.h>
 #include <glib/gi18n.h>
 #include <glib-object.h>
-#include <libmatemixer/matemixer.h>
-#include <libmatemixer/matemixer-private.h>
+#include <libcafemixer/cafemixer.h>
+#include <libcafemixer/cafemixer-private.h>
 
 #include <pulse/pulseaudio.h>
 
@@ -151,7 +151,7 @@ pulse_source_new (PulseConnection      *connection,
             if (device != NULL) {
                 port = pulse_device_get_port (PULSE_DEVICE (device), p->name);
                 if (port != NULL)
-                    icon = mate_mixer_switch_option_get_icon (CAFE_MIXER_SWITCH_OPTION (port));
+                    icon = cafe_mixer_switch_option_get_icon (CAFE_MIXER_SWITCH_OPTION (port));
             }
 
             port = pulse_port_new (p->name,
@@ -171,7 +171,7 @@ pulse_source_new (PulseConnection      *connection,
 
     pulse_source_update (source, info);
 
-    _mate_mixer_stream_set_default_control (CAFE_MIXER_STREAM (source),
+    _cafe_mixer_stream_set_default_control (CAFE_MIXER_STREAM (source),
                                             CAFE_MIXER_STREAM_CONTROL (source->priv->control));
     return source;
 }
@@ -200,7 +200,7 @@ pulse_source_add_output (PulseSource *source, const pa_source_output_info *info)
 
         free_list_controls (source);
 
-        name = mate_mixer_stream_control_get_name (CAFE_MIXER_STREAM_CONTROL (output));
+        name = cafe_mixer_stream_control_get_name (CAFE_MIXER_STREAM_CONTROL (output));
         g_signal_emit_by_name (G_OBJECT (source),
                                "control-added",
                                name);
@@ -223,7 +223,7 @@ pulse_source_remove_output (PulseSource *source, guint32 index)
     if (G_UNLIKELY (output == NULL))
         return;
 
-    name = g_strdup (mate_mixer_stream_control_get_name (CAFE_MIXER_STREAM_CONTROL (output)));
+    name = g_strdup (cafe_mixer_stream_control_get_name (CAFE_MIXER_STREAM_CONTROL (output)));
 
     g_hash_table_remove (source->priv->outputs, GUINT_TO_POINTER (index));
 
