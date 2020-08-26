@@ -11,6 +11,7 @@ requires:
     - gettext
     - git
     - glib2
+    - gtk-doc
     - libpulse
     - libtool
     - make
@@ -27,6 +28,7 @@ requires:
     - cppcheck
     - gcc
     - git
+    - gtk-doc-tools
     - libasound2-dev
     - libglib2.0-dev
     - libpulse-dev
@@ -40,6 +42,7 @@ requires:
     - clang-analyzer
     - gcc
     - git
+    - gtk-doc
     - make
     - pulseaudio-libs-devel
     - redhat-rpm-config
@@ -51,6 +54,7 @@ requires:
     - clang-tools
     - gcc
     - git
+    - gtk-doc-tools
     - libasound2-dev
     - libglib2.0-dev
     - libpulse-dev
