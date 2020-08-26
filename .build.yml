@@ -5,12 +5,14 @@ requires:
   archlinux:
     # Useful URL: https://git.archlinux.org/svntogit/community.git/tree/libcafemixer
     - autoconf-archive
+    - automake
     - clang
     - gcc
     - git
     - glib2
     - libpulse
     - make
+    - pkgconf
     - which
 
   debian:
