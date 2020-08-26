@@ -236,7 +236,7 @@ mate_mixer_device_get_property (GObject    *object,
 {
     MateMixerDevice *device;
 
-    device = MATE_MIXER_DEVICE (object);
+    device = CAFE_MIXER_DEVICE (object);
 
     switch (param_id) {
     case PROP_NAME:
@@ -263,7 +263,7 @@ mate_mixer_device_set_property (GObject      *object,
 {
     MateMixerDevice *device;
 
-    device = MATE_MIXER_DEVICE (object);
+    device = CAFE_MIXER_DEVICE (object);
 
     switch (param_id) {
     case PROP_NAME:
@@ -296,7 +296,7 @@ mate_mixer_device_finalize (GObject *object)
 {
     MateMixerDevice *device;
 
-    device = MATE_MIXER_DEVICE (object);
+    device = CAFE_MIXER_DEVICE (object);
 
     g_free (device->priv->name);
     g_free (device->priv->label);
@@ -323,7 +323,7 @@ mate_mixer_device_finalize (GObject *object)
 const gchar *
 mate_mixer_device_get_name (MateMixerDevice *device)
 {
-    g_return_val_if_fail (MATE_MIXER_IS_DEVICE (device), NULL);
+    g_return_val_if_fail (CAFE_MIXER_IS_DEVICE (device), NULL);
 
     return device->priv->name;
 }
@@ -342,7 +342,7 @@ mate_mixer_device_get_name (MateMixerDevice *device)
 const gchar *
 mate_mixer_device_get_label (MateMixerDevice *device)
 {
-    g_return_val_if_fail (MATE_MIXER_IS_DEVICE (device), NULL);
+    g_return_val_if_fail (CAFE_MIXER_IS_DEVICE (device), NULL);
 
     return device->priv->label;
 }
@@ -358,7 +358,7 @@ mate_mixer_device_get_label (MateMixerDevice *device)
 const gchar *
 mate_mixer_device_get_icon (MateMixerDevice *device)
 {
-    g_return_val_if_fail (MATE_MIXER_IS_DEVICE (device), NULL);
+    g_return_val_if_fail (CAFE_MIXER_IS_DEVICE (device), NULL);
 
     return device->priv->icon;
 }
@@ -375,10 +375,10 @@ mate_mixer_device_get_icon (MateMixerDevice *device)
 MateMixerStream *
 mate_mixer_device_get_stream (MateMixerDevice *device, const gchar *name)
 {
-    g_return_val_if_fail (MATE_MIXER_IS_DEVICE (device), NULL);
+    g_return_val_if_fail (CAFE_MIXER_IS_DEVICE (device), NULL);
     g_return_val_if_fail (name != NULL, NULL);
 
-    return MATE_MIXER_DEVICE_GET_CLASS (device)->get_stream (device, name);
+    return CAFE_MIXER_DEVICE_GET_CLASS (device)->get_stream (device, name);
 }
 
 /**
@@ -400,10 +400,10 @@ mate_mixer_device_get_stream (MateMixerDevice *device, const gchar *name)
 MateMixerDeviceSwitch *
 mate_mixer_device_get_switch (MateMixerDevice *device, const gchar *name)
 {
-    g_return_val_if_fail (MATE_MIXER_IS_DEVICE (device), NULL);
+    g_return_val_if_fail (CAFE_MIXER_IS_DEVICE (device), NULL);
     g_return_val_if_fail (name != NULL, NULL);
 
-    return MATE_MIXER_DEVICE_GET_CLASS (device)->get_switch (device, name);
+    return CAFE_MIXER_DEVICE_GET_CLASS (device)->get_switch (device, name);
 }
 
 /**
@@ -423,9 +423,9 @@ mate_mixer_device_list_streams (MateMixerDevice *device)
 {
     MateMixerDeviceClass *klass;
 
-    g_return_val_if_fail (MATE_MIXER_IS_DEVICE (device), NULL);
+    g_return_val_if_fail (CAFE_MIXER_IS_DEVICE (device), NULL);
 
-    klass = MATE_MIXER_DEVICE_GET_CLASS (device);
+    klass = CAFE_MIXER_DEVICE_GET_CLASS (device);
 
     if (G_LIKELY (klass->list_streams != NULL))
         return klass->list_streams (device);
@@ -457,9 +457,9 @@ mate_mixer_device_list_switches (MateMixerDevice *device)
 {
     MateMixerDeviceClass *klass;
 
-    g_return_val_if_fail (MATE_MIXER_IS_DEVICE (device), NULL);
+    g_return_val_if_fail (CAFE_MIXER_IS_DEVICE (device), NULL);
 
-    klass = MATE_MIXER_DEVICE_GET_CLASS (device);
+    klass = CAFE_MIXER_DEVICE_GET_CLASS (device);
 
     if (G_LIKELY (klass->list_switches != NULL))
         return klass->list_switches (device);
@@ -472,12 +472,12 @@ mate_mixer_device_real_get_stream (MateMixerDevice *device, const gchar *name)
 {
     const GList *list;
 
-    g_return_val_if_fail (MATE_MIXER_IS_DEVICE (device), NULL);
+    g_return_val_if_fail (CAFE_MIXER_IS_DEVICE (device), NULL);
     g_return_val_if_fail (name != NULL, NULL);
 
     list = mate_mixer_device_list_streams (device);
     while (list != NULL) {
-        MateMixerStream *stream = MATE_MIXER_STREAM (list->data);
+        MateMixerStream *stream = CAFE_MIXER_STREAM (list->data);
 
         if (strcmp (name, mate_mixer_stream_get_name (stream)) == 0)
             return stream;
@@ -492,15 +492,15 @@ mate_mixer_device_real_get_switch (MateMixerDevice *device, const gchar *name)
 {
     const GList *list;
 
-    g_return_val_if_fail (MATE_MIXER_IS_DEVICE (device), NULL);
+    g_return_val_if_fail (CAFE_MIXER_IS_DEVICE (device), NULL);
     g_return_val_if_fail (name != NULL, NULL);
 
     list = mate_mixer_device_list_switches (device);
     while (list != NULL) {
-        MateMixerSwitch *swtch = MATE_MIXER_SWITCH (list->data);
+        MateMixerSwitch *swtch = CAFE_MIXER_SWITCH (list->data);
 
         if (strcmp (name, mate_mixer_switch_get_name (swtch)) == 0)
-            return MATE_MIXER_DEVICE_SWITCH (swtch);
+            return CAFE_MIXER_DEVICE_SWITCH (swtch);
 
         list = list->next;
     }

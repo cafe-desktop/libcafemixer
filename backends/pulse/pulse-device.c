@@ -64,7 +64,7 @@ static void pulse_device_set_property (GObject          *object,
 static void pulse_device_dispose      (GObject          *object);
 static void pulse_device_finalize     (GObject          *object);
 
-G_DEFINE_TYPE_WITH_PRIVATE (PulseDevice, pulse_device, MATE_MIXER_TYPE_DEVICE)
+G_DEFINE_TYPE_WITH_PRIVATE (PulseDevice, pulse_device, CAFE_MIXER_TYPE_DEVICE)
 
 static MateMixerStream *pulse_device_get_stream    (MateMixerDevice    *mmd,
                                                     const gchar        *name);
@@ -89,7 +89,7 @@ pulse_device_class_init (PulseDeviceClass *klass)
     object_class->get_property = pulse_device_get_property;
     object_class->set_property = pulse_device_set_property;
 
-    device_class = MATE_MIXER_DEVICE_CLASS (klass);
+    device_class = CAFE_MIXER_DEVICE_CLASS (klass);
     device_class->get_stream         = pulse_device_get_stream;
     device_class->list_streams       = pulse_device_list_streams;
     device_class->list_switches      = pulse_device_list_switches;
@@ -266,7 +266,7 @@ pulse_device_add_stream (PulseDevice *device, PulseStream *stream)
     g_return_if_fail (PULSE_IS_DEVICE (device));
     g_return_if_fail (PULSE_IS_STREAM (stream));
 
-    name = mate_mixer_stream_get_name (MATE_MIXER_STREAM (stream));
+    name = mate_mixer_stream_get_name (CAFE_MIXER_STREAM (stream));
 
     g_hash_table_insert (device->priv->streams,
                          g_strdup (name),
@@ -287,7 +287,7 @@ pulse_device_remove_stream (PulseDevice *device, PulseStream *stream)
     g_return_if_fail (PULSE_IS_DEVICE (device));
     g_return_if_fail (PULSE_IS_STREAM (stream));
 
-    name = mate_mixer_stream_get_name (MATE_MIXER_STREAM (stream));
+    name = mate_mixer_stream_get_name (CAFE_MIXER_STREAM (stream));
 
     free_list_streams (device);
 

@@ -15,8 +15,8 @@
  * License along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef MATEMIXER_TYPES_H
-#define MATEMIXER_TYPES_H
+#ifndef CAFEMIXER_TYPES_H
+#define CAFEMIXER_TYPES_H
 
 G_BEGIN_DECLS
 
@@ -34,4 +34,4 @@ typedef struct _MateMixerSwitchOption   MateMixerSwitchOption;
 
 G_END_DECLS
 
-#endif /* MATEMIXER_TYPES_H */
+#endif /* CAFEMIXER_TYPES_H */

@@ -26,14 +26,14 @@ AC_INIT([libmatemixer],
 
 LT_VERSION=0:0:0
 
-AC_DEFINE(LIBMATEMIXER_MAJOR_VERSION, libmatemixer_major_version, [Libmatemixer major version])
-AC_DEFINE(LIBMATEMIXER_MINOR_VERSION, libmatemixer_minor_version, [Libmatemixer minor version])
-AC_DEFINE(LIBMATEMIXER_MICRO_VERSION, libmatemixer_micro_version, [Libmatemixer micro version])
+AC_DEFINE(LIBCAFEMIXER_MAJOR_VERSION, libmatemixer_major_version, [Libmatemixer major version])
+AC_DEFINE(LIBCAFEMIXER_MINOR_VERSION, libmatemixer_minor_version, [Libmatemixer minor version])
+AC_DEFINE(LIBCAFEMIXER_MICRO_VERSION, libmatemixer_micro_version, [Libmatemixer micro version])
 
-AC_SUBST(LIBMATEMIXER_MAJOR_VERSION, libmatemixer_major_version)
-AC_SUBST(LIBMATEMIXER_MINOR_VERSION, libmatemixer_minor_version)
-AC_SUBST(LIBMATEMIXER_MICRO_VERSION, libmatemixer_micro_version)
-AC_SUBST(LIBMATEMIXER_VERSION,       libmatemixer_version)
+AC_SUBST(LIBCAFEMIXER_MAJOR_VERSION, libmatemixer_major_version)
+AC_SUBST(LIBCAFEMIXER_MINOR_VERSION, libmatemixer_minor_version)
+AC_SUBST(LIBCAFEMIXER_MICRO_VERSION, libmatemixer_micro_version)
+AC_SUBST(LIBCAFEMIXER_VERSION,       libmatemixer_version)
 
 AC_SUBST(LT_VERSION)
 
@@ -54,7 +54,7 @@ m4_ifdef([AM_SILENT_RULES],
 # =======================================================================
 # Compiler warnings
 # =======================================================================
-MATE_COMPILE_WARNINGS([yes])
+CAFE_COMPILE_WARNINGS([yes])
 
 # Checks for required programs.
 AC_PROG_CC

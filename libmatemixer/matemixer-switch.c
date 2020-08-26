@@ -99,7 +99,7 @@ mate_mixer_switch_class_init (MateMixerSwitchClass *klass)
         g_param_spec_object ("active-option",
                              "Active option",
                              "Active option of the switch",
-                             MATE_MIXER_TYPE_SWITCH_OPTION,
+                             CAFE_MIXER_TYPE_SWITCH_OPTION,
                              G_PARAM_READWRITE |
                              G_PARAM_CONSTRUCT_ONLY |
                              G_PARAM_STATIC_STRINGS);
@@ -115,7 +115,7 @@ mate_mixer_switch_get_property (GObject    *object,
 {
     MateMixerSwitch *swtch;
 
-    swtch = MATE_MIXER_SWITCH (object);
+    swtch = CAFE_MIXER_SWITCH (object);
 
     switch (param_id) {
     case PROP_NAME:
@@ -142,7 +142,7 @@ mate_mixer_switch_set_property (GObject      *object,
 {
     MateMixerSwitch *swtch;
 
-    swtch = MATE_MIXER_SWITCH (object);
+    swtch = CAFE_MIXER_SWITCH (object);
 
     switch (param_id) {
     case PROP_NAME:
@@ -175,7 +175,7 @@ mate_mixer_switch_dispose (GObject *object)
 {
     MateMixerSwitch *swtch;
 
-    swtch = MATE_MIXER_SWITCH (object);
+    swtch = CAFE_MIXER_SWITCH (object);
 
     g_clear_object (&swtch->priv->active);
 
@@ -187,7 +187,7 @@ mate_mixer_switch_finalize (GObject *object)
 {
     MateMixerSwitch *swtch;
 
-    swtch = MATE_MIXER_SWITCH (object);
+    swtch = CAFE_MIXER_SWITCH (object);
 
     g_free (swtch->priv->name);
     g_free (swtch->priv->label);
@@ -209,7 +209,7 @@ mate_mixer_switch_finalize (GObject *object)
 const gchar *
 mate_mixer_switch_get_name (MateMixerSwitch *swtch)
 {
-    g_return_val_if_fail (MATE_MIXER_IS_SWITCH (swtch), NULL);
+    g_return_val_if_fail (CAFE_MIXER_IS_SWITCH (swtch), NULL);
 
     return swtch->priv->name;
 }
@@ -228,7 +228,7 @@ mate_mixer_switch_get_name (MateMixerSwitch *swtch)
 const gchar *
 mate_mixer_switch_get_label (MateMixerSwitch *swtch)
 {
-    g_return_val_if_fail (MATE_MIXER_IS_SWITCH (swtch), NULL);
+    g_return_val_if_fail (CAFE_MIXER_IS_SWITCH (swtch), NULL);
 
     return swtch->priv->label;
 }
@@ -245,10 +245,10 @@ mate_mixer_switch_get_label (MateMixerSwitch *swtch)
 MateMixerSwitchOption *
 mate_mixer_switch_get_option (MateMixerSwitch *swtch, const gchar *name)
 {
-    g_return_val_if_fail (MATE_MIXER_IS_SWITCH (swtch), NULL);
+    g_return_val_if_fail (CAFE_MIXER_IS_SWITCH (swtch), NULL);
     g_return_val_if_fail (name != NULL, NULL);
 
-    return MATE_MIXER_SWITCH_GET_CLASS (swtch)->get_option (swtch, name);
+    return CAFE_MIXER_SWITCH_GET_CLASS (swtch)->get_option (swtch, name);
 }
 
 /**
@@ -262,7 +262,7 @@ mate_mixer_switch_get_option (MateMixerSwitch *swtch, const gchar *name)
 MateMixerSwitchOption *
 mate_mixer_switch_get_active_option (MateMixerSwitch *swtch)
 {
-    g_return_val_if_fail (MATE_MIXER_IS_SWITCH (swtch), NULL);
+    g_return_val_if_fail (CAFE_MIXER_IS_SWITCH (swtch), NULL);
 
     return swtch->priv->active;
 }
@@ -282,10 +282,10 @@ mate_mixer_switch_set_active_option (MateMixerSwitch       *swtch,
 {
     MateMixerSwitchClass *klass;
 
-    g_return_val_if_fail (MATE_MIXER_IS_SWITCH (swtch), FALSE);
-    g_return_val_if_fail (MATE_MIXER_IS_SWITCH_OPTION (option), FALSE);
+    g_return_val_if_fail (CAFE_MIXER_IS_SWITCH (swtch), FALSE);
+    g_return_val_if_fail (CAFE_MIXER_IS_SWITCH_OPTION (option), FALSE);
 
-    klass = MATE_MIXER_SWITCH_GET_CLASS (swtch);
+    klass = CAFE_MIXER_SWITCH_GET_CLASS (swtch);
     if (klass->set_active_option == NULL)
         return FALSE;
 
@@ -312,9 +312,9 @@ mate_mixer_switch_set_active_option (MateMixerSwitch       *swtch,
 const GList *
 mate_mixer_switch_list_options (MateMixerSwitch *swtch)
 {
-    g_return_val_if_fail (MATE_MIXER_IS_SWITCH (swtch), NULL);
+    g_return_val_if_fail (CAFE_MIXER_IS_SWITCH (swtch), NULL);
 
-    return MATE_MIXER_SWITCH_GET_CLASS (swtch)->list_options (swtch);
+    return CAFE_MIXER_SWITCH_GET_CLASS (swtch)->list_options (swtch);
 }
 
 /* Protected functions */
@@ -322,8 +322,8 @@ void
 _mate_mixer_switch_set_active_option (MateMixerSwitch       *swtch,
                                       MateMixerSwitchOption *option)
 {
-    g_return_if_fail (MATE_MIXER_IS_SWITCH (swtch));
-    g_return_if_fail (MATE_MIXER_IS_SWITCH_OPTION (option));
+    g_return_if_fail (CAFE_MIXER_IS_SWITCH (swtch));
+    g_return_if_fail (CAFE_MIXER_IS_SWITCH_OPTION (option));
 
     if (swtch->priv->active == option)
         return;
@@ -341,12 +341,12 @@ mate_mixer_switch_real_get_option (MateMixerSwitch *swtch, const gchar *name)
 {
     const GList *list;
 
-    g_return_val_if_fail (MATE_MIXER_IS_SWITCH (swtch), NULL);
+    g_return_val_if_fail (CAFE_MIXER_IS_SWITCH (swtch), NULL);
     g_return_val_if_fail (name != NULL, NULL);
 
     list = mate_mixer_switch_list_options (swtch);
     while (list != NULL) {
-        MateMixerSwitchOption *option = MATE_MIXER_SWITCH_OPTION (list->data);
+        MateMixerSwitchOption *option = CAFE_MIXER_SWITCH_OPTION (list->data);
 
         if (strcmp (name, mate_mixer_switch_option_get_name (option)) == 0)
             return option;

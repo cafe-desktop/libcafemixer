@@ -32,7 +32,7 @@ struct _PulsePortPrivate
     guint priority;
 };
 
-G_DEFINE_TYPE_WITH_PRIVATE (PulsePort, pulse_port, MATE_MIXER_TYPE_SWITCH_OPTION)
+G_DEFINE_TYPE_WITH_PRIVATE (PulsePort, pulse_port, CAFE_MIXER_TYPE_SWITCH_OPTION)
 
 static void
 pulse_port_class_init (PulsePortClass *klass)
@@ -71,7 +71,7 @@ pulse_port_get_name (PulsePort *port)
 {
     g_return_val_if_fail (PULSE_IS_PORT (port), NULL);
 
-    return mate_mixer_switch_option_get_name (MATE_MIXER_SWITCH_OPTION (port));
+    return mate_mixer_switch_option_get_name (CAFE_MIXER_SWITCH_OPTION (port));
 }
 
 guint

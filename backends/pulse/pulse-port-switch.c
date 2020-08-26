@@ -34,7 +34,7 @@ struct _PulsePortSwitchPrivate
 
 static void pulse_port_switch_dispose      (GObject                 *object);
 
-G_DEFINE_ABSTRACT_TYPE_WITH_PRIVATE (PulsePortSwitch, pulse_port_switch, MATE_MIXER_TYPE_STREAM_SWITCH)
+G_DEFINE_ABSTRACT_TYPE_WITH_PRIVATE (PulsePortSwitch, pulse_port_switch, CAFE_MIXER_TYPE_STREAM_SWITCH)
 
 static gboolean     pulse_port_switch_set_active_option (MateMixerSwitch       *mms,
                                                          MateMixerSwitchOption *mmso);
@@ -55,7 +55,7 @@ pulse_port_switch_class_init (PulsePortSwitchClass *klass)
     object_class = G_OBJECT_CLASS (klass);
     object_class->dispose = pulse_port_switch_dispose;
 
-    switch_class = MATE_MIXER_SWITCH_CLASS (klass);
+    switch_class = CAFE_MIXER_SWITCH_CLASS (klass);
     switch_class->set_active_option = pulse_port_switch_set_active_option;
     switch_class->list_options      = pulse_port_switch_list_options;
 }
@@ -85,7 +85,7 @@ pulse_port_switch_get_stream (PulsePortSwitch *swtch)
 {
     g_return_val_if_fail (PULSE_IS_PORT_SWITCH (swtch), NULL);
 
-    return PULSE_STREAM (mate_mixer_stream_switch_get_stream (MATE_MIXER_STREAM_SWITCH (swtch)));
+    return PULSE_STREAM (mate_mixer_stream_switch_get_stream (CAFE_MIXER_STREAM_SWITCH (swtch)));
 }
 
 void
@@ -105,8 +105,8 @@ pulse_port_switch_set_active_port (PulsePortSwitch *swtch, PulsePort *port)
     g_return_if_fail (PULSE_IS_PORT_SWITCH (swtch));
     g_return_if_fail (PULSE_IS_PORT (port));
 
-    _mate_mixer_switch_set_active_option (MATE_MIXER_SWITCH (swtch),
-                                          MATE_MIXER_SWITCH_OPTION (port));
+    _mate_mixer_switch_set_active_option (CAFE_MIXER_SWITCH (swtch),
+                                          CAFE_MIXER_SWITCH_OPTION (port));
 }
 
 void

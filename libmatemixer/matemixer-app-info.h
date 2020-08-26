@@ -15,8 +15,8 @@
  * License along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef MATEMIXER_APP_INFO_H
-#define MATEMIXER_APP_INFO_H
+#ifndef CAFEMIXER_APP_INFO_H
+#define CAFEMIXER_APP_INFO_H
 
 #include <glib.h>
 #include <glib-object.h>
@@ -25,7 +25,7 @@
 
 G_BEGIN_DECLS
 
-#define MATE_MIXER_TYPE_APP_INFO (mate_mixer_app_info_get_type ())
+#define CAFE_MIXER_TYPE_APP_INFO (mate_mixer_app_info_get_type ())
 
 GType        mate_mixer_app_info_get_type    (void) G_GNUC_CONST;
 
@@ -36,4 +36,4 @@ const gchar *mate_mixer_app_info_get_icon    (MateMixerAppInfo *info);
 
 G_END_DECLS
 
-#endif /* MATEMIXER_APP_INFO_H */
+#endif /* CAFEMIXER_APP_INFO_H */

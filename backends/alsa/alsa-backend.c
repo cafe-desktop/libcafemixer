@@ -28,7 +28,7 @@
 
 #define BACKEND_NAME      "ALSA"
 #define BACKEND_PRIORITY  20
-#define BACKEND_FLAGS     MATE_MIXER_BACKEND_NO_FLAGS
+#define BACKEND_FLAGS     CAFE_MIXER_BACKEND_NO_FLAGS
 
 #define ALSA_DEVICE_GET_ID(d)                                               \
         (g_object_get_data (G_OBJECT (d), "__matemixer_alsa_device_id"))
@@ -54,7 +54,7 @@ static void alsa_backend_finalize       (GObject          *object);
 #pragma clang diagnostic ignored "-Wunused-function"
 G_DEFINE_DYNAMIC_TYPE_EXTENDED (AlsaBackend,
                                 alsa_backend,
-                                MATE_MIXER_TYPE_BACKEND,
+                                CAFE_MIXER_TYPE_BACKEND,
                                 0,
                                 G_ADD_PRIVATE_DYNAMIC(AlsaBackend))
 #pragma clang diagnostic pop
@@ -103,7 +103,7 @@ backend_module_init (GTypeModule *module)
     info.priority      = BACKEND_PRIORITY;
     info.g_type        = ALSA_TYPE_BACKEND;
     info.backend_flags = BACKEND_FLAGS;
-    info.backend_type  = MATE_MIXER_BACKEND_ALSA;
+    info.backend_type  = CAFE_MIXER_BACKEND_ALSA;
 }
 
 const MateMixerBackendInfo *backend_module_get_info (void)
@@ -121,7 +121,7 @@ alsa_backend_class_init (AlsaBackendClass *klass)
     object_class->dispose  = alsa_backend_dispose;
     object_class->finalize = alsa_backend_finalize;
 
-    backend_class = MATE_MIXER_BACKEND_CLASS (klass);
+    backend_class = CAFE_MIXER_BACKEND_CLASS (klass);
     backend_class->open         = alsa_backend_open;
     backend_class->close        = alsa_backend_close;
     backend_class->list_devices = alsa_backend_list_devices;
@@ -151,10 +151,10 @@ alsa_backend_dispose (GObject *object)
     MateMixerBackend *backend;
     MateMixerState    state;
 
-    backend = MATE_MIXER_BACKEND (object);
+    backend = CAFE_MIXER_BACKEND (object);
 
     state = mate_mixer_backend_get_state (backend);
-    if (state != MATE_MIXER_STATE_IDLE)
+    if (state != CAFE_MIXER_STATE_IDLE)
         alsa_backend_close (backend);
 
     G_OBJECT_CLASS (alsa_backend_parent_class)->dispose (object);
@@ -196,7 +196,7 @@ alsa_backend_open (MateMixerBackend *backend)
      * be a device-related problem so make the backend always open successfully */
     read_devices (alsa);
 
-    _mate_mixer_backend_set_state (backend, MATE_MIXER_STATE_READY);
+    _mate_mixer_backend_set_state (backend, CAFE_MIXER_STATE_READY);
     return TRUE;
 }
 
@@ -220,7 +220,7 @@ alsa_backend_close (MateMixerBackend *backend)
 
     g_hash_table_remove_all (alsa->priv->devices_ids);
 
-    _mate_mixer_backend_set_state (backend, MATE_MIXER_STATE_IDLE);
+    _mate_mixer_backend_set_state (backend, CAFE_MIXER_STATE_IDLE);
 }
 
 static const GList *
@@ -398,7 +398,7 @@ add_device (AlsaBackend *alsa, AlsaDevice *device)
 
     g_signal_emit_by_name (G_OBJECT (alsa),
                            "device-added",
-                           mate_mixer_device_get_name (MATE_MIXER_DEVICE (device)));
+                           mate_mixer_device_get_name (CAFE_MIXER_DEVICE (device)));
 
     /* Load the device elements after emitting device-added, because the load
      * function will most likely emit stream-added on the device and backend */
@@ -453,7 +453,7 @@ remove_device_by_list_item (AlsaBackend *alsa, GList *item)
 
     g_signal_emit_by_name (G_OBJECT (alsa),
                            "device-removed",
-                           mate_mixer_device_get_name (MATE_MIXER_DEVICE (device)));
+                           mate_mixer_device_get_name (CAFE_MIXER_DEVICE (device)));
 
     g_object_unref (device);
 }
@@ -463,12 +463,12 @@ remove_stream (AlsaBackend *alsa, const gchar *name)
 {
     MateMixerStream *stream;
 
-    stream = mate_mixer_backend_get_default_input_stream (MATE_MIXER_BACKEND (alsa));
+    stream = mate_mixer_backend_get_default_input_stream (CAFE_MIXER_BACKEND (alsa));
 
     if (stream != NULL && strcmp (mate_mixer_stream_get_name (stream), name) == 0)
         select_default_input_stream (alsa);
 
-    stream = mate_mixer_backend_get_default_output_stream (MATE_MIXER_BACKEND (alsa));
+    stream = mate_mixer_backend_get_default_output_stream (CAFE_MIXER_BACKEND (alsa));
 
     if (stream != NULL && strcmp (mate_mixer_stream_get_name (stream), name) == 0)
         select_default_output_stream (alsa);
@@ -485,15 +485,15 @@ select_default_input_stream (AlsaBackend *alsa)
         AlsaStream *stream = alsa_device_get_input_stream (device);
 
         if (stream != NULL) {
-            _mate_mixer_backend_set_default_input_stream (MATE_MIXER_BACKEND (alsa),
-                                                          MATE_MIXER_STREAM (stream));
+            _mate_mixer_backend_set_default_input_stream (CAFE_MIXER_BACKEND (alsa),
+                                                          CAFE_MIXER_STREAM (stream));
             return;
         }
         list = list->next;
     }
 
     /* In the worst case unset the default stream */
-    _mate_mixer_backend_set_default_input_stream (MATE_MIXER_BACKEND (alsa), NULL);
+    _mate_mixer_backend_set_default_input_stream (CAFE_MIXER_BACKEND (alsa), NULL);
 }
 
 static void
@@ -507,15 +507,15 @@ select_default_output_stream (AlsaBackend *alsa)
         AlsaStream *stream = alsa_device_get_output_stream (device);
 
         if (stream != NULL) {
-            _mate_mixer_backend_set_default_output_stream (MATE_MIXER_BACKEND (alsa),
-                                                           MATE_MIXER_STREAM (stream));
+            _mate_mixer_backend_set_default_output_stream (CAFE_MIXER_BACKEND (alsa),
+                                                           CAFE_MIXER_STREAM (stream));
             return;
         }
         list = list->next;
     }
 
     /* In the worst case unset the default stream */
-    _mate_mixer_backend_set_default_output_stream (MATE_MIXER_BACKEND (alsa), NULL);
+    _mate_mixer_backend_set_default_output_stream (CAFE_MIXER_BACKEND (alsa), NULL);
 }
 
 static void
@@ -532,8 +532,8 @@ free_stream_list (AlsaBackend *alsa)
 static gint
 compare_devices (gconstpointer a, gconstpointer b)
 {
-    MateMixerDevice *d1 = MATE_MIXER_DEVICE (a);
-    MateMixerDevice *d2 = MATE_MIXER_DEVICE (b);
+    MateMixerDevice *d1 = CAFE_MIXER_DEVICE (a);
+    MateMixerDevice *d2 = CAFE_MIXER_DEVICE (b);
 
     return strcmp (mate_mixer_device_get_name (d1), mate_mixer_device_get_name (d2));
 }
@@ -541,7 +541,7 @@ compare_devices (gconstpointer a, gconstpointer b)
 static gint
 compare_device_name (gconstpointer a, gconstpointer b)
 {
-    MateMixerDevice *device = MATE_MIXER_DEVICE (a);
+    MateMixerDevice *device = CAFE_MIXER_DEVICE (a);
     const gchar     *name   = (const gchar *) b;
 
     return strcmp (mate_mixer_device_get_name (device), name);

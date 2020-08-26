@@ -46,7 +46,7 @@ pulse_sink_input_class_init (PulseSinkInputClass *klass)
     MateMixerStreamControlClass *mmsc_class;
     PulseStreamControlClass     *control_class;
 
-    mmsc_class = MATE_MIXER_STREAM_CONTROL_CLASS (klass);
+    mmsc_class = CAFE_MIXER_STREAM_CONTROL_CLASS (klass);
     mmsc_class->get_max_volume    = pulse_sink_input_get_max_volume;
 
     control_class = PULSE_STREAM_CONTROL_CLASS (klass);
@@ -71,12 +71,12 @@ pulse_sink_input_new (PulseConnection          *connection,
     const gchar      *label = NULL;
     MateMixerAppInfo *app_info = NULL;
 
-    MateMixerStreamControlFlags flags = MATE_MIXER_STREAM_CONTROL_MUTE_READABLE |
-                                        MATE_MIXER_STREAM_CONTROL_MUTE_WRITABLE |
-                                        MATE_MIXER_STREAM_CONTROL_HAS_MONITOR;
-    MateMixerStreamControlRole  role  = MATE_MIXER_STREAM_CONTROL_ROLE_UNKNOWN;
+    MateMixerStreamControlFlags flags = CAFE_MIXER_STREAM_CONTROL_MUTE_READABLE |
+                                        CAFE_MIXER_STREAM_CONTROL_MUTE_WRITABLE |
+                                        CAFE_MIXER_STREAM_CONTROL_HAS_MONITOR;
+    MateMixerStreamControlRole  role  = CAFE_MIXER_STREAM_CONTROL_ROLE_UNKNOWN;
 
-    MateMixerStreamControlMediaRole media_role = MATE_MIXER_STREAM_CONTROL_MEDIA_ROLE_UNKNOWN;
+    MateMixerStreamControlMediaRole media_role = CAFE_MIXER_STREAM_CONTROL_MEDIA_ROLE_UNKNOWN;
 
     g_return_val_if_fail (PULSE_IS_CONNECTION (connection), NULL);
     g_return_val_if_fail (info != NULL, NULL);
@@ -90,17 +90,17 @@ pulse_sink_input_new (PulseConnection          *connection,
 
     if (info->has_volume) {
         flags |=
-            MATE_MIXER_STREAM_CONTROL_VOLUME_READABLE |
-            MATE_MIXER_STREAM_CONTROL_HAS_DECIBEL;
+            CAFE_MIXER_STREAM_CONTROL_VOLUME_READABLE |
+            CAFE_MIXER_STREAM_CONTROL_HAS_DECIBEL;
 
         if (info->volume_writable)
-            flags |= MATE_MIXER_STREAM_CONTROL_VOLUME_WRITABLE;
+            flags |= CAFE_MIXER_STREAM_CONTROL_VOLUME_WRITABLE;
     }
 
     if (info->client != PA_INVALID_INDEX) {
         app_info = _mate_mixer_app_info_new ();
 
-        role = MATE_MIXER_STREAM_CONTROL_ROLE_APPLICATION;
+        role = CAFE_MIXER_STREAM_CONTROL_ROLE_APPLICATION;
 
         prop = pa_proplist_gets (info->proplist, PA_PROP_APPLICATION_NAME);
         if (prop != NULL)
@@ -123,7 +123,7 @@ pulse_sink_input_new (PulseConnection          *connection,
     if (prop != NULL) {
         media_role = pulse_convert_media_role_name (prop);
 
-        if (media_role == MATE_MIXER_STREAM_CONTROL_MEDIA_ROLE_EVENT) {
+        if (media_role == CAFE_MIXER_STREAM_CONTROL_MEDIA_ROLE_EVENT) {
             /* The event description seems to provide much better readable
              * description for event streams */
             prop = pa_proplist_gets (info->proplist, PA_PROP_EVENT_DESCRIPTION);
@@ -167,7 +167,7 @@ pulse_sink_input_update (PulseSinkInput *input, const pa_sink_input_info *info)
     /* Let all the information update before emitting notify signals */
     g_object_freeze_notify (G_OBJECT (input));
 
-    _mate_mixer_stream_control_set_mute (MATE_MIXER_STREAM_CONTROL (input),
+    _mate_mixer_stream_control_set_mute (CAFE_MIXER_STREAM_CONTROL (input),
                                          info->mute ? TRUE : FALSE);
 
     pulse_stream_control_set_channel_map (PULSE_STREAM_CONTROL (input),
@@ -222,12 +222,12 @@ pulse_sink_input_create_monitor (PulseStreamControl *psc)
 
     g_return_val_if_fail (PULSE_IS_SINK_INPUT (psc), NULL);
 
-    sink = PULSE_SINK (mate_mixer_stream_control_get_stream (MATE_MIXER_STREAM_CONTROL (psc)));
+    sink = PULSE_SINK (mate_mixer_stream_control_get_stream (CAFE_MIXER_STREAM_CONTROL (psc)));
 
     index = pulse_sink_get_index_monitor (sink);
     if (G_UNLIKELY (index == PA_INVALID_INDEX)) {
         g_debug ("Monitor of stream control %s is not available",
-                 mate_mixer_stream_control_get_name (MATE_MIXER_STREAM_CONTROL (psc)));
+                 mate_mixer_stream_control_get_name (CAFE_MIXER_STREAM_CONTROL (psc)));
         return NULL;
     }
 

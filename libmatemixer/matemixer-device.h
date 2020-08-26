@@ -15,8 +15,8 @@
  * License along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef MATEMIXER_DEVICE_H
-#define MATEMIXER_DEVICE_H
+#ifndef CAFEMIXER_DEVICE_H
+#define CAFEMIXER_DEVICE_H
 
 #include <glib.h>
 #include <glib-object.h>
@@ -25,18 +25,18 @@
 
 G_BEGIN_DECLS
 
-#define MATE_MIXER_TYPE_DEVICE                  \
+#define CAFE_MIXER_TYPE_DEVICE                  \
         (mate_mixer_device_get_type ())
-#define MATE_MIXER_DEVICE(o)                    \
-        (G_TYPE_CHECK_INSTANCE_CAST ((o), MATE_MIXER_TYPE_DEVICE, MateMixerDevice))
-#define MATE_MIXER_IS_DEVICE(o)                 \
-        (G_TYPE_CHECK_INSTANCE_TYPE ((o), MATE_MIXER_TYPE_DEVICE))
-#define MATE_MIXER_DEVICE_CLASS(k)              \
-        (G_TYPE_CHECK_CLASS_CAST ((k), MATE_MIXER_TYPE_DEVICE, MateMixerDeviceClass))
-#define MATE_MIXER_IS_DEVICE_CLASS(k)           \
-        (G_TYPE_CHECK_CLASS_TYPE ((k), MATE_MIXER_TYPE_DEVICE))
-#define MATE_MIXER_DEVICE_GET_CLASS(o)          \
-        (G_TYPE_INSTANCE_GET_CLASS ((o), MATE_MIXER_TYPE_DEVICE, MateMixerDeviceClass))
+#define CAFE_MIXER_DEVICE(o)                    \
+        (G_TYPE_CHECK_INSTANCE_CAST ((o), CAFE_MIXER_TYPE_DEVICE, MateMixerDevice))
+#define CAFE_MIXER_IS_DEVICE(o)                 \
+        (G_TYPE_CHECK_INSTANCE_TYPE ((o), CAFE_MIXER_TYPE_DEVICE))
+#define CAFE_MIXER_DEVICE_CLASS(k)              \
+        (G_TYPE_CHECK_CLASS_CAST ((k), CAFE_MIXER_TYPE_DEVICE, MateMixerDeviceClass))
+#define CAFE_MIXER_IS_DEVICE_CLASS(k)           \
+        (G_TYPE_CHECK_CLASS_TYPE ((k), CAFE_MIXER_TYPE_DEVICE))
+#define CAFE_MIXER_DEVICE_GET_CLASS(o)          \
+        (G_TYPE_INSTANCE_GET_CLASS ((o), CAFE_MIXER_TYPE_DEVICE, MateMixerDeviceClass))
 
 typedef struct _MateMixerDeviceClass    MateMixerDeviceClass;
 typedef struct _MateMixerDevicePrivate  MateMixerDevicePrivate;
@@ -102,4 +102,4 @@ const GList *          mate_mixer_device_list_switches (MateMixerDevice *device)
 
 G_END_DECLS
 
-#endif /* MATEMIXER_DEVICE_H */
+#endif /* CAFEMIXER_DEVICE_H */

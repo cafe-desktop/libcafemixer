@@ -37,7 +37,7 @@ static void oss_switch_init       (OssSwitch      *swtch);
 static void oss_switch_dispose    (GObject        *object);
 static void oss_switch_finalize   (GObject        *object);
 
-G_DEFINE_TYPE_WITH_PRIVATE (OssSwitch, oss_switch, MATE_MIXER_TYPE_STREAM_SWITCH)
+G_DEFINE_TYPE_WITH_PRIVATE (OssSwitch, oss_switch, CAFE_MIXER_TYPE_STREAM_SWITCH)
 
 static gboolean         oss_switch_set_active_option (MateMixerSwitch       *mms,
                                                       MateMixerSwitchOption *mmso);
@@ -56,7 +56,7 @@ oss_switch_class_init (OssSwitchClass *klass)
     object_class->dispose  = oss_switch_dispose;
     object_class->finalize = oss_switch_finalize;
 
-    switch_class = MATE_MIXER_SWITCH_CLASS (klass);
+    switch_class = CAFE_MIXER_SWITCH_CLASS (klass);
     switch_class->set_active_option = oss_switch_set_active_option;
     switch_class->list_options      = oss_switch_list_options;
 }
@@ -120,7 +120,7 @@ oss_switch_new (OssStream   *stream,
     swtch = g_object_new (OSS_TYPE_SWITCH,
                           "name", name,
                           "label", label,
-                          "role", MATE_MIXER_STREAM_SWITCH_ROLE_PORT,
+                          "role", CAFE_MIXER_STREAM_SWITCH_ROLE_PORT,
                           "stream", stream,
                           NULL);
 
@@ -162,21 +162,21 @@ oss_switch_load (OssSwitch *swtch)
                 /* It is possible that some hardware might allow and have more recording
                  * sources active at the same time, but we only support one active
                  * source at a time */
-                _mate_mixer_switch_set_active_option (MATE_MIXER_SWITCH (swtch),
-                                                      MATE_MIXER_SWITCH_OPTION (option));
+                _mate_mixer_switch_set_active_option (CAFE_MIXER_SWITCH (swtch),
+                                                      CAFE_MIXER_SWITCH_OPTION (option));
                 return;
             }
             list = list->next;
         }
 
         g_debug ("Switch %s has an unknown device as the active option",
-                 mate_mixer_switch_get_name (MATE_MIXER_SWITCH (swtch)));
+                 mate_mixer_switch_get_name (CAFE_MIXER_SWITCH (swtch)));
 
         /* OSS shouldn't let a non-record device be selected, let's step in and select
          * something reasonable instead... */
     } else {
          g_debug ("Switch %s has no active device",
-                  mate_mixer_switch_get_name (MATE_MIXER_SWITCH (swtch)));
+                  mate_mixer_switch_get_name (CAFE_MIXER_SWITCH (swtch)));
 
         /* According to the OSS Programmer's Guide, if the recsrc value is 0, the
          * microphone will be selected implicitly.
@@ -186,15 +186,15 @@ oss_switch_load (OssSwitch *swtch)
     option = choose_default_option (swtch);
 
     g_debug ("Selecting default device %s as active for switch %s",
-             mate_mixer_switch_option_get_name (MATE_MIXER_SWITCH_OPTION (option)),
-             mate_mixer_switch_get_name (MATE_MIXER_SWITCH (swtch)));
+             mate_mixer_switch_option_get_name (CAFE_MIXER_SWITCH_OPTION (option)),
+             mate_mixer_switch_get_name (CAFE_MIXER_SWITCH (swtch)));
 
-    if (mate_mixer_switch_set_active_option (MATE_MIXER_SWITCH (swtch),
-                                             MATE_MIXER_SWITCH_OPTION (option)) == FALSE) {
+    if (mate_mixer_switch_set_active_option (CAFE_MIXER_SWITCH (swtch),
+                                             CAFE_MIXER_SWITCH_OPTION (option)) == FALSE) {
         g_debug ("Failed to set the default device, assuming it is selected anyway");
 
-        _mate_mixer_switch_set_active_option (MATE_MIXER_SWITCH (swtch),
-                                              MATE_MIXER_SWITCH_OPTION (option));
+        _mate_mixer_switch_set_active_option (CAFE_MIXER_SWITCH (swtch),
+                                              CAFE_MIXER_SWITCH_OPTION (option));
     }
 }
 

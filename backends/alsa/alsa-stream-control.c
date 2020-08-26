@@ -36,7 +36,7 @@ struct _AlsaStreamControlPrivate
 static void alsa_element_interface_init    (AlsaElementInterface   *iface);
 
 G_DEFINE_ABSTRACT_TYPE_WITH_CODE (AlsaStreamControl, alsa_stream_control,
-                                  MATE_MIXER_TYPE_STREAM_CONTROL,
+                                  CAFE_MIXER_TYPE_STREAM_CONTROL,
                                   G_ADD_PRIVATE(AlsaStreamControl)
                                   G_IMPLEMENT_INTERFACE (ALSA_TYPE_ELEMENT,
                                                          alsa_element_interface_init))
@@ -113,7 +113,7 @@ alsa_stream_control_class_init (AlsaStreamControlClass *klass)
 {
     MateMixerStreamControlClass *control_class;
 
-    control_class = MATE_MIXER_STREAM_CONTROL_CLASS (klass);
+    control_class = CAFE_MIXER_STREAM_CONTROL_CLASS (klass);
 
     control_class->set_mute             = alsa_stream_control_set_mute;
     control_class->get_num_channels     = alsa_stream_control_get_num_channels;
@@ -152,14 +152,14 @@ alsa_stream_control_get_data (AlsaStreamControl *control)
 void
 alsa_stream_control_set_data (AlsaStreamControl *control, AlsaControlData *data)
 {
-    MateMixerStreamControlFlags flags = MATE_MIXER_STREAM_CONTROL_NO_FLAGS;
+    MateMixerStreamControlFlags flags = CAFE_MIXER_STREAM_CONTROL_NO_FLAGS;
     MateMixerStreamControl     *mmsc;
     gboolean                    mute = FALSE;
 
     g_return_if_fail (ALSA_IS_STREAM_CONTROL (control));
     g_return_if_fail (data != NULL);
 
-    mmsc = MATE_MIXER_STREAM_CONTROL (control);
+    mmsc = CAFE_MIXER_STREAM_CONTROL (control);
 
     control->priv->data = *data;
 
@@ -183,28 +183,28 @@ alsa_stream_control_set_data (AlsaStreamControl *control, AlsaControlData *data)
                     }
             }
 
-            flags |= MATE_MIXER_STREAM_CONTROL_MUTE_READABLE;
+            flags |= CAFE_MIXER_STREAM_CONTROL_MUTE_READABLE;
             if (data->active == TRUE)
-                flags |= MATE_MIXER_STREAM_CONTROL_MUTE_WRITABLE;
+                flags |= CAFE_MIXER_STREAM_CONTROL_MUTE_WRITABLE;
         }
 
-        flags |= MATE_MIXER_STREAM_CONTROL_VOLUME_READABLE;
+        flags |= CAFE_MIXER_STREAM_CONTROL_VOLUME_READABLE;
         if (data->active == TRUE)
-            flags |= MATE_MIXER_STREAM_CONTROL_VOLUME_WRITABLE;
+            flags |= CAFE_MIXER_STREAM_CONTROL_VOLUME_WRITABLE;
 
-        if (data->max_decibel > -MATE_MIXER_INFINITY)
-            flags |= MATE_MIXER_STREAM_CONTROL_HAS_DECIBEL;
+        if (data->max_decibel > -CAFE_MIXER_INFINITY)
+            flags |= CAFE_MIXER_STREAM_CONTROL_HAS_DECIBEL;
 
         control->priv->channel_mask = _mate_mixer_create_channel_mask (data->c, data->channels);
 
         if (data->volume_joined == FALSE) {
-            if (MATE_MIXER_CHANNEL_MASK_HAS_LEFT (control->priv->channel_mask) &&
-                MATE_MIXER_CHANNEL_MASK_HAS_RIGHT (control->priv->channel_mask))
-                flags |= MATE_MIXER_STREAM_CONTROL_CAN_BALANCE;
+            if (CAFE_MIXER_CHANNEL_MASK_HAS_LEFT (control->priv->channel_mask) &&
+                CAFE_MIXER_CHANNEL_MASK_HAS_RIGHT (control->priv->channel_mask))
+                flags |= CAFE_MIXER_STREAM_CONTROL_CAN_BALANCE;
 
-            if (MATE_MIXER_CHANNEL_MASK_HAS_FRONT (control->priv->channel_mask) &&
-                MATE_MIXER_CHANNEL_MASK_HAS_BACK (control->priv->channel_mask))
-                flags |= MATE_MIXER_STREAM_CONTROL_CAN_FADE;
+            if (CAFE_MIXER_CHANNEL_MASK_HAS_FRONT (control->priv->channel_mask) &&
+                CAFE_MIXER_CHANNEL_MASK_HAS_BACK (control->priv->channel_mask))
+                flags |= CAFE_MIXER_STREAM_CONTROL_CAN_FADE;
         }
 
         g_object_notify (G_OBJECT (control), "volume");
@@ -215,9 +215,9 @@ alsa_stream_control_set_data (AlsaStreamControl *control, AlsaControlData *data)
     _mate_mixer_stream_control_set_mute (mmsc, mute);
     _mate_mixer_stream_control_set_flags (mmsc, flags);
 
-    if (flags & MATE_MIXER_STREAM_CONTROL_CAN_BALANCE)
+    if (flags & CAFE_MIXER_STREAM_CONTROL_CAN_BALANCE)
         _mate_mixer_stream_control_set_balance (mmsc, control_data_get_balance (data));
-    if (flags & MATE_MIXER_STREAM_CONTROL_CAN_FADE)
+    if (flags & CAFE_MIXER_STREAM_CONTROL_CAN_FADE)
         _mate_mixer_stream_control_set_fade (mmsc, control_data_get_fade (data));
 
     g_object_thaw_notify (G_OBJECT (control));
@@ -356,14 +356,14 @@ alsa_stream_control_get_decibel (MateMixerStreamControl *mmsc)
     guint                   volume;
     gdouble                 decibel;
 
-    g_return_val_if_fail (ALSA_IS_STREAM_CONTROL (mmsc), -MATE_MIXER_INFINITY);
+    g_return_val_if_fail (ALSA_IS_STREAM_CONTROL (mmsc), -CAFE_MIXER_INFINITY);
 
     control = ALSA_STREAM_CONTROL (mmsc);
     klass   = ALSA_STREAM_CONTROL_GET_CLASS (control);
     volume  = alsa_stream_control_get_volume (mmsc);
 
     if (klass->get_decibel_from_volume (control, volume, &decibel) == FALSE)
-        return -MATE_MIXER_INFINITY;
+        return -CAFE_MIXER_INFINITY;
 
     return decibel;
 }
@@ -396,7 +396,7 @@ alsa_stream_control_has_channel_position (MateMixerStreamControl  *mmsc,
 
     control = ALSA_STREAM_CONTROL (mmsc);
 
-    if (MATE_MIXER_CHANNEL_MASK_HAS_CHANNEL (control->priv->channel_mask, position))
+    if (CAFE_MIXER_CHANNEL_MASK_HAS_CHANNEL (control->priv->channel_mask, position))
         return TRUE;
     else
         return FALSE;
@@ -407,12 +407,12 @@ alsa_stream_control_get_channel_position (MateMixerStreamControl *mmsc, guint ch
 {
     AlsaStreamControl *control;
 
-    g_return_val_if_fail (ALSA_IS_STREAM_CONTROL (mmsc), MATE_MIXER_CHANNEL_UNKNOWN);
+    g_return_val_if_fail (ALSA_IS_STREAM_CONTROL (mmsc), CAFE_MIXER_CHANNEL_UNKNOWN);
 
     control = ALSA_STREAM_CONTROL (mmsc);
 
     if (channel >= control->priv->data.channels)
-        return MATE_MIXER_CHANNEL_UNKNOWN;
+        return CAFE_MIXER_CHANNEL_UNKNOWN;
 
     return control->priv->data.c[channel];
 }
@@ -482,18 +482,18 @@ alsa_stream_control_get_channel_decibel (MateMixerStreamControl *mmsc, guint cha
     guint                   volume;
     gdouble                 decibel;
 
-    g_return_val_if_fail (ALSA_IS_STREAM_CONTROL (mmsc), -MATE_MIXER_INFINITY);
+    g_return_val_if_fail (ALSA_IS_STREAM_CONTROL (mmsc), -CAFE_MIXER_INFINITY);
 
     control = ALSA_STREAM_CONTROL (mmsc);
 
     if (channel >= control->priv->data.channels)
-        return -MATE_MIXER_INFINITY;
+        return -CAFE_MIXER_INFINITY;
 
     klass  = ALSA_STREAM_CONTROL_GET_CLASS (control);
     volume = control->priv->data.v[channel];
 
     if (klass->get_decibel_from_volume (control, volume, &decibel) == FALSE)
-        return -MATE_MIXER_INFINITY;
+        return -CAFE_MIXER_INFINITY;
 
     return decibel;
 }
@@ -549,8 +549,8 @@ alsa_stream_control_set_balance (MateMixerStreamControl *mmsc, gfloat balance)
     }
 
     for (channel = 0; channel < data->channels; channel++) {
-        gboolean lc = MATE_MIXER_IS_LEFT_CHANNEL (data->c[channel]);
-        gboolean rc = MATE_MIXER_IS_RIGHT_CHANNEL (data->c[channel]);
+        gboolean lc = CAFE_MIXER_IS_LEFT_CHANNEL (data->c[channel]);
+        gboolean rc = CAFE_MIXER_IS_RIGHT_CHANNEL (data->c[channel]);
 
         if (lc == TRUE || rc == TRUE) {
             guint volume;
@@ -610,8 +610,8 @@ alsa_stream_control_set_fade (MateMixerStreamControl *mmsc, gfloat fade)
     }
 
     for (channel = 0; channel < data->channels; channel++) {
-        gboolean fc = MATE_MIXER_IS_FRONT_CHANNEL (data->c[channel]);
-        gboolean bc = MATE_MIXER_IS_BACK_CHANNEL (data->c[channel]);
+        gboolean fc = CAFE_MIXER_IS_FRONT_CHANNEL (data->c[channel]);
+        gboolean bc = CAFE_MIXER_IS_BACK_CHANNEL (data->c[channel]);
 
         if (fc == TRUE || bc == TRUE) {
             guint volume;
@@ -682,11 +682,11 @@ control_data_get_average_left_right (AlsaControlData *data, guint *left, guint *
     guint channel;
 
     for (channel = 0; channel < data->channels; channel++)
-        if (MATE_MIXER_IS_LEFT_CHANNEL (data->c[channel])) {
+        if (CAFE_MIXER_IS_LEFT_CHANNEL (data->c[channel])) {
             l += data->v[channel];
             nl++;
         }
-        else if (MATE_MIXER_IS_RIGHT_CHANNEL (data->c[channel])) {
+        else if (CAFE_MIXER_IS_RIGHT_CHANNEL (data->c[channel])) {
             r += data->v[channel];
             nr++;
         }
@@ -705,11 +705,11 @@ control_data_get_average_front_back (AlsaControlData *data, guint *front, guint 
     guint channel;
 
     for (channel = 0; channel < data->channels; channel++)
-        if (MATE_MIXER_IS_FRONT_CHANNEL (data->c[channel])) {
+        if (CAFE_MIXER_IS_FRONT_CHANNEL (data->c[channel])) {
             f += data->v[channel];
             nf++;
         }
-        else if (MATE_MIXER_IS_BACK_CHANNEL (data->c[channel])) {
+        else if (CAFE_MIXER_IS_BACK_CHANNEL (data->c[channel])) {
             b += data->v[channel];
             nb++;
         }

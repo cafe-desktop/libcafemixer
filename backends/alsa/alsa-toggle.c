@@ -36,7 +36,7 @@ struct _AlsaTogglePrivate
 
 static void alsa_element_interface_init (AlsaElementInterface *iface);
 
-G_DEFINE_TYPE_WITH_CODE (AlsaToggle, alsa_toggle, MATE_MIXER_TYPE_STREAM_TOGGLE,
+G_DEFINE_TYPE_WITH_CODE (AlsaToggle, alsa_toggle, CAFE_MIXER_TYPE_STREAM_TOGGLE,
                          G_ADD_PRIVATE(AlsaToggle)
                          G_IMPLEMENT_INTERFACE (ALSA_TYPE_ELEMENT,
                                                 alsa_element_interface_init))
@@ -62,7 +62,7 @@ alsa_toggle_class_init (AlsaToggleClass *klass)
 {
     MateMixerSwitchClass *switch_class;
 
-    switch_class = MATE_MIXER_SWITCH_CLASS (klass);
+    switch_class = CAFE_MIXER_SWITCH_CLASS (klass);
     switch_class->set_active_option = alsa_toggle_set_active_option;
 }
 
@@ -92,7 +92,7 @@ alsa_toggle_new (AlsaStream               *stream,
     toggle = g_object_new (ALSA_TYPE_TOGGLE,
                            "name", name,
                            "label", label,
-                           "flags", MATE_MIXER_STREAM_SWITCH_TOGGLE,
+                           "flags", CAFE_MIXER_STREAM_SWITCH_TOGGLE,
                            "role", role,
                            "stream", stream,
                            "on-state-option", on,
@@ -217,13 +217,13 @@ alsa_toggle_load (AlsaElement *element)
         MateMixerSwitchOption *active;
 
         if (value > 0)
-            active = mate_mixer_stream_toggle_get_state_option (MATE_MIXER_STREAM_TOGGLE (toggle),
+            active = mate_mixer_stream_toggle_get_state_option (CAFE_MIXER_STREAM_TOGGLE (toggle),
                                                                 TRUE);
         else
-            active = mate_mixer_stream_toggle_get_state_option (MATE_MIXER_STREAM_TOGGLE (toggle),
+            active = mate_mixer_stream_toggle_get_state_option (CAFE_MIXER_STREAM_TOGGLE (toggle),
                                                                 FALSE);
 
-        _mate_mixer_switch_set_active_option (MATE_MIXER_SWITCH (toggle), active);
+        _mate_mixer_switch_set_active_option (CAFE_MIXER_SWITCH (toggle), active);
         return TRUE;
     }
 

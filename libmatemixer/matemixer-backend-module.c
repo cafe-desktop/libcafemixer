@@ -93,7 +93,7 @@ mate_mixer_backend_module_get_property (GObject    *object,
 {
     MateMixerBackendModule *module;
 
-    module = MATE_MIXER_BACKEND_MODULE (object);
+    module = CAFE_MIXER_BACKEND_MODULE (object);
 
     switch (param_id) {
     case PROP_PATH:
@@ -114,7 +114,7 @@ mate_mixer_backend_module_set_property (GObject      *object,
 {
     MateMixerBackendModule *module;
 
-    module = MATE_MIXER_BACKEND_MODULE (object);
+    module = CAFE_MIXER_BACKEND_MODULE (object);
 
     switch (param_id) {
     case PROP_PATH:
@@ -141,7 +141,7 @@ mate_mixer_backend_module_dispose (GObject *object)
 {
     MateMixerBackendModule *module;
 
-    module = MATE_MIXER_BACKEND_MODULE (object);
+    module = CAFE_MIXER_BACKEND_MODULE (object);
 
     if (module->priv->loaded == TRUE) {
         /* Keep the module alive and avoid calling the parent dispose, which
@@ -158,7 +158,7 @@ mate_mixer_backend_module_finalize (GObject *object)
 {
     MateMixerBackendModule *module;
 
-    module = MATE_MIXER_BACKEND_MODULE (object);
+    module = CAFE_MIXER_BACKEND_MODULE (object);
 
     g_free (module->priv->path);
 
@@ -178,7 +178,7 @@ mate_mixer_backend_module_new (const gchar *path)
 {
     g_return_val_if_fail (path != NULL, NULL);
 
-    return g_object_new (MATE_MIXER_TYPE_BACKEND_MODULE,
+    return g_object_new (CAFE_MIXER_TYPE_BACKEND_MODULE,
                          "path", path,
                          NULL);
 }
@@ -194,7 +194,7 @@ mate_mixer_backend_module_new (const gchar *path)
 const MateMixerBackendInfo *
 mate_mixer_backend_module_get_info (MateMixerBackendModule *module)
 {
-    g_return_val_if_fail (MATE_MIXER_IS_BACKEND_MODULE (module), NULL);
+    g_return_val_if_fail (CAFE_MIXER_IS_BACKEND_MODULE (module), NULL);
     g_return_val_if_fail (module->priv->loaded == TRUE, NULL);
 
     return module->priv->get_info ();
@@ -211,7 +211,7 @@ mate_mixer_backend_module_get_info (MateMixerBackendModule *module)
 const gchar *
 mate_mixer_backend_module_get_path (MateMixerBackendModule *module)
 {
-    g_return_val_if_fail (MATE_MIXER_IS_BACKEND_MODULE (module), NULL);
+    g_return_val_if_fail (CAFE_MIXER_IS_BACKEND_MODULE (module), NULL);
 
     return module->priv->path;
 }
@@ -221,7 +221,7 @@ backend_module_load (GTypeModule *type_module)
 {
     MateMixerBackendModule *module;
 
-    module = MATE_MIXER_BACKEND_MODULE (type_module);
+    module = CAFE_MIXER_BACKEND_MODULE (type_module);
 
     if (module->priv->loaded == TRUE)
         return TRUE;

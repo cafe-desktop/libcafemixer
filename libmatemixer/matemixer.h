@@ -15,8 +15,8 @@
  * License along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef MATEMIXER_H
-#define MATEMIXER_H
+#ifndef CAFEMIXER_H
+#define CAFEMIXER_H
 
 #include <glib.h>
 #include <glib-object.h>
@@ -45,4 +45,4 @@ gboolean mate_mixer_is_initialized (void);
 
 G_END_DECLS
 
-#endif /* MATEMIXER_H */
+#endif /* CAFEMIXER_H */

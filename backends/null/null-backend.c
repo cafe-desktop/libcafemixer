@@ -24,11 +24,11 @@
 
 #define BACKEND_NAME      "Null"
 #define BACKEND_PRIORITY  0
-#define BACKEND_FLAGS     MATE_MIXER_BACKEND_NO_FLAGS
+#define BACKEND_FLAGS     CAFE_MIXER_BACKEND_NO_FLAGS
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunused-function"
-G_DEFINE_DYNAMIC_TYPE (NullBackend, null_backend, MATE_MIXER_TYPE_BACKEND)
+G_DEFINE_DYNAMIC_TYPE (NullBackend, null_backend, CAFE_MIXER_TYPE_BACKEND)
 #pragma clang diagnostic pop
 
 static gboolean null_backend_open (MateMixerBackend *backend);
@@ -44,7 +44,7 @@ backend_module_init (GTypeModule *module)
     info.priority      = BACKEND_PRIORITY;
     info.g_type        = NULL_TYPE_BACKEND;
     info.backend_flags = BACKEND_FLAGS;
-    info.backend_type  = MATE_MIXER_BACKEND_NULL;
+    info.backend_type  = CAFE_MIXER_BACKEND_NULL;
 }
 
 const MateMixerBackendInfo *backend_module_get_info (void)
@@ -57,7 +57,7 @@ null_backend_class_init (NullBackendClass *klass)
 {
     MateMixerBackendClass *backend_class;
 
-    backend_class = MATE_MIXER_BACKEND_CLASS (klass);
+    backend_class = CAFE_MIXER_BACKEND_CLASS (klass);
     backend_class->open = null_backend_open;
 }
 
@@ -75,6 +75,6 @@ null_backend_init (NullBackend *null)
 static gboolean
 null_backend_open (MateMixerBackend *backend)
 {
-    _mate_mixer_backend_set_state (backend, MATE_MIXER_STATE_READY);
+    _mate_mixer_backend_set_state (backend, CAFE_MIXER_STATE_READY);
     return TRUE;
 }

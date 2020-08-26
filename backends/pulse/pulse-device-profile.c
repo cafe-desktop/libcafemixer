@@ -33,7 +33,7 @@ struct _PulseDeviceProfilePrivate
     guint priority;
 };
 
-G_DEFINE_TYPE_WITH_PRIVATE (PulseDeviceProfile, pulse_device_profile, MATE_MIXER_TYPE_SWITCH_OPTION)
+G_DEFINE_TYPE_WITH_PRIVATE (PulseDeviceProfile, pulse_device_profile, CAFE_MIXER_TYPE_SWITCH_OPTION)
 
 static void
 pulse_device_profile_class_init (PulseDeviceProfileClass *klass)
@@ -70,7 +70,7 @@ pulse_device_profile_get_name (PulseDeviceProfile *profile)
 {
     g_return_val_if_fail (PULSE_IS_DEVICE_PROFILE (profile), NULL);
 
-    return mate_mixer_switch_option_get_name (MATE_MIXER_SWITCH_OPTION (profile));
+    return mate_mixer_switch_option_get_name (CAFE_MIXER_SWITCH_OPTION (profile));
 }
 
 guint

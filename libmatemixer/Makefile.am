@@ -6,7 +6,7 @@ AM_CPPFLAGS =							\
 	-I$(top_srcdir)						\
 	-I$(top_srcdir)/libmatemixer				\
 	-DG_LOG_DOMAIN=\"libmatemixer\"				\
-	-DLIBMATEMIXER_BACKEND_DIR=\"$(libdir)/libmatemixer\"	\
+	-DLIBCAFEMIXER_BACKEND_DIR=\"$(libdir)/libmatemixer\"	\
 	$(GLIB_CFLAGS)						\
 	$(NULL)
 

@@ -34,29 +34,29 @@ static const gchar *
 get_role_string (MateMixerStreamControlRole role)
 {
     switch (role) {
-    case MATE_MIXER_STREAM_CONTROL_ROLE_MASTER:
+    case CAFE_MIXER_STREAM_CONTROL_ROLE_MASTER:
         return "Master";
-    case MATE_MIXER_STREAM_CONTROL_ROLE_APPLICATION:
+    case CAFE_MIXER_STREAM_CONTROL_ROLE_APPLICATION:
         return "Application";
-    case MATE_MIXER_STREAM_CONTROL_ROLE_PCM:
+    case CAFE_MIXER_STREAM_CONTROL_ROLE_PCM:
         return "PCM";
-    case MATE_MIXER_STREAM_CONTROL_ROLE_SPEAKER:
+    case CAFE_MIXER_STREAM_CONTROL_ROLE_SPEAKER:
         return "Speaker";
-    case MATE_MIXER_STREAM_CONTROL_ROLE_MICROPHONE:
+    case CAFE_MIXER_STREAM_CONTROL_ROLE_MICROPHONE:
         return "Microphone";
-    case MATE_MIXER_STREAM_CONTROL_ROLE_PORT:
+    case CAFE_MIXER_STREAM_CONTROL_ROLE_PORT:
         return "Port";
-    case MATE_MIXER_STREAM_CONTROL_ROLE_BOOST:
+    case CAFE_MIXER_STREAM_CONTROL_ROLE_BOOST:
         return "Boost";
-    case MATE_MIXER_STREAM_CONTROL_ROLE_BASS:
+    case CAFE_MIXER_STREAM_CONTROL_ROLE_BASS:
         return "Bass";
-    case MATE_MIXER_STREAM_CONTROL_ROLE_TREBLE:
+    case CAFE_MIXER_STREAM_CONTROL_ROLE_TREBLE:
         return "Treble";
-    case MATE_MIXER_STREAM_CONTROL_ROLE_CD:
+    case CAFE_MIXER_STREAM_CONTROL_ROLE_CD:
         return "CD";
-    case MATE_MIXER_STREAM_CONTROL_ROLE_VIDEO:
+    case CAFE_MIXER_STREAM_CONTROL_ROLE_VIDEO:
         return "Video";
-    case MATE_MIXER_STREAM_CONTROL_ROLE_MUSIC:
+    case CAFE_MIXER_STREAM_CONTROL_ROLE_MUSIC:
         return "Music";
     default:
         return "Unknown";
@@ -68,27 +68,27 @@ static const gchar *
 get_media_role_string (MateMixerStreamControlMediaRole role)
 {
     switch (role) {
-    case MATE_MIXER_STREAM_CONTROL_MEDIA_ROLE_VIDEO:
+    case CAFE_MIXER_STREAM_CONTROL_MEDIA_ROLE_VIDEO:
         return "Video";
-    case MATE_MIXER_STREAM_CONTROL_MEDIA_ROLE_MUSIC:
+    case CAFE_MIXER_STREAM_CONTROL_MEDIA_ROLE_MUSIC:
         return "Music";
-    case MATE_MIXER_STREAM_CONTROL_MEDIA_ROLE_GAME:
+    case CAFE_MIXER_STREAM_CONTROL_MEDIA_ROLE_GAME:
         return "Game";
-    case MATE_MIXER_STREAM_CONTROL_MEDIA_ROLE_EVENT:
+    case CAFE_MIXER_STREAM_CONTROL_MEDIA_ROLE_EVENT:
         return "Event";
-    case MATE_MIXER_STREAM_CONTROL_MEDIA_ROLE_PHONE:
+    case CAFE_MIXER_STREAM_CONTROL_MEDIA_ROLE_PHONE:
         return "Phone";
-    case MATE_MIXER_STREAM_CONTROL_MEDIA_ROLE_ANIMATION:
+    case CAFE_MIXER_STREAM_CONTROL_MEDIA_ROLE_ANIMATION:
         return "Animation";
-    case MATE_MIXER_STREAM_CONTROL_MEDIA_ROLE_PRODUCTION:
+    case CAFE_MIXER_STREAM_CONTROL_MEDIA_ROLE_PRODUCTION:
         return "Production";
-    case MATE_MIXER_STREAM_CONTROL_MEDIA_ROLE_A11Y:
+    case CAFE_MIXER_STREAM_CONTROL_MEDIA_ROLE_A11Y:
         return "A11y";
-    case MATE_MIXER_STREAM_CONTROL_MEDIA_ROLE_TEST:
+    case CAFE_MIXER_STREAM_CONTROL_MEDIA_ROLE_TEST:
         return "Test";
-    case MATE_MIXER_STREAM_CONTROL_MEDIA_ROLE_ABSTRACT:
+    case CAFE_MIXER_STREAM_CONTROL_MEDIA_ROLE_ABSTRACT:
         return "Abstract";
-    case MATE_MIXER_STREAM_CONTROL_MEDIA_ROLE_FILTER:
+    case CAFE_MIXER_STREAM_CONTROL_MEDIA_ROLE_FILTER:
         return "Filter";
     default:
         return "Unknown";
@@ -100,7 +100,7 @@ static const gchar *
 get_device_switch_role_string (MateMixerDeviceSwitchRole role)
 {
     switch (role) {
-    case MATE_MIXER_DEVICE_SWITCH_ROLE_PROFILE:
+    case CAFE_MIXER_DEVICE_SWITCH_ROLE_PROFILE:
         return "Device Profile";
     default:
         return "Unknown";
@@ -112,9 +112,9 @@ static const gchar *
 get_stream_switch_role_string (MateMixerStreamSwitchRole role)
 {
     switch (role) {
-    case MATE_MIXER_STREAM_SWITCH_ROLE_PORT:
+    case CAFE_MIXER_STREAM_SWITCH_ROLE_PORT:
         return "Port";
-    case MATE_MIXER_STREAM_SWITCH_ROLE_BOOST:
+    case CAFE_MIXER_STREAM_SWITCH_ROLE_BOOST:
         return "Boost";
     default:
         return "Unknown";
@@ -126,9 +126,9 @@ static const gchar *
 get_direction_string (MateMixerDirection direction)
 {
     switch (direction) {
-    case MATE_MIXER_DIRECTION_INPUT:
+    case CAFE_MIXER_DIRECTION_INPUT:
         return "Record";
-    case MATE_MIXER_DIRECTION_OUTPUT:
+    case CAFE_MIXER_DIRECTION_OUTPUT:
         return "Playback";
     default:
         return "Unknown";
@@ -159,7 +159,7 @@ print_devices (void)
     devices = mate_mixer_context_list_devices (context);
     while (devices != NULL) {
         const GList     *switches;
-        MateMixerDevice *device = MATE_MIXER_DEVICE (devices->data);
+        MateMixerDevice *device = CAFE_MIXER_DEVICE (devices->data);
 
         g_print ("Device %s:\n"
                  "\tLabel     : %s\n"
@@ -172,7 +172,7 @@ print_devices (void)
         switches = mate_mixer_device_list_switches (device);
         while (switches != NULL) {
             const GList           *options;
-            MateMixerSwitch       *swtch  = MATE_MIXER_SWITCH (switches->data);
+            MateMixerSwitch       *swtch  = CAFE_MIXER_SWITCH (switches->data);
             MateMixerSwitchOption *active = mate_mixer_switch_get_active_option (swtch);
 
             g_print ("\tSwitch %s:\n"
@@ -180,14 +180,14 @@ print_devices (void)
                      "\t\tRole  : %s\n",
                      mate_mixer_switch_get_name (swtch),
                      mate_mixer_switch_get_label (swtch),
-                     get_device_switch_role_string (mate_mixer_device_switch_get_role (MATE_MIXER_DEVICE_SWITCH (swtch))));
+                     get_device_switch_role_string (mate_mixer_device_switch_get_role (CAFE_MIXER_DEVICE_SWITCH (swtch))));
 
             g_print ("\tOptions:\n");
 
             /* Read a list of switch options that belong to the switch */
             options = mate_mixer_switch_list_options (swtch);
             while (options != NULL) {
-                MateMixerSwitchOption *option = MATE_MIXER_SWITCH_OPTION (options->data);
+                MateMixerSwitchOption *option = CAFE_MIXER_SWITCH_OPTION (options->data);
 
                 g_print ("\t\t|%c| %s\n",
                          (active != NULL && option == active)
@@ -215,7 +215,7 @@ print_streams (void)
     /* Read a list of streams from the context */
     streams = mate_mixer_context_list_streams (context);
     while (streams != NULL) {
-        MateMixerStream *stream = MATE_MIXER_STREAM (streams->data);
+        MateMixerStream *stream = CAFE_MIXER_STREAM (streams->data);
         const GList     *controls;
         const GList     *switches;
 
@@ -229,7 +229,7 @@ print_streams (void)
         /* Read a list of controls in the stream */
         controls = mate_mixer_stream_list_controls (stream);
         while (controls != NULL) {
-            MateMixerStreamControl *control = MATE_MIXER_STREAM_CONTROL (controls->data);
+            MateMixerStreamControl *control = CAFE_MIXER_STREAM_CONTROL (controls->data);
 
             g_print ("\tControl %s:\n"
                      "\t\tLabel      : %s\n"
@@ -258,7 +258,7 @@ print_streams (void)
         switches = mate_mixer_stream_list_switches (stream);
         while (switches != NULL) {
             const GList           *options;
-            MateMixerSwitch       *swtch  = MATE_MIXER_SWITCH (switches->data);
+            MateMixerSwitch       *swtch  = CAFE_MIXER_SWITCH (switches->data);
             MateMixerSwitchOption *active = mate_mixer_switch_get_active_option (swtch);
 
             g_print ("\tSwitch %s:\n"
@@ -266,14 +266,14 @@ print_streams (void)
                      "\t\tRole       : %s\n",
                      mate_mixer_switch_get_name (swtch),
                      mate_mixer_switch_get_label (swtch),
-                     get_stream_switch_role_string (mate_mixer_stream_switch_get_role (MATE_MIXER_STREAM_SWITCH (swtch))));
+                     get_stream_switch_role_string (mate_mixer_stream_switch_get_role (CAFE_MIXER_STREAM_SWITCH (swtch))));
 
             g_print ("\tOptions:\n");
 
             /* Read a list of switch options that belong to the switch */
             options = mate_mixer_switch_list_options (swtch);
             while (options != NULL) {
-                MateMixerSwitchOption *option = MATE_MIXER_SWITCH_OPTION (options->data);
+                MateMixerSwitchOption *option = CAFE_MIXER_SWITCH_OPTION (options->data);
 
                 g_print ("\t\t|%c| %s\n",
                          (active != NULL && option == active)
@@ -312,12 +312,12 @@ on_context_state_notify (void)
     state = mate_mixer_context_get_state (context);
 
     switch (state) {
-    case MATE_MIXER_STATE_READY:
+    case CAFE_MIXER_STATE_READY:
         /* This state can be reached repeatedly if the context is connected
          * to a sound server, the connection is dropped and then reestablished */
         connected ();
         break;
-    case MATE_MIXER_STATE_FAILED:
+    case CAFE_MIXER_STATE_FAILED:
         g_printerr ("Connection failed.\n");
         g_main_loop_quit (mainloop);
         break;
@@ -409,13 +409,13 @@ int main (int argc, char *argv[])
 
     if (backend != NULL) {
         if (strcmp (backend, "pulseaudio") == 0)
-            mate_mixer_context_set_backend_type (context, MATE_MIXER_BACKEND_PULSEAUDIO);
+            mate_mixer_context_set_backend_type (context, CAFE_MIXER_BACKEND_PULSEAUDIO);
         else if (strcmp (backend, "alsa") == 0)
-            mate_mixer_context_set_backend_type (context, MATE_MIXER_BACKEND_ALSA);
+            mate_mixer_context_set_backend_type (context, CAFE_MIXER_BACKEND_ALSA);
         else if (strcmp (backend, "oss") == 0)
-            mate_mixer_context_set_backend_type (context, MATE_MIXER_BACKEND_OSS);
+            mate_mixer_context_set_backend_type (context, CAFE_MIXER_BACKEND_OSS);
         else if (strcmp (backend, "null") == 0)
-            mate_mixer_context_set_backend_type (context, MATE_MIXER_BACKEND_NULL);
+            mate_mixer_context_set_backend_type (context, CAFE_MIXER_BACKEND_NULL);
         else
             g_printerr ("Sound system backend '%s' is unknown, the backend will be auto-detected.\n",
                         backend);
@@ -455,18 +455,18 @@ int main (int argc, char *argv[])
                       NULL);
 
     /* When mate_mixer_context_open() returns TRUE, the state must be either
-     * MATE_MIXER_STATE_READY or MATE_MIXER_STATE_CONNECTING. */
+     * CAFE_MIXER_STATE_READY or CAFE_MIXER_STATE_CONNECTING. */
     state = mate_mixer_context_get_state (context);
 
     switch (state) {
-    case MATE_MIXER_STATE_READY:
+    case CAFE_MIXER_STATE_READY:
         connected ();
         break;
-    case MATE_MIXER_STATE_CONNECTING:
+    case CAFE_MIXER_STATE_CONNECTING:
         g_print ("Waiting for connection...\n");
 
-        /* The state will change asynchronously to either MATE_MIXER_STATE_READY
-         * or MATE_MIXER_STATE_FAILED, wait for the change in a main loop */
+        /* The state will change asynchronously to either CAFE_MIXER_STATE_READY
+         * or CAFE_MIXER_STATE_FAILED, wait for the change in a main loop */
         g_signal_connect (G_OBJECT (context),
                           "notify::state",
                           G_CALLBACK (on_context_state_notify),

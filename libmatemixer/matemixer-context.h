@@ -15,8 +15,8 @@
  * License along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef MATEMIXER_CONTEXT_H
-#define MATEMIXER_CONTEXT_H
+#ifndef CAFEMIXER_CONTEXT_H
+#define CAFEMIXER_CONTEXT_H
 
 #include <glib.h>
 #include <glib-object.h>
@@ -26,18 +26,18 @@
 
 G_BEGIN_DECLS
 
-#define MATE_MIXER_TYPE_CONTEXT                 \
+#define CAFE_MIXER_TYPE_CONTEXT                 \
         (mate_mixer_context_get_type ())
-#define MATE_MIXER_CONTEXT(o)                   \
-        (G_TYPE_CHECK_INSTANCE_CAST ((o), MATE_MIXER_TYPE_CONTEXT, MateMixerContext))
-#define MATE_MIXER_IS_CONTEXT(o)                \
-        (G_TYPE_CHECK_INSTANCE_TYPE ((o), MATE_MIXER_TYPE_CONTEXT))
-#define MATE_MIXER_CONTEXT_CLASS(k)             \
-        (G_TYPE_CHECK_CLASS_CAST ((k), MATE_MIXER_TYPE_CONTEXT, MateMixerContextClass))
-#define MATE_MIXER_IS_CONTEXT_CLASS(k)          \
-        (G_TYPE_CHECK_CLASS_TYPE ((k), MATE_MIXER_TYPE_CONTEXT))
-#define MATE_MIXER_CONTEXT_GET_CLASS(o)         \
-        (G_TYPE_INSTANCE_GET_CLASS ((o), MATE_MIXER_TYPE_CONTEXT, MateMixerContextClass))
+#define CAFE_MIXER_CONTEXT(o)                   \
+        (G_TYPE_CHECK_INSTANCE_CAST ((o), CAFE_MIXER_TYPE_CONTEXT, MateMixerContext))
+#define CAFE_MIXER_IS_CONTEXT(o)                \
+        (G_TYPE_CHECK_INSTANCE_TYPE ((o), CAFE_MIXER_TYPE_CONTEXT))
+#define CAFE_MIXER_CONTEXT_CLASS(k)             \
+        (G_TYPE_CHECK_CLASS_CAST ((k), CAFE_MIXER_TYPE_CONTEXT, MateMixerContextClass))
+#define CAFE_MIXER_IS_CONTEXT_CLASS(k)          \
+        (G_TYPE_CHECK_CLASS_TYPE ((k), CAFE_MIXER_TYPE_CONTEXT))
+#define CAFE_MIXER_CONTEXT_GET_CLASS(o)         \
+        (G_TYPE_INSTANCE_GET_CLASS ((o), CAFE_MIXER_TYPE_CONTEXT, MateMixerContextClass))
 
 typedef struct _MateMixerContextClass    MateMixerContextClass;
 typedef struct _MateMixerContextPrivate  MateMixerContextPrivate;
@@ -128,4 +128,4 @@ MateMixerBackendFlags   mate_mixer_context_get_backend_flags         (MateMixerC
 
 G_END_DECLS
 
-#endif /* MATEMIXER_CONTEXT_H */
+#endif /* CAFEMIXER_CONTEXT_H */

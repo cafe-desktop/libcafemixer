@@ -38,10 +38,10 @@
 
 #define BACKEND_NAME      "PulseAudio"
 #define BACKEND_PRIORITY  100
-#define BACKEND_FLAGS     (MATE_MIXER_BACKEND_HAS_APPLICATION_CONTROLS |        \
-                           MATE_MIXER_BACKEND_HAS_STORED_CONTROLS |             \
-                           MATE_MIXER_BACKEND_CAN_SET_DEFAULT_INPUT_STREAM |    \
-                           MATE_MIXER_BACKEND_CAN_SET_DEFAULT_OUTPUT_STREAM)
+#define BACKEND_FLAGS     (CAFE_MIXER_BACKEND_HAS_APPLICATION_CONTROLS |        \
+                           CAFE_MIXER_BACKEND_HAS_STORED_CONTROLS |             \
+                           CAFE_MIXER_BACKEND_CAN_SET_DEFAULT_INPUT_STREAM |    \
+                           CAFE_MIXER_BACKEND_CAN_SET_DEFAULT_OUTPUT_STREAM)
 
 struct _PulseBackendPrivate
 {
@@ -62,15 +62,15 @@ struct _PulseBackendPrivate
 };
 
 #define PULSE_CHANGE_STATE(p, s)        \
-    (_mate_mixer_backend_set_state (MATE_MIXER_BACKEND (p), (s)))
+    (_mate_mixer_backend_set_state (CAFE_MIXER_BACKEND (p), (s)))
 #define PULSE_GET_DEFAULT_SINK(p)       \
-    (mate_mixer_backend_get_default_output_stream (MATE_MIXER_BACKEND (p)))
+    (mate_mixer_backend_get_default_output_stream (CAFE_MIXER_BACKEND (p)))
 #define PULSE_GET_DEFAULT_SOURCE(p)     \
-    (mate_mixer_backend_get_default_input_stream (MATE_MIXER_BACKEND (p)))
+    (mate_mixer_backend_get_default_input_stream (CAFE_MIXER_BACKEND (p)))
 #define PULSE_SET_DEFAULT_SINK(p, s)    \
-    (_mate_mixer_backend_set_default_output_stream (MATE_MIXER_BACKEND (p), MATE_MIXER_STREAM (s)))
+    (_mate_mixer_backend_set_default_output_stream (CAFE_MIXER_BACKEND (p), CAFE_MIXER_STREAM (s)))
 #define PULSE_SET_DEFAULT_SOURCE(p, s)  \
-    (_mate_mixer_backend_set_default_input_stream (MATE_MIXER_BACKEND (p), MATE_MIXER_STREAM (s)))
+    (_mate_mixer_backend_set_default_input_stream (CAFE_MIXER_BACKEND (p), CAFE_MIXER_STREAM (s)))
 
 #define PULSE_GET_PENDING_SINK(p)                                       \
         (g_object_get_data (G_OBJECT (p),                               \
@@ -119,7 +119,7 @@ static void pulse_backend_finalize       (GObject           *object);
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunused-function"
-G_DEFINE_DYNAMIC_TYPE_EXTENDED (PulseBackend, pulse_backend, MATE_MIXER_TYPE_BACKEND, 0, G_ADD_PRIVATE_DYNAMIC(PulseBackend))
+G_DEFINE_DYNAMIC_TYPE_EXTENDED (PulseBackend, pulse_backend, CAFE_MIXER_TYPE_BACKEND, 0, G_ADD_PRIVATE_DYNAMIC(PulseBackend))
 #pragma clang diagnostic pop
 
 static gboolean         pulse_backend_open                      (MateMixerBackend *backend);
@@ -220,7 +220,7 @@ backend_module_init (GTypeModule *module)
     info.priority      = BACKEND_PRIORITY;
     info.g_type        = PULSE_TYPE_BACKEND;
     info.backend_flags = BACKEND_FLAGS;
-    info.backend_type  = MATE_MIXER_BACKEND_PULSEAUDIO;
+    info.backend_type  = CAFE_MIXER_BACKEND_PULSEAUDIO;
 }
 
 const MateMixerBackendInfo *backend_module_get_info (void)
@@ -238,7 +238,7 @@ pulse_backend_class_init (PulseBackendClass *klass)
     object_class->dispose  = pulse_backend_dispose;
     object_class->finalize = pulse_backend_finalize;
 
-    backend_class = MATE_MIXER_BACKEND_CLASS (klass);
+    backend_class = CAFE_MIXER_BACKEND_CLASS (klass);
     backend_class->set_app_info              = pulse_backend_set_app_info;
     backend_class->set_server_address        = pulse_backend_set_server_address;
     backend_class->open                      = pulse_backend_open;
@@ -302,10 +302,10 @@ pulse_backend_dispose (GObject *object)
     MateMixerBackend *backend;
     MateMixerState    state;
 
-    backend = MATE_MIXER_BACKEND (object);
+    backend = CAFE_MIXER_BACKEND (object);
 
     state = mate_mixer_backend_get_state (backend);
-    if (state != MATE_MIXER_STATE_IDLE)
+    if (state != CAFE_MIXER_STATE_IDLE)
         pulse_backend_close (backend);
 
     G_OBJECT_CLASS (pulse_backend_parent_class)->dispose (object);
@@ -361,7 +361,7 @@ pulse_backend_open (MateMixerBackend *backend)
      * but it sets up the PulseAudio structures, which might fail in an
      * unlikely case */
     if (G_UNLIKELY (connection == NULL)) {
-        PULSE_CHANGE_STATE (pulse, MATE_MIXER_STATE_FAILED);
+        PULSE_CHANGE_STATE (pulse, CAFE_MIXER_STATE_FAILED);
         return FALSE;
     }
 
@@ -426,13 +426,13 @@ pulse_backend_open (MateMixerBackend *backend)
                       G_CALLBACK (on_connection_ext_stream_info),
                       pulse);
 
-    PULSE_CHANGE_STATE (backend, MATE_MIXER_STATE_CONNECTING);
+    PULSE_CHANGE_STATE (backend, CAFE_MIXER_STATE_CONNECTING);
 
     /* Connect to the PulseAudio server, this might fail either instantly or
      * asynchronously, for example when remote connection timeouts */
     if (pulse_connection_connect (connection, FALSE) == FALSE) {
         g_object_unref (connection);
-        PULSE_CHANGE_STATE (pulse, MATE_MIXER_STATE_FAILED);
+        PULSE_CHANGE_STATE (pulse, CAFE_MIXER_STATE_FAILED);
         return FALSE;
     }
 
@@ -474,7 +474,7 @@ pulse_backend_close (MateMixerBackend *backend)
 
     pulse->priv->connected_once = FALSE;
 
-    PULSE_CHANGE_STATE (pulse, MATE_MIXER_STATE_IDLE);
+    PULSE_CHANGE_STATE (pulse, CAFE_MIXER_STATE_IDLE);
 }
 
 static void
@@ -626,7 +626,7 @@ on_connection_state_notify (PulseConnection *connection,
              * Stream callbacks will unmark available streams and remaining
              * unavailable streams will be removed when the CONNECTED state
              * is reached. */
-            PULSE_CHANGE_STATE (pulse, MATE_MIXER_STATE_CONNECTING);
+            PULSE_CHANGE_STATE (pulse, CAFE_MIXER_STATE_CONNECTING);
 
             if (G_UNLIKELY (pulse->priv->connect_tag != 0))
                 break;
@@ -648,19 +648,19 @@ on_connection_state_notify (PulseConnection *connection,
         }
 
         /* First connection attempt has failed */
-        PULSE_CHANGE_STATE (pulse, MATE_MIXER_STATE_FAILED);
+        PULSE_CHANGE_STATE (pulse, CAFE_MIXER_STATE_FAILED);
         break;
 
     case PULSE_CONNECTION_CONNECTING:
     case PULSE_CONNECTION_AUTHORIZING:
     case PULSE_CONNECTION_LOADING:
-        PULSE_CHANGE_STATE (pulse, MATE_MIXER_STATE_CONNECTING);
+        PULSE_CHANGE_STATE (pulse, CAFE_MIXER_STATE_CONNECTING);
         break;
 
     case PULSE_CONNECTION_CONNECTED:
         pulse->priv->connected_once = TRUE;
 
-        PULSE_CHANGE_STATE (pulse, MATE_MIXER_STATE_READY);
+        PULSE_CHANGE_STATE (pulse, CAFE_MIXER_STATE_READY);
         break;
     }
 }
@@ -746,7 +746,7 @@ on_connection_server_info (PulseConnection      *connection,
             PULSE_SET_DEFAULT_SINK (pulse, NULL);
     }
 
-    if (mate_mixer_backend_get_state (MATE_MIXER_BACKEND (pulse)) != MATE_MIXER_STATE_READY)
+    if (mate_mixer_backend_get_state (CAFE_MIXER_BACKEND (pulse)) != CAFE_MIXER_STATE_READY)
         g_debug ("Sound server is %s version %s, running on %s",
                  info->server_name,
                  info->server_version,
@@ -771,7 +771,7 @@ on_connection_card_info (PulseConnection    *connection,
         free_list_devices (pulse);
         g_signal_emit_by_name (G_OBJECT (pulse),
                                "device-added",
-                               mate_mixer_device_get_name (MATE_MIXER_DEVICE (device)));
+                               mate_mixer_device_get_name (CAFE_MIXER_DEVICE (device)));
     } else
         pulse_device_update (device, info);
 }
@@ -788,7 +788,7 @@ on_connection_card_removed (PulseConnection *connection,
     if (G_UNLIKELY (device == NULL))
         return;
 
-    name = g_strdup (mate_mixer_device_get_name (MATE_MIXER_DEVICE (device)));
+    name = g_strdup (mate_mixer_device_get_name (CAFE_MIXER_DEVICE (device)));
 
     g_hash_table_remove (pulse->priv->devices, GUINT_TO_POINTER (index));
 
@@ -825,7 +825,7 @@ on_connection_sink_info (PulseConnection    *connection,
             pulse_device_add_stream (device, stream);
         } else {
             const gchar *name =
-                mate_mixer_stream_get_name (MATE_MIXER_STREAM (stream));
+                mate_mixer_stream_get_name (CAFE_MIXER_STREAM (stream));
 
             /* Only emit when not a part of the device, otherwise emitted by
              * the main library */
@@ -862,13 +862,13 @@ on_connection_sink_removed (PulseConnection *connection,
     } else {
         g_signal_emit_by_name (G_OBJECT (pulse),
                                "stream-removed",
-                               mate_mixer_stream_get_name (MATE_MIXER_STREAM (stream)));
+                               mate_mixer_stream_get_name (CAFE_MIXER_STREAM (stream)));
     }
 
     /* The removed stream might be one of the default streams, this happens
      * especially when switching profiles, after which PulseAudio removes the
      * old streams and creates new ones with different names */
-    if (MATE_MIXER_STREAM (stream) == PULSE_GET_DEFAULT_SINK (pulse)) {
+    if (CAFE_MIXER_STREAM (stream) == PULSE_GET_DEFAULT_SINK (pulse)) {
         PULSE_SET_DEFAULT_SINK (pulse, NULL);
 
         /* PulseAudio usually sends a server info update by itself when default
@@ -895,7 +895,7 @@ on_connection_sink_input_info (PulseConnection          *connection,
         if (prev != NULL) {
             g_debug ("Sink input %u moved from sink %s to an unknown sink %u, removing",
                      info->index,
-                     mate_mixer_stream_get_name (MATE_MIXER_STREAM (prev)),
+                     mate_mixer_stream_get_name (CAFE_MIXER_STREAM (prev)),
                      info->sink);
 
             remove_sink_input (pulse, prev, info->index);
@@ -910,8 +910,8 @@ on_connection_sink_input_info (PulseConnection          *connection,
     prev = g_hash_table_lookup (pulse->priv->sink_input_map, GUINT_TO_POINTER (info->index));
     if (prev != NULL && sink != prev) {
         g_debug ("Sink input moved from sink %s to %s",
-                 mate_mixer_stream_get_name (MATE_MIXER_STREAM (prev)),
-                 mate_mixer_stream_get_name (MATE_MIXER_STREAM (sink)));
+                 mate_mixer_stream_get_name (CAFE_MIXER_STREAM (prev)),
+                 mate_mixer_stream_get_name (CAFE_MIXER_STREAM (sink)));
 
         remove_sink_input (pulse, prev, info->index);
     }
@@ -962,7 +962,7 @@ on_connection_source_info (PulseConnection      *connection,
             pulse_device_add_stream (device, stream);
         } else {
             const gchar *name =
-                mate_mixer_stream_get_name (MATE_MIXER_STREAM (stream));
+                mate_mixer_stream_get_name (CAFE_MIXER_STREAM (stream));
 
             /* Only emit when not a part of the device, otherwise emitted by
              * the main library */
@@ -999,13 +999,13 @@ on_connection_source_removed (PulseConnection *connection,
     } else {
         g_signal_emit_by_name (G_OBJECT (pulse),
                                "stream-removed",
-                               mate_mixer_stream_get_name (MATE_MIXER_STREAM (stream)));
+                               mate_mixer_stream_get_name (CAFE_MIXER_STREAM (stream)));
     }
 
     /* The removed stream might be one of the default streams, this happens
      * especially when switching profiles, after which PulseAudio removes the
      * old streams and creates new ones with different names */
-    if (MATE_MIXER_STREAM (stream) == PULSE_GET_DEFAULT_SOURCE (pulse)) {
+    if (CAFE_MIXER_STREAM (stream) == PULSE_GET_DEFAULT_SOURCE (pulse)) {
         PULSE_SET_DEFAULT_SOURCE (pulse, NULL);
 
         /* PulseAudio usually sends a server info update by itself when default
@@ -1032,7 +1032,7 @@ on_connection_source_output_info (PulseConnection             *connection,
         if (prev != NULL) {
             g_debug ("Source output %u moved from source %s to an unknown source %u, removing",
                      info->index,
-                     mate_mixer_stream_get_name (MATE_MIXER_STREAM (prev)),
+                     mate_mixer_stream_get_name (CAFE_MIXER_STREAM (prev)),
                      info->source);
 
             remove_source_output (pulse, prev, info->index);
@@ -1047,8 +1047,8 @@ on_connection_source_output_info (PulseConnection             *connection,
     prev = g_hash_table_lookup (pulse->priv->source_output_map, GUINT_TO_POINTER (info->index));
     if (prev != NULL && source != prev) {
         g_debug ("Source output moved from source %s to %s",
-                 mate_mixer_stream_get_name (MATE_MIXER_STREAM (prev)),
-                 mate_mixer_stream_get_name (MATE_MIXER_STREAM (source)));
+                 mate_mixer_stream_get_name (CAFE_MIXER_STREAM (prev)),
+                 mate_mixer_stream_get_name (CAFE_MIXER_STREAM (source)));
 
         remove_source_output (pulse, prev, info->index);
     }
@@ -1102,7 +1102,7 @@ on_connection_ext_stream_info (PulseConnection                  *connection,
 
         g_signal_emit_by_name (G_OBJECT (pulse),
                                "stored-control-added",
-                               mate_mixer_stream_control_get_name (MATE_MIXER_STREAM_CONTROL (ext)));
+                               mate_mixer_stream_control_get_name (CAFE_MIXER_STREAM_CONTROL (ext)));
     } else {
         pulse_ext_stream_update (ext, info, parent);
 
@@ -1171,7 +1171,7 @@ check_pending_sink (PulseBackend *pulse, PulseStream *stream)
     if (pending == NULL)
         return;
 
-    name = mate_mixer_stream_get_name (MATE_MIXER_STREAM (stream));
+    name = mate_mixer_stream_get_name (CAFE_MIXER_STREAM (stream));
     if (g_strcmp0 (pending, name) != 0)
         return;
 
@@ -1193,7 +1193,7 @@ check_pending_source (PulseBackend *pulse, PulseStream *stream)
     if (pending == NULL)
         return;
 
-    name = mate_mixer_stream_get_name (MATE_MIXER_STREAM (stream));
+    name = mate_mixer_stream_get_name (CAFE_MIXER_STREAM (stream));
     if (g_strcmp0 (pending, name) != 0)
         return;
 
@@ -1255,7 +1255,7 @@ free_list_ext_streams (PulseBackend *pulse)
 static gboolean
 compare_stream_names (gpointer key, gpointer value, gpointer user_data)
 {
-    MateMixerStream *stream = MATE_MIXER_STREAM (value);
+    MateMixerStream *stream = CAFE_MIXER_STREAM (value);
 
     return strcmp (mate_mixer_stream_get_name (stream), (const gchar *) user_data) == 0;
 }

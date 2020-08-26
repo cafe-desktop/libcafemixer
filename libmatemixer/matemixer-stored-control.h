@@ -15,8 +15,8 @@
  * License along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef MATEMIXER_STORED_CONTROL_H
-#define MATEMIXER_STORED_CONTROL_H
+#ifndef CAFEMIXER_STORED_CONTROL_H
+#define CAFEMIXER_STORED_CONTROL_H
 
 #include <glib.h>
 #include <glib-object.h>
@@ -27,18 +27,18 @@
 
 G_BEGIN_DECLS
 
-#define MATE_MIXER_TYPE_STORED_CONTROL          \
+#define CAFE_MIXER_TYPE_STORED_CONTROL          \
         (mate_mixer_stored_control_get_type ())
-#define MATE_MIXER_STORED_CONTROL(o)            \
-        (G_TYPE_CHECK_INSTANCE_CAST ((o), MATE_MIXER_TYPE_STORED_CONTROL, MateMixerStoredControl))
-#define MATE_MIXER_IS_STORED_CONTROL(o)         \
-        (G_TYPE_CHECK_INSTANCE_TYPE ((o), MATE_MIXER_TYPE_STORED_CONTROL))
-#define MATE_MIXER_STORED_CONTROL_CLASS(k)      \
-        (G_TYPE_CHECK_CLASS_CAST ((k), MATE_MIXER_TYPE_STORED_CONTROL, MateMixerStoredControlClass))
-#define MATE_MIXER_IS_STORED_CONTROL_CLASS(k)   \
-        (G_TYPE_CHECK_CLASS_TYPE ((k), MATE_MIXER_TYPE_STORED_CONTROL))
-#define MATE_MIXER_STORED_CONTROL_GET_CLASS(o)  \
-        (G_TYPE_INSTANCE_GET_CLASS ((o), MATE_MIXER_TYPE_STORED_CONTROL, MateMixerStoredControlClass))
+#define CAFE_MIXER_STORED_CONTROL(o)            \
+        (G_TYPE_CHECK_INSTANCE_CAST ((o), CAFE_MIXER_TYPE_STORED_CONTROL, MateMixerStoredControl))
+#define CAFE_MIXER_IS_STORED_CONTROL(o)         \
+        (G_TYPE_CHECK_INSTANCE_TYPE ((o), CAFE_MIXER_TYPE_STORED_CONTROL))
+#define CAFE_MIXER_STORED_CONTROL_CLASS(k)      \
+        (G_TYPE_CHECK_CLASS_CAST ((k), CAFE_MIXER_TYPE_STORED_CONTROL, MateMixerStoredControlClass))
+#define CAFE_MIXER_IS_STORED_CONTROL_CLASS(k)   \
+        (G_TYPE_CHECK_CLASS_TYPE ((k), CAFE_MIXER_TYPE_STORED_CONTROL))
+#define CAFE_MIXER_STORED_CONTROL_GET_CLASS(o)  \
+        (G_TYPE_INSTANCE_GET_CLASS ((o), CAFE_MIXER_TYPE_STORED_CONTROL, MateMixerStoredControlClass))
 
 typedef struct _MateMixerStoredControlClass    MateMixerStoredControlClass;
 typedef struct _MateMixerStoredControlPrivate  MateMixerStoredControlPrivate;
@@ -74,4 +74,4 @@ MateMixerDirection mate_mixer_stored_control_get_direction (MateMixerStoredContr
 
 G_END_DECLS
 
-#endif /* MATEMIXER_STORED_CONTROL_H */
+#endif /* CAFEMIXER_STORED_CONTROL_H */

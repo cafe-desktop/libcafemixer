@@ -245,8 +245,8 @@ mate_mixer_context_class_init (MateMixerContextClass *klass)
         g_param_spec_enum ("state",
                            "State",
                            "Current backend connection state",
-                           MATE_MIXER_TYPE_STATE,
-                           MATE_MIXER_STATE_IDLE,
+                           CAFE_MIXER_TYPE_STATE,
+                           CAFE_MIXER_STATE_IDLE,
                            G_PARAM_READABLE | G_PARAM_STATIC_STRINGS);
 
     /**
@@ -261,7 +261,7 @@ mate_mixer_context_class_init (MateMixerContextClass *klass)
         g_param_spec_object ("default-input-stream",
                              "Default input stream",
                              "Default input stream",
-                             MATE_MIXER_TYPE_STREAM,
+                             CAFE_MIXER_TYPE_STREAM,
                              G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS);
 
     /**
@@ -276,7 +276,7 @@ mate_mixer_context_class_init (MateMixerContextClass *klass)
         g_param_spec_object ("default-output-stream",
                              "Default output stream",
                              "Default output stream",
-                             MATE_MIXER_TYPE_STREAM,
+                             CAFE_MIXER_TYPE_STREAM,
                              G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS);
 
     g_object_class_install_properties (object_class, N_PROPERTIES, properties);
@@ -437,7 +437,7 @@ mate_mixer_context_get_property (GObject    *object,
 {
     MateMixerContext *context;
 
-    context = MATE_MIXER_CONTEXT (object);
+    context = CAFE_MIXER_CONTEXT (object);
 
     switch (param_id) {
     case PROP_APP_NAME:
@@ -479,7 +479,7 @@ mate_mixer_context_set_property (GObject      *object,
 {
     MateMixerContext *context;
 
-    context = MATE_MIXER_CONTEXT (object);
+    context = CAFE_MIXER_CONTEXT (object);
 
     switch (param_id) {
     case PROP_APP_NAME:
@@ -523,7 +523,7 @@ mate_mixer_context_dispose (GObject *object)
 {
     MateMixerContext *context;
 
-    context = MATE_MIXER_CONTEXT (object);
+    context = CAFE_MIXER_CONTEXT (object);
 
     close_context (context);
 
@@ -535,7 +535,7 @@ mate_mixer_context_finalize (GObject *object)
 {
     MateMixerContext *context;
 
-    context = MATE_MIXER_CONTEXT (object);
+    context = CAFE_MIXER_CONTEXT (object);
 
     _mate_mixer_app_info_free (context->priv->app_info);
 
@@ -560,7 +560,7 @@ mate_mixer_context_new (void)
         return NULL;
     }
 
-    return g_object_new (MATE_MIXER_TYPE_CONTEXT, NULL);
+    return g_object_new (CAFE_MIXER_TYPE_CONTEXT, NULL);
 }
 
 /**
@@ -578,7 +578,7 @@ mate_mixer_context_new (void)
  * available in the target system.
  *
  * If you have used this function before and want restore the default automatic
- * backend type discovery, set the backend type to %MATE_MIXER_BACKEND_UNKNOWN.
+ * backend type discovery, set the backend type to %CAFE_MIXER_BACKEND_UNKNOWN.
  *
  * This function must be used before opening a connection to a sound system with
  * mate_mixer_context_open(), otherwise it will fail.
@@ -593,21 +593,21 @@ mate_mixer_context_set_backend_type (MateMixerContext    *context,
     const GList                *modules;
     const MateMixerBackendInfo *info;
 
-    g_return_val_if_fail (MATE_MIXER_IS_CONTEXT (context), FALSE);
+    g_return_val_if_fail (CAFE_MIXER_IS_CONTEXT (context), FALSE);
 
-    if (context->priv->state == MATE_MIXER_STATE_CONNECTING ||
-        context->priv->state == MATE_MIXER_STATE_READY)
+    if (context->priv->state == CAFE_MIXER_STATE_CONNECTING ||
+        context->priv->state == CAFE_MIXER_STATE_READY)
         return FALSE;
 
     /* Allow setting the backend to unknown to restore the auto-detection */
-    if (backend_type == MATE_MIXER_BACKEND_UNKNOWN) {
+    if (backend_type == CAFE_MIXER_BACKEND_UNKNOWN) {
         context->priv->backend_type = backend_type;
         return TRUE;
     }
 
     modules = _mate_mixer_list_modules ();
     while (modules != NULL) {
-        module = MATE_MIXER_BACKEND_MODULE (modules->data);
+        module = CAFE_MIXER_BACKEND_MODULE (modules->data);
         info   = mate_mixer_backend_module_get_info (module);
 
         if (info->backend_type == backend_type) {
@@ -635,10 +635,10 @@ mate_mixer_context_set_backend_type (MateMixerContext    *context,
 gboolean
 mate_mixer_context_set_app_name (MateMixerContext *context, const gchar *app_name)
 {
-    g_return_val_if_fail (MATE_MIXER_IS_CONTEXT (context), FALSE);
+    g_return_val_if_fail (CAFE_MIXER_IS_CONTEXT (context), FALSE);
 
-    if (context->priv->state == MATE_MIXER_STATE_CONNECTING ||
-        context->priv->state == MATE_MIXER_STATE_READY)
+    if (context->priv->state == CAFE_MIXER_STATE_CONNECTING ||
+        context->priv->state == CAFE_MIXER_STATE_READY)
         return FALSE;
 
     _mate_mixer_app_info_set_name (context->priv->app_info, app_name);
@@ -663,10 +663,10 @@ mate_mixer_context_set_app_name (MateMixerContext *context, const gchar *app_nam
 gboolean
 mate_mixer_context_set_app_id (MateMixerContext *context, const gchar *app_id)
 {
-    g_return_val_if_fail (MATE_MIXER_IS_CONTEXT (context), FALSE);
+    g_return_val_if_fail (CAFE_MIXER_IS_CONTEXT (context), FALSE);
 
-    if (context->priv->state == MATE_MIXER_STATE_CONNECTING ||
-        context->priv->state == MATE_MIXER_STATE_READY)
+    if (context->priv->state == CAFE_MIXER_STATE_CONNECTING ||
+        context->priv->state == CAFE_MIXER_STATE_READY)
         return FALSE;
 
     _mate_mixer_app_info_set_id (context->priv->app_info, app_id);
@@ -691,10 +691,10 @@ mate_mixer_context_set_app_id (MateMixerContext *context, const gchar *app_id)
 gboolean
 mate_mixer_context_set_app_version (MateMixerContext *context, const gchar *app_version)
 {
-    g_return_val_if_fail (MATE_MIXER_IS_CONTEXT (context), FALSE);
+    g_return_val_if_fail (CAFE_MIXER_IS_CONTEXT (context), FALSE);
 
-    if (context->priv->state == MATE_MIXER_STATE_CONNECTING ||
-        context->priv->state == MATE_MIXER_STATE_READY)
+    if (context->priv->state == CAFE_MIXER_STATE_CONNECTING ||
+        context->priv->state == CAFE_MIXER_STATE_READY)
         return FALSE;
 
     _mate_mixer_app_info_set_version (context->priv->app_info, app_version);
@@ -719,10 +719,10 @@ mate_mixer_context_set_app_version (MateMixerContext *context, const gchar *app_
 gboolean
 mate_mixer_context_set_app_icon (MateMixerContext *context, const gchar *app_icon)
 {
-    g_return_val_if_fail (MATE_MIXER_IS_CONTEXT (context), FALSE);
+    g_return_val_if_fail (CAFE_MIXER_IS_CONTEXT (context), FALSE);
 
-    if (context->priv->state == MATE_MIXER_STATE_CONNECTING ||
-        context->priv->state == MATE_MIXER_STATE_READY)
+    if (context->priv->state == CAFE_MIXER_STATE_CONNECTING ||
+        context->priv->state == CAFE_MIXER_STATE_READY)
         return FALSE;
 
     _mate_mixer_app_info_set_icon (context->priv->app_info, app_icon);
@@ -748,10 +748,10 @@ mate_mixer_context_set_app_icon (MateMixerContext *context, const gchar *app_ico
 gboolean
 mate_mixer_context_set_server_address (MateMixerContext *context, const gchar *address)
 {
-    g_return_val_if_fail (MATE_MIXER_IS_CONTEXT (context), FALSE);
+    g_return_val_if_fail (CAFE_MIXER_IS_CONTEXT (context), FALSE);
 
-    if (context->priv->state == MATE_MIXER_STATE_CONNECTING ||
-        context->priv->state == MATE_MIXER_STATE_READY)
+    if (context->priv->state == CAFE_MIXER_STATE_CONNECTING ||
+        context->priv->state == CAFE_MIXER_STATE_READY)
         return FALSE;
 
     g_free (context->priv->server_address);
@@ -779,17 +779,17 @@ mate_mixer_context_set_server_address (MateMixerContext *context, const gchar *a
  * You can differentiate between these two possibilities by checking the connection
  * #MateMixerContext:state after this function returns.
  *
- * The %MATE_MIXER_STATE_READY state indicates that the connection has been
+ * The %CAFE_MIXER_STATE_READY state indicates that the connection has been
  * established successfully.
  *
- * The %MATE_MIXER_STATE_CONNECTING state is reached when the connection has not been
+ * The %CAFE_MIXER_STATE_CONNECTING state is reached when the connection has not been
  * established yet and you should wait for the state to change to either
- * %MATE_MIXER_STATE_READY or %MATE_MIXER_STATE_FAILED. It is required to have a main
+ * %CAFE_MIXER_STATE_READY or %CAFE_MIXER_STATE_FAILED. It is required to have a main
  * loop running to allow an asynchronous connection to proceed. The library will use
  * the thread's default main context for this purpose.
  *
  * If this function returns %FALSE, it was not possible to connect to a sound system
- * and the #MateMixerContext:state will be set to %MATE_MIXER_STATE_FAILED.
+ * and the #MateMixerContext:state will be set to %CAFE_MIXER_STATE_FAILED.
  *
  * Returns: %TRUE on success or if the result will be determined asynchronously,
  * or %FALSE on failure.
@@ -802,21 +802,21 @@ mate_mixer_context_open (MateMixerContext *context)
     const GList                *modules;
     const MateMixerBackendInfo *info = NULL;
 
-    g_return_val_if_fail (MATE_MIXER_IS_CONTEXT (context), FALSE);
+    g_return_val_if_fail (CAFE_MIXER_IS_CONTEXT (context), FALSE);
 
-    if (context->priv->state == MATE_MIXER_STATE_CONNECTING ||
-        context->priv->state == MATE_MIXER_STATE_READY)
+    if (context->priv->state == CAFE_MIXER_STATE_CONNECTING ||
+        context->priv->state == CAFE_MIXER_STATE_READY)
         return FALSE;
 
     /* We are going to choose the first backend to try. It will be either the one
      * selected by the application or the one with the highest priority */
     modules = _mate_mixer_list_modules ();
 
-    if (context->priv->backend_type != MATE_MIXER_BACKEND_UNKNOWN) {
+    if (context->priv->backend_type != CAFE_MIXER_BACKEND_UNKNOWN) {
         while (modules != NULL) {
             const MateMixerBackendInfo *info;
 
-            module = MATE_MIXER_BACKEND_MODULE (modules->data);
+            module = CAFE_MIXER_BACKEND_MODULE (modules->data);
             info   = mate_mixer_backend_module_get_info (module);
 
             if (info->backend_type == context->priv->backend_type)
@@ -827,12 +827,12 @@ mate_mixer_context_open (MateMixerContext *context)
         }
         if (module == NULL) {
             /* The selected backend is not available */
-            change_state (context, MATE_MIXER_STATE_FAILED);
+            change_state (context, CAFE_MIXER_STATE_FAILED);
             return FALSE;
         }
     } else {
         /* The highest priority module is on the top of the list */
-        module = MATE_MIXER_BACKEND_MODULE (modules->data);
+        module = CAFE_MIXER_BACKEND_MODULE (modules->data);
     }
 
     if (info == NULL)
@@ -846,36 +846,36 @@ mate_mixer_context_open (MateMixerContext *context)
 
     g_debug ("Trying to open backend %s", info->name);
 
-    /* This transitional state is always present, it will change to MATE_MIXER_STATE_READY
-     * or MATE_MIXER_STATE_FAILED either instantly or asynchronously */
-    change_state (context, MATE_MIXER_STATE_CONNECTING);
+    /* This transitional state is always present, it will change to CAFE_MIXER_STATE_READY
+     * or CAFE_MIXER_STATE_FAILED either instantly or asynchronously */
+    change_state (context, CAFE_MIXER_STATE_CONNECTING);
 
     /* The backend initialization might fail in case it is known right now that
      * the backend is unusable */
     if (mate_mixer_backend_open (context->priv->backend) == FALSE) {
-        if (context->priv->backend_type == MATE_MIXER_BACKEND_UNKNOWN) {
+        if (context->priv->backend_type == CAFE_MIXER_BACKEND_UNKNOWN) {
             /* User didn't request a specific backend, so try another one */
             return try_next_backend (context);
         }
 
         /* User requested a specific backend and it failed */
         close_context (context);
-        change_state (context, MATE_MIXER_STATE_FAILED);
+        change_state (context, CAFE_MIXER_STATE_FAILED);
         return FALSE;
     }
 
     state = mate_mixer_backend_get_state (context->priv->backend);
 
-    if (G_UNLIKELY (state != MATE_MIXER_STATE_READY &&
-                    state != MATE_MIXER_STATE_CONNECTING)) {
+    if (G_UNLIKELY (state != CAFE_MIXER_STATE_READY &&
+                    state != CAFE_MIXER_STATE_CONNECTING)) {
         /* This would be a backend bug */
         g_warn_if_reached ();
 
-        if (context->priv->backend_type == MATE_MIXER_BACKEND_UNKNOWN)
+        if (context->priv->backend_type == CAFE_MIXER_BACKEND_UNKNOWN)
             return try_next_backend (context);
 
         close_context (context);
-        change_state (context, MATE_MIXER_STATE_FAILED);
+        change_state (context, CAFE_MIXER_STATE_FAILED);
         return FALSE;
     }
 
@@ -893,15 +893,15 @@ mate_mixer_context_open (MateMixerContext *context)
  * @context: a #MateMixerContext
  *
  * Closes an open connection to the sound system. The #MateMixerContext:state
- * will be set to %MATE_MIXER_STATE_IDLE.
+ * will be set to %CAFE_MIXER_STATE_IDLE.
  */
 void
 mate_mixer_context_close (MateMixerContext *context)
 {
-    g_return_if_fail (MATE_MIXER_IS_CONTEXT (context));
+    g_return_if_fail (CAFE_MIXER_IS_CONTEXT (context));
 
     close_context (context);
-    change_state (context, MATE_MIXER_STATE_IDLE);
+    change_state (context, CAFE_MIXER_STATE_IDLE);
 }
 
 /**
@@ -915,7 +915,7 @@ mate_mixer_context_close (MateMixerContext *context)
 MateMixerState
 mate_mixer_context_get_state (MateMixerContext *context)
 {
-    g_return_val_if_fail (MATE_MIXER_IS_CONTEXT (context), MATE_MIXER_STATE_UNKNOWN);
+    g_return_val_if_fail (CAFE_MIXER_IS_CONTEXT (context), CAFE_MIXER_STATE_UNKNOWN);
 
     return context->priv->state;
 }
@@ -932,13 +932,13 @@ mate_mixer_context_get_state (MateMixerContext *context)
 MateMixerDevice *
 mate_mixer_context_get_device (MateMixerContext *context, const gchar *name)
 {
-    g_return_val_if_fail (MATE_MIXER_IS_CONTEXT (context), NULL);
+    g_return_val_if_fail (CAFE_MIXER_IS_CONTEXT (context), NULL);
     g_return_val_if_fail (name != NULL, NULL);
 
-    if (context->priv->state != MATE_MIXER_STATE_READY)
+    if (context->priv->state != CAFE_MIXER_STATE_READY)
         return NULL;
 
-    return mate_mixer_backend_get_device (MATE_MIXER_BACKEND (context->priv->backend), name);
+    return mate_mixer_backend_get_device (CAFE_MIXER_BACKEND (context->priv->backend), name);
 }
 
 /**
@@ -953,13 +953,13 @@ mate_mixer_context_get_device (MateMixerContext *context, const gchar *name)
 MateMixerStream *
 mate_mixer_context_get_stream (MateMixerContext *context, const gchar *name)
 {
-    g_return_val_if_fail (MATE_MIXER_IS_CONTEXT (context), NULL);
+    g_return_val_if_fail (CAFE_MIXER_IS_CONTEXT (context), NULL);
     g_return_val_if_fail (name != NULL, NULL);
 
-    if (context->priv->state != MATE_MIXER_STATE_READY)
+    if (context->priv->state != CAFE_MIXER_STATE_READY)
         return NULL;
 
-    return mate_mixer_backend_get_stream (MATE_MIXER_BACKEND (context->priv->backend), name);
+    return mate_mixer_backend_get_stream (CAFE_MIXER_BACKEND (context->priv->backend), name);
 }
 
 /**
@@ -974,13 +974,13 @@ mate_mixer_context_get_stream (MateMixerContext *context, const gchar *name)
 MateMixerStoredControl *
 mate_mixer_context_get_stored_control (MateMixerContext *context, const gchar *name)
 {
-    g_return_val_if_fail (MATE_MIXER_IS_CONTEXT (context), NULL);
+    g_return_val_if_fail (CAFE_MIXER_IS_CONTEXT (context), NULL);
     g_return_val_if_fail (name != NULL, NULL);
 
-    if (context->priv->state != MATE_MIXER_STATE_READY)
+    if (context->priv->state != CAFE_MIXER_STATE_READY)
         return NULL;
 
-    return mate_mixer_backend_get_stored_control (MATE_MIXER_BACKEND (context->priv->backend), name);
+    return mate_mixer_backend_get_stored_control (CAFE_MIXER_BACKEND (context->priv->backend), name);
 }
 
 /**
@@ -998,12 +998,12 @@ mate_mixer_context_get_stored_control (MateMixerContext *context, const gchar *n
 const GList *
 mate_mixer_context_list_devices (MateMixerContext *context)
 {
-    g_return_val_if_fail (MATE_MIXER_IS_CONTEXT (context), NULL);
+    g_return_val_if_fail (CAFE_MIXER_IS_CONTEXT (context), NULL);
 
-    if (context->priv->state != MATE_MIXER_STATE_READY)
+    if (context->priv->state != CAFE_MIXER_STATE_READY)
         return NULL;
 
-    return mate_mixer_backend_list_devices (MATE_MIXER_BACKEND (context->priv->backend));
+    return mate_mixer_backend_list_devices (CAFE_MIXER_BACKEND (context->priv->backend));
 }
 
 /**
@@ -1025,12 +1025,12 @@ mate_mixer_context_list_devices (MateMixerContext *context)
 const GList *
 mate_mixer_context_list_streams (MateMixerContext *context)
 {
-    g_return_val_if_fail (MATE_MIXER_IS_CONTEXT (context), NULL);
+    g_return_val_if_fail (CAFE_MIXER_IS_CONTEXT (context), NULL);
 
-    if (context->priv->state != MATE_MIXER_STATE_READY)
+    if (context->priv->state != CAFE_MIXER_STATE_READY)
         return NULL;
 
-    return mate_mixer_backend_list_streams (MATE_MIXER_BACKEND (context->priv->backend));
+    return mate_mixer_backend_list_streams (CAFE_MIXER_BACKEND (context->priv->backend));
 }
 
 /**
@@ -1047,12 +1047,12 @@ mate_mixer_context_list_streams (MateMixerContext *context)
 const GList *
 mate_mixer_context_list_stored_controls (MateMixerContext *context)
 {
-    g_return_val_if_fail (MATE_MIXER_IS_CONTEXT (context), NULL);
+    g_return_val_if_fail (CAFE_MIXER_IS_CONTEXT (context), NULL);
 
-    if (context->priv->state != MATE_MIXER_STATE_READY)
+    if (context->priv->state != CAFE_MIXER_STATE_READY)
         return NULL;
 
-    return mate_mixer_backend_list_stored_controls (MATE_MIXER_BACKEND (context->priv->backend));
+    return mate_mixer_backend_list_stored_controls (CAFE_MIXER_BACKEND (context->priv->backend));
 }
 
 /**
@@ -1067,9 +1067,9 @@ mate_mixer_context_list_stored_controls (MateMixerContext *context)
 MateMixerStream *
 mate_mixer_context_get_default_input_stream (MateMixerContext *context)
 {
-    g_return_val_if_fail (MATE_MIXER_IS_CONTEXT (context), NULL);
+    g_return_val_if_fail (CAFE_MIXER_IS_CONTEXT (context), NULL);
 
-    if (context->priv->state != MATE_MIXER_STATE_READY)
+    if (context->priv->state != CAFE_MIXER_STATE_READY)
         return NULL;
 
     return mate_mixer_backend_get_default_input_stream (context->priv->backend);
@@ -1091,10 +1091,10 @@ gboolean
 mate_mixer_context_set_default_input_stream (MateMixerContext *context,
                                              MateMixerStream  *stream)
 {
-    g_return_val_if_fail (MATE_MIXER_IS_CONTEXT (context), FALSE);
-    g_return_val_if_fail (MATE_MIXER_IS_STREAM (stream), FALSE);
+    g_return_val_if_fail (CAFE_MIXER_IS_CONTEXT (context), FALSE);
+    g_return_val_if_fail (CAFE_MIXER_IS_STREAM (stream), FALSE);
 
-    if (context->priv->state != MATE_MIXER_STATE_READY)
+    if (context->priv->state != CAFE_MIXER_STATE_READY)
         return FALSE;
 
     return mate_mixer_backend_set_default_input_stream (context->priv->backend, stream);
@@ -1113,9 +1113,9 @@ mate_mixer_context_set_default_input_stream (MateMixerContext *context,
 MateMixerStream *
 mate_mixer_context_get_default_output_stream (MateMixerContext *context)
 {
-    g_return_val_if_fail (MATE_MIXER_IS_CONTEXT (context), NULL);
+    g_return_val_if_fail (CAFE_MIXER_IS_CONTEXT (context), NULL);
 
-    if (context->priv->state != MATE_MIXER_STATE_READY)
+    if (context->priv->state != CAFE_MIXER_STATE_READY)
         return NULL;
 
     return mate_mixer_backend_get_default_output_stream (context->priv->backend);
@@ -1137,10 +1137,10 @@ gboolean
 mate_mixer_context_set_default_output_stream (MateMixerContext *context,
                                               MateMixerStream *stream)
 {
-    g_return_val_if_fail (MATE_MIXER_IS_CONTEXT (context), FALSE);
-    g_return_val_if_fail (MATE_MIXER_IS_STREAM (stream), FALSE);
+    g_return_val_if_fail (CAFE_MIXER_IS_CONTEXT (context), FALSE);
+    g_return_val_if_fail (CAFE_MIXER_IS_STREAM (stream), FALSE);
 
-    if (context->priv->state != MATE_MIXER_STATE_READY)
+    if (context->priv->state != CAFE_MIXER_STATE_READY)
         return FALSE;
 
     return mate_mixer_backend_set_default_output_stream (context->priv->backend, stream);
@@ -1159,7 +1159,7 @@ mate_mixer_context_set_default_output_stream (MateMixerContext *context,
 const gchar *
 mate_mixer_context_get_backend_name (MateMixerContext *context)
 {
-    g_return_val_if_fail (MATE_MIXER_IS_CONTEXT (context), NULL);
+    g_return_val_if_fail (CAFE_MIXER_IS_CONTEXT (context), NULL);
 
     if (context->priv->backend_chosen == FALSE)
         return NULL;
@@ -1175,15 +1175,15 @@ mate_mixer_context_get_backend_name (MateMixerContext *context)
  *
  * This function will not work until the @context is connected to a sound system.
  *
- * Returns: the backend type or %MATE_MIXER_BACKEND_UNKNOWN on error.
+ * Returns: the backend type or %CAFE_MIXER_BACKEND_UNKNOWN on error.
  */
 MateMixerBackendType
 mate_mixer_context_get_backend_type (MateMixerContext *context)
 {
-    g_return_val_if_fail (MATE_MIXER_IS_CONTEXT (context), MATE_MIXER_BACKEND_UNKNOWN);
+    g_return_val_if_fail (CAFE_MIXER_IS_CONTEXT (context), CAFE_MIXER_BACKEND_UNKNOWN);
 
     if (context->priv->backend_chosen == FALSE)
-        return MATE_MIXER_BACKEND_UNKNOWN;
+        return CAFE_MIXER_BACKEND_UNKNOWN;
 
     return mate_mixer_backend_module_get_info (context->priv->module)->backend_type;
 }
@@ -1201,10 +1201,10 @@ mate_mixer_context_get_backend_type (MateMixerContext *context)
 MateMixerBackendFlags
 mate_mixer_context_get_backend_flags (MateMixerContext *context)
 {
-    g_return_val_if_fail (MATE_MIXER_IS_CONTEXT (context), MATE_MIXER_BACKEND_NO_FLAGS);
+    g_return_val_if_fail (CAFE_MIXER_IS_CONTEXT (context), CAFE_MIXER_BACKEND_NO_FLAGS);
 
     if (context->priv->backend_chosen == FALSE)
-        return MATE_MIXER_BACKEND_NO_FLAGS;
+        return CAFE_MIXER_BACKEND_NO_FLAGS;
 
     return mate_mixer_backend_module_get_info (context->priv->module)->backend_flags;
 }
@@ -1217,25 +1217,25 @@ on_backend_state_notify (MateMixerBackend *backend,
     MateMixerState state = mate_mixer_backend_get_state (backend);
 
     switch (state) {
-    case MATE_MIXER_STATE_CONNECTING:
+    case CAFE_MIXER_STATE_CONNECTING:
         g_debug ("Backend %s changed state to CONNECTING",
                  mate_mixer_backend_module_get_info (context->priv->module)->name);
 
         change_state (context, state);
         break;
 
-    case MATE_MIXER_STATE_READY:
+    case CAFE_MIXER_STATE_READY:
         g_debug ("Backend %s changed state to READY",
                  mate_mixer_backend_module_get_info (context->priv->module)->name);
 
         change_state (context, state);
         break;
 
-    case MATE_MIXER_STATE_FAILED:
+    case CAFE_MIXER_STATE_FAILED:
         g_debug ("Backend %s changed state to FAILED",
                  mate_mixer_backend_module_get_info (context->priv->module)->name);
 
-        if (context->priv->backend_type == MATE_MIXER_BACKEND_UNKNOWN) {
+        if (context->priv->backend_type == CAFE_MIXER_BACKEND_UNKNOWN) {
             /* User didn't request a specific backend, so try another one */
             try_next_backend (context);
         } else {
@@ -1347,7 +1347,7 @@ try_next_backend (MateMixerContext *context)
             /* Found the last tested backend, try to use the next one with a lower
              * priority unless we have reached the end of the list */
             if (modules->next != NULL)
-                module = MATE_MIXER_BACKEND_MODULE (modules->next->data);
+                module = CAFE_MIXER_BACKEND_MODULE (modules->next->data);
             break;
         }
         modules = modules->next;
@@ -1356,7 +1356,7 @@ try_next_backend (MateMixerContext *context)
 
     if (module == NULL) {
         /* We have tried all the modules and all of them failed */
-        change_state (context, MATE_MIXER_STATE_FAILED);
+        change_state (context, CAFE_MIXER_STATE_FAILED);
         return FALSE;
     }
 
@@ -1377,8 +1377,8 @@ try_next_backend (MateMixerContext *context)
 
     state = mate_mixer_backend_get_state (context->priv->backend);
 
-    if (G_UNLIKELY (state != MATE_MIXER_STATE_READY &&
-                    state != MATE_MIXER_STATE_CONNECTING)) {
+    if (G_UNLIKELY (state != CAFE_MIXER_STATE_READY &&
+                    state != CAFE_MIXER_STATE_CONNECTING)) {
         /* This would be a backend bug */
         g_warn_if_reached ();
 
@@ -1402,7 +1402,7 @@ change_state (MateMixerContext *context, MateMixerState state)
 
     context->priv->state = state;
 
-    if (state == MATE_MIXER_STATE_READY && context->priv->backend_chosen == FALSE) {
+    if (state == CAFE_MIXER_STATE_READY && context->priv->backend_chosen == FALSE) {
         /* It is safe to connect to the backend signals after reaching the READY
          * state, because the app is not allowed to query any data before that state;
          * therefore we won't end up in an inconsistent state by caching a list and

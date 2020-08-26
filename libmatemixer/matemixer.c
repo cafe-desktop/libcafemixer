@@ -134,8 +134,8 @@ _mate_mixer_create_channel_mask (MateMixerChannelPosition *positions, guint n)
     guint   i = 0;
 
     for (i = 0; i < n; i++) {
-        if (positions[i] > MATE_MIXER_CHANNEL_UNKNOWN &&
-            positions[i] < MATE_MIXER_CHANNEL_MAX)
+        if (positions[i] > CAFE_MIXER_CHANNEL_UNKNOWN &&
+            positions[i] < CAFE_MIXER_CHANNEL_MAX)
             mask |= 1 << positions[i];
     }
     return mask;
@@ -155,7 +155,7 @@ load_modules (void)
 
         /* Read the directory which contains module libraries and create a list
          * of those that are likely to be usable backend modules */
-        dir = g_dir_open (LIBMATEMIXER_BACKEND_DIR, 0, &error);
+        dir = g_dir_open (LIBCAFEMIXER_BACKEND_DIR, 0, &error);
         if (dir != NULL) {
             const gchar *name;
 
@@ -165,7 +165,7 @@ load_modules (void)
                 if (g_str_has_suffix (name, "." G_MODULE_SUFFIX) == FALSE)
                     continue;
 
-                file = g_build_filename (LIBMATEMIXER_BACKEND_DIR, name, NULL);
+                file = g_build_filename (LIBCAFEMIXER_BACKEND_DIR, name, NULL);
                 modules = g_list_prepend (modules,
                                           mate_mixer_backend_module_new (file));
                 g_free (file);
@@ -190,8 +190,8 @@ compare_modules (gconstpointer a, gconstpointer b)
 {
     const MateMixerBackendInfo *info1, *info2;
 
-    info1 = mate_mixer_backend_module_get_info (MATE_MIXER_BACKEND_MODULE (a));
-    info2 = mate_mixer_backend_module_get_info (MATE_MIXER_BACKEND_MODULE (b));
+    info1 = mate_mixer_backend_module_get_info (CAFE_MIXER_BACKEND_MODULE (a));
+    info2 = mate_mixer_backend_module_get_info (CAFE_MIXER_BACKEND_MODULE (b));
 
     return info2->priority - info1->priority;
 }

@@ -119,8 +119,8 @@ mate_mixer_stream_class_init (MateMixerStreamClass *klass)
         g_param_spec_enum ("direction",
                            "Direction",
                            "Direction of the stream",
-                           MATE_MIXER_TYPE_DIRECTION,
-                           MATE_MIXER_DIRECTION_UNKNOWN,
+                           CAFE_MIXER_TYPE_DIRECTION,
+                           CAFE_MIXER_DIRECTION_UNKNOWN,
                            G_PARAM_READWRITE |
                            G_PARAM_CONSTRUCT_ONLY |
                            G_PARAM_STATIC_STRINGS);
@@ -129,7 +129,7 @@ mate_mixer_stream_class_init (MateMixerStreamClass *klass)
         g_param_spec_object ("device",
                              "Device",
                              "Device the stream belongs to",
-                             MATE_MIXER_TYPE_DEVICE,
+                             CAFE_MIXER_TYPE_DEVICE,
                              G_PARAM_READWRITE |
                              G_PARAM_CONSTRUCT_ONLY |
                              G_PARAM_STATIC_STRINGS);
@@ -138,7 +138,7 @@ mate_mixer_stream_class_init (MateMixerStreamClass *klass)
         g_param_spec_object ("default-control",
                              "Default control",
                              "Default control of the stream",
-                             MATE_MIXER_TYPE_STREAM_CONTROL,
+                             CAFE_MIXER_TYPE_STREAM_CONTROL,
                              G_PARAM_READWRITE |
                              G_PARAM_CONSTRUCT_ONLY |
                              G_PARAM_STATIC_STRINGS);
@@ -202,7 +202,7 @@ mate_mixer_stream_get_property (GObject    *object,
 {
     MateMixerStream *stream;
 
-    stream = MATE_MIXER_STREAM (object);
+    stream = CAFE_MIXER_STREAM (object);
 
     switch (param_id) {
     case PROP_NAME:
@@ -235,7 +235,7 @@ mate_mixer_stream_set_property (GObject      *object,
 {
     MateMixerStream *stream;
 
-    stream = MATE_MIXER_STREAM (object);
+    stream = CAFE_MIXER_STREAM (object);
 
     switch (param_id) {
     case PROP_NAME:
@@ -279,7 +279,7 @@ mate_mixer_stream_dispose (GObject *object)
 {
     MateMixerStream *stream;
 
-    stream = MATE_MIXER_STREAM (object);
+    stream = CAFE_MIXER_STREAM (object);
 
     g_clear_object (&stream->priv->control);
 
@@ -291,7 +291,7 @@ mate_mixer_stream_finalize (GObject *object)
 {
     MateMixerStream *stream;
 
-    stream = MATE_MIXER_STREAM (object);
+    stream = CAFE_MIXER_STREAM (object);
 
     g_free (stream->priv->name);
     g_free (stream->priv->label);
@@ -306,7 +306,7 @@ mate_mixer_stream_finalize (GObject *object)
 const gchar *
 mate_mixer_stream_get_name (MateMixerStream *stream)
 {
-    g_return_val_if_fail (MATE_MIXER_IS_STREAM (stream), NULL);
+    g_return_val_if_fail (CAFE_MIXER_IS_STREAM (stream), NULL);
 
     return stream->priv->name;
 }
@@ -318,7 +318,7 @@ mate_mixer_stream_get_name (MateMixerStream *stream)
 const gchar *
 mate_mixer_stream_get_label (MateMixerStream *stream)
 {
-    g_return_val_if_fail (MATE_MIXER_IS_STREAM (stream), NULL);
+    g_return_val_if_fail (CAFE_MIXER_IS_STREAM (stream), NULL);
 
     return stream->priv->label;
 }
@@ -330,7 +330,7 @@ mate_mixer_stream_get_label (MateMixerStream *stream)
 MateMixerDirection
 mate_mixer_stream_get_direction (MateMixerStream *stream)
 {
-    g_return_val_if_fail (MATE_MIXER_IS_STREAM (stream), MATE_MIXER_DIRECTION_UNKNOWN);
+    g_return_val_if_fail (CAFE_MIXER_IS_STREAM (stream), CAFE_MIXER_DIRECTION_UNKNOWN);
 
     return stream->priv->direction;
 }
@@ -342,7 +342,7 @@ mate_mixer_stream_get_direction (MateMixerStream *stream)
 MateMixerDevice *
 mate_mixer_stream_get_device (MateMixerStream *stream)
 {
-    g_return_val_if_fail (MATE_MIXER_IS_STREAM (stream), NULL);
+    g_return_val_if_fail (CAFE_MIXER_IS_STREAM (stream), NULL);
 
     return stream->priv->device;
 }
@@ -355,10 +355,10 @@ mate_mixer_stream_get_device (MateMixerStream *stream)
 MateMixerStreamControl *
 mate_mixer_stream_get_control (MateMixerStream *stream, const gchar *name)
 {
-    g_return_val_if_fail (MATE_MIXER_IS_STREAM (stream), NULL);
+    g_return_val_if_fail (CAFE_MIXER_IS_STREAM (stream), NULL);
     g_return_val_if_fail (name != NULL, NULL);
 
-    return MATE_MIXER_STREAM_GET_CLASS (stream)->get_control (stream, name);
+    return CAFE_MIXER_STREAM_GET_CLASS (stream)->get_control (stream, name);
 }
 
 /**
@@ -373,10 +373,10 @@ mate_mixer_stream_get_control (MateMixerStream *stream, const gchar *name)
 MateMixerStreamSwitch *
 mate_mixer_stream_get_switch (MateMixerStream *stream, const gchar *name)
 {
-    g_return_val_if_fail (MATE_MIXER_IS_STREAM (stream), NULL);
+    g_return_val_if_fail (CAFE_MIXER_IS_STREAM (stream), NULL);
     g_return_val_if_fail (name != NULL, NULL);
 
-    return MATE_MIXER_STREAM_GET_CLASS (stream)->get_switch (stream, name);
+    return CAFE_MIXER_STREAM_GET_CLASS (stream)->get_switch (stream, name);
 }
 
 /**
@@ -388,7 +388,7 @@ mate_mixer_stream_get_default_control (MateMixerStream *stream)
 {
     const GList *list;
 
-    g_return_val_if_fail (MATE_MIXER_IS_STREAM (stream), NULL);
+    g_return_val_if_fail (CAFE_MIXER_IS_STREAM (stream), NULL);
 
     if (stream->priv->control != NULL)
         return stream->priv->control;
@@ -396,7 +396,7 @@ mate_mixer_stream_get_default_control (MateMixerStream *stream)
     /* If the stream does not have a default control, just return the first one */
     list = mate_mixer_stream_list_controls (stream);
     if (list != NULL)
-        return MATE_MIXER_STREAM_CONTROL (list->data);
+        return CAFE_MIXER_STREAM_CONTROL (list->data);
 
     return NULL;
 }
@@ -410,9 +410,9 @@ mate_mixer_stream_list_controls (MateMixerStream *stream)
 {
     MateMixerStreamClass *klass;
 
-    g_return_val_if_fail (MATE_MIXER_IS_STREAM (stream), NULL);
+    g_return_val_if_fail (CAFE_MIXER_IS_STREAM (stream), NULL);
 
-    klass = MATE_MIXER_STREAM_GET_CLASS (stream);
+    klass = CAFE_MIXER_STREAM_GET_CLASS (stream);
 
     if (G_LIKELY (klass->list_controls != NULL))
         return klass->list_controls (stream);
@@ -429,9 +429,9 @@ mate_mixer_stream_list_switches (MateMixerStream *stream)
 {
     MateMixerStreamClass *klass;
 
-    g_return_val_if_fail (MATE_MIXER_IS_STREAM (stream), NULL);
+    g_return_val_if_fail (CAFE_MIXER_IS_STREAM (stream), NULL);
 
-    klass = MATE_MIXER_STREAM_GET_CLASS (stream);
+    klass = CAFE_MIXER_STREAM_GET_CLASS (stream);
 
     if (G_LIKELY (klass->list_switches != NULL))
         return klass->list_switches (stream);
@@ -444,12 +444,12 @@ mate_mixer_stream_real_get_control (MateMixerStream *stream, const gchar *name)
 {
     const GList *list;
 
-    g_return_val_if_fail (MATE_MIXER_IS_STREAM (stream), NULL);
+    g_return_val_if_fail (CAFE_MIXER_IS_STREAM (stream), NULL);
     g_return_val_if_fail (name != NULL, NULL);
 
     list = mate_mixer_stream_list_controls (stream);
     while (list != NULL) {
-        MateMixerStreamControl *control = MATE_MIXER_STREAM_CONTROL (list->data);
+        MateMixerStreamControl *control = CAFE_MIXER_STREAM_CONTROL (list->data);
 
         if (strcmp (name, mate_mixer_stream_control_get_name (control)) == 0)
             return control;
@@ -464,15 +464,15 @@ mate_mixer_stream_real_get_switch (MateMixerStream *stream, const gchar *name)
 {
     const GList *list;
 
-    g_return_val_if_fail (MATE_MIXER_IS_STREAM (stream), NULL);
+    g_return_val_if_fail (CAFE_MIXER_IS_STREAM (stream), NULL);
     g_return_val_if_fail (name != NULL, NULL);
 
     list = mate_mixer_stream_list_switches (stream);
     while (list != NULL) {
-        MateMixerSwitch *swtch = MATE_MIXER_SWITCH (list->data);
+        MateMixerSwitch *swtch = CAFE_MIXER_SWITCH (list->data);
 
         if (strcmp (name, mate_mixer_switch_get_name (swtch)) == 0)
-            return MATE_MIXER_STREAM_SWITCH (swtch);
+            return CAFE_MIXER_STREAM_SWITCH (swtch);
 
         list = list->next;
     }
@@ -483,8 +483,8 @@ void
 _mate_mixer_stream_set_default_control (MateMixerStream        *stream,
                                         MateMixerStreamControl *control)
 {
-    g_return_if_fail (MATE_MIXER_IS_STREAM (stream));
-    g_return_if_fail (control == NULL || MATE_MIXER_IS_STREAM_CONTROL (control));
+    g_return_if_fail (CAFE_MIXER_IS_STREAM (stream));
+    g_return_if_fail (control == NULL || CAFE_MIXER_IS_STREAM_CONTROL (control));
 
     if (stream->priv->control == control)
         return;

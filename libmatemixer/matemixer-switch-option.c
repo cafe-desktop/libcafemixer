@@ -121,7 +121,7 @@ mate_mixer_switch_option_get_property (GObject    *object,
 {
     MateMixerSwitchOption *option;
 
-    option = MATE_MIXER_SWITCH_OPTION (object);
+    option = CAFE_MIXER_SWITCH_OPTION (object);
 
     switch (param_id) {
     case PROP_NAME:
@@ -148,7 +148,7 @@ mate_mixer_switch_option_set_property (GObject      *object,
 {
     MateMixerSwitchOption *option;
 
-    option = MATE_MIXER_SWITCH_OPTION (object);
+    option = CAFE_MIXER_SWITCH_OPTION (object);
 
     switch (param_id) {
     case PROP_NAME:
@@ -181,7 +181,7 @@ mate_mixer_switch_option_finalize (GObject *object)
 {
     MateMixerSwitchOption *option;
 
-    option = MATE_MIXER_SWITCH_OPTION (object);
+    option = CAFE_MIXER_SWITCH_OPTION (object);
 
     g_free (option->priv->name);
     g_free (option->priv->label);
@@ -206,7 +206,7 @@ mate_mixer_switch_option_finalize (GObject *object)
 const gchar *
 mate_mixer_switch_option_get_name (MateMixerSwitchOption *option)
 {
-    g_return_val_if_fail (MATE_MIXER_IS_SWITCH_OPTION (option), NULL);
+    g_return_val_if_fail (CAFE_MIXER_IS_SWITCH_OPTION (option), NULL);
 
     return option->priv->name;
 }
@@ -223,7 +223,7 @@ mate_mixer_switch_option_get_name (MateMixerSwitchOption *option)
 const gchar *
 mate_mixer_switch_option_get_label (MateMixerSwitchOption *option)
 {
-    g_return_val_if_fail (MATE_MIXER_IS_SWITCH_OPTION (option), NULL);
+    g_return_val_if_fail (CAFE_MIXER_IS_SWITCH_OPTION (option), NULL);
 
     return option->priv->label;
 }
@@ -239,7 +239,7 @@ mate_mixer_switch_option_get_label (MateMixerSwitchOption *option)
 const gchar *
 mate_mixer_switch_option_get_icon (MateMixerSwitchOption *option)
 {
-    g_return_val_if_fail (MATE_MIXER_IS_SWITCH_OPTION (option), NULL);
+    g_return_val_if_fail (CAFE_MIXER_IS_SWITCH_OPTION (option), NULL);
 
     return option->priv->icon;
 }
@@ -249,7 +249,7 @@ _mate_mixer_switch_option_new (const gchar *name,
                                const gchar *label,
                                const gchar *icon)
 {
-    return g_object_new (MATE_MIXER_TYPE_SWITCH_OPTION,
+    return g_object_new (CAFE_MIXER_TYPE_SWITCH_OPTION,
                          "name", name,
                          "label", label,
                          "icon", icon,

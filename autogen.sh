@@ -13,7 +13,7 @@ PKG_NAME="libmatemixer"
 }
 
 which mate-autogen || {
-    echo "You need to install mate-common from the MATE Git"
+    echo "You need to install mate-common from the CAFE Git"
     exit 1
 }
 

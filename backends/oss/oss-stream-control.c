@@ -51,7 +51,7 @@ static void oss_stream_control_class_init (OssStreamControlClass *klass);
 static void oss_stream_control_init       (OssStreamControl      *control);
 static void oss_stream_control_finalize   (GObject               *object);
 
-G_DEFINE_TYPE_WITH_PRIVATE (OssStreamControl, oss_stream_control, MATE_MIXER_TYPE_STREAM_CONTROL)
+G_DEFINE_TYPE_WITH_PRIVATE (OssStreamControl, oss_stream_control, CAFE_MIXER_TYPE_STREAM_CONTROL)
 
 static guint                    oss_stream_control_get_num_channels     (MateMixerStreamControl  *mmsc);
 
@@ -96,7 +96,7 @@ oss_stream_control_class_init (OssStreamControlClass *klass)
     object_class = G_OBJECT_CLASS (klass);
     object_class->finalize = oss_stream_control_finalize;
 
-    control_class = MATE_MIXER_STREAM_CONTROL_CLASS (klass);
+    control_class = CAFE_MIXER_STREAM_CONTROL_CLASS (klass);
     control_class->get_num_channels     = oss_stream_control_get_num_channels;
     control_class->get_volume           = oss_stream_control_get_volume;
     control_class->set_volume           = oss_stream_control_set_volume;
@@ -155,10 +155,10 @@ oss_stream_control_new (const gchar               *name,
         return NULL;
     }
 
-    flags = MATE_MIXER_STREAM_CONTROL_VOLUME_READABLE |
-            MATE_MIXER_STREAM_CONTROL_VOLUME_WRITABLE;
+    flags = CAFE_MIXER_STREAM_CONTROL_VOLUME_READABLE |
+            CAFE_MIXER_STREAM_CONTROL_VOLUME_WRITABLE;
     if (stereo == TRUE)
-        flags |= MATE_MIXER_STREAM_CONTROL_CAN_BALANCE;
+        flags |= CAFE_MIXER_STREAM_CONTROL_CAN_BALANCE;
 
     control = g_object_new (OSS_TYPE_STREAM_CONTROL,
                             "name", name,
@@ -302,20 +302,20 @@ oss_stream_control_get_channel_position (MateMixerStreamControl *mmsc, guint cha
 {
     OssStreamControl *control;
 
-    g_return_val_if_fail (OSS_IS_STREAM_CONTROL (mmsc), MATE_MIXER_CHANNEL_UNKNOWN);
+    g_return_val_if_fail (OSS_IS_STREAM_CONTROL (mmsc), CAFE_MIXER_CHANNEL_UNKNOWN);
 
     control = OSS_STREAM_CONTROL (mmsc);
 
     if (control->priv->stereo == TRUE) {
         if (channel == LEFT_CHANNEL)
-            return MATE_MIXER_CHANNEL_FRONT_LEFT;
+            return CAFE_MIXER_CHANNEL_FRONT_LEFT;
         else if (channel == RIGHT_CHANNEL)
-            return MATE_MIXER_CHANNEL_FRONT_RIGHT;
+            return CAFE_MIXER_CHANNEL_FRONT_RIGHT;
     } else {
         if (channel == LEFT_CHANNEL)
-            return MATE_MIXER_CHANNEL_MONO;
+            return CAFE_MIXER_CHANNEL_MONO;
     }
-    return MATE_MIXER_CHANNEL_UNKNOWN;
+    return CAFE_MIXER_CHANNEL_UNKNOWN;
 }
 
 static gboolean
@@ -324,11 +324,11 @@ oss_stream_control_has_channel_position (MateMixerStreamControl  *mmsc,
 {
     g_return_val_if_fail (OSS_IS_STREAM_CONTROL (mmsc), FALSE);
 
-    if (position == MATE_MIXER_CHANNEL_MONO)
+    if (position == CAFE_MIXER_CHANNEL_MONO)
         return OSS_STREAM_CONTROL (mmsc)->priv->stereo == FALSE;
 
-    if (position == MATE_MIXER_CHANNEL_FRONT_LEFT ||
-        position == MATE_MIXER_CHANNEL_FRONT_RIGHT)
+    if (position == CAFE_MIXER_CHANNEL_FRONT_LEFT ||
+        position == CAFE_MIXER_CHANNEL_FRONT_RIGHT)
         return OSS_STREAM_CONTROL (mmsc)->priv->stereo == TRUE;
 
     return FALSE;
@@ -436,7 +436,7 @@ update_balance (OssStreamControl *control)
     else
         balance = +1.0f - ((gfloat) left / (gfloat) right);
 
-    _mate_mixer_stream_control_set_balance (MATE_MIXER_STREAM_CONTROL (control),
+    _mate_mixer_stream_control_set_balance (CAFE_MIXER_STREAM_CONTROL (control),
                                             balance);
 }
 

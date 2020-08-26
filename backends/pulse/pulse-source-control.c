@@ -58,11 +58,11 @@ pulse_source_control_new (PulseConnection      *connection,
                           PulseSource          *parent)
 {
     PulseSourceControl         *control;
-    MateMixerStreamControlFlags flags = MATE_MIXER_STREAM_CONTROL_MUTE_READABLE |
-                                        MATE_MIXER_STREAM_CONTROL_MUTE_WRITABLE |
-                                        MATE_MIXER_STREAM_CONTROL_VOLUME_READABLE |
-                                        MATE_MIXER_STREAM_CONTROL_VOLUME_WRITABLE |
-                                        MATE_MIXER_STREAM_CONTROL_HAS_MONITOR;
+    MateMixerStreamControlFlags flags = CAFE_MIXER_STREAM_CONTROL_MUTE_READABLE |
+                                        CAFE_MIXER_STREAM_CONTROL_MUTE_WRITABLE |
+                                        CAFE_MIXER_STREAM_CONTROL_VOLUME_READABLE |
+                                        CAFE_MIXER_STREAM_CONTROL_VOLUME_WRITABLE |
+                                        CAFE_MIXER_STREAM_CONTROL_HAS_MONITOR;
     MateMixerStreamControlRole  role;
 
     g_return_val_if_fail (PULSE_IS_CONNECTION (connection), NULL);
@@ -70,13 +70,13 @@ pulse_source_control_new (PulseConnection      *connection,
     g_return_val_if_fail (PULSE_IS_SOURCE (parent), NULL);
 
     if (info->active_port != NULL)
-        role = MATE_MIXER_STREAM_CONTROL_ROLE_PORT;
+        role = CAFE_MIXER_STREAM_CONTROL_ROLE_PORT;
     else
-        role = MATE_MIXER_STREAM_CONTROL_ROLE_MASTER;
+        role = CAFE_MIXER_STREAM_CONTROL_ROLE_MASTER;
 
     /* Build the flag list */
     if (info->flags & PA_SOURCE_DECIBEL_VOLUME)
-        flags |= MATE_MIXER_STREAM_CONTROL_HAS_DECIBEL;
+        flags |= CAFE_MIXER_STREAM_CONTROL_HAS_DECIBEL;
 
     control = g_object_new (PULSE_TYPE_SOURCE_CONTROL,
                             "name", info->name,
@@ -100,7 +100,7 @@ pulse_source_control_update (PulseSourceControl *control, const pa_source_info *
     /* Let all the information update before emitting notify signals */
     g_object_freeze_notify (G_OBJECT (control));
 
-    _mate_mixer_stream_control_set_mute (MATE_MIXER_STREAM_CONTROL (control),
+    _mate_mixer_stream_control_set_mute (CAFE_MIXER_STREAM_CONTROL (control),
                                          info->mute ? TRUE : FALSE);
 
     pulse_stream_control_set_channel_map (PULSE_STREAM_CONTROL (control),
@@ -144,7 +144,7 @@ pulse_source_control_create_monitor (PulseStreamControl *psc)
     index = pulse_stream_control_get_stream_index (psc);
     if (G_UNLIKELY (index == PA_INVALID_INDEX)) {
         g_debug ("Monitor of stream control %s is not available",
-                 mate_mixer_stream_control_get_name (MATE_MIXER_STREAM_CONTROL (psc)));
+                 mate_mixer_stream_control_get_name (CAFE_MIXER_STREAM_CONTROL (psc)));
         return NULL;
     }
 

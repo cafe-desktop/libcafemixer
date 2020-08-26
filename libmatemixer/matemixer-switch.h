@@ -15,8 +15,8 @@
  * License along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef MATEMIXER_SWITCH_H
-#define MATEMIXER_SWITCH_H
+#ifndef CAFEMIXER_SWITCH_H
+#define CAFEMIXER_SWITCH_H
 
 #include <glib.h>
 #include <glib-object.h>
@@ -26,18 +26,18 @@
 
 G_BEGIN_DECLS
 
-#define MATE_MIXER_TYPE_SWITCH                  \
+#define CAFE_MIXER_TYPE_SWITCH                  \
         (mate_mixer_switch_get_type ())
-#define MATE_MIXER_SWITCH(o)                    \
-        (G_TYPE_CHECK_INSTANCE_CAST ((o), MATE_MIXER_TYPE_SWITCH, MateMixerSwitch))
-#define MATE_MIXER_IS_SWITCH(o)                 \
-        (G_TYPE_CHECK_INSTANCE_TYPE ((o), MATE_MIXER_TYPE_SWITCH))
-#define MATE_MIXER_SWITCH_CLASS(k)              \
-        (G_TYPE_CHECK_CLASS_CAST ((k), MATE_MIXER_TYPE_SWITCH, MateMixerSwitchClass))
-#define MATE_MIXER_IS_SWITCH_CLASS(k)           \
-        (G_TYPE_CHECK_CLASS_TYPE ((k), MATE_MIXER_TYPE_SWITCH))
-#define MATE_MIXER_SWITCH_GET_CLASS(o)          \
-        (G_TYPE_INSTANCE_GET_CLASS ((o), MATE_MIXER_TYPE_SWITCH, MateMixerSwitchClass))
+#define CAFE_MIXER_SWITCH(o)                    \
+        (G_TYPE_CHECK_INSTANCE_CAST ((o), CAFE_MIXER_TYPE_SWITCH, MateMixerSwitch))
+#define CAFE_MIXER_IS_SWITCH(o)                 \
+        (G_TYPE_CHECK_INSTANCE_TYPE ((o), CAFE_MIXER_TYPE_SWITCH))
+#define CAFE_MIXER_SWITCH_CLASS(k)              \
+        (G_TYPE_CHECK_CLASS_CAST ((k), CAFE_MIXER_TYPE_SWITCH, MateMixerSwitchClass))
+#define CAFE_MIXER_IS_SWITCH_CLASS(k)           \
+        (G_TYPE_CHECK_CLASS_TYPE ((k), CAFE_MIXER_TYPE_SWITCH))
+#define CAFE_MIXER_SWITCH_GET_CLASS(o)          \
+        (G_TYPE_INSTANCE_GET_CLASS ((o), CAFE_MIXER_TYPE_SWITCH, MateMixerSwitchClass))
 
 typedef struct _MateMixerSwitchClass    MateMixerSwitchClass;
 typedef struct _MateMixerSwitchPrivate  MateMixerSwitchPrivate;
@@ -92,4 +92,4 @@ gboolean               mate_mixer_switch_set_active_option (MateMixerSwitch     
 
 G_END_DECLS
 
-#endif /* MATEMIXER_SWITCH_H */
+#endif /* CAFEMIXER_SWITCH_H */

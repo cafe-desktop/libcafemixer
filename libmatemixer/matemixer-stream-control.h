@@ -15,8 +15,8 @@
  * License along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef MATEMIXER_STREAM_CONTROL_H
-#define MATEMIXER_STREAM_CONTROL_H
+#ifndef CAFEMIXER_STREAM_CONTROL_H
+#define CAFEMIXER_STREAM_CONTROL_H
 
 #include <math.h>
 #include <glib.h>
@@ -28,23 +28,23 @@
 G_BEGIN_DECLS
 
 #ifdef INFINITY
-#  define MATE_MIXER_INFINITY INFINITY
+#  define CAFE_MIXER_INFINITY INFINITY
 #else
-#  define MATE_MIXER_INFINITY G_MAXDOUBLE
+#  define CAFE_MIXER_INFINITY G_MAXDOUBLE
 #endif
 
-#define MATE_MIXER_TYPE_STREAM_CONTROL          \
+#define CAFE_MIXER_TYPE_STREAM_CONTROL          \
         (mate_mixer_stream_control_get_type ())
-#define MATE_MIXER_STREAM_CONTROL(o)            \
-        (G_TYPE_CHECK_INSTANCE_CAST ((o), MATE_MIXER_TYPE_STREAM_CONTROL, MateMixerStreamControl))
-#define MATE_MIXER_IS_STREAM_CONTROL(o)         \
-        (G_TYPE_CHECK_INSTANCE_TYPE ((o), MATE_MIXER_TYPE_STREAM_CONTROL))
-#define MATE_MIXER_STREAM_CONTROL_CLASS(k)      \
-        (G_TYPE_CHECK_CLASS_CAST ((k), MATE_MIXER_TYPE_STREAM_CONTROL, MateMixerStreamControlClass))
-#define MATE_MIXER_IS_STREAM_CONTROL_CLASS(k)   \
-        (G_TYPE_CHECK_CLASS_TYPE ((k), MATE_MIXER_TYPE_STREAM_CONTROL))
-#define MATE_MIXER_STREAM_CONTROL_GET_CLASS(o)  \
-        (G_TYPE_INSTANCE_GET_CLASS ((o), MATE_MIXER_TYPE_STREAM_CONTROL, MateMixerStreamControlClass))
+#define CAFE_MIXER_STREAM_CONTROL(o)            \
+        (G_TYPE_CHECK_INSTANCE_CAST ((o), CAFE_MIXER_TYPE_STREAM_CONTROL, MateMixerStreamControl))
+#define CAFE_MIXER_IS_STREAM_CONTROL(o)         \
+        (G_TYPE_CHECK_INSTANCE_TYPE ((o), CAFE_MIXER_TYPE_STREAM_CONTROL))
+#define CAFE_MIXER_STREAM_CONTROL_CLASS(k)      \
+        (G_TYPE_CHECK_CLASS_CAST ((k), CAFE_MIXER_TYPE_STREAM_CONTROL, MateMixerStreamControlClass))
+#define CAFE_MIXER_IS_STREAM_CONTROL_CLASS(k)   \
+        (G_TYPE_CHECK_CLASS_TYPE ((k), CAFE_MIXER_TYPE_STREAM_CONTROL))
+#define CAFE_MIXER_STREAM_CONTROL_GET_CLASS(o)  \
+        (G_TYPE_INSTANCE_GET_CLASS ((o), CAFE_MIXER_TYPE_STREAM_CONTROL, MateMixerStreamControlClass))
 
 typedef struct _MateMixerStreamControlClass    MateMixerStreamControlClass;
 typedef struct _MateMixerStreamControlPrivate  MateMixerStreamControlPrivate;
@@ -192,4 +192,4 @@ guint                           mate_mixer_stream_control_get_base_volume      (
 
 G_END_DECLS
 
-#endif /* MATEMIXER_STREAM_CONTROL_H */
+#endif /* CAFEMIXER_STREAM_CONTROL_H */

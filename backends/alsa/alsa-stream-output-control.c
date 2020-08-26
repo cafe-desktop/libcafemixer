@@ -280,12 +280,12 @@ read_volume_data (snd_mixer_elem_t *el, AlsaControlData *data)
         data->min_decibel = min / 100.0;
         data->max_decibel = max / 100.0;
     } else
-        data->min_decibel = data->max_decibel = -MATE_MIXER_INFINITY;
+        data->min_decibel = data->max_decibel = -CAFE_MIXER_INFINITY;
 #else
-    data->min_decibel = data->max_decibel = -MATE_MIXER_INFINITY;
+    data->min_decibel = data->max_decibel = -CAFE_MIXER_INFINITY;
 #endif
 
-    for (i = 0; i < MATE_MIXER_CHANNEL_MAX; i++)
+    for (i = 0; i < CAFE_MIXER_CHANNEL_MAX; i++)
         data->v[i] = data->min;
 
     data->volume = data->min;
@@ -300,7 +300,7 @@ read_volume_data (snd_mixer_elem_t *el, AlsaControlData *data)
         if (ret == 0) {
             data->channels = 1;
 
-            data->c[0] = MATE_MIXER_CHANNEL_MONO;
+            data->c[0] = CAFE_MIXER_CHANNEL_MONO;
             data->v[0] = data->volume = (guint) volume;
         } else {
             g_warning ("Failed to read playback volume: %s", snd_strerror (ret));

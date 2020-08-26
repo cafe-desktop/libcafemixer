@@ -61,7 +61,7 @@ static void pulse_ext_stream_set_property (GObject             *object,
 static void pulse_ext_stream_dispose      (GObject             *object);
 static void pulse_ext_stream_finalize     (GObject             *object);
 
-G_DEFINE_TYPE_WITH_PRIVATE (PulseExtStream, pulse_ext_stream, MATE_MIXER_TYPE_STORED_CONTROL)
+G_DEFINE_TYPE_WITH_PRIVATE (PulseExtStream, pulse_ext_stream, CAFE_MIXER_TYPE_STORED_CONTROL)
 
 static MateMixerAppInfo *       pulse_ext_stream_get_app_info         (MateMixerStreamControl  *mmsc);
 
@@ -119,7 +119,7 @@ pulse_ext_stream_class_init (PulseExtStreamClass *klass)
     object_class->get_property = pulse_ext_stream_get_property;
     object_class->set_property = pulse_ext_stream_set_property;
 
-    control_class = MATE_MIXER_STREAM_CONTROL_CLASS (klass);
+    control_class = CAFE_MIXER_STREAM_CONTROL_CLASS (klass);
     control_class->get_app_info         = pulse_ext_stream_get_app_info;
     control_class->set_stream           = pulse_ext_stream_set_stream;
     control_class->set_mute             = pulse_ext_stream_set_mute;
@@ -150,7 +150,7 @@ pulse_ext_stream_class_init (PulseExtStreamClass *klass)
         g_param_spec_boxed ("app-info",
                             "Application information",
                             "Application information",
-                            MATE_MIXER_TYPE_APP_INFO,
+                            CAFE_MIXER_TYPE_APP_INFO,
                             G_PARAM_READWRITE |
                             G_PARAM_CONSTRUCT_ONLY |
                             G_PARAM_STATIC_STRINGS);
@@ -246,13 +246,13 @@ pulse_ext_stream_new (PulseConnection                  *connection,
     gchar                          *suffix;
     MateMixerAppInfo               *app_info = NULL;
     MateMixerDirection              direction;
-    MateMixerStreamControlFlags     flags = MATE_MIXER_STREAM_CONTROL_MUTE_READABLE |
-                                            MATE_MIXER_STREAM_CONTROL_MUTE_WRITABLE |
-                                            MATE_MIXER_STREAM_CONTROL_MOVABLE |
-                                            MATE_MIXER_STREAM_CONTROL_STORED;
-    MateMixerStreamControlRole      role  = MATE_MIXER_STREAM_CONTROL_ROLE_UNKNOWN;
+    MateMixerStreamControlFlags     flags = CAFE_MIXER_STREAM_CONTROL_MUTE_READABLE |
+                                            CAFE_MIXER_STREAM_CONTROL_MUTE_WRITABLE |
+                                            CAFE_MIXER_STREAM_CONTROL_MOVABLE |
+                                            CAFE_MIXER_STREAM_CONTROL_STORED;
+    MateMixerStreamControlRole      role  = CAFE_MIXER_STREAM_CONTROL_ROLE_UNKNOWN;
     MateMixerStreamControlMediaRole media_role =
-                                            MATE_MIXER_STREAM_CONTROL_MEDIA_ROLE_UNKNOWN;
+                                            CAFE_MIXER_STREAM_CONTROL_MEDIA_ROLE_UNKNOWN;
 
     g_return_val_if_fail (PULSE_IS_CONNECTION (connection), NULL);
     g_return_val_if_fail (info != NULL, NULL);
@@ -268,11 +268,11 @@ pulse_ext_stream_new (PulseConnection                  *connection,
      *  source-output-by-media-name: ...
      */
     if (g_str_has_prefix (info->name, "sink-input"))
-        direction = MATE_MIXER_DIRECTION_OUTPUT;
+        direction = CAFE_MIXER_DIRECTION_OUTPUT;
     else if (g_str_has_prefix (info->name, "source-output"))
-        direction = MATE_MIXER_DIRECTION_INPUT;
+        direction = CAFE_MIXER_DIRECTION_INPUT;
     else
-        direction = MATE_MIXER_DIRECTION_UNKNOWN;
+        direction = CAFE_MIXER_DIRECTION_UNKNOWN;
 
     suffix = strchr (info->name, ':');
     if (suffix != NULL)
@@ -283,7 +283,7 @@ pulse_ext_stream_new (PulseConnection                  *connection,
             media_role = pulse_convert_media_role_name (suffix);
     }
     else if (strstr (info->name, "-by-application-name:")) {
-        role = MATE_MIXER_STREAM_CONTROL_ROLE_APPLICATION;
+        role = CAFE_MIXER_STREAM_CONTROL_ROLE_APPLICATION;
 
         /* Make sure an application ext-stream always has a MateMixerAppInfo
          * structure available, even in the case no application info is
@@ -295,7 +295,7 @@ pulse_ext_stream_new (PulseConnection                  *connection,
             _mate_mixer_app_info_set_name (app_info, suffix);
     }
     else if (strstr (info->name, "-by-application-id:")) {
-        role = MATE_MIXER_STREAM_CONTROL_ROLE_APPLICATION;
+        role = CAFE_MIXER_STREAM_CONTROL_ROLE_APPLICATION;
 
         /* Make sure an application ext-stream always has a MateMixerAppInfo
          * structure available, even in the case no application info is
@@ -341,25 +341,25 @@ pulse_ext_stream_update (PulseExtStream                   *ext,
     /* Let all the information update before emitting notify signals */
     g_object_freeze_notify (G_OBJECT (ext));
 
-    _mate_mixer_stream_control_set_mute (MATE_MIXER_STREAM_CONTROL (ext),
+    _mate_mixer_stream_control_set_mute (CAFE_MIXER_STREAM_CONTROL (ext),
                                          info->mute ? TRUE : FALSE);
 
-    flags = mate_mixer_stream_control_get_flags (MATE_MIXER_STREAM_CONTROL (ext));
+    flags = mate_mixer_stream_control_get_flags (CAFE_MIXER_STREAM_CONTROL (ext));
 
     if (pa_channel_map_valid (&info->channel_map) != 0) {
         if (pa_channel_map_can_balance (&info->channel_map) != 0)
-            flags |= MATE_MIXER_STREAM_CONTROL_CAN_BALANCE;
+            flags |= CAFE_MIXER_STREAM_CONTROL_CAN_BALANCE;
         else
-            flags &= ~MATE_MIXER_STREAM_CONTROL_CAN_BALANCE;
+            flags &= ~CAFE_MIXER_STREAM_CONTROL_CAN_BALANCE;
 
         if (pa_channel_map_can_fade (&info->channel_map) != 0)
-            flags |= MATE_MIXER_STREAM_CONTROL_CAN_FADE;
+            flags |= CAFE_MIXER_STREAM_CONTROL_CAN_FADE;
         else
-            flags &= ~MATE_MIXER_STREAM_CONTROL_CAN_FADE;
+            flags &= ~CAFE_MIXER_STREAM_CONTROL_CAN_FADE;
 
         ext->priv->channel_map = info->channel_map;
     } else {
-        flags &= ~(MATE_MIXER_STREAM_CONTROL_CAN_BALANCE | MATE_MIXER_STREAM_CONTROL_CAN_FADE);
+        flags &= ~(CAFE_MIXER_STREAM_CONTROL_CAN_BALANCE | CAFE_MIXER_STREAM_CONTROL_CAN_FADE);
 
         /* If the channel map is not valid, create an empty channel map, which
          * also won't validate, but at least we know what it is */
@@ -367,14 +367,14 @@ pulse_ext_stream_update (PulseExtStream                   *ext,
     }
 
     if (pa_cvolume_valid (&info->volume) != 0) {
-        flags |= MATE_MIXER_STREAM_CONTROL_VOLUME_READABLE |
-                 MATE_MIXER_STREAM_CONTROL_VOLUME_WRITABLE;
+        flags |= CAFE_MIXER_STREAM_CONTROL_VOLUME_READABLE |
+                 CAFE_MIXER_STREAM_CONTROL_VOLUME_WRITABLE;
 
         if (pa_cvolume_equal (&ext->priv->cvolume, &info->volume) == 0)
             volume_changed = TRUE;
     } else {
-        flags &= ~(MATE_MIXER_STREAM_CONTROL_VOLUME_READABLE |
-                   MATE_MIXER_STREAM_CONTROL_VOLUME_WRITABLE);
+        flags &= ~(CAFE_MIXER_STREAM_CONTROL_VOLUME_READABLE |
+                   CAFE_MIXER_STREAM_CONTROL_VOLUME_WRITABLE);
 
         if (ext->priv->volume != (guint) PA_VOLUME_MUTED)
             volume_changed = TRUE;
@@ -383,14 +383,14 @@ pulse_ext_stream_update (PulseExtStream                   *ext,
     if (volume_changed == TRUE)
         store_cvolume (ext, &info->volume);
 
-    _mate_mixer_stream_control_set_flags (MATE_MIXER_STREAM_CONTROL (ext), flags);
+    _mate_mixer_stream_control_set_flags (CAFE_MIXER_STREAM_CONTROL (ext), flags);
 
     /* Also set initially, but may change at any time */
     if (parent != NULL)
-        _mate_mixer_stream_control_set_stream (MATE_MIXER_STREAM_CONTROL (ext),
-                                               MATE_MIXER_STREAM (parent));
+        _mate_mixer_stream_control_set_stream (CAFE_MIXER_STREAM_CONTROL (ext),
+                                               CAFE_MIXER_STREAM (parent));
     else
-        _mate_mixer_stream_control_set_stream (MATE_MIXER_STREAM_CONTROL (ext),
+        _mate_mixer_stream_control_set_stream (CAFE_MIXER_STREAM_CONTROL (ext),
                                                NULL);
 
     g_object_thaw_notify (G_OBJECT (ext));
@@ -514,15 +514,15 @@ pulse_ext_stream_get_channel_position (MateMixerStreamControl *mmsc, guint chann
 {
     PulseExtStream *ext;
 
-    g_return_val_if_fail (PULSE_IS_EXT_STREAM (mmsc), MATE_MIXER_CHANNEL_UNKNOWN);
+    g_return_val_if_fail (PULSE_IS_EXT_STREAM (mmsc), CAFE_MIXER_CHANNEL_UNKNOWN);
 
     ext = PULSE_EXT_STREAM (mmsc);
 
     if (channel >= ext->priv->channel_map.channels)
-        return MATE_MIXER_CHANNEL_UNKNOWN;
+        return CAFE_MIXER_CHANNEL_UNKNOWN;
 
     if (ext->priv->channel_map.map[channel] == PA_CHANNEL_POSITION_INVALID)
-        return MATE_MIXER_CHANNEL_UNKNOWN;
+        return CAFE_MIXER_CHANNEL_UNKNOWN;
 
     return pulse_channel_map_from[ext->priv->channel_map.map[channel]];
 }
@@ -623,7 +623,7 @@ fill_ext_stream_restore_info (PulseExtStream             *ext,
     MateMixerStream        *mms;
     MateMixerStreamControl *mmsc;
 
-    mmsc = MATE_MIXER_STREAM_CONTROL (ext);
+    mmsc = CAFE_MIXER_STREAM_CONTROL (ext);
 
     info->name = mate_mixer_stream_control_get_name (mmsc);
     info->mute = mate_mixer_stream_control_get_mute (mmsc);
@@ -675,10 +675,10 @@ store_cvolume (PulseExtStream *ext, const pa_cvolume *cvolume)
     value = pa_cvolume_get_balance (&ext->priv->cvolume,
                                     &ext->priv->channel_map);
 
-    _mate_mixer_stream_control_set_balance (MATE_MIXER_STREAM_CONTROL (ext), value);
+    _mate_mixer_stream_control_set_balance (CAFE_MIXER_STREAM_CONTROL (ext), value);
 
     value = pa_cvolume_get_fade (&ext->priv->cvolume,
                                  &ext->priv->channel_map);
 
-    _mate_mixer_stream_control_set_fade (MATE_MIXER_STREAM_CONTROL (ext), value);
+    _mate_mixer_stream_control_set_fade (CAFE_MIXER_STREAM_CONTROL (ext), value);
 }

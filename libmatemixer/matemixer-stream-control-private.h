@@ -15,8 +15,8 @@
  * License along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef MATEMIXER_STREAM_CONTROL_PRIVATE_H
-#define MATEMIXER_STREAM_CONTROL_PRIVATE_H
+#ifndef CAFEMIXER_STREAM_CONTROL_PRIVATE_H
+#define CAFEMIXER_STREAM_CONTROL_PRIVATE_H
 
 #include <glib.h>
 
@@ -42,4 +42,4 @@ void _mate_mixer_stream_control_set_fade    (MateMixerStreamControl     *control
 
 G_END_DECLS
 
-#endif /* MATEMIXER_STREAM_CONTROL_PRIVATE_H */
+#endif /* CAFEMIXER_STREAM_CONTROL_PRIVATE_H */

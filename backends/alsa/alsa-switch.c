@@ -39,7 +39,7 @@ static void alsa_element_interface_init (AlsaElementInterface *iface);
 static void alsa_switch_dispose         (GObject              *object);
 
 G_DEFINE_TYPE_WITH_CODE (AlsaSwitch, alsa_switch,
-                         MATE_MIXER_TYPE_STREAM_SWITCH,
+                         CAFE_MIXER_TYPE_STREAM_SWITCH,
                          G_ADD_PRIVATE(AlsaSwitch)
                          G_IMPLEMENT_INTERFACE (ALSA_TYPE_ELEMENT,
                                                 alsa_element_interface_init))
@@ -71,7 +71,7 @@ alsa_switch_class_init (AlsaSwitchClass *klass)
     object_class = G_OBJECT_CLASS (klass);
     object_class->dispose = alsa_switch_dispose;
 
-    switch_class = MATE_MIXER_SWITCH_CLASS (klass);
+    switch_class = CAFE_MIXER_SWITCH_CLASS (klass);
     switch_class->set_active_option = alsa_switch_set_active_option;
     switch_class->list_options      = alsa_switch_list_options;
 }
@@ -246,15 +246,15 @@ alsa_switch_load (AlsaElement *element)
         /* Mark the selected option when we find it, ALSA indentifies them
          * by numeric indices */
         if (alsa_switch_option_get_id (option) == item) {
-            _mate_mixer_switch_set_active_option (MATE_MIXER_SWITCH (swtch),
-                                                  MATE_MIXER_SWITCH_OPTION (option));
+            _mate_mixer_switch_set_active_option (CAFE_MIXER_SWITCH (swtch),
+                                                  CAFE_MIXER_SWITCH_OPTION (option));
             return TRUE;
         }
         list = list->next;
     }
 
     g_warning ("Unknown active option of switch %s: %d",
-               mate_mixer_switch_get_name (MATE_MIXER_SWITCH (swtch)),
+               mate_mixer_switch_get_name (CAFE_MIXER_SWITCH (swtch)),
                item);
 
     return FALSE;

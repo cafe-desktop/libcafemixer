@@ -29,9 +29,9 @@ G_BEGIN_DECLS
 
 typedef struct {
     gboolean                 active;
-    MateMixerChannelPosition c[MATE_MIXER_CHANNEL_MAX];
-    guint                    v[MATE_MIXER_CHANNEL_MAX];
-    gboolean                 m[MATE_MIXER_CHANNEL_MAX];
+    MateMixerChannelPosition c[CAFE_MIXER_CHANNEL_MAX];
+    guint                    v[CAFE_MIXER_CHANNEL_MAX];
+    gboolean                 m[CAFE_MIXER_CHANNEL_MAX];
     guint                    volume;
     gboolean                 volume_joined;
     gboolean                 switch_usable;

@@ -55,7 +55,7 @@ static void pulse_stream_set_property (GObject          *object,
 
 static void pulse_stream_dispose      (GObject          *object);
 
-G_DEFINE_ABSTRACT_TYPE_WITH_PRIVATE (PulseStream, pulse_stream, MATE_MIXER_TYPE_STREAM)
+G_DEFINE_ABSTRACT_TYPE_WITH_PRIVATE (PulseStream, pulse_stream, CAFE_MIXER_TYPE_STREAM)
 
 static void
 pulse_stream_class_init (PulseStreamClass *klass)
@@ -177,7 +177,7 @@ pulse_stream_get_device (PulseStream *stream)
 
     g_return_val_if_fail (PULSE_IS_STREAM (stream), NULL);
 
-    device = mate_mixer_stream_get_device (MATE_MIXER_STREAM (stream));
+    device = mate_mixer_stream_get_device (CAFE_MIXER_STREAM (stream));
     if (device != NULL)
         return PULSE_DEVICE (device);
 

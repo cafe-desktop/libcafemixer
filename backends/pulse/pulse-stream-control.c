@@ -61,7 +61,7 @@ static void pulse_stream_control_set_property (GObject                 *object,
 static void pulse_stream_control_dispose      (GObject                 *object);
 static void pulse_stream_control_finalize     (GObject                 *object);
 
-G_DEFINE_ABSTRACT_TYPE_WITH_PRIVATE (PulseStreamControl, pulse_stream_control, MATE_MIXER_TYPE_STREAM_CONTROL)
+G_DEFINE_ABSTRACT_TYPE_WITH_PRIVATE (PulseStreamControl, pulse_stream_control, CAFE_MIXER_TYPE_STREAM_CONTROL)
 
 static MateMixerAppInfo *       pulse_stream_control_get_app_info         (MateMixerStreamControl   *mmsc);
 
@@ -131,7 +131,7 @@ pulse_stream_control_class_init (PulseStreamControlClass *klass)
     object_class->get_property = pulse_stream_control_get_property;
     object_class->set_property = pulse_stream_control_set_property;
 
-    control_class = MATE_MIXER_STREAM_CONTROL_CLASS (klass);
+    control_class = CAFE_MIXER_STREAM_CONTROL_CLASS (klass);
     control_class->get_app_info         = pulse_stream_control_get_app_info;
     control_class->set_mute             = pulse_stream_control_set_mute;
     control_class->get_num_channels     = pulse_stream_control_get_num_channels;
@@ -276,7 +276,7 @@ pulse_stream_control_get_stream_index (PulseStreamControl *control)
 
     g_return_val_if_fail (PULSE_IS_STREAM_CONTROL (control), PA_INVALID_INDEX);
 
-    stream = mate_mixer_stream_control_get_stream (MATE_MIXER_STREAM_CONTROL (control));
+    stream = mate_mixer_stream_control_get_stream (CAFE_MIXER_STREAM_CONTROL (control));
     if (G_UNLIKELY (stream == NULL))
         return PA_INVALID_INDEX;
 
@@ -338,29 +338,29 @@ pulse_stream_control_set_channel_map (PulseStreamControl *control, const pa_chan
 
     g_return_if_fail (PULSE_IS_STREAM_CONTROL (control));
 
-    flags = mate_mixer_stream_control_get_flags (MATE_MIXER_STREAM_CONTROL (control));
+    flags = mate_mixer_stream_control_get_flags (CAFE_MIXER_STREAM_CONTROL (control));
 
     if (map != NULL && pa_channel_map_valid (map)) {
         if (pa_channel_map_can_balance (map))
-            flags |= MATE_MIXER_STREAM_CONTROL_CAN_BALANCE;
+            flags |= CAFE_MIXER_STREAM_CONTROL_CAN_BALANCE;
         else
-            flags &= ~MATE_MIXER_STREAM_CONTROL_CAN_BALANCE;
+            flags &= ~CAFE_MIXER_STREAM_CONTROL_CAN_BALANCE;
 
         if (pa_channel_map_can_fade (map))
-            flags |= MATE_MIXER_STREAM_CONTROL_CAN_FADE;
+            flags |= CAFE_MIXER_STREAM_CONTROL_CAN_FADE;
         else
-            flags &= ~MATE_MIXER_STREAM_CONTROL_CAN_FADE;
+            flags &= ~CAFE_MIXER_STREAM_CONTROL_CAN_FADE;
 
         control->priv->channel_map = *map;
     } else {
-        flags &= ~(MATE_MIXER_STREAM_CONTROL_CAN_BALANCE | MATE_MIXER_STREAM_CONTROL_CAN_FADE);
+        flags &= ~(CAFE_MIXER_STREAM_CONTROL_CAN_BALANCE | CAFE_MIXER_STREAM_CONTROL_CAN_FADE);
 
         /* If the channel map is not valid, create an empty channel map, which
          * also won't validate, but at least we know what it is */
         pa_channel_map_init (&control->priv->channel_map);
     }
 
-    _mate_mixer_stream_control_set_flags (MATE_MIXER_STREAM_CONTROL (control), flags);
+    _mate_mixer_stream_control_set_flags (CAFE_MIXER_STREAM_CONTROL (control), flags);
 }
 
 void
@@ -375,14 +375,14 @@ pulse_stream_control_set_cvolume (PulseStreamControl *control,
     /* The base volume is not a property */
     control->priv->base_volume = base_volume;
 
-    flags = mate_mixer_stream_control_get_flags (MATE_MIXER_STREAM_CONTROL (control));
+    flags = mate_mixer_stream_control_get_flags (CAFE_MIXER_STREAM_CONTROL (control));
 
     g_object_freeze_notify (G_OBJECT (control));
 
     if (cvolume != NULL && pa_cvolume_valid (cvolume)) {
         /* Decibel volume and volume settability flags must be provided by
          * the implementation */
-        flags |= MATE_MIXER_STREAM_CONTROL_VOLUME_READABLE;
+        flags |= CAFE_MIXER_STREAM_CONTROL_VOLUME_READABLE;
 
         if (pa_cvolume_equal (&control->priv->cvolume, cvolume) == 0) {
             control->priv->cvolume = *cvolume;
@@ -391,9 +391,9 @@ pulse_stream_control_set_cvolume (PulseStreamControl *control,
             g_object_notify (G_OBJECT (control), "volume");
         }
     } else {
-        flags &= ~(MATE_MIXER_STREAM_CONTROL_VOLUME_READABLE |
-                   MATE_MIXER_STREAM_CONTROL_VOLUME_WRITABLE |
-                   MATE_MIXER_STREAM_CONTROL_HAS_DECIBEL);
+        flags &= ~(CAFE_MIXER_STREAM_CONTROL_VOLUME_READABLE |
+                   CAFE_MIXER_STREAM_CONTROL_VOLUME_WRITABLE |
+                   CAFE_MIXER_STREAM_CONTROL_HAS_DECIBEL);
 
         /* If the cvolume is not valid, create an empty cvolume, which also
          * won't validate, but at least we know what it is */
@@ -406,7 +406,7 @@ pulse_stream_control_set_cvolume (PulseStreamControl *control,
         }
     }
 
-    _mate_mixer_stream_control_set_flags (MATE_MIXER_STREAM_CONTROL (control), flags);
+    _mate_mixer_stream_control_set_flags (CAFE_MIXER_STREAM_CONTROL (control), flags);
 
     /* Changing volume may change the balance and fade values as well */
     set_balance_fade (control);
@@ -468,12 +468,12 @@ pulse_stream_control_get_decibel (MateMixerStreamControl *mmsc)
 {
     gdouble value;
 
-    g_return_val_if_fail (PULSE_IS_STREAM_CONTROL (mmsc), -MATE_MIXER_INFINITY);
+    g_return_val_if_fail (PULSE_IS_STREAM_CONTROL (mmsc), -CAFE_MIXER_INFINITY);
 
     value = pa_sw_volume_to_dB (pulse_stream_control_get_volume (mmsc));
 
     /* PA_VOLUME_MUTED is converted to PA_DECIBEL_MININFTY */
-    return (value == PA_DECIBEL_MININFTY) ? -MATE_MIXER_INFINITY : value;
+    return (value == PA_DECIBEL_MININFTY) ? -CAFE_MIXER_INFINITY : value;
 }
 
 static gboolean
@@ -526,16 +526,16 @@ pulse_stream_control_get_channel_decibel (MateMixerStreamControl *mmsc, guint ch
     PulseStreamControl *control;
     gdouble             value;
 
-    g_return_val_if_fail (PULSE_IS_STREAM_CONTROL (mmsc), -MATE_MIXER_INFINITY);
+    g_return_val_if_fail (PULSE_IS_STREAM_CONTROL (mmsc), -CAFE_MIXER_INFINITY);
 
     control = PULSE_STREAM_CONTROL (mmsc);
 
     if (channel >= control->priv->cvolume.channels)
-        return -MATE_MIXER_INFINITY;
+        return -CAFE_MIXER_INFINITY;
 
     value = pa_sw_volume_to_dB (control->priv->cvolume.values[channel]);
 
-    return (value == PA_DECIBEL_MININFTY) ? -MATE_MIXER_INFINITY : value;
+    return (value == PA_DECIBEL_MININFTY) ? -CAFE_MIXER_INFINITY : value;
 }
 
 static gboolean
@@ -555,15 +555,15 @@ pulse_stream_control_get_channel_position (MateMixerStreamControl *mmsc, guint c
 {
     PulseStreamControl *control;
 
-    g_return_val_if_fail (PULSE_IS_STREAM_CONTROL (mmsc), MATE_MIXER_CHANNEL_UNKNOWN);
+    g_return_val_if_fail (PULSE_IS_STREAM_CONTROL (mmsc), CAFE_MIXER_CHANNEL_UNKNOWN);
 
     control = PULSE_STREAM_CONTROL (mmsc);
 
     if (channel >= control->priv->channel_map.channels)
-        return MATE_MIXER_CHANNEL_UNKNOWN;
+        return CAFE_MIXER_CHANNEL_UNKNOWN;
 
     if (control->priv->channel_map.map[channel] == PA_CHANNEL_POSITION_INVALID)
-        return MATE_MIXER_CHANNEL_UNKNOWN;
+        return CAFE_MIXER_CHANNEL_UNKNOWN;
 
     return pulse_channel_map_from[control->priv->channel_map.map[channel]];
 }
@@ -691,7 +691,7 @@ pulse_stream_control_get_max_volume (MateMixerStreamControl *mmsc)
      * devices that lack this flag do not extend the volume slider like this, it
      * will not have any effect.
      */
-    if (flags & MATE_MIXER_STREAM_CONTROL_HAS_DECIBEL)
+    if (flags & CAFE_MIXER_STREAM_CONTROL_HAS_DECIBEL)
         return (guint) PA_VOLUME_UI_MAX;
     else
         return (guint) PA_VOLUME_NORM;
@@ -738,12 +738,12 @@ set_balance_fade (PulseStreamControl *control)
     value = pa_cvolume_get_balance (&control->priv->cvolume,
                                     &control->priv->channel_map);
 
-    _mate_mixer_stream_control_set_balance (MATE_MIXER_STREAM_CONTROL (control), value);
+    _mate_mixer_stream_control_set_balance (CAFE_MIXER_STREAM_CONTROL (control), value);
 
     value = pa_cvolume_get_fade (&control->priv->cvolume,
                                  &control->priv->channel_map);
 
-    _mate_mixer_stream_control_set_fade (MATE_MIXER_STREAM_CONTROL (control), value);
+    _mate_mixer_stream_control_set_fade (CAFE_MIXER_STREAM_CONTROL (control), value);
 }
 
 static gboolean

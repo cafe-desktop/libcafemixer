@@ -34,7 +34,7 @@ struct _PulseDeviceSwitchPrivate
 
 static void pulse_device_switch_dispose      (GObject                *object);
 
-G_DEFINE_TYPE_WITH_PRIVATE (PulseDeviceSwitch, pulse_device_switch, MATE_MIXER_TYPE_DEVICE_SWITCH)
+G_DEFINE_TYPE_WITH_PRIVATE (PulseDeviceSwitch, pulse_device_switch, CAFE_MIXER_TYPE_DEVICE_SWITCH)
 
 static gboolean     pulse_device_switch_set_active_option (MateMixerSwitch       *mms,
                                                            MateMixerSwitchOption *mmso);
@@ -55,7 +55,7 @@ pulse_device_switch_class_init (PulseDeviceSwitchClass *klass)
     object_class = G_OBJECT_CLASS (klass);
     object_class->dispose = pulse_device_switch_dispose;
 
-    switch_class = MATE_MIXER_SWITCH_CLASS (klass);
+    switch_class = CAFE_MIXER_SWITCH_CLASS (klass);
     switch_class->set_active_option = pulse_device_switch_set_active_option;
     switch_class->list_options      = pulse_device_switch_list_options;
 }
@@ -90,7 +90,7 @@ pulse_device_switch_new (const gchar *name, const gchar *label, PulseDevice *dev
     return g_object_new (PULSE_TYPE_DEVICE_SWITCH,
                          "name", name,
                          "label", label,
-                         "role", MATE_MIXER_DEVICE_SWITCH_ROLE_PROFILE,
+                         "role", CAFE_MIXER_DEVICE_SWITCH_ROLE_PROFILE,
                          "device", device,
                          NULL);
 }
@@ -113,8 +113,8 @@ pulse_device_switch_set_active_profile (PulseDeviceSwitch  *swtch,
     g_return_if_fail (PULSE_IS_DEVICE_SWITCH (swtch));
     g_return_if_fail (PULSE_IS_DEVICE_PROFILE (profile));
 
-    _mate_mixer_switch_set_active_option (MATE_MIXER_SWITCH (swtch),
-                                          MATE_MIXER_SWITCH_OPTION (profile));
+    _mate_mixer_switch_set_active_option (CAFE_MIXER_SWITCH (swtch),
+                                          CAFE_MIXER_SWITCH_OPTION (profile));
 }
 
 void
@@ -143,7 +143,7 @@ pulse_device_switch_set_active_option (MateMixerSwitch *mms, MateMixerSwitchOpti
     g_return_val_if_fail (PULSE_IS_DEVICE_SWITCH (mms), FALSE);
     g_return_val_if_fail (PULSE_IS_DEVICE_PROFILE (mmso), FALSE);
 
-    device = mate_mixer_device_switch_get_device (MATE_MIXER_DEVICE_SWITCH (mms));
+    device = mate_mixer_device_switch_get_device (CAFE_MIXER_DEVICE_SWITCH (mms));
     if (G_UNLIKELY (device == NULL))
         return FALSE;
 

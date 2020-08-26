@@ -45,7 +45,7 @@ static void mate_mixer_stored_control_set_property (GObject                     
                                                     const GValue                *value,
                                                     GParamSpec                  *pspec);
 
-G_DEFINE_ABSTRACT_TYPE_WITH_PRIVATE (MateMixerStoredControl, mate_mixer_stored_control, MATE_MIXER_TYPE_STREAM_CONTROL)
+G_DEFINE_ABSTRACT_TYPE_WITH_PRIVATE (MateMixerStoredControl, mate_mixer_stored_control, CAFE_MIXER_TYPE_STREAM_CONTROL)
 
 static void
 mate_mixer_stored_control_class_init (MateMixerStoredControlClass *klass)
@@ -60,8 +60,8 @@ mate_mixer_stored_control_class_init (MateMixerStoredControlClass *klass)
         g_param_spec_enum ("direction",
                            "Direction",
                            "Direction of the stored control",
-                           MATE_MIXER_TYPE_DIRECTION,
-                           MATE_MIXER_DIRECTION_UNKNOWN,
+                           CAFE_MIXER_TYPE_DIRECTION,
+                           CAFE_MIXER_DIRECTION_UNKNOWN,
                            G_PARAM_READWRITE |
                            G_PARAM_CONSTRUCT_ONLY |
                            G_PARAM_STATIC_STRINGS);
@@ -77,7 +77,7 @@ mate_mixer_stored_control_get_property (GObject    *object,
 {
     MateMixerStoredControl *control;
 
-    control = MATE_MIXER_STORED_CONTROL (object);
+    control = CAFE_MIXER_STORED_CONTROL (object);
 
     switch (param_id) {
     case PROP_DIRECTION:
@@ -97,7 +97,7 @@ mate_mixer_stored_control_set_property (GObject      *object,
 {
     MateMixerStoredControl *control;
 
-    control = MATE_MIXER_STORED_CONTROL (object);
+    control = CAFE_MIXER_STORED_CONTROL (object);
 
     switch (param_id) {
     case PROP_DIRECTION:
@@ -122,7 +122,7 @@ mate_mixer_stored_control_init (MateMixerStoredControl *control)
 MateMixerDirection
 mate_mixer_stored_control_get_direction (MateMixerStoredControl *control)
 {
-    g_return_val_if_fail (MATE_MIXER_IS_STORED_CONTROL (control), MATE_MIXER_DIRECTION_UNKNOWN);
+    g_return_val_if_fail (CAFE_MIXER_IS_STORED_CONTROL (control), CAFE_MIXER_DIRECTION_UNKNOWN);
 
     return control->priv->direction;
 }

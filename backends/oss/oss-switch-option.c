@@ -29,7 +29,7 @@ struct _OssSwitchOptionPrivate
 static void oss_switch_option_class_init (OssSwitchOptionClass *klass);
 static void oss_switch_option_init       (OssSwitchOption      *option);
 
-G_DEFINE_TYPE_WITH_PRIVATE (OssSwitchOption, oss_switch_option, MATE_MIXER_TYPE_SWITCH_OPTION)
+G_DEFINE_TYPE_WITH_PRIVATE (OssSwitchOption, oss_switch_option, CAFE_MIXER_TYPE_SWITCH_OPTION)
 
 static void
 oss_switch_option_class_init (OssSwitchOptionClass *klass)
