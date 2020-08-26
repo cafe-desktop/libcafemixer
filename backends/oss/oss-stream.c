@@ -41,14 +41,14 @@ static void oss_stream_dispose    (GObject        *object);
 
 G_DEFINE_TYPE_WITH_PRIVATE (OssStream, oss_stream, CAFE_MIXER_TYPE_STREAM)
 
-static const GList *oss_stream_list_controls (MateMixerStream *mms);
-static const GList *oss_stream_list_switches (MateMixerStream *mms);
+static const GList *oss_stream_list_controls (CafeMixerStream *mms);
+static const GList *oss_stream_list_switches (CafeMixerStream *mms);
 
 static void
 oss_stream_class_init (OssStreamClass *klass)
 {
     GObjectClass         *object_class;
-    MateMixerStreamClass *stream_class;
+    CafeMixerStreamClass *stream_class;
 
     object_class = G_OBJECT_CLASS (klass);
     object_class->dispose = oss_stream_dispose;
@@ -87,8 +87,8 @@ oss_stream_dispose (GObject *object)
 
 OssStream *
 oss_stream_new (const gchar       *name,
-                MateMixerDevice   *device,
-                MateMixerDirection direction)
+                CafeMixerDevice   *device,
+                CafeMixerDirection direction)
 {
     const gchar *label;
 
@@ -167,7 +167,7 @@ oss_stream_has_default_control (OssStream *stream)
 OssStreamControl *
 oss_stream_get_default_control (OssStream *stream)
 {
-    MateMixerStreamControl *control;
+    CafeMixerStreamControl *control;
 
     g_return_val_if_fail (OSS_IS_STREAM (stream), NULL);
 
@@ -231,7 +231,7 @@ oss_stream_remove_all (OssStream *stream)
 
     list = stream->priv->controls;
     while (list != NULL) {
-        MateMixerStreamControl *control = CAFE_MIXER_STREAM_CONTROL (list->data);
+        CafeMixerStreamControl *control = CAFE_MIXER_STREAM_CONTROL (list->data);
         GList *next = list->next;
 
         oss_stream_control_close (OSS_STREAM_CONTROL (control));
@@ -263,7 +263,7 @@ oss_stream_remove_all (OssStream *stream)
 }
 
 static const GList *
-oss_stream_list_controls (MateMixerStream *mms)
+oss_stream_list_controls (CafeMixerStream *mms)
 {
     g_return_val_if_fail (OSS_IS_STREAM (mms), NULL);
 
@@ -271,7 +271,7 @@ oss_stream_list_controls (MateMixerStream *mms)
 }
 
 static const GList *
-oss_stream_list_switches (MateMixerStream *mms)
+oss_stream_list_switches (CafeMixerStream *mms)
 {
     g_return_val_if_fail (OSS_IS_STREAM (mms), NULL);
 

@@ -77,7 +77,7 @@ typedef enum {
 typedef struct {
     gchar                     *name;
     gchar                     *label;
-    MateMixerStreamControlRole role;
+    CafeMixerStreamControlRole role;
     OssDevChannelType          type;
     gchar                     *icon;
 } OssDevChannel;
@@ -186,7 +186,7 @@ static void oss_device_finalize   (GObject        *object);
 
 G_DEFINE_TYPE_WITH_PRIVATE (OssDevice, oss_device, CAFE_MIXER_TYPE_DEVICE)
 
-static const GList *oss_device_list_streams       (MateMixerDevice *mmd);
+static const GList *oss_device_list_streams       (CafeMixerDevice *mmd);
 
 static gboolean     poll_mixer                    (OssDevice       *device);
 static gboolean     poll_mixer_restore            (OssDevice       *device);
@@ -207,7 +207,7 @@ static void
 oss_device_class_init (OssDeviceClass *klass)
 {
     GObjectClass         *object_class;
-    MateMixerDeviceClass *device_class;
+    CafeMixerDeviceClass *device_class;
 
     object_class = G_OBJECT_CLASS (klass);
     object_class->dispose  = oss_device_dispose;
@@ -521,7 +521,7 @@ oss_device_get_output_stream (OssDevice *device)
 }
 
 static const GList *
-oss_device_list_streams (MateMixerDevice *mmd)
+oss_device_list_streams (CafeMixerDevice *mmd)
 {
     OssDevice *device;
 

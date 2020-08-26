@@ -221,7 +221,7 @@ const AlsaSwitchOptionInfo alsa_switch_options[] =
     { NULL }
 };
 
-const MateMixerChannelPosition alsa_channel_map_from[SND_MIXER_SCHN_LAST] =
+const CafeMixerChannelPosition alsa_channel_map_from[SND_MIXER_SCHN_LAST] =
 {
     [SND_MIXER_SCHN_FRONT_LEFT]             = CAFE_MIXER_CHANNEL_FRONT_LEFT,
     [SND_MIXER_SCHN_FRONT_RIGHT]            = CAFE_MIXER_CHANNEL_FRONT_RIGHT,

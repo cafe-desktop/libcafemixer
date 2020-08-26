@@ -44,7 +44,7 @@ typedef struct _OssStreamPrivate  OssStreamPrivate;
 
 struct _OssStream
 {
-    MateMixerStream parent;
+    CafeMixerStream parent;
 
     /*< private >*/
     OssStreamPrivate *priv;
@@ -52,14 +52,14 @@ struct _OssStream
 
 struct _OssStreamClass
 {
-    MateMixerStreamClass parent;
+    CafeMixerStreamClass parent;
 };
 
 GType             oss_stream_get_type            (void) G_GNUC_CONST;
 
 OssStream *       oss_stream_new                 (const gchar       *name,
-                                                  MateMixerDevice   *device,
-                                                  MateMixerDirection direction);
+                                                  CafeMixerDevice   *device,
+                                                  CafeMixerDirection direction);
 
 void              oss_stream_add_control         (OssStream         *stream,
                                                   OssStreamControl  *control);

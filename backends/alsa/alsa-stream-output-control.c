@@ -77,7 +77,7 @@ alsa_stream_output_control_init (AlsaStreamOutputControl *control)
 AlsaStreamControl *
 alsa_stream_output_control_new (const gchar               *name,
                                 const gchar               *label,
-                                MateMixerStreamControlRole role,
+                                CafeMixerStreamControlRole role,
                                 AlsaStream                *stream)
 {
     g_return_val_if_fail (name  != NULL, NULL);

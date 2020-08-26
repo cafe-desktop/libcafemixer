@@ -61,8 +61,8 @@
  * Streams may also exist independently as the sound system may for example
  * allow audio streaming over a network.
  *
- * For a more thorough description of devices and streams, see #MateMixerDevice
- * and #MateMixerStream.
+ * For a more thorough description of devices and streams, see #CafeMixerDevice
+ * and #CafeMixerStream.
  *
  * Devices and streams (as almost all other elements in the library) may appear
  * and disappear at any time, for example when external sound cards are plugged
@@ -70,15 +70,15 @@
  * handle these events.
  */
 
-struct _MateMixerContextPrivate
+struct _CafeMixerContextPrivate
 {
     gboolean                backend_chosen;
     gchar                  *server_address;
-    MateMixerState          state;
-    MateMixerBackend       *backend;
-    MateMixerAppInfo       *app_info;
-    MateMixerBackendType    backend_type;
-    MateMixerBackendModule *module;
+    CafeMixerState          state;
+    CafeMixerBackend       *backend;
+    CafeMixerAppInfo       *app_info;
+    CafeMixerBackendType    backend_type;
+    CafeMixerBackendModule *module;
 };
 
 enum {
@@ -120,49 +120,49 @@ static void cafe_mixer_context_set_property (GObject               *object,
 static void cafe_mixer_context_dispose      (GObject               *object);
 static void cafe_mixer_context_finalize     (GObject               *object);
 
-G_DEFINE_TYPE_WITH_PRIVATE (MateMixerContext, cafe_mixer_context, G_TYPE_OBJECT);
+G_DEFINE_TYPE_WITH_PRIVATE (CafeMixerContext, cafe_mixer_context, G_TYPE_OBJECT);
 
-static void     on_backend_state_notify                 (MateMixerBackend *backend,
+static void     on_backend_state_notify                 (CafeMixerBackend *backend,
                                                          GParamSpec       *pspec,
-                                                         MateMixerContext *context);
+                                                         CafeMixerContext *context);
 
-static void     on_backend_device_added                 (MateMixerBackend *backend,
+static void     on_backend_device_added                 (CafeMixerBackend *backend,
                                                          const gchar      *name,
-                                                         MateMixerContext *context);
-static void     on_backend_device_removed               (MateMixerBackend *backend,
+                                                         CafeMixerContext *context);
+static void     on_backend_device_removed               (CafeMixerBackend *backend,
                                                          const gchar      *name,
-                                                         MateMixerContext *context);
+                                                         CafeMixerContext *context);
 
-static void     on_backend_stream_added                 (MateMixerBackend *backend,
+static void     on_backend_stream_added                 (CafeMixerBackend *backend,
                                                          const gchar      *name,
-                                                         MateMixerContext *context);
-static void     on_backend_stream_removed               (MateMixerBackend *backend,
+                                                         CafeMixerContext *context);
+static void     on_backend_stream_removed               (CafeMixerBackend *backend,
                                                          const gchar      *name,
-                                                         MateMixerContext *context);
+                                                         CafeMixerContext *context);
 
-static void     on_backend_stored_control_added         (MateMixerBackend *backend,
+static void     on_backend_stored_control_added         (CafeMixerBackend *backend,
                                                          const gchar      *name,
-                                                         MateMixerContext *context);
-static void     on_backend_stored_control_removed       (MateMixerBackend *backend,
+                                                         CafeMixerContext *context);
+static void     on_backend_stored_control_removed       (CafeMixerBackend *backend,
                                                          const gchar      *name,
-                                                         MateMixerContext *context);
+                                                         CafeMixerContext *context);
 
-static void     on_backend_default_input_stream_notify  (MateMixerBackend *backend,
+static void     on_backend_default_input_stream_notify  (CafeMixerBackend *backend,
                                                          GParamSpec       *pspec,
-                                                         MateMixerContext *context);
-static void     on_backend_default_output_stream_notify (MateMixerBackend *backend,
+                                                         CafeMixerContext *context);
+static void     on_backend_default_output_stream_notify (CafeMixerBackend *backend,
                                                          GParamSpec       *pspec,
-                                                         MateMixerContext *context);
+                                                         CafeMixerContext *context);
 
-static gboolean try_next_backend                        (MateMixerContext *context);
+static gboolean try_next_backend                        (CafeMixerContext *context);
 
-static void     change_state                            (MateMixerContext *context,
-                                                         MateMixerState    state);
+static void     change_state                            (CafeMixerContext *context,
+                                                         CafeMixerState    state);
 
-static void     close_context                           (MateMixerContext *context);
+static void     close_context                           (CafeMixerContext *context);
 
 static void
-cafe_mixer_context_class_init (MateMixerContextClass *klass)
+cafe_mixer_context_class_init (CafeMixerContextClass *klass)
 {
     GObjectClass *object_class;
 
@@ -173,7 +173,7 @@ cafe_mixer_context_class_init (MateMixerContextClass *klass)
     object_class->set_property = cafe_mixer_context_set_property;
 
     /**
-     * MateMixerContext:app-name:
+     * CafeMixerContext:app-name:
      *
      * Localized human readable name of the application.
      */
@@ -185,7 +185,7 @@ cafe_mixer_context_class_init (MateMixerContextClass *klass)
                              G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS);
 
     /**
-     * MateMixerContext:app-id:
+     * CafeMixerContext:app-id:
      *
      * Identifier of the application (e.g. org.example.app).
      */
@@ -197,7 +197,7 @@ cafe_mixer_context_class_init (MateMixerContextClass *klass)
                              G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS);
 
     /**
-     * MateMixerContext:app-version:
+     * CafeMixerContext:app-version:
      *
      * Version of the application.
      */
@@ -209,7 +209,7 @@ cafe_mixer_context_class_init (MateMixerContextClass *klass)
                              G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS);
 
     /**
-     * MateMixerContext:app-icon:
+     * CafeMixerContext:app-icon:
      *
      * The XDG icon name of the application.
      */
@@ -221,7 +221,7 @@ cafe_mixer_context_class_init (MateMixerContextClass *klass)
                              G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS);
 
     /**
-     * MateMixerContext:server-address:
+     * CafeMixerContext:server-address:
      *
      * Address of the sound server to connect to.
      *
@@ -237,7 +237,7 @@ cafe_mixer_context_class_init (MateMixerContextClass *klass)
                              G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS);
 
     /**
-     * MateMixerContext:state:
+     * CafeMixerContext:state:
      *
      * The current state of the connection to a sound system.
      */
@@ -250,7 +250,7 @@ cafe_mixer_context_class_init (MateMixerContextClass *klass)
                            G_PARAM_READABLE | G_PARAM_STATIC_STRINGS);
 
     /**
-     * MateMixerContext:default-input-stream:
+     * CafeMixerContext:default-input-stream:
      *
      * The stream sound input most likely comes from by default.
      *
@@ -265,7 +265,7 @@ cafe_mixer_context_class_init (MateMixerContextClass *klass)
                              G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS);
 
     /**
-     * MateMixerContext:default-output-stream:
+     * CafeMixerContext:default-output-stream:
      *
      * The stream sound output is most likely directed to by default.
      *
@@ -282,13 +282,13 @@ cafe_mixer_context_class_init (MateMixerContextClass *klass)
     g_object_class_install_properties (object_class, N_PROPERTIES, properties);
 
     /**
-     * MateMixerContext::device-added:
-     * @context: a #MateMixerContext
+     * CafeMixerContext::device-added:
+     * @context: a #CafeMixerContext
      * @name: name of the added device
      *
      * The signal is emitted each time a device is added to the system.
      *
-     * Use cafe_mixer_context_get_device() to get the #MateMixerDevice.
+     * Use cafe_mixer_context_get_device() to get the #CafeMixerDevice.
      *
      * Note that at the time this signal is emitted, the streams and switches
      * of the device may not yet be known.
@@ -297,7 +297,7 @@ cafe_mixer_context_class_init (MateMixerContextClass *klass)
         g_signal_new ("device-added",
                       G_TYPE_FROM_CLASS (object_class),
                       G_SIGNAL_RUN_FIRST,
-                      G_STRUCT_OFFSET (MateMixerContextClass, device_added),
+                      G_STRUCT_OFFSET (CafeMixerContextClass, device_added),
                       NULL,
                       NULL,
                       g_cclosure_marshal_VOID__STRING,
@@ -306,8 +306,8 @@ cafe_mixer_context_class_init (MateMixerContextClass *klass)
                       G_TYPE_STRING);
 
     /**
-     * MateMixerContext::device-removed:
-     * @context: a #MateMixerContext
+     * CafeMixerContext::device-removed:
+     * @context: a #CafeMixerContext
      * @name: name of the removed device
      *
      * The signal is emitted each time a device is removed from the system.
@@ -321,7 +321,7 @@ cafe_mixer_context_class_init (MateMixerContextClass *klass)
         g_signal_new ("device-removed",
                       G_TYPE_FROM_CLASS (object_class),
                       G_SIGNAL_RUN_FIRST,
-                      G_STRUCT_OFFSET (MateMixerContextClass, device_removed),
+                      G_STRUCT_OFFSET (CafeMixerContextClass, device_removed),
                       NULL,
                       NULL,
                       g_cclosure_marshal_VOID__STRING,
@@ -330,15 +330,15 @@ cafe_mixer_context_class_init (MateMixerContextClass *klass)
                       G_TYPE_STRING);
 
     /**
-     * MateMixerContext::stream-added:
-     * @context: a #MateMixerContext
+     * CafeMixerContext::stream-added:
+     * @context: a #CafeMixerContext
      * @name: name of the added stream
      *
      * The signal is emitted each time a stream is added.
      *
      * This signal is emitted for streams which belong to devices as well as
      * streams which do not. If you are only interested in streams of a
-     * specific device, the signal is also available in #MateMixerDevice.
+     * specific device, the signal is also available in #CafeMixerDevice.
      *
      * Note that at the time this signal is emitted, the controls and switches
      * of the stream may not yet be known.
@@ -347,7 +347,7 @@ cafe_mixer_context_class_init (MateMixerContextClass *klass)
         g_signal_new ("stream-added",
                       G_TYPE_FROM_CLASS (object_class),
                       G_SIGNAL_RUN_FIRST,
-                      G_STRUCT_OFFSET (MateMixerContextClass, stream_added),
+                      G_STRUCT_OFFSET (CafeMixerContextClass, stream_added),
                       NULL,
                       NULL,
                       g_cclosure_marshal_VOID__STRING,
@@ -356,8 +356,8 @@ cafe_mixer_context_class_init (MateMixerContextClass *klass)
                       G_TYPE_STRING);
 
     /**
-     * MateMixerContext::stream-removed:
-     * @context: a #MateMixerContext
+     * CafeMixerContext::stream-removed:
+     * @context: a #CafeMixerContext
      * @name: name of the removed stream
      *
      * The signal is emitted each time a stream is removed.
@@ -369,13 +369,13 @@ cafe_mixer_context_class_init (MateMixerContextClass *klass)
      *
      * This signal is emitted for streams which belong to devices as well as
      * streams which do not. If you are only interested in streams of a
-     * specific device, the signal is also available in #MateMixerDevice.
+     * specific device, the signal is also available in #CafeMixerDevice.
      */
     signals[STREAM_REMOVED] =
         g_signal_new ("stream-removed",
                       G_TYPE_FROM_CLASS (object_class),
                       G_SIGNAL_RUN_FIRST,
-                      G_STRUCT_OFFSET (MateMixerContextClass, stream_removed),
+                      G_STRUCT_OFFSET (CafeMixerContextClass, stream_removed),
                       NULL,
                       NULL,
                       g_cclosure_marshal_VOID__STRING,
@@ -384,19 +384,19 @@ cafe_mixer_context_class_init (MateMixerContextClass *klass)
                       G_TYPE_STRING);
 
     /**
-     * MateMixerContext::stored-control-added:
-     * @context: a #MateMixerContext
+     * CafeMixerContext::stored-control-added:
+     * @context: a #CafeMixerContext
      * @name: name of the added stored control
      *
      * The signal is emitted each time a stored control is added.
      *
-     * Use cafe_mixer_context_get_stored_control() to get the #MateMixerStoredControl.
+     * Use cafe_mixer_context_get_stored_control() to get the #CafeMixerStoredControl.
      */
     signals[STORED_CONTROL_ADDED] =
         g_signal_new ("stored-control-added",
                       G_TYPE_FROM_CLASS (object_class),
                       G_SIGNAL_RUN_FIRST,
-                      G_STRUCT_OFFSET (MateMixerContextClass, stored_control_added),
+                      G_STRUCT_OFFSET (CafeMixerContextClass, stored_control_added),
                       NULL,
                       NULL,
                       g_cclosure_marshal_VOID__STRING,
@@ -405,8 +405,8 @@ cafe_mixer_context_class_init (MateMixerContextClass *klass)
                       G_TYPE_STRING);
 
     /**
-     * MateMixerContext::stored-control-removed:
-     * @context: a #MateMixerContext
+     * CafeMixerContext::stored-control-removed:
+     * @context: a #CafeMixerContext
      * @name: name of the removed stored control
      *
      * The signal is emitted each time a stored control is removed.
@@ -420,7 +420,7 @@ cafe_mixer_context_class_init (MateMixerContextClass *klass)
         g_signal_new ("stored-control-removed",
                       G_TYPE_FROM_CLASS (object_class),
                       G_SIGNAL_RUN_FIRST,
-                      G_STRUCT_OFFSET (MateMixerContextClass, stored_control_removed),
+                      G_STRUCT_OFFSET (CafeMixerContextClass, stored_control_removed),
                       NULL,
                       NULL,
                       g_cclosure_marshal_VOID__STRING,
@@ -435,7 +435,7 @@ cafe_mixer_context_get_property (GObject    *object,
                                  GValue     *value,
                                  GParamSpec *pspec)
 {
-    MateMixerContext *context;
+    CafeMixerContext *context;
 
     context = CAFE_MIXER_CONTEXT (object);
 
@@ -477,7 +477,7 @@ cafe_mixer_context_set_property (GObject      *object,
                                  const GValue *value,
                                  GParamSpec   *pspec)
 {
-    MateMixerContext *context;
+    CafeMixerContext *context;
 
     context = CAFE_MIXER_CONTEXT (object);
 
@@ -511,7 +511,7 @@ cafe_mixer_context_set_property (GObject      *object,
 }
 
 static void
-cafe_mixer_context_init (MateMixerContext *context)
+cafe_mixer_context_init (CafeMixerContext *context)
 {
     context->priv = cafe_mixer_context_get_instance_private (context);
 
@@ -521,7 +521,7 @@ cafe_mixer_context_init (MateMixerContext *context)
 static void
 cafe_mixer_context_dispose (GObject *object)
 {
-    MateMixerContext *context;
+    CafeMixerContext *context;
 
     context = CAFE_MIXER_CONTEXT (object);
 
@@ -533,7 +533,7 @@ cafe_mixer_context_dispose (GObject *object)
 static void
 cafe_mixer_context_finalize (GObject *object)
 {
-    MateMixerContext *context;
+    CafeMixerContext *context;
 
     context = CAFE_MIXER_CONTEXT (object);
 
@@ -547,12 +547,12 @@ cafe_mixer_context_finalize (GObject *object)
 /**
  * cafe_mixer_context_new:
  *
- * Creates a new #MateMixerContext instance.
+ * Creates a new #CafeMixerContext instance.
  *
- * Returns: a new #MateMixerContext instance or %NULL if the library has not
+ * Returns: a new #CafeMixerContext instance or %NULL if the library has not
  * been initialized with cafe_mixer_init().
  */
-MateMixerContext *
+CafeMixerContext *
 cafe_mixer_context_new (void)
 {
     if (cafe_mixer_is_initialized () == FALSE) {
@@ -565,10 +565,10 @@ cafe_mixer_context_new (void)
 
 /**
  * cafe_mixer_context_set_backend_type:
- * @context: a #MateMixerContext
+ * @context: a #CafeMixerContext
  * @backend_type: the sound system backend to use
  *
- * Makes the #MateMixerContext use the given #MateMixerBackendType.
+ * Makes the #CafeMixerContext use the given #CafeMixerBackendType.
  *
  * By default the backend type is determined automatically. This function can
  * be used to alter this behavior and make the @context use the selected sound
@@ -586,12 +586,12 @@ cafe_mixer_context_new (void)
  * Returns: %TRUE on success or %FALSE on failure.
  */
 gboolean
-cafe_mixer_context_set_backend_type (MateMixerContext    *context,
-                                     MateMixerBackendType backend_type)
+cafe_mixer_context_set_backend_type (CafeMixerContext    *context,
+                                     CafeMixerBackendType backend_type)
 {
-    MateMixerBackendModule     *module;
+    CafeMixerBackendModule     *module;
     const GList                *modules;
-    const MateMixerBackendInfo *info;
+    const CafeMixerBackendInfo *info;
 
     g_return_val_if_fail (CAFE_MIXER_IS_CONTEXT (context), FALSE);
 
@@ -621,7 +621,7 @@ cafe_mixer_context_set_backend_type (MateMixerContext    *context,
 
 /**
  * cafe_mixer_context_set_app_name:
- * @context: a #MateMixerContext
+ * @context: a #CafeMixerContext
  * @app_name: the name of your application, or %NULL to unset
  *
  * Sets the name of your application. This information may be used when
@@ -633,7 +633,7 @@ cafe_mixer_context_set_backend_type (MateMixerContext    *context,
  * Returns: %TRUE on success or %FALSE on failure.
  */
 gboolean
-cafe_mixer_context_set_app_name (MateMixerContext *context, const gchar *app_name)
+cafe_mixer_context_set_app_name (CafeMixerContext *context, const gchar *app_name)
 {
     g_return_val_if_fail (CAFE_MIXER_IS_CONTEXT (context), FALSE);
 
@@ -649,7 +649,7 @@ cafe_mixer_context_set_app_name (MateMixerContext *context, const gchar *app_nam
 
 /**
  * cafe_mixer_context_set_app_id:
- * @context: a #MateMixerContext
+ * @context: a #CafeMixerContext
  * @app_id: the identifier of your application, or %NULL to unset
  *
  * Sets the identifier of your application (e.g. org.example.app). This
@@ -661,7 +661,7 @@ cafe_mixer_context_set_app_name (MateMixerContext *context, const gchar *app_nam
  * Returns: %TRUE on success or %FALSE on failure.
  */
 gboolean
-cafe_mixer_context_set_app_id (MateMixerContext *context, const gchar *app_id)
+cafe_mixer_context_set_app_id (CafeMixerContext *context, const gchar *app_id)
 {
     g_return_val_if_fail (CAFE_MIXER_IS_CONTEXT (context), FALSE);
 
@@ -677,7 +677,7 @@ cafe_mixer_context_set_app_id (MateMixerContext *context, const gchar *app_id)
 
 /**
  * cafe_mixer_context_set_app_version:
- * @context: a #MateMixerContext
+ * @context: a #CafeMixerContext
  * @app_version: the version of your application, or %NULL to unset
  *
  * Sets the version of your application. This information may be used when
@@ -689,7 +689,7 @@ cafe_mixer_context_set_app_id (MateMixerContext *context, const gchar *app_id)
  * Returns: %TRUE on success or %FALSE on failure.
  */
 gboolean
-cafe_mixer_context_set_app_version (MateMixerContext *context, const gchar *app_version)
+cafe_mixer_context_set_app_version (CafeMixerContext *context, const gchar *app_version)
 {
     g_return_val_if_fail (CAFE_MIXER_IS_CONTEXT (context), FALSE);
 
@@ -705,7 +705,7 @@ cafe_mixer_context_set_app_version (MateMixerContext *context, const gchar *app_
 
 /**
  * cafe_mixer_context_set_app_icon:
- * @context: a #MateMixerContext
+ * @context: a #CafeMixerContext
  * @app_icon: the XDG icon name of your application, or %NULL to unset
  *
  * Sets the XDG icon name of your application. This information may be used when
@@ -717,7 +717,7 @@ cafe_mixer_context_set_app_version (MateMixerContext *context, const gchar *app_
  * Returns: %TRUE on success or %FALSE on failure.
  */
 gboolean
-cafe_mixer_context_set_app_icon (MateMixerContext *context, const gchar *app_icon)
+cafe_mixer_context_set_app_icon (CafeMixerContext *context, const gchar *app_icon)
 {
     g_return_val_if_fail (CAFE_MIXER_IS_CONTEXT (context), FALSE);
 
@@ -733,7 +733,7 @@ cafe_mixer_context_set_app_icon (MateMixerContext *context, const gchar *app_ico
 
 /**
  * cafe_mixer_context_set_server_address:
- * @context: a #MateMixerContext
+ * @context: a #CafeMixerContext
  * @address: the address of the sound server to connect to or %NULL
  *
  * Sets the address of the sound server. This feature is only supported in the
@@ -746,7 +746,7 @@ cafe_mixer_context_set_app_icon (MateMixerContext *context, const gchar *app_ico
  * Returns: %TRUE on success or %FALSE on failure.
  */
 gboolean
-cafe_mixer_context_set_server_address (MateMixerContext *context, const gchar *address)
+cafe_mixer_context_set_server_address (CafeMixerContext *context, const gchar *address)
 {
     g_return_val_if_fail (CAFE_MIXER_IS_CONTEXT (context), FALSE);
 
@@ -764,7 +764,7 @@ cafe_mixer_context_set_server_address (MateMixerContext *context, const gchar *a
 
 /**
  * cafe_mixer_context_open:
- * @context: a #MateMixerContext
+ * @context: a #CafeMixerContext
  *
  * Opens connection to a sound system. Unless the sound system backend type
  * was chosen manually with cafe_mixer_context_set_backend_type(), the library
@@ -772,12 +772,12 @@ cafe_mixer_context_set_server_address (MateMixerContext *context, const gchar *a
  *
  * This function can complete the operation either synchronously or
  * asynchronously and it may go through a series of connection
- * #MateMixerContext:state transitions.
+ * #CafeMixerContext:state transitions.
  *
  * If this function returns %TRUE, the connection has either been established, or
  * it hasn't been established yet and the result will be determined asynchronously.
  * You can differentiate between these two possibilities by checking the connection
- * #MateMixerContext:state after this function returns.
+ * #CafeMixerContext:state after this function returns.
  *
  * The %CAFE_MIXER_STATE_READY state indicates that the connection has been
  * established successfully.
@@ -789,18 +789,18 @@ cafe_mixer_context_set_server_address (MateMixerContext *context, const gchar *a
  * the thread's default main context for this purpose.
  *
  * If this function returns %FALSE, it was not possible to connect to a sound system
- * and the #MateMixerContext:state will be set to %CAFE_MIXER_STATE_FAILED.
+ * and the #CafeMixerContext:state will be set to %CAFE_MIXER_STATE_FAILED.
  *
  * Returns: %TRUE on success or if the result will be determined asynchronously,
  * or %FALSE on failure.
  */
 gboolean
-cafe_mixer_context_open (MateMixerContext *context)
+cafe_mixer_context_open (CafeMixerContext *context)
 {
-    MateMixerBackendModule     *module = NULL;
-    MateMixerState              state;
+    CafeMixerBackendModule     *module = NULL;
+    CafeMixerState              state;
     const GList                *modules;
-    const MateMixerBackendInfo *info = NULL;
+    const CafeMixerBackendInfo *info = NULL;
 
     g_return_val_if_fail (CAFE_MIXER_IS_CONTEXT (context), FALSE);
 
@@ -814,7 +814,7 @@ cafe_mixer_context_open (MateMixerContext *context)
 
     if (context->priv->backend_type != CAFE_MIXER_BACKEND_UNKNOWN) {
         while (modules != NULL) {
-            const MateMixerBackendInfo *info;
+            const CafeMixerBackendInfo *info;
 
             module = CAFE_MIXER_BACKEND_MODULE (modules->data);
             info   = cafe_mixer_backend_module_get_info (module);
@@ -890,13 +890,13 @@ cafe_mixer_context_open (MateMixerContext *context)
 
 /**
  * cafe_mixer_context_close:
- * @context: a #MateMixerContext
+ * @context: a #CafeMixerContext
  *
- * Closes an open connection to the sound system. The #MateMixerContext:state
+ * Closes an open connection to the sound system. The #CafeMixerContext:state
  * will be set to %CAFE_MIXER_STATE_IDLE.
  */
 void
-cafe_mixer_context_close (MateMixerContext *context)
+cafe_mixer_context_close (CafeMixerContext *context)
 {
     g_return_if_fail (CAFE_MIXER_IS_CONTEXT (context));
 
@@ -906,14 +906,14 @@ cafe_mixer_context_close (MateMixerContext *context)
 
 /**
  * cafe_mixer_context_get_state:
- * @context: a #MateMixerContext
+ * @context: a #CafeMixerContext
  *
  * Gets the state of the @context's connection to a sound system.
  *
  * Returns: the connection state.
  */
-MateMixerState
-cafe_mixer_context_get_state (MateMixerContext *context)
+CafeMixerState
+cafe_mixer_context_get_state (CafeMixerContext *context)
 {
     g_return_val_if_fail (CAFE_MIXER_IS_CONTEXT (context), CAFE_MIXER_STATE_UNKNOWN);
 
@@ -922,15 +922,15 @@ cafe_mixer_context_get_state (MateMixerContext *context)
 
 /**
  * cafe_mixer_context_get_device:
- * @context: a #MateMixerContext
+ * @context: a #CafeMixerContext
  * @name: a device name
  *
  * Gets the device with the given name.
  *
- * Returns: a #MateMixerDevice or %NULL if there is no such device.
+ * Returns: a #CafeMixerDevice or %NULL if there is no such device.
  */
-MateMixerDevice *
-cafe_mixer_context_get_device (MateMixerContext *context, const gchar *name)
+CafeMixerDevice *
+cafe_mixer_context_get_device (CafeMixerContext *context, const gchar *name)
 {
     g_return_val_if_fail (CAFE_MIXER_IS_CONTEXT (context), NULL);
     g_return_val_if_fail (name != NULL, NULL);
@@ -943,15 +943,15 @@ cafe_mixer_context_get_device (MateMixerContext *context, const gchar *name)
 
 /**
  * cafe_mixer_context_get_stream:
- * @context: a #MateMixerContext
+ * @context: a #CafeMixerContext
  * @name: a stream name
  *
  * Gets the stream with the given name.
  *
- * Returns: a #MateMixerStream or %NULL if there is no such stream.
+ * Returns: a #CafeMixerStream or %NULL if there is no such stream.
  */
-MateMixerStream *
-cafe_mixer_context_get_stream (MateMixerContext *context, const gchar *name)
+CafeMixerStream *
+cafe_mixer_context_get_stream (CafeMixerContext *context, const gchar *name)
 {
     g_return_val_if_fail (CAFE_MIXER_IS_CONTEXT (context), NULL);
     g_return_val_if_fail (name != NULL, NULL);
@@ -964,15 +964,15 @@ cafe_mixer_context_get_stream (MateMixerContext *context, const gchar *name)
 
 /**
  * cafe_mixer_context_get_stored_control:
- * @context: a #MateMixerContext
+ * @context: a #CafeMixerContext
  * @name: a stored control name
  *
  * Gets the stored control with the given name.
  *
- * Returns: a #MateMixerStoredControl or %NULL if there is no such stored control.
+ * Returns: a #CafeMixerStoredControl or %NULL if there is no such stored control.
  */
-MateMixerStoredControl *
-cafe_mixer_context_get_stored_control (MateMixerContext *context, const gchar *name)
+CafeMixerStoredControl *
+cafe_mixer_context_get_stored_control (CafeMixerContext *context, const gchar *name)
 {
     g_return_val_if_fail (CAFE_MIXER_IS_CONTEXT (context), NULL);
     g_return_val_if_fail (name != NULL, NULL);
@@ -985,9 +985,9 @@ cafe_mixer_context_get_stored_control (MateMixerContext *context, const gchar *n
 
 /**
  * cafe_mixer_context_list_devices:
- * @context: a #MateMixerContext
+ * @context: a #CafeMixerContext
  *
- * Gets a list of devices. Each item in the list is a #MateMixerDevice representing
+ * Gets a list of devices. Each item in the list is a #CafeMixerDevice representing
  * a sound device in the system.
  *
  * The returned #GList is owned by the library and may be invalidated at any time.
@@ -996,7 +996,7 @@ cafe_mixer_context_get_stored_control (MateMixerContext *context, const gchar *n
  * you are not connected to a sound system.
  */
 const GList *
-cafe_mixer_context_list_devices (MateMixerContext *context)
+cafe_mixer_context_list_devices (CafeMixerContext *context)
 {
     g_return_val_if_fail (CAFE_MIXER_IS_CONTEXT (context), NULL);
 
@@ -1008,9 +1008,9 @@ cafe_mixer_context_list_devices (MateMixerContext *context)
 
 /**
  * cafe_mixer_context_list_streams:
- * @context: a #MateMixerContext
+ * @context: a #CafeMixerContext
  *
- * Gets a list of streams. Each item in the list is a #MateMixerStream representing
+ * Gets a list of streams. Each item in the list is a #CafeMixerStream representing
  * an input or output stream.
  *
  * Note that the list will contain streams which belong to devices as well
@@ -1023,7 +1023,7 @@ cafe_mixer_context_list_devices (MateMixerContext *context)
  * you are not connected to a sound system.
  */
 const GList *
-cafe_mixer_context_list_streams (MateMixerContext *context)
+cafe_mixer_context_list_streams (CafeMixerContext *context)
 {
     g_return_val_if_fail (CAFE_MIXER_IS_CONTEXT (context), NULL);
 
@@ -1035,9 +1035,9 @@ cafe_mixer_context_list_streams (MateMixerContext *context)
 
 /**
  * cafe_mixer_context_list_stored_controls:
- * @context: a #MateMixerContext
+ * @context: a #CafeMixerContext
  *
- * Gets a list of stored controls. Each item in the list is a #MateMixerStoredControl.
+ * Gets a list of stored controls. Each item in the list is a #CafeMixerStoredControl.
  *
  * The returned #GList is owned by the library and may be invalidated at any time.
  *
@@ -1045,7 +1045,7 @@ cafe_mixer_context_list_streams (MateMixerContext *context)
  * connected to a sound system.
  */
 const GList *
-cafe_mixer_context_list_stored_controls (MateMixerContext *context)
+cafe_mixer_context_list_stored_controls (CafeMixerContext *context)
 {
     g_return_val_if_fail (CAFE_MIXER_IS_CONTEXT (context), NULL);
 
@@ -1057,15 +1057,15 @@ cafe_mixer_context_list_stored_controls (MateMixerContext *context)
 
 /**
  * cafe_mixer_context_get_default_input_stream:
- * @context: a #MateMixerContext
+ * @context: a #CafeMixerContext
  *
  * Gets the default input stream. The returned stream is where sound input
  * most likely comes from by default.
  *
- * Returns: a #MateMixerStream or %NULL if there is no default input stream.
+ * Returns: a #CafeMixerStream or %NULL if there is no default input stream.
  */
-MateMixerStream *
-cafe_mixer_context_get_default_input_stream (MateMixerContext *context)
+CafeMixerStream *
+cafe_mixer_context_get_default_input_stream (CafeMixerContext *context)
 {
     g_return_val_if_fail (CAFE_MIXER_IS_CONTEXT (context), NULL);
 
@@ -1077,8 +1077,8 @@ cafe_mixer_context_get_default_input_stream (MateMixerContext *context)
 
 /**
  * cafe_mixer_context_set_default_input_stream:
- * @context: a #MateMixerContext
- * @stream: a #MateMixerStream to set as the default input stream
+ * @context: a #CafeMixerContext
+ * @stream: a #CafeMixerStream to set as the default input stream
  *
  * Changes the default input stream. The given @stream must be an input stream.
  *
@@ -1088,8 +1088,8 @@ cafe_mixer_context_get_default_input_stream (MateMixerContext *context)
  * Returns: %TRUE on success or %FALSE on failure.
  */
 gboolean
-cafe_mixer_context_set_default_input_stream (MateMixerContext *context,
-                                             MateMixerStream  *stream)
+cafe_mixer_context_set_default_input_stream (CafeMixerContext *context,
+                                             CafeMixerStream  *stream)
 {
     g_return_val_if_fail (CAFE_MIXER_IS_CONTEXT (context), FALSE);
     g_return_val_if_fail (CAFE_MIXER_IS_STREAM (stream), FALSE);
@@ -1102,16 +1102,16 @@ cafe_mixer_context_set_default_input_stream (MateMixerContext *context,
 
 /**
  * cafe_mixer_context_get_default_output_stream:
- * @context: a #MateMixerContext
+ * @context: a #CafeMixerContext
  *
  * Gets the default output stream. The returned stream is where sound output is
  * most likely directed to by default.
  *
- * Returns: a #MateMixerStream or %NULL if there are no output streams in
+ * Returns: a #CafeMixerStream or %NULL if there are no output streams in
  * the system.
  */
-MateMixerStream *
-cafe_mixer_context_get_default_output_stream (MateMixerContext *context)
+CafeMixerStream *
+cafe_mixer_context_get_default_output_stream (CafeMixerContext *context)
 {
     g_return_val_if_fail (CAFE_MIXER_IS_CONTEXT (context), NULL);
 
@@ -1123,8 +1123,8 @@ cafe_mixer_context_get_default_output_stream (MateMixerContext *context)
 
 /**
  * cafe_mixer_context_set_default_output_stream:
- * @context: a #MateMixerContext
- * @stream: a #MateMixerStream to set as the default output stream
+ * @context: a #CafeMixerContext
+ * @stream: a #CafeMixerStream to set as the default output stream
  *
  * Changes the default output stream. The given @stream must be an output stream.
  *
@@ -1134,8 +1134,8 @@ cafe_mixer_context_get_default_output_stream (MateMixerContext *context)
  * Returns: %TRUE on success or %FALSE on failure.
  */
 gboolean
-cafe_mixer_context_set_default_output_stream (MateMixerContext *context,
-                                              MateMixerStream *stream)
+cafe_mixer_context_set_default_output_stream (CafeMixerContext *context,
+                                              CafeMixerStream *stream)
 {
     g_return_val_if_fail (CAFE_MIXER_IS_CONTEXT (context), FALSE);
     g_return_val_if_fail (CAFE_MIXER_IS_STREAM (stream), FALSE);
@@ -1148,7 +1148,7 @@ cafe_mixer_context_set_default_output_stream (MateMixerContext *context,
 
 /**
  * cafe_mixer_context_get_backend_name:
- * @context: a #MateMixerContext
+ * @context: a #CafeMixerContext
  *
  * Gets the name of the currently used sound system backend.
  *
@@ -1157,7 +1157,7 @@ cafe_mixer_context_set_default_output_stream (MateMixerContext *context,
  * Returns: the name or %NULL on error.
  */
 const gchar *
-cafe_mixer_context_get_backend_name (MateMixerContext *context)
+cafe_mixer_context_get_backend_name (CafeMixerContext *context)
 {
     g_return_val_if_fail (CAFE_MIXER_IS_CONTEXT (context), NULL);
 
@@ -1169,7 +1169,7 @@ cafe_mixer_context_get_backend_name (MateMixerContext *context)
 
 /**
  * cafe_mixer_context_get_backend_type:
- * @context: a #MateMixerContext
+ * @context: a #CafeMixerContext
  *
  * Gets the type of the currently used sound system backend.
  *
@@ -1177,8 +1177,8 @@ cafe_mixer_context_get_backend_name (MateMixerContext *context)
  *
  * Returns: the backend type or %CAFE_MIXER_BACKEND_UNKNOWN on error.
  */
-MateMixerBackendType
-cafe_mixer_context_get_backend_type (MateMixerContext *context)
+CafeMixerBackendType
+cafe_mixer_context_get_backend_type (CafeMixerContext *context)
 {
     g_return_val_if_fail (CAFE_MIXER_IS_CONTEXT (context), CAFE_MIXER_BACKEND_UNKNOWN);
 
@@ -1190,7 +1190,7 @@ cafe_mixer_context_get_backend_type (MateMixerContext *context)
 
 /**
  * cafe_mixer_context_get_backend_flags:
- * @context: a #MateMixerContext
+ * @context: a #CafeMixerContext
  *
  * Gets the capability flags of the currently used sound system backend.
  *
@@ -1198,8 +1198,8 @@ cafe_mixer_context_get_backend_type (MateMixerContext *context)
  *
  * Returns: the capability flags.
  */
-MateMixerBackendFlags
-cafe_mixer_context_get_backend_flags (MateMixerContext *context)
+CafeMixerBackendFlags
+cafe_mixer_context_get_backend_flags (CafeMixerContext *context)
 {
     g_return_val_if_fail (CAFE_MIXER_IS_CONTEXT (context), CAFE_MIXER_BACKEND_NO_FLAGS);
 
@@ -1210,11 +1210,11 @@ cafe_mixer_context_get_backend_flags (MateMixerContext *context)
 }
 
 static void
-on_backend_state_notify (MateMixerBackend *backend,
+on_backend_state_notify (CafeMixerBackend *backend,
                          GParamSpec       *pspec,
-                         MateMixerContext *context)
+                         CafeMixerContext *context)
 {
-    MateMixerState state = cafe_mixer_backend_get_state (backend);
+    CafeMixerState state = cafe_mixer_backend_get_state (backend);
 
     switch (state) {
     case CAFE_MIXER_STATE_CONNECTING:
@@ -1251,9 +1251,9 @@ on_backend_state_notify (MateMixerBackend *backend,
 }
 
 static void
-on_backend_device_added (MateMixerBackend *backend,
+on_backend_device_added (CafeMixerBackend *backend,
                          const gchar      *name,
-                         MateMixerContext *context)
+                         CafeMixerContext *context)
 {
     g_signal_emit (G_OBJECT (context),
                    signals[DEVICE_ADDED],
@@ -1262,9 +1262,9 @@ on_backend_device_added (MateMixerBackend *backend,
 }
 
 static void
-on_backend_device_removed (MateMixerBackend *backend,
+on_backend_device_removed (CafeMixerBackend *backend,
                            const gchar      *name,
-                           MateMixerContext *context)
+                           CafeMixerContext *context)
 {
     g_signal_emit (G_OBJECT (context),
                    signals[DEVICE_REMOVED],
@@ -1273,9 +1273,9 @@ on_backend_device_removed (MateMixerBackend *backend,
 }
 
 static void
-on_backend_stream_added (MateMixerBackend *backend,
+on_backend_stream_added (CafeMixerBackend *backend,
                          const gchar      *name,
-                         MateMixerContext *context)
+                         CafeMixerContext *context)
 {
     g_signal_emit (G_OBJECT (context),
                    signals[STREAM_ADDED],
@@ -1284,9 +1284,9 @@ on_backend_stream_added (MateMixerBackend *backend,
 }
 
 static void
-on_backend_stream_removed (MateMixerBackend *backend,
+on_backend_stream_removed (CafeMixerBackend *backend,
                            const gchar      *name,
-                           MateMixerContext *context)
+                           CafeMixerContext *context)
 {
     g_signal_emit (G_OBJECT (context),
                    signals[STREAM_REMOVED],
@@ -1295,9 +1295,9 @@ on_backend_stream_removed (MateMixerBackend *backend,
 }
 
 static void
-on_backend_stored_control_added (MateMixerBackend *backend,
+on_backend_stored_control_added (CafeMixerBackend *backend,
                                  const gchar      *name,
-                                 MateMixerContext *context)
+                                 CafeMixerContext *context)
 {
     g_signal_emit (G_OBJECT (context),
                    signals[STORED_CONTROL_ADDED],
@@ -1306,9 +1306,9 @@ on_backend_stored_control_added (MateMixerBackend *backend,
 }
 
 static void
-on_backend_stored_control_removed (MateMixerBackend *backend,
+on_backend_stored_control_removed (CafeMixerBackend *backend,
                                    const gchar      *name,
-                                   MateMixerContext *context)
+                                   CafeMixerContext *context)
 {
     g_signal_emit (G_OBJECT (context),
                    signals[STORED_CONTROL_REMOVED],
@@ -1317,28 +1317,28 @@ on_backend_stored_control_removed (MateMixerBackend *backend,
 }
 
 static void
-on_backend_default_input_stream_notify (MateMixerBackend *backend,
+on_backend_default_input_stream_notify (CafeMixerBackend *backend,
                                         GParamSpec       *pspec,
-                                        MateMixerContext *context)
+                                        CafeMixerContext *context)
 {
     g_object_notify_by_pspec (G_OBJECT (context), properties[PROP_DEFAULT_INPUT_STREAM]);
 }
 
 static void
-on_backend_default_output_stream_notify (MateMixerBackend *backend,
+on_backend_default_output_stream_notify (CafeMixerBackend *backend,
                                          GParamSpec       *pspec,
-                                         MateMixerContext *context)
+                                         CafeMixerContext *context)
 {
     g_object_notify_by_pspec (G_OBJECT (context), properties[PROP_DEFAULT_OUTPUT_STREAM]);
 }
 
 static gboolean
-try_next_backend (MateMixerContext *context)
+try_next_backend (CafeMixerContext *context)
 {
-    MateMixerBackendModule     *module = NULL;
-    MateMixerState              state;
+    CafeMixerBackendModule     *module = NULL;
+    CafeMixerState              state;
     const GList                *modules;
-    const MateMixerBackendInfo *info = NULL;
+    const CafeMixerBackendInfo *info = NULL;
 
     modules = _cafe_mixer_list_modules ();
 
@@ -1395,7 +1395,7 @@ try_next_backend (MateMixerContext *context)
 }
 
 static void
-change_state (MateMixerContext *context, MateMixerState state)
+change_state (CafeMixerContext *context, CafeMixerState state)
 {
     if (context->priv->state == state)
         return;
@@ -1448,7 +1448,7 @@ change_state (MateMixerContext *context, MateMixerState state)
 }
 
 static void
-close_context (MateMixerContext *context)
+close_context (CafeMixerContext *context)
 {
     if (context->priv->backend != NULL) {
         g_signal_handlers_disconnect_by_data (G_OBJECT (context->priv->backend),

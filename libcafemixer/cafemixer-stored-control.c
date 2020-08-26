@@ -23,9 +23,9 @@
 #include "cafemixer-stream-control.h"
 #include "cafemixer-stored-control.h"
 
-struct _MateMixerStoredControlPrivate
+struct _CafeMixerStoredControlPrivate
 {
-    MateMixerDirection direction;
+    CafeMixerDirection direction;
 };
 
 enum {
@@ -45,10 +45,10 @@ static void cafe_mixer_stored_control_set_property (GObject                     
                                                     const GValue                *value,
                                                     GParamSpec                  *pspec);
 
-G_DEFINE_ABSTRACT_TYPE_WITH_PRIVATE (MateMixerStoredControl, cafe_mixer_stored_control, CAFE_MIXER_TYPE_STREAM_CONTROL)
+G_DEFINE_ABSTRACT_TYPE_WITH_PRIVATE (CafeMixerStoredControl, cafe_mixer_stored_control, CAFE_MIXER_TYPE_STREAM_CONTROL)
 
 static void
-cafe_mixer_stored_control_class_init (MateMixerStoredControlClass *klass)
+cafe_mixer_stored_control_class_init (CafeMixerStoredControlClass *klass)
 {
     GObjectClass *object_class;
 
@@ -75,7 +75,7 @@ cafe_mixer_stored_control_get_property (GObject    *object,
                                         GValue     *value,
                                         GParamSpec *pspec)
 {
-    MateMixerStoredControl *control;
+    CafeMixerStoredControl *control;
 
     control = CAFE_MIXER_STORED_CONTROL (object);
 
@@ -95,7 +95,7 @@ cafe_mixer_stored_control_set_property (GObject      *object,
                                         const GValue *value,
                                         GParamSpec   *pspec)
 {
-    MateMixerStoredControl *control;
+    CafeMixerStoredControl *control;
 
     control = CAFE_MIXER_STORED_CONTROL (object);
 
@@ -110,17 +110,17 @@ cafe_mixer_stored_control_set_property (GObject      *object,
 }
 
 static void
-cafe_mixer_stored_control_init (MateMixerStoredControl *control)
+cafe_mixer_stored_control_init (CafeMixerStoredControl *control)
 {
     control->priv = cafe_mixer_stored_control_get_instance_private (control);
 }
 
 /**
  * cafe_mixer_stored_control_get_direction:
- * @control: a #MateMixerStoredControl
+ * @control: a #CafeMixerStoredControl
  */
-MateMixerDirection
-cafe_mixer_stored_control_get_direction (MateMixerStoredControl *control)
+CafeMixerDirection
+cafe_mixer_stored_control_get_direction (CafeMixerStoredControl *control)
 {
     g_return_val_if_fail (CAFE_MIXER_IS_STORED_CONTROL (control), CAFE_MIXER_DIRECTION_UNKNOWN);
 

@@ -24,7 +24,7 @@
 
 G_BEGIN_DECLS
 
-MateMixerSwitchOption *_cafe_mixer_switch_option_new (const gchar *name,
+CafeMixerSwitchOption *_cafe_mixer_switch_option_new (const gchar *name,
                                                       const gchar *label,
                                                       const gchar *icon);
 

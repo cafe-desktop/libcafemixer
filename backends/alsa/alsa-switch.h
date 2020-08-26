@@ -44,7 +44,7 @@ typedef struct _AlsaSwitchPrivate  AlsaSwitchPrivate;
 
 struct _AlsaSwitch
 {
-    MateMixerStreamSwitch parent;
+    CafeMixerStreamSwitch parent;
 
     /*< private >*/
     AlsaSwitchPrivate *priv;
@@ -52,7 +52,7 @@ struct _AlsaSwitch
 
 struct _AlsaSwitchClass
 {
-    MateMixerStreamSwitchClass parent_class;
+    CafeMixerStreamSwitchClass parent_class;
 };
 
 GType       alsa_switch_get_type (void) G_GNUC_CONST;
@@ -60,7 +60,7 @@ GType       alsa_switch_get_type (void) G_GNUC_CONST;
 AlsaSwitch *alsa_switch_new      (AlsaStream               *stream,
                                   const gchar              *name,
                                   const gchar              *label,
-                                  MateMixerStreamSwitchRole role,
+                                  CafeMixerStreamSwitchRole role,
                                   GList                    *options);
 
 G_END_DECLS

@@ -58,11 +58,11 @@ pulse_sink_control_new (PulseConnection    *connection,
                         PulseSink          *parent)
 {
     PulseSinkControl           *control;
-    MateMixerStreamControlFlags flags = CAFE_MIXER_STREAM_CONTROL_MUTE_READABLE |
+    CafeMixerStreamControlFlags flags = CAFE_MIXER_STREAM_CONTROL_MUTE_READABLE |
                                         CAFE_MIXER_STREAM_CONTROL_MUTE_WRITABLE |
                                         CAFE_MIXER_STREAM_CONTROL_VOLUME_READABLE |
                                         CAFE_MIXER_STREAM_CONTROL_VOLUME_WRITABLE;
-    MateMixerStreamControlRole  role;
+    CafeMixerStreamControlRole  role;
     guint32                     index;
 
     g_return_val_if_fail (PULSE_IS_CONNECTION (connection), NULL);

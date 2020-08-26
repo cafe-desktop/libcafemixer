@@ -25,19 +25,19 @@
 
 G_BEGIN_DECLS
 
-void _cafe_mixer_stream_control_set_flags   (MateMixerStreamControl     *control,
-                                             MateMixerStreamControlFlags flags);
+void _cafe_mixer_stream_control_set_flags   (CafeMixerStreamControl     *control,
+                                             CafeMixerStreamControlFlags flags);
 
-void _cafe_mixer_stream_control_set_stream  (MateMixerStreamControl     *control,
-                                             MateMixerStream            *stream);
+void _cafe_mixer_stream_control_set_stream  (CafeMixerStreamControl     *control,
+                                             CafeMixerStream            *stream);
 
-void _cafe_mixer_stream_control_set_mute    (MateMixerStreamControl     *control,
+void _cafe_mixer_stream_control_set_mute    (CafeMixerStreamControl     *control,
                                              gboolean                    mute);
 
-void _cafe_mixer_stream_control_set_balance (MateMixerStreamControl     *control,
+void _cafe_mixer_stream_control_set_balance (CafeMixerStreamControl     *control,
                                              gfloat                      balance);
 
-void _cafe_mixer_stream_control_set_fade    (MateMixerStreamControl     *control,
+void _cafe_mixer_stream_control_set_fade    (CafeMixerStreamControl     *control,
                                              gfloat                      fade);
 
 G_END_DECLS

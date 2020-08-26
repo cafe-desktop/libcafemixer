@@ -44,7 +44,7 @@ typedef struct _AlsaStreamPrivate  AlsaStreamPrivate;
 
 struct _AlsaStream
 {
-    MateMixerStream parent;
+    CafeMixerStream parent;
 
     /*< private >*/
     AlsaStreamPrivate *priv;
@@ -52,14 +52,14 @@ struct _AlsaStream
 
 struct _AlsaStreamClass
 {
-    MateMixerStreamClass parent_class;
+    CafeMixerStreamClass parent_class;
 };
 
 GType              alsa_stream_get_type                 (void) G_GNUC_CONST;
 
 AlsaStream *       alsa_stream_new                      (const gchar       *name,
-                                                         MateMixerDevice   *device,
-                                                         MateMixerDirection direction);
+                                                         CafeMixerDevice   *device,
+                                                         CafeMixerDirection direction);
 
 void               alsa_stream_add_control              (AlsaStream        *stream,
                                                          AlsaStreamControl *control);

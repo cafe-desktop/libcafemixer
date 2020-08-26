@@ -25,10 +25,10 @@
 
 G_BEGIN_DECLS
 
-extern const MateMixerChannelPosition   pulse_channel_map_from[PA_CHANNEL_POSITION_MAX];
+extern const CafeMixerChannelPosition   pulse_channel_map_from[PA_CHANNEL_POSITION_MAX];
 extern const pa_channel_position_t      pulse_channel_map_to[CAFE_MIXER_CHANNEL_MAX];
 
-MateMixerStreamControlMediaRole pulse_convert_media_role_name (const gchar *name);
+CafeMixerStreamControlMediaRole pulse_convert_media_role_name (const gchar *name);
 
 G_END_DECLS
 

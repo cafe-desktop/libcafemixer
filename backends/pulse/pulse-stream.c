@@ -173,7 +173,7 @@ pulse_stream_get_connection (PulseStream *stream)
 PulseDevice *
 pulse_stream_get_device (PulseStream *stream)
 {
-    MateMixerDevice *device;
+    CafeMixerDevice *device;
 
     g_return_val_if_fail (PULSE_IS_STREAM (stream), NULL);
 

@@ -26,7 +26,7 @@
  * @include: libcafemixer/cafemixer.h
  */
 
-struct _MateMixerSwitchOptionPrivate
+struct _CafeMixerSwitchOptionPrivate
 {
     gchar *name;
     gchar *label;
@@ -54,10 +54,10 @@ static void cafe_mixer_switch_option_set_property (GObject                    *o
 
 static void cafe_mixer_switch_option_finalize     (GObject                    *object);
 
-G_DEFINE_TYPE_WITH_PRIVATE (MateMixerSwitchOption, cafe_mixer_switch_option, G_TYPE_OBJECT)
+G_DEFINE_TYPE_WITH_PRIVATE (CafeMixerSwitchOption, cafe_mixer_switch_option, G_TYPE_OBJECT)
 
 static void
-cafe_mixer_switch_option_class_init (MateMixerSwitchOptionClass *klass)
+cafe_mixer_switch_option_class_init (CafeMixerSwitchOptionClass *klass)
 {
     GObjectClass *object_class;
 
@@ -67,7 +67,7 @@ cafe_mixer_switch_option_class_init (MateMixerSwitchOptionClass *klass)
     object_class->set_property = cafe_mixer_switch_option_set_property;
 
     /**
-     * MateMixerSwitchOption:name:
+     * CafeMixerSwitchOption:name:
      *
      * The name of the switch option. The name serves as a unique identifier
      * and in most cases it is not in a user-readable form.
@@ -82,7 +82,7 @@ cafe_mixer_switch_option_class_init (MateMixerSwitchOptionClass *klass)
                              G_PARAM_STATIC_STRINGS);
 
     /**
-     * MateMixerSwitchOption:label:
+     * CafeMixerSwitchOption:label:
      *
      * The label of the switch option. This is a potentially translated string
      * that should be presented to users in the user interface.
@@ -97,7 +97,7 @@ cafe_mixer_switch_option_class_init (MateMixerSwitchOptionClass *klass)
                              G_PARAM_STATIC_STRINGS);
 
     /**
-     * MateMixerSwitchOption:icon:
+     * CafeMixerSwitchOption:icon:
      *
      * The XDG icon name of the switch option.
      */
@@ -119,7 +119,7 @@ cafe_mixer_switch_option_get_property (GObject    *object,
                                        GValue     *value,
                                        GParamSpec *pspec)
 {
-    MateMixerSwitchOption *option;
+    CafeMixerSwitchOption *option;
 
     option = CAFE_MIXER_SWITCH_OPTION (object);
 
@@ -146,7 +146,7 @@ cafe_mixer_switch_option_set_property (GObject      *object,
                                        const GValue *value,
                                        GParamSpec   *pspec)
 {
-    MateMixerSwitchOption *option;
+    CafeMixerSwitchOption *option;
 
     option = CAFE_MIXER_SWITCH_OPTION (object);
 
@@ -171,7 +171,7 @@ cafe_mixer_switch_option_set_property (GObject      *object,
 }
 
 static void
-cafe_mixer_switch_option_init (MateMixerSwitchOption *option)
+cafe_mixer_switch_option_init (CafeMixerSwitchOption *option)
 {
     option->priv = cafe_mixer_switch_option_get_instance_private (option);
 }
@@ -179,7 +179,7 @@ cafe_mixer_switch_option_init (MateMixerSwitchOption *option)
 static void
 cafe_mixer_switch_option_finalize (GObject *object)
 {
-    MateMixerSwitchOption *option;
+    CafeMixerSwitchOption *option;
 
     option = CAFE_MIXER_SWITCH_OPTION (object);
 
@@ -192,19 +192,19 @@ cafe_mixer_switch_option_finalize (GObject *object)
 
 /**
  * cafe_mixer_switch_option_get_name:
- * @option: a #MateMixerSwitchOption
+ * @option: a #CafeMixerSwitchOption
  *
  * Gets the name of the switch option. The name serves as a unique identifier
  * and in most cases it is not in a user-readable form.
  *
  * The returned name is guaranteed to be unique across all the switch options
- * of a particular #MateMixerSwitch and may be used to get the #MateMixerSwitchOption
+ * of a particular #CafeMixerSwitch and may be used to get the #CafeMixerSwitchOption
  * using cafe_mixer_switch_get_option().
  *
  * Returns: the name of the switch option.
  */
 const gchar *
-cafe_mixer_switch_option_get_name (MateMixerSwitchOption *option)
+cafe_mixer_switch_option_get_name (CafeMixerSwitchOption *option)
 {
     g_return_val_if_fail (CAFE_MIXER_IS_SWITCH_OPTION (option), NULL);
 
@@ -213,7 +213,7 @@ cafe_mixer_switch_option_get_name (MateMixerSwitchOption *option)
 
 /**
  * cafe_mixer_switch_option_get_label:
- * @option: a #MateMixerSwitchOption
+ * @option: a #CafeMixerSwitchOption
  *
  * Gets the label of the switch option. This is a potentially translated string
  * that should be presented to users in the user interface.
@@ -221,7 +221,7 @@ cafe_mixer_switch_option_get_name (MateMixerSwitchOption *option)
  * Returns: the label of the switch option.
  */
 const gchar *
-cafe_mixer_switch_option_get_label (MateMixerSwitchOption *option)
+cafe_mixer_switch_option_get_label (CafeMixerSwitchOption *option)
 {
     g_return_val_if_fail (CAFE_MIXER_IS_SWITCH_OPTION (option), NULL);
 
@@ -230,21 +230,21 @@ cafe_mixer_switch_option_get_label (MateMixerSwitchOption *option)
 
 /**
  * cafe_mixer_switch_option_get_icon:
- * @option: a #MateMixerSwitchOption
+ * @option: a #CafeMixerSwitchOption
  *
  * Gets the XDG icon name of the switch option.
  *
  * Returns: the icon name or %NULL.
  */
 const gchar *
-cafe_mixer_switch_option_get_icon (MateMixerSwitchOption *option)
+cafe_mixer_switch_option_get_icon (CafeMixerSwitchOption *option)
 {
     g_return_val_if_fail (CAFE_MIXER_IS_SWITCH_OPTION (option), NULL);
 
     return option->priv->icon;
 }
 
-MateMixerSwitchOption *
+CafeMixerSwitchOption *
 _cafe_mixer_switch_option_new (const gchar *name,
                                const gchar *label,
                                const gchar *icon)

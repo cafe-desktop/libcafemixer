@@ -108,7 +108,7 @@ G_BEGIN_DECLS
 
 const GList *_cafe_mixer_list_modules        (void);
 
-guint32      _cafe_mixer_create_channel_mask (MateMixerChannelPosition *positions,
+guint32      _cafe_mixer_create_channel_mask (CafeMixerChannelPosition *positions,
                                               guint                     n) G_GNUC_PURE;
 
 G_END_DECLS

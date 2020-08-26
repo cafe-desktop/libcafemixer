@@ -56,7 +56,7 @@ struct _PulseBackendPrivate
     GList            *devices_list;
     GList            *streams_list;
     GList            *ext_streams_list;
-    MateMixerAppInfo *app_info;
+    CafeMixerAppInfo *app_info;
     gchar            *server_address;
     PulseConnection  *connection;
 };
@@ -122,24 +122,24 @@ static void pulse_backend_finalize       (GObject           *object);
 G_DEFINE_DYNAMIC_TYPE_EXTENDED (PulseBackend, pulse_backend, CAFE_MIXER_TYPE_BACKEND, 0, G_ADD_PRIVATE_DYNAMIC(PulseBackend))
 #pragma clang diagnostic pop
 
-static gboolean         pulse_backend_open                      (MateMixerBackend *backend);
-static void             pulse_backend_close                     (MateMixerBackend *backend);
+static gboolean         pulse_backend_open                      (CafeMixerBackend *backend);
+static void             pulse_backend_close                     (CafeMixerBackend *backend);
 
-static void             pulse_backend_set_app_info              (MateMixerBackend *backend,
-                                                                 MateMixerAppInfo *info);
+static void             pulse_backend_set_app_info              (CafeMixerBackend *backend,
+                                                                 CafeMixerAppInfo *info);
 
-static void             pulse_backend_set_server_address        (MateMixerBackend *backend,
+static void             pulse_backend_set_server_address        (CafeMixerBackend *backend,
                                                                  const gchar      *address);
 
-static const GList *    pulse_backend_list_devices              (MateMixerBackend *backend);
-static const GList *    pulse_backend_list_streams              (MateMixerBackend *backend);
-static const GList *    pulse_backend_list_stored_controls      (MateMixerBackend *backend);
+static const GList *    pulse_backend_list_devices              (CafeMixerBackend *backend);
+static const GList *    pulse_backend_list_streams              (CafeMixerBackend *backend);
+static const GList *    pulse_backend_list_stored_controls      (CafeMixerBackend *backend);
 
-static gboolean         pulse_backend_set_default_input_stream  (MateMixerBackend *backend,
-                                                                 MateMixerStream  *stream);
+static gboolean         pulse_backend_set_default_input_stream  (CafeMixerBackend *backend,
+                                                                 CafeMixerStream  *stream);
 
-static gboolean         pulse_backend_set_default_output_stream (MateMixerBackend *backend,
-                                                                 MateMixerStream  *stream);
+static gboolean         pulse_backend_set_default_output_stream (CafeMixerBackend *backend,
+                                                                 CafeMixerStream  *stream);
 
 static void             on_connection_state_notify          (PulseConnection                  *connection,
                                                              GParamSpec                       *pspec,
@@ -209,7 +209,7 @@ static gboolean         compare_stream_names                (gpointer           
                                                              gpointer                          value,
                                                              gpointer                          user_data);
 
-static MateMixerBackendInfo info;
+static CafeMixerBackendInfo info;
 
 void
 backend_module_init (GTypeModule *module)
@@ -223,7 +223,7 @@ backend_module_init (GTypeModule *module)
     info.backend_type  = CAFE_MIXER_BACKEND_PULSEAUDIO;
 }
 
-const MateMixerBackendInfo *backend_module_get_info (void)
+const CafeMixerBackendInfo *backend_module_get_info (void)
 {
     return &info;
 }
@@ -232,7 +232,7 @@ static void
 pulse_backend_class_init (PulseBackendClass *klass)
 {
     GObjectClass          *object_class;
-    MateMixerBackendClass *backend_class;
+    CafeMixerBackendClass *backend_class;
 
     object_class = G_OBJECT_CLASS (klass);
     object_class->dispose  = pulse_backend_dispose;
@@ -299,8 +299,8 @@ pulse_backend_init (PulseBackend *pulse)
 static void
 pulse_backend_dispose (GObject *object)
 {
-    MateMixerBackend *backend;
-    MateMixerState    state;
+    CafeMixerBackend *backend;
+    CafeMixerState    state;
 
     backend = CAFE_MIXER_BACKEND (object);
 
@@ -337,7 +337,7 @@ pulse_backend_finalize (GObject *object)
 #define PULSE_APP_ICON(p)    (cafe_mixer_app_info_get_icon (p->priv->app_info))
 
 static gboolean
-pulse_backend_open (MateMixerBackend *backend)
+pulse_backend_open (CafeMixerBackend *backend)
 {
     PulseBackend    *pulse;
     PulseConnection *connection;
@@ -441,7 +441,7 @@ pulse_backend_open (MateMixerBackend *backend)
 }
 
 static void
-pulse_backend_close (MateMixerBackend *backend)
+pulse_backend_close (CafeMixerBackend *backend)
 {
     PulseBackend *pulse;
 
@@ -478,7 +478,7 @@ pulse_backend_close (MateMixerBackend *backend)
 }
 
 static void
-pulse_backend_set_app_info (MateMixerBackend *backend, MateMixerAppInfo *info)
+pulse_backend_set_app_info (CafeMixerBackend *backend, CafeMixerAppInfo *info)
 {
     PulseBackend *pulse;
 
@@ -494,7 +494,7 @@ pulse_backend_set_app_info (MateMixerBackend *backend, MateMixerAppInfo *info)
 }
 
 static void
-pulse_backend_set_server_address (MateMixerBackend *backend, const gchar *address)
+pulse_backend_set_server_address (CafeMixerBackend *backend, const gchar *address)
 {
     g_return_if_fail (PULSE_IS_BACKEND (backend));
 
@@ -504,7 +504,7 @@ pulse_backend_set_server_address (MateMixerBackend *backend, const gchar *addres
 }
 
 static const GList *
-pulse_backend_list_devices (MateMixerBackend *backend)
+pulse_backend_list_devices (CafeMixerBackend *backend)
 {
     PulseBackend *pulse;
 
@@ -521,7 +521,7 @@ pulse_backend_list_devices (MateMixerBackend *backend)
 }
 
 static const GList *
-pulse_backend_list_streams (MateMixerBackend *backend)
+pulse_backend_list_streams (CafeMixerBackend *backend)
 {
     PulseBackend *pulse;
 
@@ -547,7 +547,7 @@ pulse_backend_list_streams (MateMixerBackend *backend)
 }
 
 static const GList *
-pulse_backend_list_stored_controls (MateMixerBackend *backend)
+pulse_backend_list_stored_controls (CafeMixerBackend *backend)
 {
     PulseBackend *pulse;
 
@@ -564,8 +564,8 @@ pulse_backend_list_stored_controls (MateMixerBackend *backend)
 }
 
 static gboolean
-pulse_backend_set_default_input_stream (MateMixerBackend *backend,
-                                        MateMixerStream  *stream)
+pulse_backend_set_default_input_stream (CafeMixerBackend *backend,
+                                        CafeMixerStream  *stream)
 {
     PulseBackend *pulse;
     const gchar  *name;
@@ -587,8 +587,8 @@ pulse_backend_set_default_input_stream (MateMixerBackend *backend,
 }
 
 static gboolean
-pulse_backend_set_default_output_stream (MateMixerBackend *backend,
-                                         MateMixerStream  *stream)
+pulse_backend_set_default_output_stream (CafeMixerBackend *backend,
+                                         CafeMixerStream  *stream)
 {
     PulseBackend *pulse;
     const gchar  *name;
@@ -670,7 +670,7 @@ on_connection_server_info (PulseConnection      *connection,
                            const pa_server_info *info,
                            PulseBackend         *pulse)
 {
-    MateMixerStream *stream;
+    CafeMixerStream *stream;
     const gchar     *name_source = NULL;
     const gchar     *name_sink = NULL;
 
@@ -680,7 +680,7 @@ on_connection_server_info (PulseConnection      *connection,
 
     if (g_strcmp0 (name_source, info->default_source_name) != 0) {
         if (info->default_source_name != NULL) {
-            MateMixerStream *stream = g_hash_table_find (pulse->priv->sources,
+            CafeMixerStream *stream = g_hash_table_find (pulse->priv->sources,
                                                          compare_stream_names,
                                                          (gpointer) info->default_source_name);
 
@@ -716,7 +716,7 @@ on_connection_server_info (PulseConnection      *connection,
 
     if (g_strcmp0 (name_sink, info->default_sink_name) != 0) {
         if (info->default_sink_name != NULL) {
-            MateMixerStream *stream = g_hash_table_find (pulse->priv->sinks,
+            CafeMixerStream *stream = g_hash_table_find (pulse->priv->sinks,
                                                          compare_stream_names,
                                                          (gpointer) info->default_sink_name);
 
@@ -1255,7 +1255,7 @@ free_list_ext_streams (PulseBackend *pulse)
 static gboolean
 compare_stream_names (gpointer key, gpointer value, gpointer user_data)
 {
-    MateMixerStream *stream = CAFE_MIXER_STREAM (value);
+    CafeMixerStream *stream = CAFE_MIXER_STREAM (value);
 
     return strcmp (cafe_mixer_stream_get_name (stream), (const gchar *) user_data) == 0;
 }

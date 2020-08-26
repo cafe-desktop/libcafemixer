@@ -41,18 +41,18 @@ typedef struct _NullBackendClass  NullBackendClass;
 
 struct _NullBackend
 {
-    MateMixerBackend parent;
+    CafeMixerBackend parent;
 };
 
 struct _NullBackendClass
 {
-    MateMixerBackendClass parent_class;
+    CafeMixerBackendClass parent_class;
 };
 
 GType                       null_backend_get_type   (void) G_GNUC_CONST;
 
 /* Support function for dynamic loading of the backend module */
 void                        backend_module_init     (GTypeModule *module);
-const MateMixerBackendInfo *backend_module_get_info (void);
+const CafeMixerBackendInfo *backend_module_get_info (void);
 
 #endif /* NULL_BACKEND_H */

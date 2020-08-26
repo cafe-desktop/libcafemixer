@@ -66,11 +66,11 @@ static void pulse_device_finalize     (GObject          *object);
 
 G_DEFINE_TYPE_WITH_PRIVATE (PulseDevice, pulse_device, CAFE_MIXER_TYPE_DEVICE)
 
-static MateMixerStream *pulse_device_get_stream    (MateMixerDevice    *mmd,
+static CafeMixerStream *pulse_device_get_stream    (CafeMixerDevice    *mmd,
                                                     const gchar        *name);
 
-static const GList *    pulse_device_list_streams  (MateMixerDevice    *mmd);
-static const GList *    pulse_device_list_switches (MateMixerDevice    *mmd);
+static const GList *    pulse_device_list_streams  (CafeMixerDevice    *mmd);
+static const GList *    pulse_device_list_switches (CafeMixerDevice    *mmd);
 
 static void             pulse_device_load          (PulseDevice        *device,
                                                     const pa_card_info *info);
@@ -81,7 +81,7 @@ static void
 pulse_device_class_init (PulseDeviceClass *klass)
 {
     GObjectClass         *object_class;
-    MateMixerDeviceClass *device_class;
+    CafeMixerDeviceClass *device_class;
 
     object_class = G_OBJECT_CLASS (klass);
     object_class->dispose      = pulse_device_dispose;
@@ -322,8 +322,8 @@ pulse_device_get_port (PulseDevice *device, const gchar *name)
     return g_hash_table_lookup (device->priv->ports, name);
 }
 
-static MateMixerStream *
-pulse_device_get_stream (MateMixerDevice *mmd, const gchar *name)
+static CafeMixerStream *
+pulse_device_get_stream (CafeMixerDevice *mmd, const gchar *name)
 {
     g_return_val_if_fail (PULSE_IS_DEVICE (mmd), NULL);
     g_return_val_if_fail (name != NULL, NULL);
@@ -332,7 +332,7 @@ pulse_device_get_stream (MateMixerDevice *mmd, const gchar *name)
 }
 
 static const GList *
-pulse_device_list_streams (MateMixerDevice *mmd)
+pulse_device_list_streams (CafeMixerDevice *mmd)
 {
     PulseDevice *device;
 
@@ -349,7 +349,7 @@ pulse_device_list_streams (MateMixerDevice *mmd)
 }
 
 static const GList *
-pulse_device_list_switches (MateMixerDevice *mmd)
+pulse_device_list_switches (CafeMixerDevice *mmd)
 {
     g_return_val_if_fail (PULSE_IS_DEVICE (mmd), NULL);
 

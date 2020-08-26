@@ -39,10 +39,10 @@ static void oss_switch_finalize   (GObject        *object);
 
 G_DEFINE_TYPE_WITH_PRIVATE (OssSwitch, oss_switch, CAFE_MIXER_TYPE_STREAM_SWITCH)
 
-static gboolean         oss_switch_set_active_option (MateMixerSwitch       *mms,
-                                                      MateMixerSwitchOption *mmso);
+static gboolean         oss_switch_set_active_option (CafeMixerSwitch       *mms,
+                                                      CafeMixerSwitchOption *mmso);
 
-static const GList *    oss_switch_list_options      (MateMixerSwitch       *mms);
+static const GList *    oss_switch_list_options      (CafeMixerSwitch       *mms);
 
 static OssSwitchOption *choose_default_option        (OssSwitch             *swtch);
 
@@ -50,7 +50,7 @@ static void
 oss_switch_class_init (OssSwitchClass *klass)
 {
     GObjectClass         *object_class;
-    MateMixerSwitchClass *switch_class;
+    CafeMixerSwitchClass *switch_class;
 
     object_class = G_OBJECT_CLASS (klass);
     object_class->dispose  = oss_switch_dispose;
@@ -211,7 +211,7 @@ oss_switch_close (OssSwitch *swtch)
 }
 
 static gboolean
-oss_switch_set_active_option (MateMixerSwitch *mms, MateMixerSwitchOption *mmso)
+oss_switch_set_active_option (CafeMixerSwitch *mms, CafeMixerSwitchOption *mmso)
 {
     OssSwitch *swtch;
     gint       ret;
@@ -235,7 +235,7 @@ oss_switch_set_active_option (MateMixerSwitch *mms, MateMixerSwitchOption *mmso)
 }
 
 static const GList *
-oss_switch_list_options (MateMixerSwitch *mms)
+oss_switch_list_options (CafeMixerSwitch *mms)
 {
     g_return_val_if_fail (OSS_IS_SWITCH (mms), NULL);
 

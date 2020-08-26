@@ -77,7 +77,7 @@ alsa_stream_input_control_init (AlsaStreamInputControl *control)
 AlsaStreamControl *
 alsa_stream_input_control_new (const gchar               *name,
                                const gchar               *label,
-                               MateMixerStreamControlRole role,
+                               CafeMixerStreamControlRole role,
                                AlsaStream                *stream)
 {
 

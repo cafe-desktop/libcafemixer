@@ -44,7 +44,7 @@ typedef struct _AlsaSwitchOptionPrivate  AlsaSwitchOptionPrivate;
 
 struct _AlsaSwitchOption
 {
-    MateMixerSwitchOption parent;
+    CafeMixerSwitchOption parent;
 
     /*< private >*/
     AlsaSwitchOptionPrivate *priv;
@@ -52,7 +52,7 @@ struct _AlsaSwitchOption
 
 struct _AlsaSwitchOptionClass
 {
-    MateMixerSwitchOptionClass parent_class;
+    CafeMixerSwitchOptionClass parent_class;
 };
 
 GType             alsa_switch_option_get_type (void) G_GNUC_CONST;

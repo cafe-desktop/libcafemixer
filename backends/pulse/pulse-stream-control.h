@@ -46,7 +46,7 @@ typedef struct _PulseStreamControlPrivate  PulseStreamControlPrivate;
 
 struct _PulseStreamControl
 {
-    MateMixerStreamControl parent;
+    CafeMixerStreamControl parent;
 
     /*< private >*/
     PulseStreamControlPrivate *priv;
@@ -54,7 +54,7 @@ struct _PulseStreamControl
 
 struct _PulseStreamControlClass
 {
-    MateMixerStreamControlClass parent_class;
+    CafeMixerStreamControlClass parent_class;
 
     /*< private >*/
     gboolean      (*set_mute)        (PulseStreamControl *control,
@@ -77,7 +77,7 @@ const pa_cvolume *    pulse_stream_control_get_cvolume      (PulseStreamControl 
 const pa_channel_map *pulse_stream_control_get_channel_map  (PulseStreamControl   *control);
 
 void                  pulse_stream_control_set_app_info     (PulseStreamControl   *stream,
-                                                             MateMixerAppInfo     *info,
+                                                             CafeMixerAppInfo     *info,
                                                              gboolean              take);
 
 void                  pulse_stream_control_set_channel_map  (PulseStreamControl   *control,

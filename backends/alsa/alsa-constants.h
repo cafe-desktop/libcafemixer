@@ -27,7 +27,7 @@ G_BEGIN_DECLS
 typedef struct {
     gchar                     *name;
     gchar                     *label;
-    MateMixerStreamControlRole role;
+    CafeMixerStreamControlRole role;
     gboolean                   use_default_input;
     gboolean                   use_default_output;
 } AlsaControlInfo;
@@ -35,7 +35,7 @@ typedef struct {
 typedef struct {
     gchar                     *name;
     gchar                     *label;
-    MateMixerStreamSwitchRole  role;
+    CafeMixerStreamSwitchRole  role;
 } AlsaSwitchInfo;
 
 typedef struct {
@@ -48,7 +48,7 @@ extern const AlsaControlInfo                alsa_controls[];
 extern const AlsaSwitchInfo                 alsa_switches[];
 extern const AlsaSwitchOptionInfo           alsa_switch_options[];
 
-extern const MateMixerChannelPosition       alsa_channel_map_from[];
+extern const CafeMixerChannelPosition       alsa_channel_map_from[];
 extern const snd_mixer_selem_channel_id_t   alsa_channel_map_to[];
 
 G_END_DECLS

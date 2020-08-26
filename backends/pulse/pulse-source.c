@@ -48,8 +48,8 @@ static void pulse_source_finalize   (GObject          *object);
 
 G_DEFINE_TYPE_WITH_PRIVATE (PulseSource, pulse_source, PULSE_TYPE_STREAM);
 
-static const GList *pulse_source_list_controls (MateMixerStream *mms);
-static const GList *pulse_source_list_switches (MateMixerStream *mms);
+static const GList *pulse_source_list_controls (CafeMixerStream *mms);
+static const GList *pulse_source_list_switches (CafeMixerStream *mms);
 
 static void         free_list_controls         (PulseSource     *source);
 
@@ -57,7 +57,7 @@ static void
 pulse_source_class_init (PulseSourceClass *klass)
 {
     GObjectClass         *object_class;
-    MateMixerStreamClass *stream_class;
+    CafeMixerStreamClass *stream_class;
 
     object_class = G_OBJECT_CLASS (klass);
     object_class->dispose  = pulse_source_dispose;
@@ -251,7 +251,7 @@ pulse_source_update (PulseSource          *source,
 }
 
 static const GList *
-pulse_source_list_controls (MateMixerStream *mms)
+pulse_source_list_controls (CafeMixerStream *mms)
 {
     PulseSource *source;
 
@@ -271,7 +271,7 @@ pulse_source_list_controls (MateMixerStream *mms)
 }
 
 static const GList *
-pulse_source_list_switches (MateMixerStream *mms)
+pulse_source_list_switches (CafeMixerStream *mms)
 {
     g_return_val_if_fail (PULSE_IS_SOURCE (mms), NULL);
 

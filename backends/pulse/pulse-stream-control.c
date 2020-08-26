@@ -37,7 +37,7 @@ struct _PulseStreamControlPrivate
     pa_channel_map    channel_map;
     PulseConnection  *connection;
     PulseMonitor     *monitor;
-    MateMixerAppInfo *app_info;
+    CafeMixerAppInfo *app_info;
 };
 
 enum {
@@ -63,52 +63,52 @@ static void pulse_stream_control_finalize     (GObject                 *object);
 
 G_DEFINE_ABSTRACT_TYPE_WITH_PRIVATE (PulseStreamControl, pulse_stream_control, CAFE_MIXER_TYPE_STREAM_CONTROL)
 
-static MateMixerAppInfo *       pulse_stream_control_get_app_info         (MateMixerStreamControl   *mmsc);
+static CafeMixerAppInfo *       pulse_stream_control_get_app_info         (CafeMixerStreamControl   *mmsc);
 
-static gboolean                 pulse_stream_control_set_mute             (MateMixerStreamControl   *mmsc,
+static gboolean                 pulse_stream_control_set_mute             (CafeMixerStreamControl   *mmsc,
                                                                            gboolean                  mute);
 
-static guint                    pulse_stream_control_get_num_channels     (MateMixerStreamControl   *mmsc);
+static guint                    pulse_stream_control_get_num_channels     (CafeMixerStreamControl   *mmsc);
 
-static guint                    pulse_stream_control_get_volume           (MateMixerStreamControl   *mmsc);
-static gboolean                 pulse_stream_control_set_volume           (MateMixerStreamControl   *mmsc,
+static guint                    pulse_stream_control_get_volume           (CafeMixerStreamControl   *mmsc);
+static gboolean                 pulse_stream_control_set_volume           (CafeMixerStreamControl   *mmsc,
                                                                            guint                     volume);
 
-static gdouble                  pulse_stream_control_get_decibel          (MateMixerStreamControl   *mmsc);
-static gboolean                 pulse_stream_control_set_decibel          (MateMixerStreamControl   *mmsc,
+static gdouble                  pulse_stream_control_get_decibel          (CafeMixerStreamControl   *mmsc);
+static gboolean                 pulse_stream_control_set_decibel          (CafeMixerStreamControl   *mmsc,
                                                                            gdouble                   decibel);
 
-static guint                    pulse_stream_control_get_channel_volume   (MateMixerStreamControl   *mmsc,
+static guint                    pulse_stream_control_get_channel_volume   (CafeMixerStreamControl   *mmsc,
                                                                            guint                     channel);
-static gboolean                 pulse_stream_control_set_channel_volume   (MateMixerStreamControl   *mmsc,
+static gboolean                 pulse_stream_control_set_channel_volume   (CafeMixerStreamControl   *mmsc,
                                                                            guint                     channel,
                                                                            guint                     volume);
 
-static gdouble                  pulse_stream_control_get_channel_decibel  (MateMixerStreamControl   *mmsc,
+static gdouble                  pulse_stream_control_get_channel_decibel  (CafeMixerStreamControl   *mmsc,
                                                                            guint                     channel);
-static gboolean                 pulse_stream_control_set_channel_decibel  (MateMixerStreamControl   *mmsc,
+static gboolean                 pulse_stream_control_set_channel_decibel  (CafeMixerStreamControl   *mmsc,
                                                                            guint                     channel,
                                                                            gdouble                   decibel);
 
-static MateMixerChannelPosition pulse_stream_control_get_channel_position (MateMixerStreamControl   *mmsc,
+static CafeMixerChannelPosition pulse_stream_control_get_channel_position (CafeMixerStreamControl   *mmsc,
                                                                            guint                     channel);
-static gboolean                 pulse_stream_control_has_channel_position (MateMixerStreamControl   *mmsc,
-                                                                           MateMixerChannelPosition  position);
+static gboolean                 pulse_stream_control_has_channel_position (CafeMixerStreamControl   *mmsc,
+                                                                           CafeMixerChannelPosition  position);
 
-static gboolean                 pulse_stream_control_set_balance          (MateMixerStreamControl   *mmsc,
+static gboolean                 pulse_stream_control_set_balance          (CafeMixerStreamControl   *mmsc,
                                                                            gfloat                    balance);
 
-static gboolean                 pulse_stream_control_set_fade             (MateMixerStreamControl   *mmsc,
+static gboolean                 pulse_stream_control_set_fade             (CafeMixerStreamControl   *mmsc,
                                                                            gfloat                    fade);
 
-static gboolean                 pulse_stream_control_get_monitor_enabled  (MateMixerStreamControl   *mmsc);
-static gboolean                 pulse_stream_control_set_monitor_enabled  (MateMixerStreamControl   *mmsc,
+static gboolean                 pulse_stream_control_get_monitor_enabled  (CafeMixerStreamControl   *mmsc);
+static gboolean                 pulse_stream_control_set_monitor_enabled  (CafeMixerStreamControl   *mmsc,
                                                                            gboolean                  enabled);
 
-static guint                    pulse_stream_control_get_min_volume       (MateMixerStreamControl   *mmsc);
-static guint                    pulse_stream_control_get_max_volume       (MateMixerStreamControl   *mmsc);
-static guint                    pulse_stream_control_get_normal_volume    (MateMixerStreamControl   *mmsc);
-static guint                    pulse_stream_control_get_base_volume      (MateMixerStreamControl   *mmsc);
+static guint                    pulse_stream_control_get_min_volume       (CafeMixerStreamControl   *mmsc);
+static guint                    pulse_stream_control_get_max_volume       (CafeMixerStreamControl   *mmsc);
+static guint                    pulse_stream_control_get_normal_volume    (CafeMixerStreamControl   *mmsc);
+static guint                    pulse_stream_control_get_base_volume      (CafeMixerStreamControl   *mmsc);
 
 static void                     on_monitor_value (PulseMonitor       *monitor,
                                                   gdouble             value,
@@ -123,7 +123,7 @@ static void
 pulse_stream_control_class_init (PulseStreamControlClass *klass)
 {
     GObjectClass                *object_class;
-    MateMixerStreamControlClass *control_class;
+    CafeMixerStreamControlClass *control_class;
 
     object_class = G_OBJECT_CLASS (klass);
     object_class->dispose      = pulse_stream_control_dispose;
@@ -272,7 +272,7 @@ pulse_stream_control_get_index (PulseStreamControl *control)
 guint32
 pulse_stream_control_get_stream_index (PulseStreamControl *control)
 {
-    MateMixerStream *stream;
+    CafeMixerStream *stream;
 
     g_return_val_if_fail (PULSE_IS_STREAM_CONTROL (control), PA_INVALID_INDEX);
 
@@ -317,7 +317,7 @@ pulse_stream_control_get_channel_map (PulseStreamControl *control)
 
 void
 pulse_stream_control_set_app_info (PulseStreamControl *control,
-                                   MateMixerAppInfo   *info,
+                                   CafeMixerAppInfo   *info,
                                    gboolean            take)
 {
     g_return_if_fail (PULSE_IS_STREAM_CONTROL (control));
@@ -334,7 +334,7 @@ pulse_stream_control_set_app_info (PulseStreamControl *control,
 void
 pulse_stream_control_set_channel_map (PulseStreamControl *control, const pa_channel_map *map)
 {
-    MateMixerStreamControlFlags flags;
+    CafeMixerStreamControlFlags flags;
 
     g_return_if_fail (PULSE_IS_STREAM_CONTROL (control));
 
@@ -368,7 +368,7 @@ pulse_stream_control_set_cvolume (PulseStreamControl *control,
                                   const pa_cvolume   *cvolume,
                                   pa_volume_t         base_volume)
 {
-    MateMixerStreamControlFlags flags;
+    CafeMixerStreamControlFlags flags;
 
     g_return_if_fail (PULSE_IS_STREAM_CONTROL (control));
 
@@ -414,8 +414,8 @@ pulse_stream_control_set_cvolume (PulseStreamControl *control,
     g_object_thaw_notify (G_OBJECT (control));
 }
 
-static MateMixerAppInfo *
-pulse_stream_control_get_app_info (MateMixerStreamControl *mmsc)
+static CafeMixerAppInfo *
+pulse_stream_control_get_app_info (CafeMixerStreamControl *mmsc)
 {
     g_return_val_if_fail (PULSE_IS_STREAM_CONTROL (mmsc), NULL);
 
@@ -423,7 +423,7 @@ pulse_stream_control_get_app_info (MateMixerStreamControl *mmsc)
 }
 
 static gboolean
-pulse_stream_control_set_mute (MateMixerStreamControl *mmsc, gboolean mute)
+pulse_stream_control_set_mute (CafeMixerStreamControl *mmsc, gboolean mute)
 {
     g_return_val_if_fail (PULSE_IS_STREAM_CONTROL (mmsc), FALSE);
 
@@ -431,7 +431,7 @@ pulse_stream_control_set_mute (MateMixerStreamControl *mmsc, gboolean mute)
 }
 
 static guint
-pulse_stream_control_get_num_channels (MateMixerStreamControl *mmsc)
+pulse_stream_control_get_num_channels (CafeMixerStreamControl *mmsc)
 {
     g_return_val_if_fail (PULSE_IS_STREAM_CONTROL (mmsc), 0);
 
@@ -439,7 +439,7 @@ pulse_stream_control_get_num_channels (MateMixerStreamControl *mmsc)
 }
 
 static guint
-pulse_stream_control_get_volume (MateMixerStreamControl *mmsc)
+pulse_stream_control_get_volume (CafeMixerStreamControl *mmsc)
 {
     g_return_val_if_fail (PULSE_IS_STREAM_CONTROL (mmsc), (guint) PA_VOLUME_MUTED);
 
@@ -447,7 +447,7 @@ pulse_stream_control_get_volume (MateMixerStreamControl *mmsc)
 }
 
 static gboolean
-pulse_stream_control_set_volume (MateMixerStreamControl *mmsc, guint volume)
+pulse_stream_control_set_volume (CafeMixerStreamControl *mmsc, guint volume)
 {
     PulseStreamControl *control;
     pa_cvolume          cvolume;
@@ -464,7 +464,7 @@ pulse_stream_control_set_volume (MateMixerStreamControl *mmsc, guint volume)
 }
 
 static gdouble
-pulse_stream_control_get_decibel (MateMixerStreamControl *mmsc)
+pulse_stream_control_get_decibel (CafeMixerStreamControl *mmsc)
 {
     gdouble value;
 
@@ -477,7 +477,7 @@ pulse_stream_control_get_decibel (MateMixerStreamControl *mmsc)
 }
 
 static gboolean
-pulse_stream_control_set_decibel (MateMixerStreamControl *mmsc, gdouble decibel)
+pulse_stream_control_set_decibel (CafeMixerStreamControl *mmsc, gdouble decibel)
 {
     g_return_val_if_fail (PULSE_IS_STREAM_CONTROL (mmsc), FALSE);
 
@@ -486,7 +486,7 @@ pulse_stream_control_set_decibel (MateMixerStreamControl *mmsc, gdouble decibel)
 }
 
 static guint
-pulse_stream_control_get_channel_volume (MateMixerStreamControl *mmsc, guint channel)
+pulse_stream_control_get_channel_volume (CafeMixerStreamControl *mmsc, guint channel)
 {
     PulseStreamControl *control;
 
@@ -501,7 +501,7 @@ pulse_stream_control_get_channel_volume (MateMixerStreamControl *mmsc, guint cha
 }
 
 static gboolean
-pulse_stream_control_set_channel_volume (MateMixerStreamControl *mmsc, guint channel, guint volume)
+pulse_stream_control_set_channel_volume (CafeMixerStreamControl *mmsc, guint channel, guint volume)
 {
     PulseStreamControl *control;
     pa_cvolume          cvolume;
@@ -521,7 +521,7 @@ pulse_stream_control_set_channel_volume (MateMixerStreamControl *mmsc, guint cha
 }
 
 static gdouble
-pulse_stream_control_get_channel_decibel (MateMixerStreamControl *mmsc, guint channel)
+pulse_stream_control_get_channel_decibel (CafeMixerStreamControl *mmsc, guint channel)
 {
     PulseStreamControl *control;
     gdouble             value;
@@ -539,7 +539,7 @@ pulse_stream_control_get_channel_decibel (MateMixerStreamControl *mmsc, guint ch
 }
 
 static gboolean
-pulse_stream_control_set_channel_decibel (MateMixerStreamControl *mmsc,
+pulse_stream_control_set_channel_decibel (CafeMixerStreamControl *mmsc,
                                           guint                   channel,
                                           gdouble                 decibel)
 {
@@ -550,8 +550,8 @@ pulse_stream_control_set_channel_decibel (MateMixerStreamControl *mmsc,
                                                     pa_sw_volume_from_dB (decibel));
 }
 
-static MateMixerChannelPosition
-pulse_stream_control_get_channel_position (MateMixerStreamControl *mmsc, guint channel)
+static CafeMixerChannelPosition
+pulse_stream_control_get_channel_position (CafeMixerStreamControl *mmsc, guint channel)
 {
     PulseStreamControl *control;
 
@@ -569,8 +569,8 @@ pulse_stream_control_get_channel_position (MateMixerStreamControl *mmsc, guint c
 }
 
 static gboolean
-pulse_stream_control_has_channel_position (MateMixerStreamControl  *mmsc,
-                                           MateMixerChannelPosition position)
+pulse_stream_control_has_channel_position (CafeMixerStreamControl  *mmsc,
+                                           CafeMixerChannelPosition position)
 {
     PulseStreamControl *control;
 
@@ -591,7 +591,7 @@ pulse_stream_control_has_channel_position (MateMixerStreamControl  *mmsc,
 }
 
 static gboolean
-pulse_stream_control_set_balance (MateMixerStreamControl *mmsc, gfloat balance)
+pulse_stream_control_set_balance (CafeMixerStreamControl *mmsc, gfloat balance)
 {
     PulseStreamControl *control;
     pa_cvolume          cvolume;
@@ -608,7 +608,7 @@ pulse_stream_control_set_balance (MateMixerStreamControl *mmsc, gfloat balance)
 }
 
 static gboolean
-pulse_stream_control_set_fade (MateMixerStreamControl *mmsc, gfloat fade)
+pulse_stream_control_set_fade (CafeMixerStreamControl *mmsc, gfloat fade)
 {
     PulseStreamControl *control;
     pa_cvolume          cvolume;
@@ -625,7 +625,7 @@ pulse_stream_control_set_fade (MateMixerStreamControl *mmsc, gfloat fade)
 }
 
 static gboolean
-pulse_stream_control_get_monitor_enabled (MateMixerStreamControl *mmsc)
+pulse_stream_control_get_monitor_enabled (CafeMixerStreamControl *mmsc)
 {
     PulseStreamControl *control;
 
@@ -640,7 +640,7 @@ pulse_stream_control_get_monitor_enabled (MateMixerStreamControl *mmsc)
 }
 
 static gboolean
-pulse_stream_control_set_monitor_enabled (MateMixerStreamControl *mmsc, gboolean enabled)
+pulse_stream_control_set_monitor_enabled (CafeMixerStreamControl *mmsc, gboolean enabled)
 {
     PulseStreamControl *control;
 
@@ -669,15 +669,15 @@ pulse_stream_control_set_monitor_enabled (MateMixerStreamControl *mmsc, gboolean
 }
 
 static guint
-pulse_stream_control_get_min_volume (MateMixerStreamControl *mmsc)
+pulse_stream_control_get_min_volume (CafeMixerStreamControl *mmsc)
 {
     return (guint) PA_VOLUME_MUTED;
 }
 
 static guint
-pulse_stream_control_get_max_volume (MateMixerStreamControl *mmsc)
+pulse_stream_control_get_max_volume (CafeMixerStreamControl *mmsc)
 {
-    MateMixerStreamControlFlags flags;
+    CafeMixerStreamControlFlags flags;
 
     g_return_val_if_fail (PULSE_IS_STREAM_CONTROL (mmsc), (guint) PA_VOLUME_MUTED);
 
@@ -698,7 +698,7 @@ pulse_stream_control_get_max_volume (MateMixerStreamControl *mmsc)
 }
 
 static guint
-pulse_stream_control_get_normal_volume (MateMixerStreamControl *mmsc)
+pulse_stream_control_get_normal_volume (CafeMixerStreamControl *mmsc)
 {
     g_return_val_if_fail (PULSE_IS_STREAM_CONTROL (mmsc), (guint) PA_VOLUME_MUTED);
 
@@ -706,7 +706,7 @@ pulse_stream_control_get_normal_volume (MateMixerStreamControl *mmsc)
 }
 
 static guint
-pulse_stream_control_get_base_volume (MateMixerStreamControl *mmsc)
+pulse_stream_control_get_base_volume (CafeMixerStreamControl *mmsc)
 {
     PulseStreamControl *control;
 

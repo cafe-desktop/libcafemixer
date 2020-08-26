@@ -36,159 +36,159 @@ G_BEGIN_DECLS
 #define CAFE_MIXER_TYPE_STREAM_CONTROL          \
         (cafe_mixer_stream_control_get_type ())
 #define CAFE_MIXER_STREAM_CONTROL(o)            \
-        (G_TYPE_CHECK_INSTANCE_CAST ((o), CAFE_MIXER_TYPE_STREAM_CONTROL, MateMixerStreamControl))
+        (G_TYPE_CHECK_INSTANCE_CAST ((o), CAFE_MIXER_TYPE_STREAM_CONTROL, CafeMixerStreamControl))
 #define CAFE_MIXER_IS_STREAM_CONTROL(o)         \
         (G_TYPE_CHECK_INSTANCE_TYPE ((o), CAFE_MIXER_TYPE_STREAM_CONTROL))
 #define CAFE_MIXER_STREAM_CONTROL_CLASS(k)      \
-        (G_TYPE_CHECK_CLASS_CAST ((k), CAFE_MIXER_TYPE_STREAM_CONTROL, MateMixerStreamControlClass))
+        (G_TYPE_CHECK_CLASS_CAST ((k), CAFE_MIXER_TYPE_STREAM_CONTROL, CafeMixerStreamControlClass))
 #define CAFE_MIXER_IS_STREAM_CONTROL_CLASS(k)   \
         (G_TYPE_CHECK_CLASS_TYPE ((k), CAFE_MIXER_TYPE_STREAM_CONTROL))
 #define CAFE_MIXER_STREAM_CONTROL_GET_CLASS(o)  \
-        (G_TYPE_INSTANCE_GET_CLASS ((o), CAFE_MIXER_TYPE_STREAM_CONTROL, MateMixerStreamControlClass))
+        (G_TYPE_INSTANCE_GET_CLASS ((o), CAFE_MIXER_TYPE_STREAM_CONTROL, CafeMixerStreamControlClass))
 
-typedef struct _MateMixerStreamControlClass    MateMixerStreamControlClass;
-typedef struct _MateMixerStreamControlPrivate  MateMixerStreamControlPrivate;
+typedef struct _CafeMixerStreamControlClass    CafeMixerStreamControlClass;
+typedef struct _CafeMixerStreamControlPrivate  CafeMixerStreamControlPrivate;
 
 /**
- * MateMixerStreamControl:
+ * CafeMixerStreamControl:
  *
- * The #MateMixerStreamControl structure contains only private data and should only
+ * The #CafeMixerStreamControl structure contains only private data and should only
  * be accessed using the provided API.
  */
-struct _MateMixerStreamControl
+struct _CafeMixerStreamControl
 {
     GObject object;
 
     /*< private >*/
-    MateMixerStreamControlPrivate *priv;
+    CafeMixerStreamControlPrivate *priv;
 };
 
 /**
- * MateMixerStreamControlClass:
+ * CafeMixerStreamControlClass:
  * @parent_class: The parent class.
  *
- * The class structure for #MateMixerStreamControl.
+ * The class structure for #CafeMixerStreamControl.
  */
-struct _MateMixerStreamControlClass
+struct _CafeMixerStreamControlClass
 {
     GObjectClass parent_class;
 
     /*< private >*/
-    MateMixerAppInfo *       (*get_app_info)         (MateMixerStreamControl  *control);
+    CafeMixerAppInfo *       (*get_app_info)         (CafeMixerStreamControl  *control);
 
-    gboolean                 (*set_stream)           (MateMixerStreamControl  *control,
-                                                      MateMixerStream         *stream);
+    gboolean                 (*set_stream)           (CafeMixerStreamControl  *control,
+                                                      CafeMixerStream         *stream);
 
-    gboolean                 (*set_mute)             (MateMixerStreamControl  *control,
+    gboolean                 (*set_mute)             (CafeMixerStreamControl  *control,
                                                       gboolean                 mute);
 
-    guint                    (*get_num_channels)     (MateMixerStreamControl  *control);
+    guint                    (*get_num_channels)     (CafeMixerStreamControl  *control);
 
-    guint                    (*get_volume)           (MateMixerStreamControl  *control);
-    gboolean                 (*set_volume)           (MateMixerStreamControl  *control,
+    guint                    (*get_volume)           (CafeMixerStreamControl  *control);
+    gboolean                 (*set_volume)           (CafeMixerStreamControl  *control,
                                                       guint                    volume);
 
-    gdouble                  (*get_decibel)          (MateMixerStreamControl  *control);
-    gboolean                 (*set_decibel)          (MateMixerStreamControl  *control,
+    gdouble                  (*get_decibel)          (CafeMixerStreamControl  *control);
+    gboolean                 (*set_decibel)          (CafeMixerStreamControl  *control,
                                                       gdouble                  decibel);
 
-    gboolean                 (*has_channel_position) (MateMixerStreamControl  *control,
-                                                      MateMixerChannelPosition position);
-    MateMixerChannelPosition (*get_channel_position) (MateMixerStreamControl  *control,
+    gboolean                 (*has_channel_position) (CafeMixerStreamControl  *control,
+                                                      CafeMixerChannelPosition position);
+    CafeMixerChannelPosition (*get_channel_position) (CafeMixerStreamControl  *control,
                                                       guint                    channel);
 
-    guint                    (*get_channel_volume)   (MateMixerStreamControl  *control,
+    guint                    (*get_channel_volume)   (CafeMixerStreamControl  *control,
                                                       guint                    channel);
-    gboolean                 (*set_channel_volume)   (MateMixerStreamControl  *control,
+    gboolean                 (*set_channel_volume)   (CafeMixerStreamControl  *control,
                                                       guint                    channel,
                                                       guint                    volume);
 
-    gdouble                  (*get_channel_decibel)  (MateMixerStreamControl  *control,
+    gdouble                  (*get_channel_decibel)  (CafeMixerStreamControl  *control,
                                                       guint                    channel);
-    gboolean                 (*set_channel_decibel)  (MateMixerStreamControl  *control,
+    gboolean                 (*set_channel_decibel)  (CafeMixerStreamControl  *control,
                                                       guint                    channel,
                                                       gdouble                  decibel);
 
-    gboolean                 (*set_balance)          (MateMixerStreamControl  *control,
+    gboolean                 (*set_balance)          (CafeMixerStreamControl  *control,
                                                       gfloat                   balance);
 
-    gboolean                 (*set_fade)             (MateMixerStreamControl  *control,
+    gboolean                 (*set_fade)             (CafeMixerStreamControl  *control,
                                                       gfloat                   fade);
 
-    gboolean                 (*get_monitor_enabled)  (MateMixerStreamControl  *control);
-    gboolean                 (*set_monitor_enabled)  (MateMixerStreamControl  *control,
+    gboolean                 (*get_monitor_enabled)  (CafeMixerStreamControl  *control);
+    gboolean                 (*set_monitor_enabled)  (CafeMixerStreamControl  *control,
                                                       gboolean                 enabled);
 
-    guint                    (*get_min_volume)       (MateMixerStreamControl  *control);
-    guint                    (*get_max_volume)       (MateMixerStreamControl  *control);
-    guint                    (*get_normal_volume)    (MateMixerStreamControl  *control);
-    guint                    (*get_base_volume)      (MateMixerStreamControl  *control);
+    guint                    (*get_min_volume)       (CafeMixerStreamControl  *control);
+    guint                    (*get_max_volume)       (CafeMixerStreamControl  *control);
+    guint                    (*get_normal_volume)    (CafeMixerStreamControl  *control);
+    guint                    (*get_base_volume)      (CafeMixerStreamControl  *control);
 
     /* Signals */
-    void (*monitor_value) (MateMixerStreamControl *control, gdouble value);
+    void (*monitor_value) (CafeMixerStreamControl *control, gdouble value);
 };
 
 GType                           cafe_mixer_stream_control_get_type             (void) G_GNUC_CONST;
 
-const gchar *                   cafe_mixer_stream_control_get_name             (MateMixerStreamControl  *control);
-const gchar *                   cafe_mixer_stream_control_get_label            (MateMixerStreamControl  *control);
-MateMixerStreamControlFlags     cafe_mixer_stream_control_get_flags            (MateMixerStreamControl  *control);
-MateMixerStreamControlRole      cafe_mixer_stream_control_get_role             (MateMixerStreamControl  *control);
-MateMixerStreamControlMediaRole cafe_mixer_stream_control_get_media_role       (MateMixerStreamControl  *control);
+const gchar *                   cafe_mixer_stream_control_get_name             (CafeMixerStreamControl  *control);
+const gchar *                   cafe_mixer_stream_control_get_label            (CafeMixerStreamControl  *control);
+CafeMixerStreamControlFlags     cafe_mixer_stream_control_get_flags            (CafeMixerStreamControl  *control);
+CafeMixerStreamControlRole      cafe_mixer_stream_control_get_role             (CafeMixerStreamControl  *control);
+CafeMixerStreamControlMediaRole cafe_mixer_stream_control_get_media_role       (CafeMixerStreamControl  *control);
 
-MateMixerAppInfo *              cafe_mixer_stream_control_get_app_info         (MateMixerStreamControl  *control);
+CafeMixerAppInfo *              cafe_mixer_stream_control_get_app_info         (CafeMixerStreamControl  *control);
 
-MateMixerStream *               cafe_mixer_stream_control_get_stream           (MateMixerStreamControl  *control);
-gboolean                        cafe_mixer_stream_control_set_stream           (MateMixerStreamControl  *control,
-                                                                                MateMixerStream         *stream);
+CafeMixerStream *               cafe_mixer_stream_control_get_stream           (CafeMixerStreamControl  *control);
+gboolean                        cafe_mixer_stream_control_set_stream           (CafeMixerStreamControl  *control,
+                                                                                CafeMixerStream         *stream);
 
-gboolean                        cafe_mixer_stream_control_get_mute             (MateMixerStreamControl  *control);
-gboolean                        cafe_mixer_stream_control_set_mute             (MateMixerStreamControl  *control,
+gboolean                        cafe_mixer_stream_control_get_mute             (CafeMixerStreamControl  *control);
+gboolean                        cafe_mixer_stream_control_set_mute             (CafeMixerStreamControl  *control,
                                                                                 gboolean                 mute);
 
-guint                           cafe_mixer_stream_control_get_num_channels     (MateMixerStreamControl  *control);
+guint                           cafe_mixer_stream_control_get_num_channels     (CafeMixerStreamControl  *control);
 
-guint                           cafe_mixer_stream_control_get_volume           (MateMixerStreamControl  *control);
-gboolean                        cafe_mixer_stream_control_set_volume           (MateMixerStreamControl  *control,
+guint                           cafe_mixer_stream_control_get_volume           (CafeMixerStreamControl  *control);
+gboolean                        cafe_mixer_stream_control_set_volume           (CafeMixerStreamControl  *control,
                                                                                 guint                    volume);
 
-gdouble                         cafe_mixer_stream_control_get_decibel          (MateMixerStreamControl  *control);
-gboolean                        cafe_mixer_stream_control_set_decibel          (MateMixerStreamControl  *control,
+gdouble                         cafe_mixer_stream_control_get_decibel          (CafeMixerStreamControl  *control);
+gboolean                        cafe_mixer_stream_control_set_decibel          (CafeMixerStreamControl  *control,
                                                                                 gdouble                  decibel);
 
-gboolean                        cafe_mixer_stream_control_has_channel_position (MateMixerStreamControl  *control,
-                                                                                MateMixerChannelPosition position);
-MateMixerChannelPosition        cafe_mixer_stream_control_get_channel_position (MateMixerStreamControl  *control,
+gboolean                        cafe_mixer_stream_control_has_channel_position (CafeMixerStreamControl  *control,
+                                                                                CafeMixerChannelPosition position);
+CafeMixerChannelPosition        cafe_mixer_stream_control_get_channel_position (CafeMixerStreamControl  *control,
                                                                                 guint                    channel);
 
-guint                           cafe_mixer_stream_control_get_channel_volume   (MateMixerStreamControl  *control,
+guint                           cafe_mixer_stream_control_get_channel_volume   (CafeMixerStreamControl  *control,
                                                                                 guint                    channel);
-gboolean                        cafe_mixer_stream_control_set_channel_volume   (MateMixerStreamControl  *control,
+gboolean                        cafe_mixer_stream_control_set_channel_volume   (CafeMixerStreamControl  *control,
                                                                                 guint                    channel,
                                                                                 guint                    volume);
 
-gdouble                         cafe_mixer_stream_control_get_channel_decibel  (MateMixerStreamControl  *control,
+gdouble                         cafe_mixer_stream_control_get_channel_decibel  (CafeMixerStreamControl  *control,
                                                                                 guint                    channel);
-gboolean                        cafe_mixer_stream_control_set_channel_decibel  (MateMixerStreamControl  *control,
+gboolean                        cafe_mixer_stream_control_set_channel_decibel  (CafeMixerStreamControl  *control,
                                                                                 guint                    channel,
                                                                                 gdouble                  decibel);
 
-gfloat                          cafe_mixer_stream_control_get_balance          (MateMixerStreamControl  *control);
-gboolean                        cafe_mixer_stream_control_set_balance          (MateMixerStreamControl  *control,
+gfloat                          cafe_mixer_stream_control_get_balance          (CafeMixerStreamControl  *control);
+gboolean                        cafe_mixer_stream_control_set_balance          (CafeMixerStreamControl  *control,
                                                                                 gfloat                   balance);
 
-gfloat                          cafe_mixer_stream_control_get_fade             (MateMixerStreamControl  *control);
-gboolean                        cafe_mixer_stream_control_set_fade             (MateMixerStreamControl  *control,
+gfloat                          cafe_mixer_stream_control_get_fade             (CafeMixerStreamControl  *control);
+gboolean                        cafe_mixer_stream_control_set_fade             (CafeMixerStreamControl  *control,
                                                                                 gfloat                   fade);
 
-gboolean                        cafe_mixer_stream_control_get_monitor_enabled  (MateMixerStreamControl  *control);
-gboolean                        cafe_mixer_stream_control_set_monitor_enabled  (MateMixerStreamControl  *control,
+gboolean                        cafe_mixer_stream_control_get_monitor_enabled  (CafeMixerStreamControl  *control);
+gboolean                        cafe_mixer_stream_control_set_monitor_enabled  (CafeMixerStreamControl  *control,
                                                                                 gboolean                 enabled);
 
-guint                           cafe_mixer_stream_control_get_min_volume       (MateMixerStreamControl  *control);
-guint                           cafe_mixer_stream_control_get_max_volume       (MateMixerStreamControl  *control);
-guint                           cafe_mixer_stream_control_get_normal_volume    (MateMixerStreamControl  *control);
-guint                           cafe_mixer_stream_control_get_base_volume      (MateMixerStreamControl  *control);
+guint                           cafe_mixer_stream_control_get_min_volume       (CafeMixerStreamControl  *control);
+guint                           cafe_mixer_stream_control_get_max_volume       (CafeMixerStreamControl  *control);
+guint                           cafe_mixer_stream_control_get_normal_volume    (CafeMixerStreamControl  *control);
+guint                           cafe_mixer_stream_control_get_base_volume      (CafeMixerStreamControl  *control);
 
 G_END_DECLS
 

@@ -59,10 +59,10 @@ G_DEFINE_DYNAMIC_TYPE_EXTENDED (AlsaBackend,
                                 G_ADD_PRIVATE_DYNAMIC(AlsaBackend))
 #pragma clang diagnostic pop
 
-static gboolean     alsa_backend_open            (MateMixerBackend *backend);
-static void         alsa_backend_close           (MateMixerBackend *backend);
-static const GList *alsa_backend_list_devices    (MateMixerBackend *backend);
-static const GList *alsa_backend_list_streams    (MateMixerBackend *backend);
+static gboolean     alsa_backend_open            (CafeMixerBackend *backend);
+static void         alsa_backend_close           (CafeMixerBackend *backend);
+static const GList *alsa_backend_list_devices    (CafeMixerBackend *backend);
+static const GList *alsa_backend_list_streams    (CafeMixerBackend *backend);
 
 static gboolean     read_devices                 (AlsaBackend      *alsa);
 
@@ -92,7 +92,7 @@ static gint         compare_devices              (gconstpointer     a,
 static gint         compare_device_name          (gconstpointer     a,
                                                   gconstpointer     b);
 
-static MateMixerBackendInfo info;
+static CafeMixerBackendInfo info;
 
 void
 backend_module_init (GTypeModule *module)
@@ -106,7 +106,7 @@ backend_module_init (GTypeModule *module)
     info.backend_type  = CAFE_MIXER_BACKEND_ALSA;
 }
 
-const MateMixerBackendInfo *backend_module_get_info (void)
+const CafeMixerBackendInfo *backend_module_get_info (void)
 {
     return &info;
 }
@@ -115,7 +115,7 @@ static void
 alsa_backend_class_init (AlsaBackendClass *klass)
 {
     GObjectClass          *object_class;
-    MateMixerBackendClass *backend_class;
+    CafeMixerBackendClass *backend_class;
 
     object_class = G_OBJECT_CLASS (klass);
     object_class->dispose  = alsa_backend_dispose;
@@ -148,8 +148,8 @@ alsa_backend_init (AlsaBackend *alsa)
 static void
 alsa_backend_dispose (GObject *object)
 {
-    MateMixerBackend *backend;
-    MateMixerState    state;
+    CafeMixerBackend *backend;
+    CafeMixerState    state;
 
     backend = CAFE_MIXER_BACKEND (object);
 
@@ -173,7 +173,7 @@ alsa_backend_finalize (GObject *object)
 }
 
 static gboolean
-alsa_backend_open (MateMixerBackend *backend)
+alsa_backend_open (CafeMixerBackend *backend)
 {
     AlsaBackend *alsa;
 
@@ -201,7 +201,7 @@ alsa_backend_open (MateMixerBackend *backend)
 }
 
 void
-alsa_backend_close (MateMixerBackend *backend)
+alsa_backend_close (CafeMixerBackend *backend)
 {
     AlsaBackend *alsa;
 
@@ -224,7 +224,7 @@ alsa_backend_close (MateMixerBackend *backend)
 }
 
 static const GList *
-alsa_backend_list_devices (MateMixerBackend *backend)
+alsa_backend_list_devices (CafeMixerBackend *backend)
 {
     g_return_val_if_fail (ALSA_IS_BACKEND (backend), NULL);
 
@@ -232,7 +232,7 @@ alsa_backend_list_devices (MateMixerBackend *backend)
 }
 
 static const GList *
-alsa_backend_list_streams (MateMixerBackend *backend)
+alsa_backend_list_streams (CafeMixerBackend *backend)
 {
     AlsaBackend *alsa;
 
@@ -461,7 +461,7 @@ remove_device_by_list_item (AlsaBackend *alsa, GList *item)
 static void
 remove_stream (AlsaBackend *alsa, const gchar *name)
 {
-    MateMixerStream *stream;
+    CafeMixerStream *stream;
 
     stream = cafe_mixer_backend_get_default_input_stream (CAFE_MIXER_BACKEND (alsa));
 
@@ -532,8 +532,8 @@ free_stream_list (AlsaBackend *alsa)
 static gint
 compare_devices (gconstpointer a, gconstpointer b)
 {
-    MateMixerDevice *d1 = CAFE_MIXER_DEVICE (a);
-    MateMixerDevice *d2 = CAFE_MIXER_DEVICE (b);
+    CafeMixerDevice *d1 = CAFE_MIXER_DEVICE (a);
+    CafeMixerDevice *d2 = CAFE_MIXER_DEVICE (b);
 
     return strcmp (cafe_mixer_device_get_name (d1), cafe_mixer_device_get_name (d2));
 }
@@ -541,7 +541,7 @@ compare_devices (gconstpointer a, gconstpointer b)
 static gint
 compare_device_name (gconstpointer a, gconstpointer b)
 {
-    MateMixerDevice *device = CAFE_MIXER_DEVICE (a);
+    CafeMixerDevice *device = CAFE_MIXER_DEVICE (a);
     const gchar     *name   = (const gchar *) b;
 
     return strcmp (cafe_mixer_device_get_name (device), name);

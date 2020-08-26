@@ -49,7 +49,7 @@ typedef struct _AlsaTogglePrivate  AlsaTogglePrivate;
 
 struct _AlsaToggle
 {
-    MateMixerStreamToggle parent;
+    CafeMixerStreamToggle parent;
 
     /*< private >*/
     AlsaTogglePrivate *priv;
@@ -57,7 +57,7 @@ struct _AlsaToggle
 
 struct _AlsaToggleClass
 {
-    MateMixerStreamToggleClass parent_class;
+    CafeMixerStreamToggleClass parent_class;
 };
 
 GType       alsa_toggle_get_type (void) G_GNUC_CONST;
@@ -65,7 +65,7 @@ GType       alsa_toggle_get_type (void) G_GNUC_CONST;
 AlsaToggle *alsa_toggle_new      (AlsaStream               *stream,
                                   const gchar              *name,
                                   const gchar              *label,
-                                  MateMixerStreamSwitchRole role,
+                                  CafeMixerStreamSwitchRole role,
                                   AlsaToggleType            type,
                                   AlsaSwitchOption         *on,
                                   AlsaSwitchOption         *off);

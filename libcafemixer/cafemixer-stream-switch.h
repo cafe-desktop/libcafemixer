@@ -29,49 +29,49 @@ G_BEGIN_DECLS
 #define CAFE_MIXER_TYPE_STREAM_SWITCH           \
         (cafe_mixer_stream_switch_get_type ())
 #define CAFE_MIXER_STREAM_SWITCH(o)             \
-        (G_TYPE_CHECK_INSTANCE_CAST ((o), CAFE_MIXER_TYPE_STREAM_SWITCH, MateMixerStreamSwitch))
+        (G_TYPE_CHECK_INSTANCE_CAST ((o), CAFE_MIXER_TYPE_STREAM_SWITCH, CafeMixerStreamSwitch))
 #define CAFE_MIXER_IS_STREAM_SWITCH(o)          \
         (G_TYPE_CHECK_INSTANCE_TYPE ((o), CAFE_MIXER_TYPE_STREAM_SWITCH))
 #define CAFE_MIXER_STREAM_SWITCH_CLASS(k)      \
-        (G_TYPE_CHECK_CLASS_CAST ((k), CAFE_MIXER_TYPE_STREAM_SWITCH, MateMixerStreamSwitchClass))
+        (G_TYPE_CHECK_CLASS_CAST ((k), CAFE_MIXER_TYPE_STREAM_SWITCH, CafeMixerStreamSwitchClass))
 #define CAFE_MIXER_IS_STREAM_SWITCH_CLASS(k)   \
         (G_TYPE_CHECK_CLASS_TYPE ((k), CAFE_MIXER_TYPE_STREAM_SWITCH))
 #define CAFE_MIXER_STREAM_SWITCH_GET_CLASS(o)  \
-        (G_TYPE_INSTANCE_GET_CLASS ((o), CAFE_MIXER_TYPE_STREAM_SWITCH, MateMixerStreamSwitchClass))
+        (G_TYPE_INSTANCE_GET_CLASS ((o), CAFE_MIXER_TYPE_STREAM_SWITCH, CafeMixerStreamSwitchClass))
 
-typedef struct _MateMixerStreamSwitchClass    MateMixerStreamSwitchClass;
-typedef struct _MateMixerStreamSwitchPrivate  MateMixerStreamSwitchPrivate;
+typedef struct _CafeMixerStreamSwitchClass    CafeMixerStreamSwitchClass;
+typedef struct _CafeMixerStreamSwitchPrivate  CafeMixerStreamSwitchPrivate;
 
 /**
- * MateMixerStreamSwitch:
+ * CafeMixerStreamSwitch:
  *
- * The #MateMixerStreamSwitch structure contains only private data and should only
+ * The #CafeMixerStreamSwitch structure contains only private data and should only
  * be accessed using the provided API.
  */
-struct _MateMixerStreamSwitch
+struct _CafeMixerStreamSwitch
 {
-    MateMixerSwitch object;
+    CafeMixerSwitch object;
 
     /*< private >*/
-    MateMixerStreamSwitchPrivate *priv;
+    CafeMixerStreamSwitchPrivate *priv;
 };
 
 /**
- * MateMixerStreamSwitchClass:
+ * CafeMixerStreamSwitchClass:
  * @parent_class: The parent class.
  *
- * The class structure for #MateMixerStreamSwitch.
+ * The class structure for #CafeMixerStreamSwitch.
  */
-struct _MateMixerStreamSwitchClass
+struct _CafeMixerStreamSwitchClass
 {
-    MateMixerSwitchClass parent_class;
+    CafeMixerSwitchClass parent_class;
 };
 
 GType                      cafe_mixer_stream_switch_get_type   (void) G_GNUC_CONST;
 
-MateMixerStreamSwitchFlags cafe_mixer_stream_switch_get_flags  (MateMixerStreamSwitch *swtch);
-MateMixerStreamSwitchRole  cafe_mixer_stream_switch_get_role   (MateMixerStreamSwitch *swtch);
-MateMixerStream *          cafe_mixer_stream_switch_get_stream (MateMixerStreamSwitch *swtch);
+CafeMixerStreamSwitchFlags cafe_mixer_stream_switch_get_flags  (CafeMixerStreamSwitch *swtch);
+CafeMixerStreamSwitchRole  cafe_mixer_stream_switch_get_role   (CafeMixerStreamSwitch *swtch);
+CafeMixerStream *          cafe_mixer_stream_switch_get_stream (CafeMixerStreamSwitch *swtch);
 
 G_END_DECLS
 

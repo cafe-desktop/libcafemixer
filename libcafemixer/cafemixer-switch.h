@@ -29,66 +29,66 @@ G_BEGIN_DECLS
 #define CAFE_MIXER_TYPE_SWITCH                  \
         (cafe_mixer_switch_get_type ())
 #define CAFE_MIXER_SWITCH(o)                    \
-        (G_TYPE_CHECK_INSTANCE_CAST ((o), CAFE_MIXER_TYPE_SWITCH, MateMixerSwitch))
+        (G_TYPE_CHECK_INSTANCE_CAST ((o), CAFE_MIXER_TYPE_SWITCH, CafeMixerSwitch))
 #define CAFE_MIXER_IS_SWITCH(o)                 \
         (G_TYPE_CHECK_INSTANCE_TYPE ((o), CAFE_MIXER_TYPE_SWITCH))
 #define CAFE_MIXER_SWITCH_CLASS(k)              \
-        (G_TYPE_CHECK_CLASS_CAST ((k), CAFE_MIXER_TYPE_SWITCH, MateMixerSwitchClass))
+        (G_TYPE_CHECK_CLASS_CAST ((k), CAFE_MIXER_TYPE_SWITCH, CafeMixerSwitchClass))
 #define CAFE_MIXER_IS_SWITCH_CLASS(k)           \
         (G_TYPE_CHECK_CLASS_TYPE ((k), CAFE_MIXER_TYPE_SWITCH))
 #define CAFE_MIXER_SWITCH_GET_CLASS(o)          \
-        (G_TYPE_INSTANCE_GET_CLASS ((o), CAFE_MIXER_TYPE_SWITCH, MateMixerSwitchClass))
+        (G_TYPE_INSTANCE_GET_CLASS ((o), CAFE_MIXER_TYPE_SWITCH, CafeMixerSwitchClass))
 
-typedef struct _MateMixerSwitchClass    MateMixerSwitchClass;
-typedef struct _MateMixerSwitchPrivate  MateMixerSwitchPrivate;
+typedef struct _CafeMixerSwitchClass    CafeMixerSwitchClass;
+typedef struct _CafeMixerSwitchPrivate  CafeMixerSwitchPrivate;
 
 /**
- * MateMixerSwitch:
+ * CafeMixerSwitch:
  *
- * The #MateMixerSwitch structure contains only private data and should only
+ * The #CafeMixerSwitch structure contains only private data and should only
  * be accessed using the provided API.
  */
-struct _MateMixerSwitch
+struct _CafeMixerSwitch
 {
     GObject object;
 
     /*< private >*/
-    MateMixerSwitchPrivate *priv;
+    CafeMixerSwitchPrivate *priv;
 };
 
 /**
- * MateMixerSwitchClass:
+ * CafeMixerSwitchClass:
  * @parent_class: The parent class.
  *
- * The class structure for #MateMixerSwitch.
+ * The class structure for #CafeMixerSwitch.
  */
-struct _MateMixerSwitchClass
+struct _CafeMixerSwitchClass
 {
     GObjectClass parent_class;
 
     /*< private >*/
-    MateMixerSwitchOption *(*get_option)        (MateMixerSwitch       *swtch,
+    CafeMixerSwitchOption *(*get_option)        (CafeMixerSwitch       *swtch,
                                                  const gchar           *name);
 
-    const GList           *(*list_options)      (MateMixerSwitch       *swtch);
+    const GList           *(*list_options)      (CafeMixerSwitch       *swtch);
 
-    gboolean               (*set_active_option) (MateMixerSwitch       *swtch,
-                                                 MateMixerSwitchOption *option);
+    gboolean               (*set_active_option) (CafeMixerSwitch       *swtch,
+                                                 CafeMixerSwitchOption *option);
 };
 
 GType                  cafe_mixer_switch_get_type          (void) G_GNUC_CONST;
 
-const gchar *          cafe_mixer_switch_get_name          (MateMixerSwitch       *swtch);
-const gchar *          cafe_mixer_switch_get_label         (MateMixerSwitch       *swtch);
+const gchar *          cafe_mixer_switch_get_name          (CafeMixerSwitch       *swtch);
+const gchar *          cafe_mixer_switch_get_label         (CafeMixerSwitch       *swtch);
 
-MateMixerSwitchOption *cafe_mixer_switch_get_option        (MateMixerSwitch       *swtch,
+CafeMixerSwitchOption *cafe_mixer_switch_get_option        (CafeMixerSwitch       *swtch,
                                                             const gchar           *name);
 
-const GList *          cafe_mixer_switch_list_options      (MateMixerSwitch       *swtch);
+const GList *          cafe_mixer_switch_list_options      (CafeMixerSwitch       *swtch);
 
-MateMixerSwitchOption *cafe_mixer_switch_get_active_option (MateMixerSwitch       *swtch);
-gboolean               cafe_mixer_switch_set_active_option (MateMixerSwitch       *swtch,
-                                                            MateMixerSwitchOption *option);
+CafeMixerSwitchOption *cafe_mixer_switch_get_active_option (CafeMixerSwitch       *swtch);
+gboolean               cafe_mixer_switch_set_active_option (CafeMixerSwitch       *swtch,
+                                                            CafeMixerSwitchOption *option);
 
 G_END_DECLS
 

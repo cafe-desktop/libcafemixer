@@ -36,10 +36,10 @@ static void pulse_port_switch_dispose      (GObject                 *object);
 
 G_DEFINE_ABSTRACT_TYPE_WITH_PRIVATE (PulsePortSwitch, pulse_port_switch, CAFE_MIXER_TYPE_STREAM_SWITCH)
 
-static gboolean     pulse_port_switch_set_active_option (MateMixerSwitch       *mms,
-                                                         MateMixerSwitchOption *mmso);
+static gboolean     pulse_port_switch_set_active_option (CafeMixerSwitch       *mms,
+                                                         CafeMixerSwitchOption *mmso);
 
-static const GList *pulse_port_switch_list_options      (MateMixerSwitch       *mms);
+static const GList *pulse_port_switch_list_options      (CafeMixerSwitch       *mms);
 
 static gint         compare_ports                       (gconstpointer          a,
                                                          gconstpointer          b);
@@ -50,7 +50,7 @@ static void
 pulse_port_switch_class_init (PulsePortSwitchClass *klass)
 {
     GObjectClass         *object_class;
-    MateMixerSwitchClass *switch_class;
+    CafeMixerSwitchClass *switch_class;
 
     object_class = G_OBJECT_CLASS (klass);
     object_class->dispose = pulse_port_switch_dispose;
@@ -126,7 +126,7 @@ pulse_port_switch_set_active_port_by_name (PulsePortSwitch *swtch, const gchar *
 }
 
 static gboolean
-pulse_port_switch_set_active_option (MateMixerSwitch *mms, MateMixerSwitchOption *mmso)
+pulse_port_switch_set_active_option (CafeMixerSwitch *mms, CafeMixerSwitchOption *mmso)
 {
     PulsePortSwitchClass *klass;
 
@@ -140,7 +140,7 @@ pulse_port_switch_set_active_option (MateMixerSwitch *mms, MateMixerSwitchOption
 }
 
 static const GList *
-pulse_port_switch_list_options (MateMixerSwitch *swtch)
+pulse_port_switch_list_options (CafeMixerSwitch *swtch)
 {
     g_return_val_if_fail (PULSE_IS_PORT_SWITCH (swtch), NULL);
 

@@ -57,7 +57,7 @@ GType              alsa_stream_output_control_get_type (void) G_GNUC_CONST;
 
 AlsaStreamControl *alsa_stream_output_control_new      (const gchar               *name,
                                                         const gchar               *label,
-                                                        MateMixerStreamControlRole role,
+                                                        CafeMixerStreamControlRole role,
                                                         AlsaStream                *stream);
 
 G_END_DECLS

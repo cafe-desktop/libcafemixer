@@ -47,48 +47,48 @@ static void                     alsa_stream_control_set_snd_element      (AlsaEl
 
 static gboolean                 alsa_stream_control_load                 (AlsaElement             *element);
 
-static gboolean                 alsa_stream_control_set_mute             (MateMixerStreamControl  *mmsc,
+static gboolean                 alsa_stream_control_set_mute             (CafeMixerStreamControl  *mmsc,
                                                                           gboolean                 mute);
 
-static guint                    alsa_stream_control_get_num_channels     (MateMixerStreamControl  *mmsc);
+static guint                    alsa_stream_control_get_num_channels     (CafeMixerStreamControl  *mmsc);
 
-static guint                    alsa_stream_control_get_volume           (MateMixerStreamControl  *mmsc);
+static guint                    alsa_stream_control_get_volume           (CafeMixerStreamControl  *mmsc);
 
-static gboolean                 alsa_stream_control_set_volume           (MateMixerStreamControl  *mmsc,
+static gboolean                 alsa_stream_control_set_volume           (CafeMixerStreamControl  *mmsc,
                                                                           guint                    volume);
 
-static gdouble                  alsa_stream_control_get_decibel          (MateMixerStreamControl  *mmsc);
+static gdouble                  alsa_stream_control_get_decibel          (CafeMixerStreamControl  *mmsc);
 
-static gboolean                 alsa_stream_control_set_decibel          (MateMixerStreamControl  *mmsc,
+static gboolean                 alsa_stream_control_set_decibel          (CafeMixerStreamControl  *mmsc,
                                                                           gdouble                  decibel);
 
-static gboolean                 alsa_stream_control_has_channel_position (MateMixerStreamControl  *mmsc,
-                                                                          MateMixerChannelPosition position);
-static MateMixerChannelPosition alsa_stream_control_get_channel_position (MateMixerStreamControl  *mmsc,
+static gboolean                 alsa_stream_control_has_channel_position (CafeMixerStreamControl  *mmsc,
+                                                                          CafeMixerChannelPosition position);
+static CafeMixerChannelPosition alsa_stream_control_get_channel_position (CafeMixerStreamControl  *mmsc,
                                                                           guint                    channel);
 
-static guint                    alsa_stream_control_get_channel_volume   (MateMixerStreamControl  *mmsc,
+static guint                    alsa_stream_control_get_channel_volume   (CafeMixerStreamControl  *mmsc,
                                                                           guint                    channel);
-static gboolean                 alsa_stream_control_set_channel_volume   (MateMixerStreamControl  *mmsc,
+static gboolean                 alsa_stream_control_set_channel_volume   (CafeMixerStreamControl  *mmsc,
                                                                           guint                    channel,
                                                                           guint                    volume);
 
-static gdouble                  alsa_stream_control_get_channel_decibel  (MateMixerStreamControl  *mmsc,
+static gdouble                  alsa_stream_control_get_channel_decibel  (CafeMixerStreamControl  *mmsc,
                                                                           guint                    channel);
-static gboolean                 alsa_stream_control_set_channel_decibel  (MateMixerStreamControl  *mmsc,
+static gboolean                 alsa_stream_control_set_channel_decibel  (CafeMixerStreamControl  *mmsc,
                                                                           guint                    channel,
                                                                           gdouble                  decibel);
 
-static gboolean                 alsa_stream_control_set_balance          (MateMixerStreamControl  *mmsc,
+static gboolean                 alsa_stream_control_set_balance          (CafeMixerStreamControl  *mmsc,
                                                                           gfloat                   balance);
 
-static gboolean                 alsa_stream_control_set_fade             (MateMixerStreamControl  *mmsc,
+static gboolean                 alsa_stream_control_set_fade             (CafeMixerStreamControl  *mmsc,
                                                                           gfloat                   fade);
 
-static guint                    alsa_stream_control_get_min_volume       (MateMixerStreamControl  *mmsc);
-static guint                    alsa_stream_control_get_max_volume       (MateMixerStreamControl  *mmsc);
-static guint                    alsa_stream_control_get_normal_volume    (MateMixerStreamControl  *mmsc);
-static guint                    alsa_stream_control_get_base_volume      (MateMixerStreamControl  *mmsc);
+static guint                    alsa_stream_control_get_min_volume       (CafeMixerStreamControl  *mmsc);
+static guint                    alsa_stream_control_get_max_volume       (CafeMixerStreamControl  *mmsc);
+static guint                    alsa_stream_control_get_normal_volume    (CafeMixerStreamControl  *mmsc);
+static guint                    alsa_stream_control_get_base_volume      (CafeMixerStreamControl  *mmsc);
 
 static void                     control_data_get_average_left_right      (AlsaControlData         *data,
                                                                           guint                   *left,
@@ -111,7 +111,7 @@ alsa_element_interface_init (AlsaElementInterface *iface)
 static void
 alsa_stream_control_class_init (AlsaStreamControlClass *klass)
 {
-    MateMixerStreamControlClass *control_class;
+    CafeMixerStreamControlClass *control_class;
 
     control_class = CAFE_MIXER_STREAM_CONTROL_CLASS (klass);
 
@@ -152,8 +152,8 @@ alsa_stream_control_get_data (AlsaStreamControl *control)
 void
 alsa_stream_control_set_data (AlsaStreamControl *control, AlsaControlData *data)
 {
-    MateMixerStreamControlFlags flags = CAFE_MIXER_STREAM_CONTROL_NO_FLAGS;
-    MateMixerStreamControl     *mmsc;
+    CafeMixerStreamControlFlags flags = CAFE_MIXER_STREAM_CONTROL_NO_FLAGS;
+    CafeMixerStreamControl     *mmsc;
     gboolean                    mute = FALSE;
 
     g_return_if_fail (ALSA_IS_STREAM_CONTROL (control));
@@ -252,7 +252,7 @@ alsa_stream_control_load (AlsaElement *element)
 }
 
 static gboolean
-alsa_stream_control_set_mute (MateMixerStreamControl *mmsc, gboolean mute)
+alsa_stream_control_set_mute (CafeMixerStreamControl *mmsc, gboolean mute)
 {
     AlsaStreamControl *control;
     gboolean           change = FALSE;
@@ -290,7 +290,7 @@ alsa_stream_control_set_mute (MateMixerStreamControl *mmsc, gboolean mute)
 }
 
 static guint
-alsa_stream_control_get_num_channels (MateMixerStreamControl *mmsc)
+alsa_stream_control_get_num_channels (CafeMixerStreamControl *mmsc)
 {
     g_return_val_if_fail (ALSA_IS_STREAM_CONTROL (mmsc), 0);
 
@@ -298,7 +298,7 @@ alsa_stream_control_get_num_channels (MateMixerStreamControl *mmsc)
 }
 
 static guint
-alsa_stream_control_get_volume (MateMixerStreamControl *mmsc)
+alsa_stream_control_get_volume (CafeMixerStreamControl *mmsc)
 {
     g_return_val_if_fail (ALSA_IS_STREAM_CONTROL (mmsc), 0);
 
@@ -306,7 +306,7 @@ alsa_stream_control_get_volume (MateMixerStreamControl *mmsc)
 }
 
 static gboolean
-alsa_stream_control_set_volume (MateMixerStreamControl *mmsc, guint volume)
+alsa_stream_control_set_volume (CafeMixerStreamControl *mmsc, guint volume)
 {
     AlsaStreamControl *control;
     gboolean           change = FALSE;
@@ -349,7 +349,7 @@ alsa_stream_control_set_volume (MateMixerStreamControl *mmsc, guint volume)
 }
 
 static gdouble
-alsa_stream_control_get_decibel (MateMixerStreamControl *mmsc)
+alsa_stream_control_get_decibel (CafeMixerStreamControl *mmsc)
 {
     AlsaStreamControl      *control;
     AlsaStreamControlClass *klass;
@@ -369,7 +369,7 @@ alsa_stream_control_get_decibel (MateMixerStreamControl *mmsc)
 }
 
 static gboolean
-alsa_stream_control_set_decibel (MateMixerStreamControl *mmsc, gdouble decibel)
+alsa_stream_control_set_decibel (CafeMixerStreamControl *mmsc, gdouble decibel)
 {
     AlsaStreamControl      *control;
     AlsaStreamControlClass *klass;
@@ -387,8 +387,8 @@ alsa_stream_control_set_decibel (MateMixerStreamControl *mmsc, gdouble decibel)
 }
 
 static gboolean
-alsa_stream_control_has_channel_position (MateMixerStreamControl  *mmsc,
-                                          MateMixerChannelPosition position)
+alsa_stream_control_has_channel_position (CafeMixerStreamControl  *mmsc,
+                                          CafeMixerChannelPosition position)
 {
     AlsaStreamControl *control;
 
@@ -402,8 +402,8 @@ alsa_stream_control_has_channel_position (MateMixerStreamControl  *mmsc,
         return FALSE;
 }
 
-static MateMixerChannelPosition
-alsa_stream_control_get_channel_position (MateMixerStreamControl *mmsc, guint channel)
+static CafeMixerChannelPosition
+alsa_stream_control_get_channel_position (CafeMixerStreamControl *mmsc, guint channel)
 {
     AlsaStreamControl *control;
 
@@ -418,7 +418,7 @@ alsa_stream_control_get_channel_position (MateMixerStreamControl *mmsc, guint ch
 }
 
 static guint
-alsa_stream_control_get_channel_volume (MateMixerStreamControl *mmsc, guint channel)
+alsa_stream_control_get_channel_volume (CafeMixerStreamControl *mmsc, guint channel)
 {
     AlsaStreamControl *control;
 
@@ -433,7 +433,7 @@ alsa_stream_control_get_channel_volume (MateMixerStreamControl *mmsc, guint chan
 }
 
 static gboolean
-alsa_stream_control_set_channel_volume (MateMixerStreamControl *mmsc, guint channel, guint volume)
+alsa_stream_control_set_channel_volume (CafeMixerStreamControl *mmsc, guint channel, guint volume)
 {
     AlsaStreamControl *control;
 
@@ -475,7 +475,7 @@ alsa_stream_control_set_channel_volume (MateMixerStreamControl *mmsc, guint chan
 }
 
 static gdouble
-alsa_stream_control_get_channel_decibel (MateMixerStreamControl *mmsc, guint channel)
+alsa_stream_control_get_channel_decibel (CafeMixerStreamControl *mmsc, guint channel)
 {
     AlsaStreamControl      *control;
     AlsaStreamControlClass *klass;
@@ -499,7 +499,7 @@ alsa_stream_control_get_channel_decibel (MateMixerStreamControl *mmsc, guint cha
 }
 
 static gboolean
-alsa_stream_control_set_channel_decibel (MateMixerStreamControl *mmsc,
+alsa_stream_control_set_channel_decibel (CafeMixerStreamControl *mmsc,
                                          guint                   channel,
                                          gdouble                 decibel)
 {
@@ -519,7 +519,7 @@ alsa_stream_control_set_channel_decibel (MateMixerStreamControl *mmsc,
 }
 
 static gboolean
-alsa_stream_control_set_balance (MateMixerStreamControl *mmsc, gfloat balance)
+alsa_stream_control_set_balance (CafeMixerStreamControl *mmsc, gfloat balance)
 {
     AlsaStreamControlClass *klass;
     AlsaStreamControl      *control;
@@ -580,7 +580,7 @@ alsa_stream_control_set_balance (MateMixerStreamControl *mmsc, gfloat balance)
 }
 
 static gboolean
-alsa_stream_control_set_fade (MateMixerStreamControl *mmsc, gfloat fade)
+alsa_stream_control_set_fade (CafeMixerStreamControl *mmsc, gfloat fade)
 {
     AlsaStreamControlClass *klass;
     AlsaStreamControl      *control;
@@ -641,7 +641,7 @@ alsa_stream_control_set_fade (MateMixerStreamControl *mmsc, gfloat fade)
 }
 
 static guint
-alsa_stream_control_get_min_volume (MateMixerStreamControl *mmsc)
+alsa_stream_control_get_min_volume (CafeMixerStreamControl *mmsc)
 {
     g_return_val_if_fail (ALSA_IS_STREAM_CONTROL (mmsc), 0);
 
@@ -649,7 +649,7 @@ alsa_stream_control_get_min_volume (MateMixerStreamControl *mmsc)
 }
 
 static guint
-alsa_stream_control_get_max_volume (MateMixerStreamControl *mmsc)
+alsa_stream_control_get_max_volume (CafeMixerStreamControl *mmsc)
 {
     g_return_val_if_fail (ALSA_IS_STREAM_CONTROL (mmsc), 0);
 
@@ -657,7 +657,7 @@ alsa_stream_control_get_max_volume (MateMixerStreamControl *mmsc)
 }
 
 static guint
-alsa_stream_control_get_normal_volume (MateMixerStreamControl *mmsc)
+alsa_stream_control_get_normal_volume (CafeMixerStreamControl *mmsc)
 {
     g_return_val_if_fail (ALSA_IS_STREAM_CONTROL (mmsc), 0);
 
@@ -665,7 +665,7 @@ alsa_stream_control_get_normal_volume (MateMixerStreamControl *mmsc)
 }
 
 static guint
-alsa_stream_control_get_base_volume (MateMixerStreamControl *mmsc)
+alsa_stream_control_get_base_volume (CafeMixerStreamControl *mmsc)
 {
     g_return_val_if_fail (ALSA_IS_STREAM_CONTROL (mmsc), 0);
 

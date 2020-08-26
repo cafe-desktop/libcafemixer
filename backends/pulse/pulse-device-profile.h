@@ -44,7 +44,7 @@ typedef struct _PulseDeviceProfilePrivate  PulseDeviceProfilePrivate;
 
 struct _PulseDeviceProfile
 {
-    MateMixerSwitchOption parent;
+    CafeMixerSwitchOption parent;
 
     /*< private >*/
     PulseDeviceProfilePrivate *priv;
@@ -52,7 +52,7 @@ struct _PulseDeviceProfile
 
 struct _PulseDeviceProfileClass
 {
-    MateMixerSwitchOptionClass parent;
+    CafeMixerSwitchOptionClass parent;
 };
 
 GType               pulse_device_profile_get_type     (void) G_GNUC_CONST;

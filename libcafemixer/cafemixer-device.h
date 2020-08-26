@@ -28,77 +28,77 @@ G_BEGIN_DECLS
 #define CAFE_MIXER_TYPE_DEVICE                  \
         (cafe_mixer_device_get_type ())
 #define CAFE_MIXER_DEVICE(o)                    \
-        (G_TYPE_CHECK_INSTANCE_CAST ((o), CAFE_MIXER_TYPE_DEVICE, MateMixerDevice))
+        (G_TYPE_CHECK_INSTANCE_CAST ((o), CAFE_MIXER_TYPE_DEVICE, CafeMixerDevice))
 #define CAFE_MIXER_IS_DEVICE(o)                 \
         (G_TYPE_CHECK_INSTANCE_TYPE ((o), CAFE_MIXER_TYPE_DEVICE))
 #define CAFE_MIXER_DEVICE_CLASS(k)              \
-        (G_TYPE_CHECK_CLASS_CAST ((k), CAFE_MIXER_TYPE_DEVICE, MateMixerDeviceClass))
+        (G_TYPE_CHECK_CLASS_CAST ((k), CAFE_MIXER_TYPE_DEVICE, CafeMixerDeviceClass))
 #define CAFE_MIXER_IS_DEVICE_CLASS(k)           \
         (G_TYPE_CHECK_CLASS_TYPE ((k), CAFE_MIXER_TYPE_DEVICE))
 #define CAFE_MIXER_DEVICE_GET_CLASS(o)          \
-        (G_TYPE_INSTANCE_GET_CLASS ((o), CAFE_MIXER_TYPE_DEVICE, MateMixerDeviceClass))
+        (G_TYPE_INSTANCE_GET_CLASS ((o), CAFE_MIXER_TYPE_DEVICE, CafeMixerDeviceClass))
 
-typedef struct _MateMixerDeviceClass    MateMixerDeviceClass;
-typedef struct _MateMixerDevicePrivate  MateMixerDevicePrivate;
+typedef struct _CafeMixerDeviceClass    CafeMixerDeviceClass;
+typedef struct _CafeMixerDevicePrivate  CafeMixerDevicePrivate;
 
 /**
- * MateMixerDevice:
+ * CafeMixerDevice:
  *
- * The #MateMixerDevice structure contains only private data and should only
+ * The #CafeMixerDevice structure contains only private data and should only
  * be accessed using the provided API.
  */
-struct _MateMixerDevice
+struct _CafeMixerDevice
 {
     GObject object;
 
     /*< private >*/
-    MateMixerDevicePrivate *priv;
+    CafeMixerDevicePrivate *priv;
 };
 
 /**
- * MateMixerDeviceClass:
+ * CafeMixerDeviceClass:
  * @parent_class: The parent class.
  *
- * The class structure for #MateMixerDevice.
+ * The class structure for #CafeMixerDevice.
  */
-struct _MateMixerDeviceClass
+struct _CafeMixerDeviceClass
 {
     GObjectClass parent_class;
 
     /*< private >*/
-    MateMixerStream       *(*get_stream)    (MateMixerDevice *device,
+    CafeMixerStream       *(*get_stream)    (CafeMixerDevice *device,
                                              const gchar     *name);
-    MateMixerDeviceSwitch *(*get_switch)    (MateMixerDevice *device,
+    CafeMixerDeviceSwitch *(*get_switch)    (CafeMixerDevice *device,
                                              const gchar     *name);
 
-    const GList           *(*list_streams)  (MateMixerDevice *device);
-    const GList           *(*list_switches) (MateMixerDevice *device);
+    const GList           *(*list_streams)  (CafeMixerDevice *device);
+    const GList           *(*list_switches) (CafeMixerDevice *device);
 
     /* Signals */
-    void (*stream_added)   (MateMixerDevice *device,
+    void (*stream_added)   (CafeMixerDevice *device,
                             const gchar     *name);
-    void (*stream_removed) (MateMixerDevice *device,
+    void (*stream_removed) (CafeMixerDevice *device,
                             const gchar     *name);
-    void (*switch_added)   (MateMixerDevice *device,
+    void (*switch_added)   (CafeMixerDevice *device,
                             const gchar     *name);
-    void (*switch_removed) (MateMixerDevice *device,
+    void (*switch_removed) (CafeMixerDevice *device,
                             const gchar     *name);
 };
 
 GType                  cafe_mixer_device_get_type      (void) G_GNUC_CONST;
 
-const gchar *          cafe_mixer_device_get_name      (MateMixerDevice *device);
-const gchar *          cafe_mixer_device_get_label     (MateMixerDevice *device);
-const gchar *          cafe_mixer_device_get_icon      (MateMixerDevice *device);
+const gchar *          cafe_mixer_device_get_name      (CafeMixerDevice *device);
+const gchar *          cafe_mixer_device_get_label     (CafeMixerDevice *device);
+const gchar *          cafe_mixer_device_get_icon      (CafeMixerDevice *device);
 
-MateMixerStream *      cafe_mixer_device_get_stream    (MateMixerDevice *device,
+CafeMixerStream *      cafe_mixer_device_get_stream    (CafeMixerDevice *device,
                                                         const gchar     *name);
 
-MateMixerDeviceSwitch *cafe_mixer_device_get_switch    (MateMixerDevice *device,
+CafeMixerDeviceSwitch *cafe_mixer_device_get_switch    (CafeMixerDevice *device,
                                                         const gchar     *name);
 
-const GList *          cafe_mixer_device_list_streams  (MateMixerDevice *device);
-const GList *          cafe_mixer_device_list_switches (MateMixerDevice *device);
+const GList *          cafe_mixer_device_list_streams  (CafeMixerDevice *device);
+const GList *          cafe_mixer_device_list_switches (CafeMixerDevice *device);
 
 G_END_DECLS
 

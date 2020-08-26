@@ -24,7 +24,7 @@
 
 G_BEGIN_DECLS
 
-struct _MateMixerAppInfo
+struct _CafeMixerAppInfo
 {
     gchar *name;
     gchar *id;
@@ -32,19 +32,19 @@ struct _MateMixerAppInfo
     gchar *icon;
 };
 
-MateMixerAppInfo *_cafe_mixer_app_info_new         (void);
+CafeMixerAppInfo *_cafe_mixer_app_info_new         (void);
 
-void              _cafe_mixer_app_info_set_name    (MateMixerAppInfo *info,
+void              _cafe_mixer_app_info_set_name    (CafeMixerAppInfo *info,
                                                     const gchar      *name);
-void              _cafe_mixer_app_info_set_id      (MateMixerAppInfo *info,
+void              _cafe_mixer_app_info_set_id      (CafeMixerAppInfo *info,
                                                     const gchar      *id);
-void              _cafe_mixer_app_info_set_version (MateMixerAppInfo *info,
+void              _cafe_mixer_app_info_set_version (CafeMixerAppInfo *info,
                                                     const gchar      *version);
-void              _cafe_mixer_app_info_set_icon    (MateMixerAppInfo *info,
+void              _cafe_mixer_app_info_set_icon    (CafeMixerAppInfo *info,
                                                     const gchar      *icon);
 
-MateMixerAppInfo *_cafe_mixer_app_info_copy        (MateMixerAppInfo *info);
-void              _cafe_mixer_app_info_free        (MateMixerAppInfo *info);
+CafeMixerAppInfo *_cafe_mixer_app_info_copy        (CafeMixerAppInfo *info);
+void              _cafe_mixer_app_info_free        (CafeMixerAppInfo *info);
 
 G_END_DECLS
 

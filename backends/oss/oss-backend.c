@@ -64,10 +64,10 @@ static void oss_backend_finalize       (GObject         *object);
 G_DEFINE_DYNAMIC_TYPE_EXTENDED (OssBackend, oss_backend, CAFE_MIXER_TYPE_BACKEND, 0, G_ADD_PRIVATE_DYNAMIC (OssBackend))
 #pragma clang diagnostic pop
 
-static gboolean     oss_backend_open             (MateMixerBackend *backend);
-static void         oss_backend_close            (MateMixerBackend *backend);
-static const GList *oss_backend_list_devices     (MateMixerBackend *backend);
-static const GList *oss_backend_list_streams     (MateMixerBackend *backend);
+static gboolean     oss_backend_open             (CafeMixerBackend *backend);
+static void         oss_backend_close            (CafeMixerBackend *backend);
+static const GList *oss_backend_list_devices     (CafeMixerBackend *backend);
+static const GList *oss_backend_list_streams     (CafeMixerBackend *backend);
 
 static gboolean     read_devices                 (OssBackend       *oss);
 
@@ -108,7 +108,7 @@ static gint         compare_devices              (gconstpointer     a,
 static gint         compare_device_path          (gconstpointer     a,
                                                   gconstpointer     b);
 
-static MateMixerBackendInfo info;
+static CafeMixerBackendInfo info;
 
 void
 backend_module_init (GTypeModule *module)
@@ -122,7 +122,7 @@ backend_module_init (GTypeModule *module)
     info.backend_type  = CAFE_MIXER_BACKEND_OSS;
 }
 
-const MateMixerBackendInfo *backend_module_get_info (void)
+const CafeMixerBackendInfo *backend_module_get_info (void)
 {
     return &info;
 }
@@ -131,7 +131,7 @@ static void
 oss_backend_class_init (OssBackendClass *klass)
 {
     GObjectClass          *object_class;
-    MateMixerBackendClass *backend_class;
+    CafeMixerBackendClass *backend_class;
 
     object_class = G_OBJECT_CLASS (klass);
     object_class->dispose  = oss_backend_dispose;
@@ -164,8 +164,8 @@ oss_backend_init (OssBackend *oss)
 static void
 oss_backend_dispose (GObject *object)
 {
-    MateMixerBackend *backend;
-    MateMixerState    state;
+    CafeMixerBackend *backend;
+    CafeMixerState    state;
 
     backend = CAFE_MIXER_BACKEND (object);
 
@@ -189,7 +189,7 @@ oss_backend_finalize (GObject *object)
 }
 
 static gboolean
-oss_backend_open (MateMixerBackend *backend)
+oss_backend_open (CafeMixerBackend *backend)
 {
     OssBackend *oss;
 
@@ -216,7 +216,7 @@ oss_backend_open (MateMixerBackend *backend)
 }
 
 void
-oss_backend_close (MateMixerBackend *backend)
+oss_backend_close (CafeMixerBackend *backend)
 {
     OssBackend *oss;
 
@@ -243,7 +243,7 @@ oss_backend_close (MateMixerBackend *backend)
 }
 
 static const GList *
-oss_backend_list_devices (MateMixerBackend *backend)
+oss_backend_list_devices (CafeMixerBackend *backend)
 {
     g_return_val_if_fail (OSS_IS_BACKEND (backend), NULL);
 
@@ -251,7 +251,7 @@ oss_backend_list_devices (MateMixerBackend *backend)
 }
 
 static const GList *
-oss_backend_list_streams (MateMixerBackend *backend)
+oss_backend_list_streams (CafeMixerBackend *backend)
 {
     OssBackend *oss;
 
@@ -567,7 +567,7 @@ remove_device_by_list_item (OssBackend *oss, GList *item)
 static void
 remove_stream (OssBackend *oss, const gchar *name)
 {
-    MateMixerStream *stream;
+    CafeMixerStream *stream;
 
     stream = cafe_mixer_backend_get_default_input_stream (CAFE_MIXER_BACKEND (oss));
 
@@ -679,8 +679,8 @@ free_stream_list (OssBackend *oss)
 static gint
 compare_devices (gconstpointer a, gconstpointer b)
 {
-    MateMixerDevice *d1 = CAFE_MIXER_DEVICE (a);
-    MateMixerDevice *d2 = CAFE_MIXER_DEVICE (b);
+    CafeMixerDevice *d1 = CAFE_MIXER_DEVICE (a);
+    CafeMixerDevice *d2 = CAFE_MIXER_DEVICE (b);
 
     return strcmp (cafe_mixer_device_get_name (d1), cafe_mixer_device_get_name (d2));
 }

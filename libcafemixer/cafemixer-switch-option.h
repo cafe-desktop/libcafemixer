@@ -28,49 +28,49 @@ G_BEGIN_DECLS
 #define CAFE_MIXER_TYPE_SWITCH_OPTION           \
         (cafe_mixer_switch_option_get_type ())
 #define CAFE_MIXER_SWITCH_OPTION(o)             \
-        (G_TYPE_CHECK_INSTANCE_CAST ((o), CAFE_MIXER_TYPE_SWITCH_OPTION, MateMixerSwitchOption))
+        (G_TYPE_CHECK_INSTANCE_CAST ((o), CAFE_MIXER_TYPE_SWITCH_OPTION, CafeMixerSwitchOption))
 #define CAFE_MIXER_IS_SWITCH_OPTION(o)          \
         (G_TYPE_CHECK_INSTANCE_TYPE ((o), CAFE_MIXER_TYPE_SWITCH_OPTION))
 #define CAFE_MIXER_SWITCH_OPTION_CLASS(k)       \
-        (G_TYPE_CHECK_CLASS_CAST ((k), CAFE_MIXER_TYPE_SWITCH_OPTION, MateMixerSwitchOptionClass))
+        (G_TYPE_CHECK_CLASS_CAST ((k), CAFE_MIXER_TYPE_SWITCH_OPTION, CafeMixerSwitchOptionClass))
 #define CAFE_MIXER_IS_SWITCH_OPTION_CLASS(k)    \
         (G_TYPE_CHECK_CLASS_TYPE ((k), CAFE_MIXER_TYPE_SWITCH_OPTION))
 #define CAFE_MIXER_SWITCH_OPTION_GET_CLASS(o)   \
-        (G_TYPE_INSTANCE_GET_CLASS ((o), CAFE_MIXER_TYPE_SWITCH_OPTION, MateMixerSwitchOptionClass))
+        (G_TYPE_INSTANCE_GET_CLASS ((o), CAFE_MIXER_TYPE_SWITCH_OPTION, CafeMixerSwitchOptionClass))
 
-typedef struct _MateMixerSwitchOptionClass    MateMixerSwitchOptionClass;
-typedef struct _MateMixerSwitchOptionPrivate  MateMixerSwitchOptionPrivate;
+typedef struct _CafeMixerSwitchOptionClass    CafeMixerSwitchOptionClass;
+typedef struct _CafeMixerSwitchOptionPrivate  CafeMixerSwitchOptionPrivate;
 
 /**
- * MateMixerSwitchOption:
+ * CafeMixerSwitchOption:
  *
- * The #MateMixerSwitchOption structure contains only private data and should only
+ * The #CafeMixerSwitchOption structure contains only private data and should only
  * be accessed using the provided API.
  */
-struct _MateMixerSwitchOption
+struct _CafeMixerSwitchOption
 {
     GObject parent;
 
     /*< private >*/
-    MateMixerSwitchOptionPrivate *priv;
+    CafeMixerSwitchOptionPrivate *priv;
 };
 
 /**
- * MateMixerSwitchOptionClass:
+ * CafeMixerSwitchOptionClass:
  * @parent_class: The parent class.
  *
- * The class structure for #MateMixerSwitchOption.
+ * The class structure for #CafeMixerSwitchOption.
  */
-struct _MateMixerSwitchOptionClass
+struct _CafeMixerSwitchOptionClass
 {
     GObjectClass parent_class;
 };
 
 GType        cafe_mixer_switch_option_get_type  (void) G_GNUC_CONST;
 
-const gchar *cafe_mixer_switch_option_get_name  (MateMixerSwitchOption *option);
-const gchar *cafe_mixer_switch_option_get_label (MateMixerSwitchOption *option);
-const gchar *cafe_mixer_switch_option_get_icon  (MateMixerSwitchOption *option);
+const gchar *cafe_mixer_switch_option_get_name  (CafeMixerSwitchOption *option);
+const gchar *cafe_mixer_switch_option_get_label (CafeMixerSwitchOption *option);
+const gchar *cafe_mixer_switch_option_get_icon  (CafeMixerSwitchOption *option);
 
 G_END_DECLS
 

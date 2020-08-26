@@ -24,7 +24,7 @@
  */
 
 /**
- * MateMixerState:
+ * CafeMixerState:
  * @CAFE_MIXER_STATE_IDLE:
  *     Not connected.
  * @CAFE_MIXER_STATE_CONNECTING:
@@ -44,10 +44,10 @@ typedef enum {
     CAFE_MIXER_STATE_READY,
     CAFE_MIXER_STATE_FAILED,
     CAFE_MIXER_STATE_UNKNOWN
-} MateMixerState;
+} CafeMixerState;
 
 /**
- * MateMixerBackendType:
+ * CafeMixerBackendType:
  * @CAFE_MIXER_BACKEND_UNKNOWN:
  *     Unknown or undefined sound system backend type.
  * @CAFE_MIXER_BACKEND_PULSEAUDIO:
@@ -72,10 +72,10 @@ typedef enum {
     CAFE_MIXER_BACKEND_ALSA,
     CAFE_MIXER_BACKEND_OSS,
     CAFE_MIXER_BACKEND_NULL
-} MateMixerBackendType;
+} CafeMixerBackendType;
 
 /**
- * MateMixerBackendFlags:
+ * CafeMixerBackendFlags:
  * @CAFE_MIXER_BACKEND_NO_FLAGS:
  *     No flags.
  * @CAFE_MIXER_BACKEND_HAS_APPLICATION_CONTROLS:
@@ -83,7 +83,7 @@ typedef enum {
  *     allowing per-application volume control.
  * @CAFE_MIXER_BACKEND_HAS_STORED_CONTROLS:
  *     The sound system backend includes support for stored controls. See the
- *     #MateMixerStoredControl description for more information.
+ *     #CafeMixerStoredControl description for more information.
  *     The presence of this flag does not guarantee that this feature is enabled
  *     in the sound system's configuration.
  * @CAFE_MIXER_BACKEND_CAN_SET_DEFAULT_INPUT_STREAM:
@@ -101,10 +101,10 @@ typedef enum { /*< flags >*/
     CAFE_MIXER_BACKEND_HAS_STORED_CONTROLS           = 1 << 1,
     CAFE_MIXER_BACKEND_CAN_SET_DEFAULT_INPUT_STREAM  = 1 << 2,
     CAFE_MIXER_BACKEND_CAN_SET_DEFAULT_OUTPUT_STREAM = 1 << 3
-} MateMixerBackendFlags;
+} CafeMixerBackendFlags;
 
 /**
- * MateMixerDirection:
+ * CafeMixerDirection:
  * @CAFE_MIXER_DIRECTION_UNKNOWN:
  *     Unknown direction.
  * @CAFE_MIXER_DIRECTION_INPUT:
@@ -118,10 +118,10 @@ typedef enum {
     CAFE_MIXER_DIRECTION_UNKNOWN,
     CAFE_MIXER_DIRECTION_INPUT,
     CAFE_MIXER_DIRECTION_OUTPUT,
-} MateMixerDirection;
+} CafeMixerDirection;
 
 /**
- * MateMixerStreamControlFlags:
+ * CafeMixerStreamControlFlags:
  * @CAFE_MIXER_STREAM_CONTROL_NO_FLAGS:
  *     No flags.
  * @CAFE_MIXER_STREAM_CONTROL_MUTE_READABLE:
@@ -148,7 +148,7 @@ typedef enum {
  * @CAFE_MIXER_STREAM_CONTROL_HAS_MONITOR:
  *     The stream control supports peak level monitoring.
  * @CAFE_MIXER_STREAM_CONTROL_STORED:
- *     The stream control is a #MateMixerStoredControl.
+ *     The stream control is a #CafeMixerStoredControl.
  *
  * Flags describing capabilities and properties of a stream control.
  */
@@ -164,10 +164,10 @@ typedef enum {
     CAFE_MIXER_STREAM_CONTROL_HAS_DECIBEL     = 1 << 7,
     CAFE_MIXER_STREAM_CONTROL_HAS_MONITOR     = 1 << 8,
     CAFE_MIXER_STREAM_CONTROL_STORED          = 1 << 9
-} MateMixerStreamControlFlags;
+} CafeMixerStreamControlFlags;
 
 /**
- * MateMixerStreamControlRole:
+ * CafeMixerStreamControlRole:
  * @CAFE_MIXER_STREAM_CONTROL_ROLE_UNKNOWN:
  *     Unknown role.
  * @CAFE_MIXER_STREAM_CONTROL_ROLE_MASTER:
@@ -209,10 +209,10 @@ typedef enum {
     CAFE_MIXER_STREAM_CONTROL_ROLE_CD,
     CAFE_MIXER_STREAM_CONTROL_ROLE_VIDEO,
     CAFE_MIXER_STREAM_CONTROL_ROLE_MUSIC
-} MateMixerStreamControlRole;
+} CafeMixerStreamControlRole;
 
 /**
- * MateMixerStreamControlMediaRole:
+ * CafeMixerStreamControlMediaRole:
  * @CAFE_MIXER_STREAM_CONTROL_MEDIA_ROLE_UNKNOWN:
  *     Unknown media role.
  * @CAFE_MIXER_STREAM_CONTROL_MEDIA_ROLE_VIDEO:
@@ -256,10 +256,10 @@ typedef enum {
     CAFE_MIXER_STREAM_CONTROL_MEDIA_ROLE_TEST,
     CAFE_MIXER_STREAM_CONTROL_MEDIA_ROLE_ABSTRACT,
     CAFE_MIXER_STREAM_CONTROL_MEDIA_ROLE_FILTER
-} MateMixerStreamControlMediaRole;
+} CafeMixerStreamControlMediaRole;
 
 /**
- * MateMixerDeviceSwitchRole:
+ * CafeMixerDeviceSwitchRole:
  * @CAFE_MIXER_DEVICE_SWITCH_ROLE_UNKNOWN:
  *     Unknown device switch role.
  * @CAFE_MIXER_DEVICE_SWITCH_ROLE_PROFILE:
@@ -268,10 +268,10 @@ typedef enum {
 typedef enum {
     CAFE_MIXER_DEVICE_SWITCH_ROLE_UNKNOWN,
     CAFE_MIXER_DEVICE_SWITCH_ROLE_PROFILE,
-} MateMixerDeviceSwitchRole;
+} CafeMixerDeviceSwitchRole;
 
 /**
- * MateMixerStreamSwitchRole:
+ * CafeMixerStreamSwitchRole:
  * @CAFE_MIXER_STREAM_SWITCH_ROLE_UNKNOWN:
  *     Unknown stream switch role.
  * @CAFE_MIXER_STREAM_SWITCH_ROLE_PORT:
@@ -283,22 +283,22 @@ typedef enum {
     CAFE_MIXER_STREAM_SWITCH_ROLE_UNKNOWN,
     CAFE_MIXER_STREAM_SWITCH_ROLE_PORT,
     CAFE_MIXER_STREAM_SWITCH_ROLE_BOOST
-} MateMixerStreamSwitchRole;
+} CafeMixerStreamSwitchRole;
 
 /**
- * MateMixerStreamSwitchFlags:
+ * CafeMixerStreamSwitchFlags:
  * @CAFE_MIXER_STREAM_SWITCH_NO_FLAGS:
  *     No flags.
  * @CAFE_MIXER_STREAM_SWITCH_TOGGLE:
- *     The switch is a #MateMixerStreamToggle.
+ *     The switch is a #CafeMixerStreamToggle.
  */
 typedef enum { /*< flags >*/
     CAFE_MIXER_STREAM_SWITCH_NO_FLAGS = 0,
     CAFE_MIXER_STREAM_SWITCH_TOGGLE   = 1 << 0,
-} MateMixerStreamSwitchFlags;
+} CafeMixerStreamSwitchFlags;
 
 /**
- * MateMixerChannelPosition:
+ * CafeMixerChannelPosition:
  * @CAFE_MIXER_CHANNEL_UNKNOWN:
  *     Unknown channel position.
  * @CAFE_MIXER_CHANNEL_MONO:
@@ -363,6 +363,6 @@ typedef enum {
     CAFE_MIXER_CHANNEL_TOP_BACK_CENTER,
     /*< private >*/
     CAFE_MIXER_CHANNEL_MAX
-} MateMixerChannelPosition;
+} CafeMixerChannelPosition;
 
 #endif /* CAFEMIXER_ENUMS_H */

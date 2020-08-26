@@ -29,7 +29,7 @@ G_BEGIN_DECLS
 
 typedef struct {
     gboolean                 active;
-    MateMixerChannelPosition c[CAFE_MIXER_CHANNEL_MAX];
+    CafeMixerChannelPosition c[CAFE_MIXER_CHANNEL_MAX];
     guint                    v[CAFE_MIXER_CHANNEL_MAX];
     gboolean                 m[CAFE_MIXER_CHANNEL_MAX];
     guint                    volume;
@@ -61,7 +61,7 @@ typedef struct _AlsaStreamControlPrivate  AlsaStreamControlPrivate;
 
 struct _AlsaStreamControl
 {
-    MateMixerStreamControl parent;
+    CafeMixerStreamControl parent;
 
     /*< private >*/
     AlsaStreamControlPrivate *priv;
@@ -70,7 +70,7 @@ struct _AlsaStreamControl
 
 struct _AlsaStreamControlClass
 {
-    MateMixerStreamControlClass parent_class;
+    CafeMixerStreamControlClass parent_class;
 
     /*< private >*/
     gboolean (*load)                    (AlsaStreamControl           *control);

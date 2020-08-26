@@ -29,7 +29,7 @@
  * SECTION:cafemixer
  * @short_description: Library initialization and support functions
  * @include: libcafemixer/cafemixer.h
- * @see_also: #MateMixerContext
+ * @see_also: #CafeMixerContext
  *
  * The libcafemixer library must be initialized before it is used by an
  * application. The initialization function loads dynamic modules which provide
@@ -37,7 +37,7 @@
  * is at least one usable module present on the target system.
  *
  * To connect to a sound system and access the mixer functionality after the
- * library is initialized, create a #MateMixerContext using the
+ * library is initialized, create a #CafeMixerContext using the
  * cafe_mixer_context_new() function.
  */
 
@@ -128,7 +128,7 @@ _cafe_mixer_list_modules (void)
  * Returns: a channel mask.
  */
 guint32
-_cafe_mixer_create_channel_mask (MateMixerChannelPosition *positions, guint n)
+_cafe_mixer_create_channel_mask (CafeMixerChannelPosition *positions, guint n)
 {
     guint32 mask = 0;
     guint   i = 0;
@@ -188,7 +188,7 @@ load_modules (void)
 static gint
 compare_modules (gconstpointer a, gconstpointer b)
 {
-    const MateMixerBackendInfo *info1, *info2;
+    const CafeMixerBackendInfo *info1, *info2;
 
     info1 = cafe_mixer_backend_module_get_info (CAFE_MIXER_BACKEND_MODULE (a));
     info2 = cafe_mixer_backend_module_get_info (CAFE_MIXER_BACKEND_MODULE (b));

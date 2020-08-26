@@ -32,7 +32,7 @@
 
 G_DEFINE_TYPE (PulseSourceOutput, pulse_source_output, PULSE_TYPE_STREAM_CONTROL);
 
-static guint         pulse_source_output_get_max_volume (MateMixerStreamControl *mmsc);
+static guint         pulse_source_output_get_max_volume (CafeMixerStreamControl *mmsc);
 
 static gboolean      pulse_source_output_set_mute       (PulseStreamControl     *psc,
                                                          gboolean                mute);
@@ -43,7 +43,7 @@ static PulseMonitor *pulse_source_output_create_monitor (PulseStreamControl     
 static void
 pulse_source_output_class_init (PulseSourceOutputClass *klass)
 {
-    MateMixerStreamControlClass *mmsc_class;
+    CafeMixerStreamControlClass *mmsc_class;
     PulseStreamControlClass     *control_class;
 
     mmsc_class = CAFE_MIXER_STREAM_CONTROL_CLASS (klass);
@@ -68,14 +68,14 @@ pulse_source_output_new (PulseConnection             *connection,
     PulseSourceOutput *output;
     gchar             *name;
     const gchar       *prop;
-    MateMixerAppInfo  *app_info = NULL;
+    CafeMixerAppInfo  *app_info = NULL;
 
-    MateMixerStreamControlFlags flags = CAFE_MIXER_STREAM_CONTROL_MUTE_READABLE |
+    CafeMixerStreamControlFlags flags = CAFE_MIXER_STREAM_CONTROL_MUTE_READABLE |
                                         CAFE_MIXER_STREAM_CONTROL_MUTE_WRITABLE |
                                         CAFE_MIXER_STREAM_CONTROL_HAS_MONITOR;
-    MateMixerStreamControlRole  role  = CAFE_MIXER_STREAM_CONTROL_ROLE_UNKNOWN;
+    CafeMixerStreamControlRole  role  = CAFE_MIXER_STREAM_CONTROL_ROLE_UNKNOWN;
 
-    MateMixerStreamControlMediaRole media_role = CAFE_MIXER_STREAM_CONTROL_MEDIA_ROLE_UNKNOWN;
+    CafeMixerStreamControlMediaRole media_role = CAFE_MIXER_STREAM_CONTROL_MEDIA_ROLE_UNKNOWN;
 
     g_return_val_if_fail (PULSE_IS_CONNECTION (connection), NULL);
     g_return_val_if_fail (info != NULL, NULL);
@@ -173,7 +173,7 @@ pulse_source_output_update (PulseSourceOutput           *output,
 }
 
 static guint
-pulse_source_output_get_max_volume (MateMixerStreamControl *mmsc)
+pulse_source_output_get_max_volume (CafeMixerStreamControl *mmsc)
 {
     g_return_val_if_fail (PULSE_IS_SOURCE_OUTPUT (mmsc), (guint) PA_VOLUME_MUTED);
 

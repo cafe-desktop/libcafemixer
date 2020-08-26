@@ -44,7 +44,7 @@ typedef struct _PulsePortPrivate  PulsePortPrivate;
 
 struct _PulsePort
 {
-    MateMixerSwitchOption parent;
+    CafeMixerSwitchOption parent;
 
     /*< private >*/
     PulsePortPrivate *priv;
@@ -52,7 +52,7 @@ struct _PulsePort
 
 struct _PulsePortClass
 {
-    MateMixerSwitchOptionClass parent;
+    CafeMixerSwitchOptionClass parent;
 };
 
 GType        pulse_port_get_type     (void) G_GNUC_CONST;

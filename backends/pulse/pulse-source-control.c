@@ -58,12 +58,12 @@ pulse_source_control_new (PulseConnection      *connection,
                           PulseSource          *parent)
 {
     PulseSourceControl         *control;
-    MateMixerStreamControlFlags flags = CAFE_MIXER_STREAM_CONTROL_MUTE_READABLE |
+    CafeMixerStreamControlFlags flags = CAFE_MIXER_STREAM_CONTROL_MUTE_READABLE |
                                         CAFE_MIXER_STREAM_CONTROL_MUTE_WRITABLE |
                                         CAFE_MIXER_STREAM_CONTROL_VOLUME_READABLE |
                                         CAFE_MIXER_STREAM_CONTROL_VOLUME_WRITABLE |
                                         CAFE_MIXER_STREAM_CONTROL_HAS_MONITOR;
-    MateMixerStreamControlRole  role;
+    CafeMixerStreamControlRole  role;
 
     g_return_val_if_fail (PULSE_IS_CONNECTION (connection), NULL);
     g_return_val_if_fail (info != NULL, NULL);

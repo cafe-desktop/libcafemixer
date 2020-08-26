@@ -29,105 +29,105 @@ G_BEGIN_DECLS
 #define CAFE_MIXER_TYPE_BACKEND                 \
         (cafe_mixer_backend_get_type ())
 #define CAFE_MIXER_BACKEND(o)                   \
-        (G_TYPE_CHECK_INSTANCE_CAST ((o), CAFE_MIXER_TYPE_BACKEND, MateMixerBackend))
+        (G_TYPE_CHECK_INSTANCE_CAST ((o), CAFE_MIXER_TYPE_BACKEND, CafeMixerBackend))
 #define CAFE_MIXER_IS_BACKEND(o)                \
         (G_TYPE_CHECK_INSTANCE_TYPE ((o), CAFE_MIXER_TYPE_BACKEND))
 #define CAFE_MIXER_BACKEND_CLASS(k)             \
-        (G_TYPE_CHECK_CLASS_CAST ((k), CAFE_MIXER_TYPE_BACKEND, MateMixerBackendClass))
+        (G_TYPE_CHECK_CLASS_CAST ((k), CAFE_MIXER_TYPE_BACKEND, CafeMixerBackendClass))
 #define CAFE_MIXER_IS_BACKEND_CLASS(k)          \
         (G_TYPE_CHECK_CLASS_TYPE ((k), CAFE_MIXER_TYPE_BACKEND))
 #define CAFE_MIXER_BACKEND_GET_CLASS(o)         \
-        (G_TYPE_INSTANCE_GET_CLASS ((o), CAFE_MIXER_TYPE_BACKEND, MateMixerBackendClass))
+        (G_TYPE_INSTANCE_GET_CLASS ((o), CAFE_MIXER_TYPE_BACKEND, CafeMixerBackendClass))
 
-typedef struct _MateMixerBackend         MateMixerBackend;
-typedef struct _MateMixerBackendClass    MateMixerBackendClass;
-typedef struct _MateMixerBackendPrivate  MateMixerBackendPrivate;
+typedef struct _CafeMixerBackend         CafeMixerBackend;
+typedef struct _CafeMixerBackendClass    CafeMixerBackendClass;
+typedef struct _CafeMixerBackendPrivate  CafeMixerBackendPrivate;
 
-struct _MateMixerBackend
+struct _CafeMixerBackend
 {
     GObject object;
 
     /*< private >*/
-    MateMixerBackendPrivate *priv;
+    CafeMixerBackendPrivate *priv;
 };
 
-struct _MateMixerBackendClass
+struct _CafeMixerBackendClass
 {
     GObjectClass parent_class;
 
     /*< private >*/
-    void         (*set_app_info)              (MateMixerBackend *backend,
-                                               MateMixerAppInfo *info);
-    void         (*set_server_address)        (MateMixerBackend *backend,
+    void         (*set_app_info)              (CafeMixerBackend *backend,
+                                               CafeMixerAppInfo *info);
+    void         (*set_server_address)        (CafeMixerBackend *backend,
                                                const gchar      *address);
 
-    gboolean     (*open)                      (MateMixerBackend *backend);
-    void         (*close)                     (MateMixerBackend *backend);
+    gboolean     (*open)                      (CafeMixerBackend *backend);
+    void         (*close)                     (CafeMixerBackend *backend);
 
-    const GList *(*list_devices)              (MateMixerBackend *backend);
-    const GList *(*list_streams)              (MateMixerBackend *backend);
-    const GList *(*list_stored_controls)      (MateMixerBackend *backend);
+    const GList *(*list_devices)              (CafeMixerBackend *backend);
+    const GList *(*list_streams)              (CafeMixerBackend *backend);
+    const GList *(*list_stored_controls)      (CafeMixerBackend *backend);
 
-    gboolean     (*set_default_input_stream)  (MateMixerBackend *backend,
-                                               MateMixerStream  *stream);
-    gboolean     (*set_default_output_stream) (MateMixerBackend *backend,
-                                               MateMixerStream  *stream);
+    gboolean     (*set_default_input_stream)  (CafeMixerBackend *backend,
+                                               CafeMixerStream  *stream);
+    gboolean     (*set_default_output_stream) (CafeMixerBackend *backend,
+                                               CafeMixerStream  *stream);
 
     /* Signals */
-    void         (*device_added)              (MateMixerBackend *backend,
+    void         (*device_added)              (CafeMixerBackend *backend,
                                                const gchar      *name);
-    void         (*device_removed)            (MateMixerBackend *backend,
+    void         (*device_removed)            (CafeMixerBackend *backend,
                                                const gchar      *name);
-    void         (*stream_added)              (MateMixerBackend *backend,
+    void         (*stream_added)              (CafeMixerBackend *backend,
                                                const gchar      *name);
-    void         (*stream_removed)            (MateMixerBackend *backend,
+    void         (*stream_removed)            (CafeMixerBackend *backend,
                                                const gchar      *name);
-    void         (*stored_control_added)      (MateMixerBackend *backend,
+    void         (*stored_control_added)      (CafeMixerBackend *backend,
                                                const gchar      *name);
-    void         (*stored_control_removed)    (MateMixerBackend *backend,
+    void         (*stored_control_removed)    (CafeMixerBackend *backend,
                                                const gchar      *name);
 };
 
 GType                   cafe_mixer_backend_get_type                  (void) G_GNUC_CONST;
 
-void                    cafe_mixer_backend_set_app_info              (MateMixerBackend *backend,
-                                                                      MateMixerAppInfo *info);
-void                    cafe_mixer_backend_set_server_address        (MateMixerBackend *backend,
+void                    cafe_mixer_backend_set_app_info              (CafeMixerBackend *backend,
+                                                                      CafeMixerAppInfo *info);
+void                    cafe_mixer_backend_set_server_address        (CafeMixerBackend *backend,
                                                                       const gchar      *address);
 
-gboolean                cafe_mixer_backend_open                      (MateMixerBackend *backend);
-void                    cafe_mixer_backend_close                     (MateMixerBackend *backend);
+gboolean                cafe_mixer_backend_open                      (CafeMixerBackend *backend);
+void                    cafe_mixer_backend_close                     (CafeMixerBackend *backend);
 
-MateMixerState          cafe_mixer_backend_get_state                 (MateMixerBackend *backend);
+CafeMixerState          cafe_mixer_backend_get_state                 (CafeMixerBackend *backend);
 
-MateMixerDevice *       cafe_mixer_backend_get_device                (MateMixerBackend *backend,
+CafeMixerDevice *       cafe_mixer_backend_get_device                (CafeMixerBackend *backend,
                                                                       const gchar      *name);
-MateMixerStream *       cafe_mixer_backend_get_stream                (MateMixerBackend *backend,
+CafeMixerStream *       cafe_mixer_backend_get_stream                (CafeMixerBackend *backend,
                                                                       const gchar      *name);
-MateMixerStoredControl *cafe_mixer_backend_get_stored_control        (MateMixerBackend *backend,
+CafeMixerStoredControl *cafe_mixer_backend_get_stored_control        (CafeMixerBackend *backend,
                                                                       const gchar      *name);
 
-const GList *           cafe_mixer_backend_list_devices              (MateMixerBackend *backend);
-const GList *           cafe_mixer_backend_list_streams              (MateMixerBackend *backend);
-const GList *           cafe_mixer_backend_list_stored_controls      (MateMixerBackend *backend);
+const GList *           cafe_mixer_backend_list_devices              (CafeMixerBackend *backend);
+const GList *           cafe_mixer_backend_list_streams              (CafeMixerBackend *backend);
+const GList *           cafe_mixer_backend_list_stored_controls      (CafeMixerBackend *backend);
 
-MateMixerStream *       cafe_mixer_backend_get_default_input_stream  (MateMixerBackend *backend);
-gboolean                cafe_mixer_backend_set_default_input_stream  (MateMixerBackend *backend,
-                                                                      MateMixerStream  *stream);
+CafeMixerStream *       cafe_mixer_backend_get_default_input_stream  (CafeMixerBackend *backend);
+gboolean                cafe_mixer_backend_set_default_input_stream  (CafeMixerBackend *backend,
+                                                                      CafeMixerStream  *stream);
 
-MateMixerStream *       cafe_mixer_backend_get_default_output_stream (MateMixerBackend *backend);
-gboolean                cafe_mixer_backend_set_default_output_stream (MateMixerBackend *backend,
-                                                                      MateMixerStream  *stream);
+CafeMixerStream *       cafe_mixer_backend_get_default_output_stream (CafeMixerBackend *backend);
+gboolean                cafe_mixer_backend_set_default_output_stream (CafeMixerBackend *backend,
+                                                                      CafeMixerStream  *stream);
 
 /* Protected functions */
-void                   _cafe_mixer_backend_set_state                 (MateMixerBackend *backend,
-                                                                      MateMixerState    state);
+void                   _cafe_mixer_backend_set_state                 (CafeMixerBackend *backend,
+                                                                      CafeMixerState    state);
 
-void                   _cafe_mixer_backend_set_default_input_stream  (MateMixerBackend *backend,
-                                                                      MateMixerStream  *stream);
+void                   _cafe_mixer_backend_set_default_input_stream  (CafeMixerBackend *backend,
+                                                                      CafeMixerStream  *stream);
 
-void                   _cafe_mixer_backend_set_default_output_stream (MateMixerBackend *backend,
-                                                                      MateMixerStream  *stream);
+void                   _cafe_mixer_backend_set_default_output_stream (CafeMixerBackend *backend,
+                                                                      CafeMixerStream  *stream);
 
 G_END_DECLS
 

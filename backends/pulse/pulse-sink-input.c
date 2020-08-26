@@ -32,7 +32,7 @@
 
 G_DEFINE_TYPE (PulseSinkInput, pulse_sink_input, PULSE_TYPE_STREAM_CONTROL);
 
-static guint         pulse_sink_input_get_max_volume (MateMixerStreamControl *mmsc);
+static guint         pulse_sink_input_get_max_volume (CafeMixerStreamControl *mmsc);
 
 static gboolean      pulse_sink_input_set_mute       (PulseStreamControl     *psc,
                                                       gboolean                mute);
@@ -43,7 +43,7 @@ static PulseMonitor *pulse_sink_input_create_monitor (PulseStreamControl     *ps
 static void
 pulse_sink_input_class_init (PulseSinkInputClass *klass)
 {
-    MateMixerStreamControlClass *mmsc_class;
+    CafeMixerStreamControlClass *mmsc_class;
     PulseStreamControlClass     *control_class;
 
     mmsc_class = CAFE_MIXER_STREAM_CONTROL_CLASS (klass);
@@ -69,14 +69,14 @@ pulse_sink_input_new (PulseConnection          *connection,
     gchar            *name;
     const gchar      *prop;
     const gchar      *label = NULL;
-    MateMixerAppInfo *app_info = NULL;
+    CafeMixerAppInfo *app_info = NULL;
 
-    MateMixerStreamControlFlags flags = CAFE_MIXER_STREAM_CONTROL_MUTE_READABLE |
+    CafeMixerStreamControlFlags flags = CAFE_MIXER_STREAM_CONTROL_MUTE_READABLE |
                                         CAFE_MIXER_STREAM_CONTROL_MUTE_WRITABLE |
                                         CAFE_MIXER_STREAM_CONTROL_HAS_MONITOR;
-    MateMixerStreamControlRole  role  = CAFE_MIXER_STREAM_CONTROL_ROLE_UNKNOWN;
+    CafeMixerStreamControlRole  role  = CAFE_MIXER_STREAM_CONTROL_ROLE_UNKNOWN;
 
-    MateMixerStreamControlMediaRole media_role = CAFE_MIXER_STREAM_CONTROL_MEDIA_ROLE_UNKNOWN;
+    CafeMixerStreamControlMediaRole media_role = CAFE_MIXER_STREAM_CONTROL_MEDIA_ROLE_UNKNOWN;
 
     g_return_val_if_fail (PULSE_IS_CONNECTION (connection), NULL);
     g_return_val_if_fail (info != NULL, NULL);
@@ -185,7 +185,7 @@ pulse_sink_input_update (PulseSinkInput *input, const pa_sink_input_info *info)
 }
 
 static guint
-pulse_sink_input_get_max_volume (MateMixerStreamControl *mmsc)
+pulse_sink_input_get_max_volume (CafeMixerStreamControl *mmsc)
 {
     g_return_val_if_fail (PULSE_IS_SINK_INPUT (mmsc), (guint) PA_VOLUME_MUTED);
 

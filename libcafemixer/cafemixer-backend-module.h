@@ -28,49 +28,49 @@ G_BEGIN_DECLS
 #define CAFE_MIXER_TYPE_BACKEND_MODULE          \
         (cafe_mixer_backend_module_get_type ())
 #define CAFE_MIXER_BACKEND_MODULE(o)            \
-        (G_TYPE_CHECK_INSTANCE_CAST ((o), CAFE_MIXER_TYPE_BACKEND_MODULE, MateMixerBackendModule))
+        (G_TYPE_CHECK_INSTANCE_CAST ((o), CAFE_MIXER_TYPE_BACKEND_MODULE, CafeMixerBackendModule))
 #define CAFE_MIXER_IS_BACKEND_MODULE(o)         \
         (G_TYPE_CHECK_INSTANCE_TYPE ((o), CAFE_MIXER_TYPE_BACKEND_MODULE))
 #define CAFE_MIXER_BACKEND_MODULE_CLASS(k)      \
-        (G_TYPE_CHECK_CLASS_CAST ((k), CAFE_MIXER_TYPE_BACKEND_MODULE, MateMixerBackendModuleClass))
+        (G_TYPE_CHECK_CLASS_CAST ((k), CAFE_MIXER_TYPE_BACKEND_MODULE, CafeMixerBackendModuleClass))
 #define CAFE_MIXER_IS_BACKEND_MODULE_CLASS(k)   \
         (G_TYPE_CHECK_CLASS_TYPE ((k), CAFE_MIXER_TYPE_BACKEND_MODULE))
 #define CAFE_MIXER_BACKEND_MODULE_GET_CLASS(o)  \
-        (G_TYPE_INSTANCE_GET_CLASS ((o), CAFE_MIXER_TYPE_BACKEND_MODULE, MateMixerBackendModuleClass))
+        (G_TYPE_INSTANCE_GET_CLASS ((o), CAFE_MIXER_TYPE_BACKEND_MODULE, CafeMixerBackendModuleClass))
 
-typedef struct _MateMixerBackendInfo           MateMixerBackendInfo;
-typedef struct _MateMixerBackendModule         MateMixerBackendModule;
-typedef struct _MateMixerBackendModuleClass    MateMixerBackendModuleClass;
-typedef struct _MateMixerBackendModulePrivate  MateMixerBackendModulePrivate;
+typedef struct _CafeMixerBackendInfo           CafeMixerBackendInfo;
+typedef struct _CafeMixerBackendModule         CafeMixerBackendModule;
+typedef struct _CafeMixerBackendModuleClass    CafeMixerBackendModuleClass;
+typedef struct _CafeMixerBackendModulePrivate  CafeMixerBackendModulePrivate;
 
-struct _MateMixerBackendModule
+struct _CafeMixerBackendModule
 {
     GTypeModule parent;
 
     /*< private >*/
-    MateMixerBackendModulePrivate *priv;
+    CafeMixerBackendModulePrivate *priv;
 };
 
-struct _MateMixerBackendModuleClass
+struct _CafeMixerBackendModuleClass
 {
     GTypeModuleClass parent_class;
 };
 
-struct _MateMixerBackendInfo
+struct _CafeMixerBackendInfo
 {
     gchar                *name;
     guint                 priority;
     GType                 g_type;
-    MateMixerBackendFlags backend_flags;
-    MateMixerBackendType  backend_type;
+    CafeMixerBackendFlags backend_flags;
+    CafeMixerBackendType  backend_type;
 };
 
 GType                       cafe_mixer_backend_module_get_type (void) G_GNUC_CONST;
 
-MateMixerBackendModule *    cafe_mixer_backend_module_new      (const gchar            *path);
+CafeMixerBackendModule *    cafe_mixer_backend_module_new      (const gchar            *path);
 
-const MateMixerBackendInfo *cafe_mixer_backend_module_get_info (MateMixerBackendModule *module);
-const gchar *               cafe_mixer_backend_module_get_path (MateMixerBackendModule *module);
+const CafeMixerBackendInfo *cafe_mixer_backend_module_get_info (CafeMixerBackendModule *module);
+const gchar *               cafe_mixer_backend_module_get_path (CafeMixerBackendModule *module);
 
 G_END_DECLS
 

@@ -44,10 +44,10 @@ G_DEFINE_TYPE_WITH_CODE (AlsaSwitch, alsa_switch,
                          G_IMPLEMENT_INTERFACE (ALSA_TYPE_ELEMENT,
                                                 alsa_element_interface_init))
 
-static gboolean               alsa_switch_set_active_option (MateMixerSwitch       *mms,
-                                                             MateMixerSwitchOption *mmso);
+static gboolean               alsa_switch_set_active_option (CafeMixerSwitch       *mms,
+                                                             CafeMixerSwitchOption *mmso);
 
-static const GList *          alsa_switch_list_options      (MateMixerSwitch       *mms);
+static const GList *          alsa_switch_list_options      (CafeMixerSwitch       *mms);
 
 static snd_mixer_elem_t *     alsa_switch_get_snd_element   (AlsaElement           *element);
 static void                   alsa_switch_set_snd_element   (AlsaElement           *element,
@@ -66,7 +66,7 @@ static void
 alsa_switch_class_init (AlsaSwitchClass *klass)
 {
     GObjectClass         *object_class;
-    MateMixerSwitchClass *switch_class;
+    CafeMixerSwitchClass *switch_class;
 
     object_class = G_OBJECT_CLASS (klass);
     object_class->dispose = alsa_switch_dispose;
@@ -101,7 +101,7 @@ AlsaSwitch *
 alsa_switch_new (AlsaStream               *stream,
                  const gchar              *name,
                  const gchar              *label,
-                 MateMixerStreamSwitchRole role,
+                 CafeMixerStreamSwitchRole role,
                  GList                    *options)
 {
     AlsaSwitch *swtch;
@@ -124,7 +124,7 @@ alsa_switch_new (AlsaStream               *stream,
 }
 
 static gboolean
-alsa_switch_set_active_option (MateMixerSwitch *mms, MateMixerSwitchOption *mmso)
+alsa_switch_set_active_option (CafeMixerSwitch *mms, CafeMixerSwitchOption *mmso)
 {
     AlsaSwitch                  *swtch;
     guint                        index;
@@ -167,7 +167,7 @@ alsa_switch_set_active_option (MateMixerSwitch *mms, MateMixerSwitchOption *mmso
 }
 
 static const GList *
-alsa_switch_list_options (MateMixerSwitch *mms)
+alsa_switch_list_options (CafeMixerSwitch *mms)
 {
     g_return_val_if_fail (ALSA_IS_SWITCH (mms), NULL);
 

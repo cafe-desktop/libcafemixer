@@ -44,7 +44,7 @@ typedef struct _AlsaDevicePrivate  AlsaDevicePrivate;
 
 struct _AlsaDevice
 {
-    MateMixerDevice parent;
+    CafeMixerDevice parent;
 
     /*< private >*/
     AlsaDevicePrivate *priv;
@@ -52,7 +52,7 @@ struct _AlsaDevice
 
 struct _AlsaDeviceClass
 {
-    MateMixerDeviceClass parent_class;
+    CafeMixerDeviceClass parent_class;
 
     /*< private >*/
     void (*closed) (AlsaDevice *device);

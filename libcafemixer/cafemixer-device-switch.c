@@ -29,10 +29,10 @@
  * @include: libcafemixer/cafemixer.h
  */
 
-struct _MateMixerDeviceSwitchPrivate
+struct _CafeMixerDeviceSwitchPrivate
 {
-    MateMixerDevice          *device;
-    MateMixerDeviceSwitchRole role;
+    CafeMixerDevice          *device;
+    CafeMixerDeviceSwitchRole role;
 };
 
 enum {
@@ -53,10 +53,10 @@ static void cafe_mixer_device_switch_set_property (GObject                    *o
                                                    const GValue               *value,
                                                    GParamSpec                 *pspec);
 
-G_DEFINE_ABSTRACT_TYPE_WITH_PRIVATE (MateMixerDeviceSwitch, cafe_mixer_device_switch, CAFE_MIXER_TYPE_SWITCH)
+G_DEFINE_ABSTRACT_TYPE_WITH_PRIVATE (CafeMixerDeviceSwitch, cafe_mixer_device_switch, CAFE_MIXER_TYPE_SWITCH)
 
 static void
-cafe_mixer_device_switch_class_init (MateMixerDeviceSwitchClass *klass)
+cafe_mixer_device_switch_class_init (CafeMixerDeviceSwitchClass *klass)
 {
     GObjectClass *object_class;
 
@@ -92,7 +92,7 @@ cafe_mixer_device_switch_get_property (GObject    *object,
                                        GValue     *value,
                                        GParamSpec *pspec)
 {
-    MateMixerDeviceSwitch *swtch;
+    CafeMixerDeviceSwitch *swtch;
 
     swtch = CAFE_MIXER_DEVICE_SWITCH (object);
 
@@ -115,7 +115,7 @@ cafe_mixer_device_switch_set_property (GObject      *object,
                                        const GValue *value,
                                        GParamSpec   *pspec)
 {
-    MateMixerDeviceSwitch *swtch;
+    CafeMixerDeviceSwitch *swtch;
 
     swtch = CAFE_MIXER_DEVICE_SWITCH (object);
 
@@ -138,21 +138,21 @@ cafe_mixer_device_switch_set_property (GObject      *object,
 }
 
 static void
-cafe_mixer_device_switch_init (MateMixerDeviceSwitch *swtch)
+cafe_mixer_device_switch_init (CafeMixerDeviceSwitch *swtch)
 {
     swtch->priv = cafe_mixer_device_switch_get_instance_private (swtch);
 }
 
 /**
  * cafe_mixer_device_switch_get_role:
- * @swtch: a #MateMixerDeviceSwitch
+ * @swtch: a #CafeMixerDeviceSwitch
  *
  * Gets the role of the switch. The role identifies the purpose of the switch.
  *
  * Returns: the switch role.
  */
-MateMixerDeviceSwitchRole
-cafe_mixer_device_switch_get_role (MateMixerDeviceSwitch *swtch)
+CafeMixerDeviceSwitchRole
+cafe_mixer_device_switch_get_role (CafeMixerDeviceSwitch *swtch)
 {
     g_return_val_if_fail (CAFE_MIXER_IS_DEVICE_SWITCH (swtch), CAFE_MIXER_DEVICE_SWITCH_ROLE_UNKNOWN);
 
@@ -161,10 +161,10 @@ cafe_mixer_device_switch_get_role (MateMixerDeviceSwitch *swtch)
 
 /**
  * cafe_mixer_device_switch_get_device:
- * @swtch: a #MateMixerDeviceSwitch
+ * @swtch: a #CafeMixerDeviceSwitch
  */
-MateMixerDevice *
-cafe_mixer_device_switch_get_device (MateMixerDeviceSwitch *swtch)
+CafeMixerDevice *
+cafe_mixer_device_switch_get_device (CafeMixerDeviceSwitch *swtch)
 {
     g_return_val_if_fail (CAFE_MIXER_IS_DEVICE_SWITCH (swtch), NULL);
 

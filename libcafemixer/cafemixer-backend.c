@@ -27,13 +27,13 @@
 #include "cafemixer-stream-control.h"
 #include "cafemixer-stored-control.h"
 
-struct _MateMixerBackendPrivate
+struct _CafeMixerBackendPrivate
 {
     GHashTable           *devices;
-    MateMixerStream      *default_input;
-    MateMixerStream      *default_output;
-    MateMixerState        state;
-    MateMixerBackendFlags flags;
+    CafeMixerStream      *default_input;
+    CafeMixerStream      *default_output;
+    CafeMixerState        state;
+    CafeMixerBackendFlags flags;
 };
 
 enum {
@@ -70,20 +70,20 @@ static void cafe_mixer_backend_set_property (GObject               *object,
 static void cafe_mixer_backend_dispose      (GObject               *object);
 static void cafe_mixer_backend_finalize     (GObject               *object);
 
-G_DEFINE_ABSTRACT_TYPE_WITH_PRIVATE (MateMixerBackend, cafe_mixer_backend, G_TYPE_OBJECT)
+G_DEFINE_ABSTRACT_TYPE_WITH_PRIVATE (CafeMixerBackend, cafe_mixer_backend, G_TYPE_OBJECT)
 
-static void device_added          (MateMixerBackend *backend,
+static void device_added          (CafeMixerBackend *backend,
                                    const gchar      *name);
-static void device_removed        (MateMixerBackend *backend,
+static void device_removed        (CafeMixerBackend *backend,
                                    const gchar      *name);
 
-static void device_stream_added   (MateMixerBackend *backend,
+static void device_stream_added   (CafeMixerBackend *backend,
                                    const gchar      *name);
-static void device_stream_removed (MateMixerBackend *backend,
+static void device_stream_removed (CafeMixerBackend *backend,
                                    const gchar      *name);
 
 static void
-cafe_mixer_backend_class_init (MateMixerBackendClass *klass)
+cafe_mixer_backend_class_init (CafeMixerBackendClass *klass)
 {
     GObjectClass *object_class;
 
@@ -124,7 +124,7 @@ cafe_mixer_backend_class_init (MateMixerBackendClass *klass)
         g_signal_new ("device-added",
                       G_TYPE_FROM_CLASS (object_class),
                       G_SIGNAL_RUN_FIRST,
-                      G_STRUCT_OFFSET (MateMixerBackendClass, device_added),
+                      G_STRUCT_OFFSET (CafeMixerBackendClass, device_added),
                       NULL,
                       NULL,
                       g_cclosure_marshal_VOID__STRING,
@@ -136,7 +136,7 @@ cafe_mixer_backend_class_init (MateMixerBackendClass *klass)
         g_signal_new ("device-removed",
                       G_TYPE_FROM_CLASS (object_class),
                       G_SIGNAL_RUN_FIRST,
-                      G_STRUCT_OFFSET (MateMixerBackendClass, device_removed),
+                      G_STRUCT_OFFSET (CafeMixerBackendClass, device_removed),
                       NULL,
                       NULL,
                       g_cclosure_marshal_VOID__STRING,
@@ -148,7 +148,7 @@ cafe_mixer_backend_class_init (MateMixerBackendClass *klass)
         g_signal_new ("stream-added",
                       G_TYPE_FROM_CLASS (object_class),
                       G_SIGNAL_RUN_FIRST,
-                      G_STRUCT_OFFSET (MateMixerBackendClass, stream_added),
+                      G_STRUCT_OFFSET (CafeMixerBackendClass, stream_added),
                       NULL,
                       NULL,
                       g_cclosure_marshal_VOID__STRING,
@@ -160,7 +160,7 @@ cafe_mixer_backend_class_init (MateMixerBackendClass *klass)
         g_signal_new ("stream-removed",
                       G_TYPE_FROM_CLASS (object_class),
                       G_SIGNAL_RUN_FIRST,
-                      G_STRUCT_OFFSET (MateMixerBackendClass, stream_removed),
+                      G_STRUCT_OFFSET (CafeMixerBackendClass, stream_removed),
                       NULL,
                       NULL,
                       g_cclosure_marshal_VOID__STRING,
@@ -172,7 +172,7 @@ cafe_mixer_backend_class_init (MateMixerBackendClass *klass)
         g_signal_new ("stored-control-added",
                       G_TYPE_FROM_CLASS (object_class),
                       G_SIGNAL_RUN_FIRST,
-                      G_STRUCT_OFFSET (MateMixerBackendClass, stored_control_added),
+                      G_STRUCT_OFFSET (CafeMixerBackendClass, stored_control_added),
                       NULL,
                       NULL,
                       g_cclosure_marshal_VOID__STRING,
@@ -184,7 +184,7 @@ cafe_mixer_backend_class_init (MateMixerBackendClass *klass)
         g_signal_new ("stored-control-removed",
                       G_TYPE_FROM_CLASS (object_class),
                       G_SIGNAL_RUN_FIRST,
-                      G_STRUCT_OFFSET (MateMixerBackendClass, stored_control_removed),
+                      G_STRUCT_OFFSET (CafeMixerBackendClass, stored_control_removed),
                       NULL,
                       NULL,
                       g_cclosure_marshal_VOID__STRING,
@@ -199,7 +199,7 @@ cafe_mixer_backend_get_property (GObject    *object,
                                  GValue     *value,
                                  GParamSpec *pspec)
 {
-    MateMixerBackend *backend;
+    CafeMixerBackend *backend;
 
     backend = CAFE_MIXER_BACKEND (object);
 
@@ -226,7 +226,7 @@ cafe_mixer_backend_set_property (GObject      *object,
                                  const GValue *value,
                                  GParamSpec   *pspec)
 {
-    MateMixerBackend *backend;
+    CafeMixerBackend *backend;
 
     backend = CAFE_MIXER_BACKEND (object);
 
@@ -245,7 +245,7 @@ cafe_mixer_backend_set_property (GObject      *object,
 }
 
 static void
-cafe_mixer_backend_init (MateMixerBackend *backend)
+cafe_mixer_backend_init (CafeMixerBackend *backend)
 {
     backend->priv = cafe_mixer_backend_get_instance_private (backend);
 
@@ -268,7 +268,7 @@ cafe_mixer_backend_init (MateMixerBackend *backend)
 static void
 cafe_mixer_backend_dispose (GObject *object)
 {
-    MateMixerBackend *backend;
+    CafeMixerBackend *backend;
 
     backend = CAFE_MIXER_BACKEND (object);
 
@@ -283,7 +283,7 @@ cafe_mixer_backend_dispose (GObject *object)
 static void
 cafe_mixer_backend_finalize (GObject *object)
 {
-    MateMixerBackend *backend;
+    CafeMixerBackend *backend;
 
     backend = CAFE_MIXER_BACKEND (object);
 
@@ -293,9 +293,9 @@ cafe_mixer_backend_finalize (GObject *object)
 }
 
 void
-cafe_mixer_backend_set_app_info (MateMixerBackend *backend, MateMixerAppInfo *info)
+cafe_mixer_backend_set_app_info (CafeMixerBackend *backend, CafeMixerAppInfo *info)
 {
-    MateMixerBackendClass *klass;
+    CafeMixerBackendClass *klass;
 
     g_return_if_fail (CAFE_MIXER_IS_BACKEND (backend));
 
@@ -306,9 +306,9 @@ cafe_mixer_backend_set_app_info (MateMixerBackend *backend, MateMixerAppInfo *in
 }
 
 void
-cafe_mixer_backend_set_server_address (MateMixerBackend *backend, const gchar *address)
+cafe_mixer_backend_set_server_address (CafeMixerBackend *backend, const gchar *address)
 {
-    MateMixerBackendClass *klass;
+    CafeMixerBackendClass *klass;
 
     g_return_if_fail (CAFE_MIXER_IS_BACKEND (backend));
 
@@ -319,7 +319,7 @@ cafe_mixer_backend_set_server_address (MateMixerBackend *backend, const gchar *a
 }
 
 gboolean
-cafe_mixer_backend_open (MateMixerBackend *backend)
+cafe_mixer_backend_open (CafeMixerBackend *backend)
 {
     g_return_val_if_fail (CAFE_MIXER_IS_BACKEND (backend), FALSE);
 
@@ -328,9 +328,9 @@ cafe_mixer_backend_open (MateMixerBackend *backend)
 }
 
 void
-cafe_mixer_backend_close (MateMixerBackend *backend)
+cafe_mixer_backend_close (CafeMixerBackend *backend)
 {
-    MateMixerBackendClass *klass;
+    CafeMixerBackendClass *klass;
 
     g_return_if_fail (CAFE_MIXER_IS_BACKEND (backend));
 
@@ -340,16 +340,16 @@ cafe_mixer_backend_close (MateMixerBackend *backend)
         klass->close (backend);
 }
 
-MateMixerState
-cafe_mixer_backend_get_state (MateMixerBackend *backend)
+CafeMixerState
+cafe_mixer_backend_get_state (CafeMixerBackend *backend)
 {
     g_return_val_if_fail (CAFE_MIXER_IS_BACKEND (backend), CAFE_MIXER_STATE_UNKNOWN);
 
     return backend->priv->state;
 }
 
-MateMixerDevice *
-cafe_mixer_backend_get_device (MateMixerBackend *backend, const gchar *name)
+CafeMixerDevice *
+cafe_mixer_backend_get_device (CafeMixerBackend *backend, const gchar *name)
 {
     const GList *list;
 
@@ -358,7 +358,7 @@ cafe_mixer_backend_get_device (MateMixerBackend *backend, const gchar *name)
 
     list = cafe_mixer_backend_list_devices (backend);
     while (list != NULL) {
-        MateMixerDevice *device = CAFE_MIXER_DEVICE (list->data);
+        CafeMixerDevice *device = CAFE_MIXER_DEVICE (list->data);
 
         if (strcmp (name, cafe_mixer_device_get_name (device)) == 0)
             return device;
@@ -368,8 +368,8 @@ cafe_mixer_backend_get_device (MateMixerBackend *backend, const gchar *name)
     return NULL;
 }
 
-MateMixerStream *
-cafe_mixer_backend_get_stream (MateMixerBackend *backend, const gchar *name)
+CafeMixerStream *
+cafe_mixer_backend_get_stream (CafeMixerBackend *backend, const gchar *name)
 {
     const GList *list;
 
@@ -378,7 +378,7 @@ cafe_mixer_backend_get_stream (MateMixerBackend *backend, const gchar *name)
 
     list = cafe_mixer_backend_list_streams (backend);
     while (list != NULL) {
-        MateMixerStream *stream = CAFE_MIXER_STREAM (list->data);
+        CafeMixerStream *stream = CAFE_MIXER_STREAM (list->data);
 
         if (strcmp (name, cafe_mixer_stream_get_name (stream)) == 0)
             return stream;
@@ -388,8 +388,8 @@ cafe_mixer_backend_get_stream (MateMixerBackend *backend, const gchar *name)
     return NULL;
 }
 
-MateMixerStoredControl *
-cafe_mixer_backend_get_stored_control (MateMixerBackend *backend, const gchar *name)
+CafeMixerStoredControl *
+cafe_mixer_backend_get_stored_control (CafeMixerBackend *backend, const gchar *name)
 {
     const GList *list;
 
@@ -398,7 +398,7 @@ cafe_mixer_backend_get_stored_control (MateMixerBackend *backend, const gchar *n
 
     list = cafe_mixer_backend_list_stored_controls (backend);
     while (list != NULL) {
-        MateMixerStreamControl *control = CAFE_MIXER_STREAM_CONTROL (list->data);
+        CafeMixerStreamControl *control = CAFE_MIXER_STREAM_CONTROL (list->data);
 
         if (strcmp (name, cafe_mixer_stream_control_get_name (control)) == 0)
             return CAFE_MIXER_STORED_CONTROL (control);
@@ -409,9 +409,9 @@ cafe_mixer_backend_get_stored_control (MateMixerBackend *backend, const gchar *n
 }
 
 const GList *
-cafe_mixer_backend_list_devices (MateMixerBackend *backend)
+cafe_mixer_backend_list_devices (CafeMixerBackend *backend)
 {
-    MateMixerBackendClass *klass;
+    CafeMixerBackendClass *klass;
 
     g_return_val_if_fail (CAFE_MIXER_IS_BACKEND (backend), NULL);
 
@@ -424,9 +424,9 @@ cafe_mixer_backend_list_devices (MateMixerBackend *backend)
 }
 
 const GList *
-cafe_mixer_backend_list_streams (MateMixerBackend *backend)
+cafe_mixer_backend_list_streams (CafeMixerBackend *backend)
 {
-    MateMixerBackendClass *klass;
+    CafeMixerBackendClass *klass;
 
     g_return_val_if_fail (CAFE_MIXER_IS_BACKEND (backend), NULL);
 
@@ -439,9 +439,9 @@ cafe_mixer_backend_list_streams (MateMixerBackend *backend)
 }
 
 const GList *
-cafe_mixer_backend_list_stored_controls (MateMixerBackend *backend)
+cafe_mixer_backend_list_stored_controls (CafeMixerBackend *backend)
 {
-    MateMixerBackendClass *klass;
+    CafeMixerBackendClass *klass;
 
     g_return_val_if_fail (CAFE_MIXER_IS_BACKEND (backend), NULL);
 
@@ -453,8 +453,8 @@ cafe_mixer_backend_list_stored_controls (MateMixerBackend *backend)
     return NULL;
 }
 
-MateMixerStream *
-cafe_mixer_backend_get_default_input_stream (MateMixerBackend *backend)
+CafeMixerStream *
+cafe_mixer_backend_get_default_input_stream (CafeMixerBackend *backend)
 {
     g_return_val_if_fail (CAFE_MIXER_IS_BACKEND (backend), NULL);
 
@@ -462,10 +462,10 @@ cafe_mixer_backend_get_default_input_stream (MateMixerBackend *backend)
 }
 
 gboolean
-cafe_mixer_backend_set_default_input_stream (MateMixerBackend *backend,
-                                             MateMixerStream  *stream)
+cafe_mixer_backend_set_default_input_stream (CafeMixerBackend *backend,
+                                             CafeMixerStream  *stream)
 {
-    MateMixerBackendClass *klass;
+    CafeMixerBackendClass *klass;
 
     g_return_val_if_fail (CAFE_MIXER_IS_BACKEND (backend), FALSE);
     g_return_val_if_fail (CAFE_MIXER_IS_STREAM (stream), FALSE);
@@ -488,8 +488,8 @@ cafe_mixer_backend_set_default_input_stream (MateMixerBackend *backend,
     return TRUE;
 }
 
-MateMixerStream *
-cafe_mixer_backend_get_default_output_stream (MateMixerBackend *backend)
+CafeMixerStream *
+cafe_mixer_backend_get_default_output_stream (CafeMixerBackend *backend)
 {
     g_return_val_if_fail (CAFE_MIXER_IS_BACKEND (backend), NULL);
 
@@ -497,10 +497,10 @@ cafe_mixer_backend_get_default_output_stream (MateMixerBackend *backend)
 }
 
 gboolean
-cafe_mixer_backend_set_default_output_stream (MateMixerBackend *backend,
-                                              MateMixerStream  *stream)
+cafe_mixer_backend_set_default_output_stream (CafeMixerBackend *backend,
+                                              CafeMixerStream  *stream)
 {
-    MateMixerBackendClass *klass;
+    CafeMixerBackendClass *klass;
 
     g_return_val_if_fail (CAFE_MIXER_IS_BACKEND (backend), FALSE);
     g_return_val_if_fail (CAFE_MIXER_IS_STREAM (stream), FALSE);
@@ -524,9 +524,9 @@ cafe_mixer_backend_set_default_output_stream (MateMixerBackend *backend,
 }
 
 static void
-device_added (MateMixerBackend *backend, const gchar *name)
+device_added (CafeMixerBackend *backend, const gchar *name)
 {
-    MateMixerDevice *device;
+    CafeMixerDevice *device;
 
     device = cafe_mixer_backend_get_device (backend, name);
     if (G_UNLIKELY (device == NULL)) {
@@ -553,9 +553,9 @@ device_added (MateMixerBackend *backend, const gchar *name)
 }
 
 static void
-device_removed (MateMixerBackend *backend, const gchar *name)
+device_removed (CafeMixerBackend *backend, const gchar *name)
 {
-    MateMixerDevice *device;
+    CafeMixerDevice *device;
 
     device = g_hash_table_lookup (backend->priv->devices, name);
     if (G_UNLIKELY (device == NULL)) {
@@ -574,7 +574,7 @@ device_removed (MateMixerBackend *backend, const gchar *name)
 }
 
 static void
-device_stream_added (MateMixerBackend *backend, const gchar *name)
+device_stream_added (CafeMixerBackend *backend, const gchar *name)
 {
     g_signal_emit (G_OBJECT (backend),
                    signals[STREAM_ADDED],
@@ -583,7 +583,7 @@ device_stream_added (MateMixerBackend *backend, const gchar *name)
 }
 
 static void
-device_stream_removed (MateMixerBackend *backend, const gchar *name)
+device_stream_removed (CafeMixerBackend *backend, const gchar *name)
 {
     g_signal_emit (G_OBJECT (backend),
                    signals[STREAM_REMOVED],
@@ -593,7 +593,7 @@ device_stream_removed (MateMixerBackend *backend, const gchar *name)
 
 /* Protected functions */
 void
-_cafe_mixer_backend_set_state (MateMixerBackend *backend, MateMixerState state)
+_cafe_mixer_backend_set_state (CafeMixerBackend *backend, CafeMixerState state)
 {
     g_return_if_fail (CAFE_MIXER_IS_BACKEND (backend));
 
@@ -606,8 +606,8 @@ _cafe_mixer_backend_set_state (MateMixerBackend *backend, MateMixerState state)
 }
 
 void
-_cafe_mixer_backend_set_default_input_stream (MateMixerBackend *backend,
-                                              MateMixerStream  *stream)
+_cafe_mixer_backend_set_default_input_stream (CafeMixerBackend *backend,
+                                              CafeMixerStream  *stream)
 {
     g_return_if_fail (CAFE_MIXER_IS_BACKEND (backend));
     g_return_if_fail (stream == NULL || CAFE_MIXER_IS_STREAM (stream));
@@ -631,8 +631,8 @@ _cafe_mixer_backend_set_default_input_stream (MateMixerBackend *backend,
 }
 
 void
-_cafe_mixer_backend_set_default_output_stream (MateMixerBackend *backend,
-                                               MateMixerStream  *stream)
+_cafe_mixer_backend_set_default_output_stream (CafeMixerBackend *backend,
+                                               CafeMixerStream  *stream)
 {
     g_return_if_fail (CAFE_MIXER_IS_BACKEND (backend));
     g_return_if_fail (stream == NULL || CAFE_MIXER_IS_STREAM (stream));

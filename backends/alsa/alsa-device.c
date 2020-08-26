@@ -74,7 +74,7 @@ static void alsa_device_finalize   (GObject         *object);
 
 G_DEFINE_TYPE_WITH_PRIVATE (AlsaDevice, alsa_device, CAFE_MIXER_TYPE_DEVICE)
 
-static const GList *      alsa_device_list_streams  (MateMixerDevice            *mmd);
+static const GList *      alsa_device_list_streams  (CafeMixerDevice            *mmd);
 
 static void               add_element               (AlsaDevice                 *device,
                                                      AlsaStream                 *stream,
@@ -132,24 +132,24 @@ static gchar *            get_element_name          (snd_mixer_elem_t           
 static void               get_control_info          (snd_mixer_elem_t           *el,
                                                      gchar                     **name,
                                                      gchar                     **label,
-                                                     MateMixerStreamControlRole *role,
+                                                     CafeMixerStreamControlRole *role,
                                                      gint                       *score);
 static void               get_input_control_info    (snd_mixer_elem_t           *el,
                                                      gchar                     **name,
                                                      gchar                     **label,
-                                                     MateMixerStreamControlRole *role,
+                                                     CafeMixerStreamControlRole *role,
                                                      gint                       *score);
 static void               get_output_control_info   (snd_mixer_elem_t           *el,
                                                      gchar                     **name,
                                                      gchar                     **label,
-                                                     MateMixerStreamControlRole *role,
+                                                     CafeMixerStreamControlRole *role,
                                                      gint                       *score);
 
-static MateMixerDirection get_switch_direction      (snd_mixer_elem_t           *el);
+static CafeMixerDirection get_switch_direction      (snd_mixer_elem_t           *el);
 static void               get_switch_info           (snd_mixer_elem_t           *el,
                                                      gchar                     **name,
                                                      gchar                     **label,
-                                                     MateMixerStreamSwitchRole  *role);
+                                                     CafeMixerStreamSwitchRole  *role);
 
 static void               close_mixer               (AlsaDevice                 *device);
 
@@ -159,7 +159,7 @@ static void
 alsa_device_class_init (AlsaDeviceClass *klass)
 {
     GObjectClass         *object_class;
-    MateMixerDeviceClass *device_class;
+    CafeMixerDeviceClass *device_class;
 
     object_class = G_OBJECT_CLASS (klass);
     object_class->dispose  = alsa_device_dispose;
@@ -426,7 +426,7 @@ alsa_device_get_output_stream (AlsaDevice *device)
 }
 
 static const GList *
-alsa_device_list_streams (MateMixerDevice *mmd)
+alsa_device_list_streams (CafeMixerDevice *mmd)
 {
     AlsaDevice *device;
 
@@ -501,7 +501,7 @@ add_stream_input_control (AlsaDevice *device, snd_mixer_elem_t *el)
     gchar                     *name;
     gchar                     *label;
     gint                       score;
-    MateMixerStreamControlRole role;
+    CafeMixerStreamControlRole role;
 
     get_input_control_info (el, &name, &label, &role, &score);
 
@@ -529,7 +529,7 @@ add_stream_output_control (AlsaDevice *device, snd_mixer_elem_t *el)
     gchar                     *label;
     gchar                     *name;
     gint                       score;
-    MateMixerStreamControlRole role;
+    CafeMixerStreamControlRole role;
 
     get_output_control_info (el, &name, &label, &role, &score);
 
@@ -560,7 +560,7 @@ add_switch (AlsaDevice *device, AlsaStream *stream, snd_mixer_elem_t *el)
     gchar                     item[128];
     guint                     i;
     gint                      count;
-    MateMixerStreamSwitchRole role;
+    CafeMixerStreamSwitchRole role;
 
     count = snd_mixer_selem_get_enum_items (el);
     if (G_UNLIKELY (count <= 0)) {
@@ -625,7 +625,7 @@ add_toggle (AlsaDevice       *device,
     AlsaSwitchOption         *off;
     gchar                    *name;
     gchar                    *label;
-    MateMixerStreamSwitchRole role;
+    CafeMixerStreamSwitchRole role;
 
     on  = alsa_switch_option_new ("On", _("On"), NULL, 1);
     off = alsa_switch_option_new ("Off", _("Off"), NULL, 0);
@@ -698,7 +698,7 @@ load_element (AlsaDevice *device, snd_mixer_elem_t *el)
     gboolean pvolume = FALSE;
 
     if (snd_mixer_selem_is_enumerated (el) == 1) {
-        MateMixerDirection direction;
+        CafeMixerDirection direction;
         gboolean           cenum = FALSE;
         gboolean           penum = FALSE;
 
@@ -1005,10 +1005,10 @@ static void
 get_control_info (snd_mixer_elem_t           *el,
                   gchar                     **name,
                   gchar                     **label,
-                  MateMixerStreamControlRole *role,
+                  CafeMixerStreamControlRole *role,
                   gint                       *score)
 {
-    MateMixerStreamControlRole r = CAFE_MIXER_STREAM_CONTROL_ROLE_UNKNOWN;
+    CafeMixerStreamControlRole r = CAFE_MIXER_STREAM_CONTROL_ROLE_UNKNOWN;
     const gchar               *n;
     const gchar               *l = NULL;
     gint                       i;
@@ -1040,7 +1040,7 @@ static void
 get_input_control_info (snd_mixer_elem_t           *el,
                         gchar                     **name,
                         gchar                     **label,
-                        MateMixerStreamControlRole *role,
+                        CafeMixerStreamControlRole *role,
                         gint                       *score)
 {
     get_control_info (el, name, label, role, score);
@@ -1053,7 +1053,7 @@ static void
 get_output_control_info (snd_mixer_elem_t           *el,
                          gchar                     **name,
                          gchar                     **label,
-                         MateMixerStreamControlRole *role,
+                         CafeMixerStreamControlRole *role,
                          gint                       *score)
 {
     get_control_info (el, name, label, role, score);
@@ -1062,10 +1062,10 @@ get_output_control_info (snd_mixer_elem_t           *el,
         *score = -1;
 }
 
-static MateMixerDirection
+static CafeMixerDirection
 get_switch_direction (snd_mixer_elem_t *el)
 {
-    MateMixerDirection direction;
+    CafeMixerDirection direction;
     gchar             *name;
 
     name = g_ascii_strdown (snd_mixer_selem_get_name (el), -1);
@@ -1087,9 +1087,9 @@ static void
 get_switch_info (snd_mixer_elem_t          *el,
                  gchar                    **name,
                  gchar                    **label,
-                 MateMixerStreamSwitchRole *role)
+                 CafeMixerStreamSwitchRole *role)
 {
-    MateMixerStreamSwitchRole r = CAFE_MIXER_STREAM_SWITCH_ROLE_UNKNOWN;
+    CafeMixerStreamSwitchRole r = CAFE_MIXER_STREAM_SWITCH_ROLE_UNKNOWN;
     const gchar              *n;
     const gchar              *l = NULL;
     gint                      i;

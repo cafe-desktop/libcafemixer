@@ -44,7 +44,7 @@ typedef struct _OssDevicePrivate  OssDevicePrivate;
 
 struct _OssDevice
 {
-    MateMixerDevice parent;
+    CafeMixerDevice parent;
 
     /*< private >*/
     OssDevicePrivate *priv;
@@ -52,7 +52,7 @@ struct _OssDevice
 
 struct _OssDeviceClass
 {
-    MateMixerDeviceClass parent;
+    CafeMixerDeviceClass parent;
 
     /*< private >*/
     void (*closed) (OssDevice *device);

@@ -38,7 +38,7 @@ cafe_mixer_state_get_type (void)
             { 0, NULL, NULL }
         };
         etype = g_enum_register_static (
-            g_intern_static_string ("MateMixerState"),
+            g_intern_static_string ("CafeMixerState"),
             values);
     }
     return etype;
@@ -59,7 +59,7 @@ cafe_mixer_backend_type_get_type (void)
             { 0, NULL, NULL }
         };
         etype = g_enum_register_static (
-            g_intern_static_string ("MateMixerBackendType"),
+            g_intern_static_string ("CafeMixerBackendType"),
             values);
     }
     return etype;
@@ -80,7 +80,7 @@ cafe_mixer_backend_flags_get_type (void)
             { 0, NULL, NULL }
         };
         etype = g_flags_register_static (
-            g_intern_static_string ("MateMixerBackendFlags"),
+            g_intern_static_string ("CafeMixerBackendFlags"),
             values);
     }
     return etype;
@@ -99,7 +99,7 @@ cafe_mixer_direction_get_type (void)
             { 0, NULL, NULL }
         };
         etype = g_enum_register_static (
-            g_intern_static_string ("MateMixerDirection"),
+            g_intern_static_string ("CafeMixerDirection"),
             values);
     }
     return etype;
@@ -126,7 +126,7 @@ cafe_mixer_stream_control_flags_get_type (void)
             { 0, NULL, NULL }
         };
         etype = g_flags_register_static (
-            g_intern_static_string ("MateMixerStreamControlFlags"),
+            g_intern_static_string ("CafeMixerStreamControlFlags"),
             values);
     }
     return etype;
@@ -155,7 +155,7 @@ cafe_mixer_stream_control_role_get_type (void)
             { 0, NULL, NULL }
         };
         etype = g_enum_register_static (
-            g_intern_static_string ("MateMixerStreamControlRole"),
+            g_intern_static_string ("CafeMixerStreamControlRole"),
             values);
     }
     return etype;
@@ -183,7 +183,7 @@ cafe_mixer_stream_control_media_role_get_type (void)
             { 0, NULL, NULL }
         };
         etype = g_enum_register_static (
-            g_intern_static_string ("MateMixerStreamControlMediaRole"),
+            g_intern_static_string ("CafeMixerStreamControlMediaRole"),
             values);
     }
     return etype;
@@ -201,7 +201,7 @@ cafe_mixer_device_switch_role_get_type (void)
             { 0, NULL, NULL }
         };
         etype = g_enum_register_static (
-            g_intern_static_string ("MateMixerDeviceSwitchRole"),
+            g_intern_static_string ("CafeMixerDeviceSwitchRole"),
             values);
     }
     return etype;
@@ -219,7 +219,7 @@ cafe_mixer_stream_switch_flags_get_type (void)
             { 0, NULL, NULL }
         };
         etype = g_flags_register_static (
-            g_intern_static_string ("MateMixerStreamSwitchFlags"),
+            g_intern_static_string ("CafeMixerStreamSwitchFlags"),
             values);
     }
     return etype;
@@ -238,7 +238,7 @@ cafe_mixer_stream_switch_role_get_type (void)
             { 0, NULL, NULL }
         };
         etype = g_enum_register_static (
-            g_intern_static_string ("MateMixerStreamSwitchRole"),
+            g_intern_static_string ("CafeMixerStreamSwitchRole"),
             values);
     }
     return etype;
@@ -275,7 +275,7 @@ cafe_mixer_channel_position_get_type (void)
             { 0, NULL, NULL }
         };
         etype = g_enum_register_static (
-            g_intern_static_string ("MateMixerChannelPosition"),
+            g_intern_static_string ("CafeMixerChannelPosition"),
             values);
     }
     return etype;

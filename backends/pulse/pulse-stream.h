@@ -46,7 +46,7 @@ typedef struct _PulseStreamPrivate  PulseStreamPrivate;
 
 struct _PulseStream
 {
-    MateMixerStream parent;
+    CafeMixerStream parent;
 
     /*< private >*/
     PulseStreamPrivate *priv;
@@ -54,7 +54,7 @@ struct _PulseStream
 
 struct _PulseStreamClass
 {
-    MateMixerStreamClass parent_class;
+    CafeMixerStreamClass parent_class;
 };
 
 GType            pulse_stream_get_type        (void) G_GNUC_CONST;

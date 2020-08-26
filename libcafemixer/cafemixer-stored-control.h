@@ -30,47 +30,47 @@ G_BEGIN_DECLS
 #define CAFE_MIXER_TYPE_STORED_CONTROL          \
         (cafe_mixer_stored_control_get_type ())
 #define CAFE_MIXER_STORED_CONTROL(o)            \
-        (G_TYPE_CHECK_INSTANCE_CAST ((o), CAFE_MIXER_TYPE_STORED_CONTROL, MateMixerStoredControl))
+        (G_TYPE_CHECK_INSTANCE_CAST ((o), CAFE_MIXER_TYPE_STORED_CONTROL, CafeMixerStoredControl))
 #define CAFE_MIXER_IS_STORED_CONTROL(o)         \
         (G_TYPE_CHECK_INSTANCE_TYPE ((o), CAFE_MIXER_TYPE_STORED_CONTROL))
 #define CAFE_MIXER_STORED_CONTROL_CLASS(k)      \
-        (G_TYPE_CHECK_CLASS_CAST ((k), CAFE_MIXER_TYPE_STORED_CONTROL, MateMixerStoredControlClass))
+        (G_TYPE_CHECK_CLASS_CAST ((k), CAFE_MIXER_TYPE_STORED_CONTROL, CafeMixerStoredControlClass))
 #define CAFE_MIXER_IS_STORED_CONTROL_CLASS(k)   \
         (G_TYPE_CHECK_CLASS_TYPE ((k), CAFE_MIXER_TYPE_STORED_CONTROL))
 #define CAFE_MIXER_STORED_CONTROL_GET_CLASS(o)  \
-        (G_TYPE_INSTANCE_GET_CLASS ((o), CAFE_MIXER_TYPE_STORED_CONTROL, MateMixerStoredControlClass))
+        (G_TYPE_INSTANCE_GET_CLASS ((o), CAFE_MIXER_TYPE_STORED_CONTROL, CafeMixerStoredControlClass))
 
-typedef struct _MateMixerStoredControlClass    MateMixerStoredControlClass;
-typedef struct _MateMixerStoredControlPrivate  MateMixerStoredControlPrivate;
+typedef struct _CafeMixerStoredControlClass    CafeMixerStoredControlClass;
+typedef struct _CafeMixerStoredControlPrivate  CafeMixerStoredControlPrivate;
 
 /**
- * MateMixerStoredControl:
+ * CafeMixerStoredControl:
  *
- * The #MateMixerStoredControl structure contains only private data and should only
+ * The #CafeMixerStoredControl structure contains only private data and should only
  * be accessed using the provided API.
  */
-struct _MateMixerStoredControl
+struct _CafeMixerStoredControl
 {
-    MateMixerStreamControl object;
+    CafeMixerStreamControl object;
 
     /*< private >*/
-    MateMixerStoredControlPrivate *priv;
+    CafeMixerStoredControlPrivate *priv;
 };
 
 /**
- * MateMixerStoredControlClass:
+ * CafeMixerStoredControlClass:
  * @parent_class: The parent class.
  *
- * The class structure for #MateMixerStoredControl.
+ * The class structure for #CafeMixerStoredControl.
  */
-struct _MateMixerStoredControlClass
+struct _CafeMixerStoredControlClass
 {
-    MateMixerStreamControlClass parent_class;
+    CafeMixerStreamControlClass parent_class;
 };
 
 GType              cafe_mixer_stored_control_get_type      (void) G_GNUC_CONST;
 
-MateMixerDirection cafe_mixer_stored_control_get_direction (MateMixerStoredControl *control);
+CafeMixerDirection cafe_mixer_stored_control_get_direction (CafeMixerStoredControl *control);
 
 G_END_DECLS
 

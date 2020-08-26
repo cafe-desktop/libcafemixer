@@ -53,31 +53,31 @@ static void oss_stream_control_finalize   (GObject               *object);
 
 G_DEFINE_TYPE_WITH_PRIVATE (OssStreamControl, oss_stream_control, CAFE_MIXER_TYPE_STREAM_CONTROL)
 
-static guint                    oss_stream_control_get_num_channels     (MateMixerStreamControl  *mmsc);
+static guint                    oss_stream_control_get_num_channels     (CafeMixerStreamControl  *mmsc);
 
-static guint                    oss_stream_control_get_volume           (MateMixerStreamControl  *mmsc);
+static guint                    oss_stream_control_get_volume           (CafeMixerStreamControl  *mmsc);
 
-static gboolean                 oss_stream_control_set_volume           (MateMixerStreamControl  *mmsc,
+static gboolean                 oss_stream_control_set_volume           (CafeMixerStreamControl  *mmsc,
                                                                          guint                    volume);
 
-static gboolean                 oss_stream_control_has_channel_position (MateMixerStreamControl  *mmsc,
-                                                                         MateMixerChannelPosition position);
-static MateMixerChannelPosition oss_stream_control_get_channel_position (MateMixerStreamControl  *mmsc,
+static gboolean                 oss_stream_control_has_channel_position (CafeMixerStreamControl  *mmsc,
+                                                                         CafeMixerChannelPosition position);
+static CafeMixerChannelPosition oss_stream_control_get_channel_position (CafeMixerStreamControl  *mmsc,
                                                                          guint                    channel);
 
-static guint                    oss_stream_control_get_channel_volume   (MateMixerStreamControl  *mmsc,
+static guint                    oss_stream_control_get_channel_volume   (CafeMixerStreamControl  *mmsc,
                                                                          guint                    channel);
-static gboolean                 oss_stream_control_set_channel_volume   (MateMixerStreamControl  *mmsc,
+static gboolean                 oss_stream_control_set_channel_volume   (CafeMixerStreamControl  *mmsc,
                                                                          guint                    channel,
                                                                          guint                    volume);
 
-static gboolean                 oss_stream_control_set_balance          (MateMixerStreamControl  *mmsc,
+static gboolean                 oss_stream_control_set_balance          (CafeMixerStreamControl  *mmsc,
                                                                          gfloat                   balance);
 
-static guint                    oss_stream_control_get_min_volume       (MateMixerStreamControl  *mmsc);
-static guint                    oss_stream_control_get_max_volume       (MateMixerStreamControl  *mmsc);
-static guint                    oss_stream_control_get_normal_volume    (MateMixerStreamControl  *mmsc);
-static guint                    oss_stream_control_get_base_volume      (MateMixerStreamControl  *mmsc);
+static guint                    oss_stream_control_get_min_volume       (CafeMixerStreamControl  *mmsc);
+static guint                    oss_stream_control_get_max_volume       (CafeMixerStreamControl  *mmsc);
+static guint                    oss_stream_control_get_normal_volume    (CafeMixerStreamControl  *mmsc);
+static guint                    oss_stream_control_get_base_volume      (CafeMixerStreamControl  *mmsc);
 
 static void                     store_volume                            (OssStreamControl        *control,
                                                                          gint                     volume);
@@ -91,7 +91,7 @@ static void
 oss_stream_control_class_init (OssStreamControlClass *klass)
 {
     GObjectClass                *object_class;
-    MateMixerStreamControlClass *control_class;
+    CafeMixerStreamControlClass *control_class;
 
     object_class = G_OBJECT_CLASS (klass);
     object_class->finalize = oss_stream_control_finalize;
@@ -134,7 +134,7 @@ oss_stream_control_finalize (GObject *object)
 OssStreamControl *
 oss_stream_control_new (const gchar               *name,
                         const gchar               *label,
-                        MateMixerStreamControlRole role,
+                        CafeMixerStreamControlRole role,
                         OssStream                 *stream,
                         gint                       fd,
                         gint                       devnum,
@@ -142,7 +142,7 @@ oss_stream_control_new (const gchar               *name,
 {
     OssStreamControl           *control;
     gint                        newfd;
-    MateMixerStreamControlFlags flags;
+    CafeMixerStreamControlFlags flags;
 
     g_return_val_if_fail (name  != NULL, NULL);
     g_return_val_if_fail (label != NULL, NULL);
@@ -212,7 +212,7 @@ oss_stream_control_close (OssStreamControl *control)
 }
 
 static guint
-oss_stream_control_get_num_channels (MateMixerStreamControl *mmsc)
+oss_stream_control_get_num_channels (CafeMixerStreamControl *mmsc)
 {
     g_return_val_if_fail (OSS_IS_STREAM_CONTROL (mmsc), 0);
 
@@ -220,7 +220,7 @@ oss_stream_control_get_num_channels (MateMixerStreamControl *mmsc)
 }
 
 static guint
-oss_stream_control_get_volume (MateMixerStreamControl *mmsc)
+oss_stream_control_get_volume (CafeMixerStreamControl *mmsc)
 {
     OssStreamControl *control;
 
@@ -236,7 +236,7 @@ oss_stream_control_get_volume (MateMixerStreamControl *mmsc)
 }
 
 static gboolean
-oss_stream_control_set_volume (MateMixerStreamControl *mmsc, guint volume)
+oss_stream_control_set_volume (CafeMixerStreamControl *mmsc, guint volume)
 {
     OssStreamControl *control;
 
@@ -251,7 +251,7 @@ oss_stream_control_set_volume (MateMixerStreamControl *mmsc, guint volume)
 }
 
 static guint
-oss_stream_control_get_channel_volume (MateMixerStreamControl *mmsc, guint channel)
+oss_stream_control_get_channel_volume (CafeMixerStreamControl *mmsc, guint channel)
 {
     OssStreamControl *control;
 
@@ -270,7 +270,7 @@ oss_stream_control_get_channel_volume (MateMixerStreamControl *mmsc, guint chann
 }
 
 static gboolean
-oss_stream_control_set_channel_volume (MateMixerStreamControl *mmsc,
+oss_stream_control_set_channel_volume (CafeMixerStreamControl *mmsc,
                                        guint                   channel,
                                        guint                   volume)
 {
@@ -297,8 +297,8 @@ oss_stream_control_set_channel_volume (MateMixerStreamControl *mmsc,
     return write_and_store_volume (control, v);
 }
 
-static MateMixerChannelPosition
-oss_stream_control_get_channel_position (MateMixerStreamControl *mmsc, guint channel)
+static CafeMixerChannelPosition
+oss_stream_control_get_channel_position (CafeMixerStreamControl *mmsc, guint channel)
 {
     OssStreamControl *control;
 
@@ -319,8 +319,8 @@ oss_stream_control_get_channel_position (MateMixerStreamControl *mmsc, guint cha
 }
 
 static gboolean
-oss_stream_control_has_channel_position (MateMixerStreamControl  *mmsc,
-                                         MateMixerChannelPosition position)
+oss_stream_control_has_channel_position (CafeMixerStreamControl  *mmsc,
+                                         CafeMixerChannelPosition position)
 {
     g_return_val_if_fail (OSS_IS_STREAM_CONTROL (mmsc), FALSE);
 
@@ -335,7 +335,7 @@ oss_stream_control_has_channel_position (MateMixerStreamControl  *mmsc,
 }
 
 static gboolean
-oss_stream_control_set_balance (MateMixerStreamControl *mmsc, gfloat balance)
+oss_stream_control_set_balance (CafeMixerStreamControl *mmsc, gfloat balance)
 {
     OssStreamControl *control;
     guint             max;
@@ -361,13 +361,13 @@ oss_stream_control_set_balance (MateMixerStreamControl *mmsc, gfloat balance)
 }
 
 static guint
-oss_stream_control_get_min_volume (MateMixerStreamControl *mmsc)
+oss_stream_control_get_min_volume (CafeMixerStreamControl *mmsc)
 {
     return 0;
 }
 
 static guint
-oss_stream_control_get_max_volume (MateMixerStreamControl *mmsc)
+oss_stream_control_get_max_volume (CafeMixerStreamControl *mmsc)
 {
     g_return_val_if_fail (OSS_IS_STREAM_CONTROL (mmsc), 0);
 
@@ -375,7 +375,7 @@ oss_stream_control_get_max_volume (MateMixerStreamControl *mmsc)
 }
 
 static guint
-oss_stream_control_get_normal_volume (MateMixerStreamControl *mmsc)
+oss_stream_control_get_normal_volume (CafeMixerStreamControl *mmsc)
 {
     g_return_val_if_fail (OSS_IS_STREAM_CONTROL (mmsc), 0);
 
@@ -383,7 +383,7 @@ oss_stream_control_get_normal_volume (MateMixerStreamControl *mmsc)
 }
 
 static guint
-oss_stream_control_get_base_volume (MateMixerStreamControl *mmsc)
+oss_stream_control_get_base_volume (CafeMixerStreamControl *mmsc)
 {
     g_return_val_if_fail (OSS_IS_STREAM_CONTROL (mmsc), 0);
 

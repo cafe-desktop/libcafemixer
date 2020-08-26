@@ -41,8 +41,8 @@ G_DEFINE_TYPE_WITH_CODE (AlsaToggle, alsa_toggle, CAFE_MIXER_TYPE_STREAM_TOGGLE,
                          G_IMPLEMENT_INTERFACE (ALSA_TYPE_ELEMENT,
                                                 alsa_element_interface_init))
 
-static gboolean          alsa_toggle_set_active_option (MateMixerSwitch       *mms,
-                                                        MateMixerSwitchOption *mmso);
+static gboolean          alsa_toggle_set_active_option (CafeMixerSwitch       *mms,
+                                                        CafeMixerSwitchOption *mmso);
 
 static snd_mixer_elem_t *alsa_toggle_get_snd_element   (AlsaElement           *element);
 static void              alsa_toggle_set_snd_element   (AlsaElement           *element,
@@ -60,7 +60,7 @@ alsa_element_interface_init (AlsaElementInterface *iface)
 static void
 alsa_toggle_class_init (AlsaToggleClass *klass)
 {
-    MateMixerSwitchClass *switch_class;
+    CafeMixerSwitchClass *switch_class;
 
     switch_class = CAFE_MIXER_SWITCH_CLASS (klass);
     switch_class->set_active_option = alsa_toggle_set_active_option;
@@ -76,7 +76,7 @@ AlsaToggle *
 alsa_toggle_new (AlsaStream               *stream,
                  const gchar              *name,
                  const gchar              *label,
-                 MateMixerStreamSwitchRole role,
+                 CafeMixerStreamSwitchRole role,
                  AlsaToggleType            type,
                  AlsaSwitchOption         *on,
                  AlsaSwitchOption         *off)
@@ -104,7 +104,7 @@ alsa_toggle_new (AlsaStream               *stream,
 }
 
 static gboolean
-alsa_toggle_set_active_option (MateMixerSwitch *mms, MateMixerSwitchOption *mmso)
+alsa_toggle_set_active_option (CafeMixerSwitch *mms, CafeMixerSwitchOption *mmso)
 {
     AlsaToggle *toggle;
     gint        value;
@@ -214,7 +214,7 @@ alsa_toggle_load (AlsaElement *element)
     }
 
     if (ret == 0) {
-        MateMixerSwitchOption *active;
+        CafeMixerSwitchOption *active;
 
         if (value > 0)
             active = cafe_mixer_stream_toggle_get_state_option (CAFE_MIXER_STREAM_TOGGLE (toggle),

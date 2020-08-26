@@ -49,8 +49,8 @@ static void pulse_sink_finalize   (GObject        *object);
 
 G_DEFINE_TYPE_WITH_PRIVATE (PulseSink, pulse_sink, PULSE_TYPE_STREAM);
 
-static const GList *pulse_sink_list_controls (MateMixerStream *mms);
-static const GList *pulse_sink_list_switches (MateMixerStream *mms);
+static const GList *pulse_sink_list_controls (CafeMixerStream *mms);
+static const GList *pulse_sink_list_switches (CafeMixerStream *mms);
 
 static void         free_list_controls       (PulseSink       *sink);
 
@@ -58,7 +58,7 @@ static void
 pulse_sink_class_init (PulseSinkClass *klass)
 {
     GObjectClass         *object_class;
-    MateMixerStreamClass *stream_class;
+    CafeMixerStreamClass *stream_class;
 
     object_class = G_OBJECT_CLASS (klass);
     object_class->dispose  = pulse_sink_dispose;
@@ -264,7 +264,7 @@ pulse_sink_get_index_monitor (PulseSink *sink)
 }
 
 static const GList *
-pulse_sink_list_controls (MateMixerStream *mms)
+pulse_sink_list_controls (CafeMixerStream *mms)
 {
     PulseSink *sink;
 
@@ -284,7 +284,7 @@ pulse_sink_list_controls (MateMixerStream *mms)
 }
 
 static const GList *
-pulse_sink_list_switches (MateMixerStream *mms)
+pulse_sink_list_switches (CafeMixerStream *mms)
 {
     g_return_val_if_fail (PULSE_IS_SINK (mms), NULL);
 

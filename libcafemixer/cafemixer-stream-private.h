@@ -24,8 +24,8 @@
 
 G_BEGIN_DECLS
 
-void _cafe_mixer_stream_set_default_control (MateMixerStream        *stream,
-                                             MateMixerStreamControl *control);
+void _cafe_mixer_stream_set_default_control (CafeMixerStream        *stream,
+                                             CafeMixerStreamControl *control);
 
 G_END_DECLS
 

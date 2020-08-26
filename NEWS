@@ -78,7 +78,7 @@
 
 ### libcafemixer 1.9.90
 
-  * New APIs: MateMixerDeviceSwitch, MateMixerStreamSwitch
+  * New APIs: CafeMixerDeviceSwitch, CafeMixerStreamSwitch
 
 ### libcafemixer 1.9.0
 

@@ -36,10 +36,10 @@ static void pulse_device_switch_dispose      (GObject                *object);
 
 G_DEFINE_TYPE_WITH_PRIVATE (PulseDeviceSwitch, pulse_device_switch, CAFE_MIXER_TYPE_DEVICE_SWITCH)
 
-static gboolean     pulse_device_switch_set_active_option (MateMixerSwitch       *mms,
-                                                           MateMixerSwitchOption *mmso);
+static gboolean     pulse_device_switch_set_active_option (CafeMixerSwitch       *mms,
+                                                           CafeMixerSwitchOption *mmso);
 
-static const GList *pulse_device_switch_list_options      (MateMixerSwitch       *mms);
+static const GList *pulse_device_switch_list_options      (CafeMixerSwitch       *mms);
 
 static gint         compare_profiles                      (gconstpointer          a,
                                                            gconstpointer          b);
@@ -50,7 +50,7 @@ static void
 pulse_device_switch_class_init (PulseDeviceSwitchClass *klass)
 {
     GObjectClass         *object_class;
-    MateMixerSwitchClass *switch_class;
+    CafeMixerSwitchClass *switch_class;
 
     object_class = G_OBJECT_CLASS (klass);
     object_class->dispose = pulse_device_switch_dispose;
@@ -134,9 +134,9 @@ pulse_device_switch_set_active_profile_by_name (PulseDeviceSwitch *swtch, const 
 }
 
 static gboolean
-pulse_device_switch_set_active_option (MateMixerSwitch *mms, MateMixerSwitchOption *mmso)
+pulse_device_switch_set_active_option (CafeMixerSwitch *mms, CafeMixerSwitchOption *mmso)
 {
-    MateMixerDevice *device;
+    CafeMixerDevice *device;
     const gchar     *device_name;
     const gchar     *profile_name;
 
@@ -156,7 +156,7 @@ pulse_device_switch_set_active_option (MateMixerSwitch *mms, MateMixerSwitchOpti
 }
 
 static const GList *
-pulse_device_switch_list_options (MateMixerSwitch *swtch)
+pulse_device_switch_list_options (CafeMixerSwitch *swtch)
 {
     g_return_val_if_fail (PULSE_IS_DEVICE_SWITCH (swtch), NULL);
 

@@ -1,6 +1,6 @@
 <SECTION>
 <FILE>cafemixer</FILE>
-<TITLE>MateMixer</TITLE>
+<TITLE>CafeMixer</TITLE>
 cafe_mixer_init
 cafe_mixer_is_initialized
 LIBCAFEMIXER_CHECK_VERSION
@@ -8,8 +8,8 @@ LIBCAFEMIXER_CHECK_VERSION
 
 <SECTION>
 <FILE>cafemixer-app-info</FILE>
-<TITLE>MateMixerAppInfo</TITLE>
-MateMixerAppInfo
+<TITLE>CafeMixerAppInfo</TITLE>
+CafeMixerAppInfo
 cafe_mixer_app_info_get_name
 cafe_mixer_app_info_get_id
 cafe_mixer_app_info_get_version
@@ -23,12 +23,12 @@ cafe_mixer_app_info_get_type
 
 <SECTION>
 <FILE>cafemixer-context</FILE>
-<TITLE>MateMixerContext</TITLE>
-MateMixerState
-MateMixerBackendType
-MateMixerBackendFlags
-MateMixerContext
-MateMixerContextClass
+<TITLE>CafeMixerContext</TITLE>
+CafeMixerState
+CafeMixerBackendType
+CafeMixerBackendFlags
+CafeMixerContext
+CafeMixerContextClass
 cafe_mixer_context_new
 cafe_mixer_context_set_backend_type
 cafe_mixer_context_set_app_name
@@ -60,15 +60,15 @@ CAFE_MIXER_IS_CONTEXT
 CAFE_MIXER_IS_CONTEXT_CLASS
 CAFE_MIXER_TYPE_CONTEXT
 <SUBSECTION Private>
-MateMixerContextPrivate
+CafeMixerContextPrivate
 cafe_mixer_context_get_type
 </SECTION>
 
 <SECTION>
 <FILE>cafemixer-device</FILE>
-<TITLE>MateMixerDevice</TITLE>
-MateMixerDevice
-MateMixerDeviceClass
+<TITLE>CafeMixerDevice</TITLE>
+CafeMixerDevice
+CafeMixerDeviceClass
 cafe_mixer_device_get_name
 cafe_mixer_device_get_label
 cafe_mixer_device_get_icon
@@ -84,16 +84,16 @@ CAFE_MIXER_IS_DEVICE
 CAFE_MIXER_IS_DEVICE_CLASS
 CAFE_MIXER_TYPE_DEVICE
 <SUBSECTION Private>
-MateMixerDevicePrivate
+CafeMixerDevicePrivate
 cafe_mixer_device_get_type
 </SECTION>
 
 <SECTION>
 <FILE>cafemixer-device-switch</FILE>
-<TITLE>MateMixerDeviceSwitch</TITLE>
-MateMixerDeviceSwitchRole
-MateMixerDeviceSwitch
-MateMixerDeviceSwitchClass
+<TITLE>CafeMixerDeviceSwitch</TITLE>
+CafeMixerDeviceSwitchRole
+CafeMixerDeviceSwitch
+CafeMixerDeviceSwitchClass
 cafe_mixer_device_switch_get_role
 cafe_mixer_device_switch_get_device
 <SUBSECTION Standard>
@@ -104,15 +104,15 @@ CAFE_MIXER_DEVICE_SWITCH_CLASS
 CAFE_MIXER_DEVICE_SWITCH_GET_CLASS
 CAFE_MIXER_TYPE_DEVICE_SWITCH
 <SUBSECTION Private>
-MateMixerDeviceSwitchPrivate
+CafeMixerDeviceSwitchPrivate
 cafe_mixer_device_switch_get_type
 </SECTION>
 
 <SECTION>
 <FILE>cafemixer-stored-control</FILE>
-<TITLE>MateMixerStoredControl</TITLE>
-MateMixerStoredControl
-MateMixerStoredControlClass
+<TITLE>CafeMixerStoredControl</TITLE>
+CafeMixerStoredControl
+CafeMixerStoredControlClass
 cafe_mixer_stored_control_get_direction
 <SUBSECTION Standard>
 CAFE_MIXER_STORED_CONTROL
@@ -122,16 +122,16 @@ CAFE_MIXER_IS_STORED_CONTROL
 CAFE_MIXER_IS_STORED_CONTROL_CLASS
 CAFE_MIXER_TYPE_STORED_CONTROL
 <SUBSECTION Private>
-MateMixerStoredControlPrivate
+CafeMixerStoredControlPrivate
 cafe_mixer_stored_control_get_type
 </SECTION>
 
 <SECTION>
 <FILE>cafemixer-stream</FILE>
-<TITLE>MateMixerStream</TITLE>
-MateMixerDirection
-MateMixerStream
-MateMixerStreamClass
+<TITLE>CafeMixerStream</TITLE>
+CafeMixerDirection
+CafeMixerStream
+CafeMixerStreamClass
 cafe_mixer_stream_get_name
 cafe_mixer_stream_get_label
 cafe_mixer_stream_get_direction
@@ -149,20 +149,20 @@ CAFE_MIXER_STREAM_CLASS
 CAFE_MIXER_STREAM_GET_CLASS
 CAFE_MIXER_TYPE_STREAM
 <SUBSECTION Private>
-MateMixerStreamPrivate
+CafeMixerStreamPrivate
 cafe_mixer_stream_get_type
 </SECTION>
 
 <SECTION>
 <FILE>cafemixer-stream-control</FILE>
-<TITLE>MateMixerStreamControl</TITLE>
+<TITLE>CafeMixerStreamControl</TITLE>
 CAFE_MIXER_INFINITY
-MateMixerStreamControlFlags
-MateMixerStreamControlRole
-MateMixerStreamControlMediaRole
-MateMixerChannelPosition
-MateMixerStreamControl
-MateMixerStreamControlClass
+CafeMixerStreamControlFlags
+CafeMixerStreamControlRole
+CafeMixerStreamControlMediaRole
+CafeMixerChannelPosition
+CafeMixerStreamControl
+CafeMixerStreamControlClass
 cafe_mixer_stream_control_get_name
 cafe_mixer_stream_control_get_label
 cafe_mixer_stream_control_get_flags
@@ -202,17 +202,17 @@ CAFE_MIXER_STREAM_CONTROL_CLASS
 CAFE_MIXER_STREAM_CONTROL_GET_CLASS
 CAFE_MIXER_TYPE_STREAM_CONTROL
 <SUBSECTION Private>
-MateMixerStreamControlPrivate
+CafeMixerStreamControlPrivate
 cafe_mixer_stream_control_get_type
 </SECTION>
 
 <SECTION>
 <FILE>cafemixer-stream-switch</FILE>
-<TITLE>MateMixerStreamSwitch</TITLE>
-MateMixerStreamSwitchFlags
-MateMixerStreamSwitchRole
-MateMixerStreamSwitch
-MateMixerStreamSwitchClass
+<TITLE>CafeMixerStreamSwitch</TITLE>
+CafeMixerStreamSwitchFlags
+CafeMixerStreamSwitchRole
+CafeMixerStreamSwitch
+CafeMixerStreamSwitchClass
 cafe_mixer_stream_switch_get_flags
 cafe_mixer_stream_switch_get_role
 cafe_mixer_stream_switch_get_stream
@@ -224,15 +224,15 @@ CAFE_MIXER_STREAM_SWITCH_CLASS
 CAFE_MIXER_STREAM_SWITCH_GET_CLASS
 CAFE_MIXER_TYPE_STREAM_SWITCH
 <SUBSECTION Private>
-MateMixerStreamSwitchPrivate
+CafeMixerStreamSwitchPrivate
 cafe_mixer_stream_switch_get_type
 </SECTION>
 
 <SECTION>
 <FILE>cafemixer-stream-toggle</FILE>
-<TITLE>MateMixerStreamToggle</TITLE>
-MateMixerStreamToggle
-MateMixerStreamToggleClass
+<TITLE>CafeMixerStreamToggle</TITLE>
+CafeMixerStreamToggle
+CafeMixerStreamToggleClass
 cafe_mixer_stream_toggle_get_state
 cafe_mixer_stream_toggle_set_state
 cafe_mixer_stream_toggle_get_state_option
@@ -244,15 +244,15 @@ CAFE_MIXER_STREAM_TOGGLE_CLASS
 CAFE_MIXER_STREAM_TOGGLE_GET_CLASS
 CAFE_MIXER_TYPE_STREAM_TOGGLE
 <SUBSECTION Private>
-MateMixerStreamTogglePrivate
+CafeMixerStreamTogglePrivate
 cafe_mixer_stream_toggle_get_type
 </SECTION>
 
 <SECTION>
 <FILE>cafemixer-switch</FILE>
-<TITLE>MateMixerSwitch</TITLE>
-MateMixerSwitch
-MateMixerSwitchClass
+<TITLE>CafeMixerSwitch</TITLE>
+CafeMixerSwitch
+CafeMixerSwitchClass
 cafe_mixer_switch_get_name
 cafe_mixer_switch_get_label
 cafe_mixer_switch_get_option
@@ -267,15 +267,15 @@ CAFE_MIXER_SWITCH_CLASS
 CAFE_MIXER_SWITCH_GET_CLASS
 CAFE_MIXER_TYPE_SWITCH
 <SUBSECTION Private>
-MateMixerSwitchPrivate
+CafeMixerSwitchPrivate
 cafe_mixer_switch_get_type
 </SECTION>
 
 <SECTION>
 <FILE>cafemixer-switch-option</FILE>
-<TITLE>MateMixerSwitchOption</TITLE>
-MateMixerSwitchOption
-MateMixerSwitchOptionClass
+<TITLE>CafeMixerSwitchOption</TITLE>
+CafeMixerSwitchOption
+CafeMixerSwitchOptionClass
 cafe_mixer_switch_option_get_name
 cafe_mixer_switch_option_get_label
 cafe_mixer_switch_option_get_icon
@@ -287,6 +287,6 @@ CAFE_MIXER_SWITCH_OPTION_CLASS
 CAFE_MIXER_SWITCH_OPTION_GET_CLASS
 CAFE_MIXER_TYPE_SWITCH_OPTION
 <SUBSECTION Private>
-MateMixerSwitchOptionPrivate
+CafeMixerSwitchOptionPrivate
 cafe_mixer_switch_option_get_type
 </SECTION>

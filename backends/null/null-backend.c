@@ -31,9 +31,9 @@
 G_DEFINE_DYNAMIC_TYPE (NullBackend, null_backend, CAFE_MIXER_TYPE_BACKEND)
 #pragma clang diagnostic pop
 
-static gboolean null_backend_open (MateMixerBackend *backend);
+static gboolean null_backend_open (CafeMixerBackend *backend);
 
-static MateMixerBackendInfo info;
+static CafeMixerBackendInfo info;
 
 void
 backend_module_init (GTypeModule *module)
@@ -47,7 +47,7 @@ backend_module_init (GTypeModule *module)
     info.backend_type  = CAFE_MIXER_BACKEND_NULL;
 }
 
-const MateMixerBackendInfo *backend_module_get_info (void)
+const CafeMixerBackendInfo *backend_module_get_info (void)
 {
     return &info;
 }
@@ -55,7 +55,7 @@ const MateMixerBackendInfo *backend_module_get_info (void)
 static void
 null_backend_class_init (NullBackendClass *klass)
 {
-    MateMixerBackendClass *backend_class;
+    CafeMixerBackendClass *backend_class;
 
     backend_class = CAFE_MIXER_BACKEND_CLASS (klass);
     backend_class->open = null_backend_open;
@@ -73,7 +73,7 @@ null_backend_init (NullBackend *null)
 }
 
 static gboolean
-null_backend_open (MateMixerBackend *backend)
+null_backend_open (CafeMixerBackend *backend)
 {
     _cafe_mixer_backend_set_state (backend, CAFE_MIXER_STATE_READY);
     return TRUE;
