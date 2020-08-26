@@ -27,6 +27,7 @@ requires:
     - clang-tools
     - cppcheck
     - gcc
+    - gettext
     - git
     - gtk-doc-tools
     - libasound2-dev
@@ -42,6 +43,7 @@ requires:
     - clang
     - clang-analyzer
     - gcc
+    - gettext-devel
     - git
     - gtk-doc
     - make
@@ -54,6 +56,7 @@ requires:
     - clang
     - clang-tools
     - gcc
+    - gettext
     - git
     - gtk-doc-tools
     - libasound2-dev
