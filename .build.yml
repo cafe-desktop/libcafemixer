@@ -39,6 +39,7 @@ requires:
   fedora:
     # Useful URL: https://src.fedoraproject.org/cgit/rpms/libcafemixer.git
     - alsa-lib-devel
+    - automake
     - autoconf-archive
     - clang
     - clang-analyzer
