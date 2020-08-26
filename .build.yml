@@ -11,7 +11,6 @@ requires:
     - glib2
     - libpulse
     - make
-    - cafe-common
     - which
 
   debian:
@@ -28,7 +27,6 @@ requires:
     - libglib2.0-dev
     - libpulse-dev
     - make
-    - cafe-common
 
   fedora:
     # Useful URL: https://src.fedoraproject.org/cgit/rpms/libcafemixer.git
@@ -39,7 +37,6 @@ requires:
     - gcc
     - git
     - make
-    - cafe-common
     - pulseaudio-libs-devel
     - redhat-rpm-config
 
@@ -54,7 +51,6 @@ requires:
     - libglib2.0-dev
     - libpulse-dev
     - make
-    - cafe-common
 
 variables:
   - 'CHECKERS="
@@ -75,11 +71,11 @@ variables:
     -enable-checker security.insecureAPI.strcpy"'
 
 before_scripts:
-  # Install cafe-common fron tarball
+  # Install cafe-common from master branch
   - cd ${START_DIR}
-  - '[ -f cafe-common-1.24.1.tar.xz ] || curl -Ls -o cafe-common-1.24.1.tar.xz https://github.com/cafe-desktop/cafe-common/releases/download/v1.24.1/cafe-common-1.24.1.tar.xz'
-  - tar xf cafe-common-1.24.1.tar.xz
-  - cd cafe-common-1.24.1
+  - git clone --depth 1  https://github.com/cafe-desktop/cafe-common.git -b master cafe-common-master
+  - cd cafe-common-master
+  - ./autogen.sh
   - if [ ${DISTRO_NAME} == "debian" -o ${DISTRO_NAME} == "ubuntu" ];then
   -     ./configure --prefix=/usr --libdir=/usr/lib/x86_64-linux-gnu --libexecdir=/usr/lib/x86_64-linux-gnu
   - else
