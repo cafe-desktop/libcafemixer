@@ -34,4 +34,4 @@ build_scripts:
   - fi
 
 after_scripts:
-  - make distcheck
+  - if [ -f "gen-index" ]; then ./gen-index -l 20; fi
