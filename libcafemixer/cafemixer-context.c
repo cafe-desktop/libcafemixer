@@ -589,9 +589,7 @@ gboolean
 cafe_mixer_context_set_backend_type (CafeMixerContext    *context,
                                      CafeMixerBackendType backend_type)
 {
-    CafeMixerBackendModule     *module;
     const GList                *modules;
-    const CafeMixerBackendInfo *info;
 
     g_return_val_if_fail (CAFE_MIXER_IS_CONTEXT (context), FALSE);
 
@@ -607,6 +605,9 @@ cafe_mixer_context_set_backend_type (CafeMixerContext    *context,
 
     modules = _cafe_mixer_list_modules ();
     while (modules != NULL) {
+        CafeMixerBackendModule     *module;
+        const CafeMixerBackendInfo *info;
+
         module = CAFE_MIXER_BACKEND_MODULE (modules->data);
         info   = cafe_mixer_backend_module_get_info (module);
 
