@@ -128,7 +128,7 @@ _cafe_mixer_list_modules (void)
  * Returns: a channel mask.
  */
 guint32
-_cafe_mixer_create_channel_mask (CafeMixerChannelPosition *positions, guint n)
+_cafe_mixer_create_channel_mask (const CafeMixerChannelPosition *positions, guint n)
 {
     guint32 mask = 0;
     guint   i = 0;
