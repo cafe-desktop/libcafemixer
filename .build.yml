@@ -2,22 +2,6 @@
 # THE FOLLOWING LINES IS USED BY docker-build
 ##########################################################
 requires:
-  archlinux:
-    # Useful URL: https://git.archlinux.org/svntogit/community.git/tree/libcafemixer
-    - autoconf-archive
-    - automake
-    - clang
-    - gcc
-    - gettext
-    - git
-    - glib2
-    - gtk-doc
-    - libpulse
-    - libtool
-    - make
-    - pkgconf
-    - which
-
   debian:
     # Useful URL: https://github.com/cafe-desktop/debian-packages
     # Useful URL: https://salsa.debian.org/debian-cafe-team/libcafemixer
@@ -26,37 +10,6 @@ requires:
     - clang
     - clang-tools
     - cppcheck
-    - gcc
-    - gettext
-    - git
-    - gtk-doc-tools
-    - libasound2-dev
-    - libglib2.0-dev
-    - libpulse-dev
-    - libtool
-    - make
-
-  fedora:
-    # Useful URL: https://src.fedoraproject.org/cgit/rpms/libcafemixer.git
-    - alsa-lib-devel
-    - automake
-    - autoconf-archive
-    - clang
-    - clang-analyzer
-    - gcc
-    - gettext-devel
-    - git
-    - gtk-doc
-    - libtool
-    - make
-    - pulseaudio-libs-devel
-    - redhat-rpm-config
-
-  ubuntu:
-    - autoconf-archive
-    - autopoint
-    - clang
-    - clang-tools
     - gcc
     - gettext
     - git
