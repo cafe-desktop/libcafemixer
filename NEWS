@@ -1,85 +1,9 @@
-### libcafemixer 1.24.1
+### libcafemixer 1.25.0
 
-  * Translations update
-  * Use the correct macro for dynamic type's private
-  * build: silent build warnings for distcheck
-
-### libcafemixer 1.24.0
-
-  * Translations update
-  * avoid redundant redeclarations
-  * update indent for Makefile.am
-  * migrate from intltool to gettext
-  * Use WARN_CFLAGS which are only set with --enable-compiler-warnings
-
-### libcafemixer 1.23.0
-
-  * Translations update
-  * pulse: avoid deprecated g_type_class_add_private
-  * oss: avoid deprecated g_type_class_add_private
-  * backend-alsa: avoid deprecated g_type_class_add_private
-  * libcafemixer: avoid deprecated g_type_class_add_private
-  * Change url project's website
-
-### libcafemixer 1.22.0
-
-  * Translations update
-  * Initialize Travis CI support
-
-### libcafemixer 1.21.0
-
-  * Translations update
-  * require PulseAudio 5.0 and drop some old code
-
-### libcafemixer 1.20.0
-
-  * Translations update
-  * building: bump required glib version to 2.50.0
-
-### libcafemixer 1.19.0
-
-  * Translations update
-
-### libcafemixer 1.18.0
-
-  * NEWS: use consistent, project wide, markdown-like formatting
-    to make generating release announcements easier
-  * Translations update
-
-### libcafemixer 1.16.0
-
-  * Translations update
-
-### libcafemixer 1.14.0
-
-  * Require PulseAudio 2.0 or newer
-  * Improve error checking in many places
-  * Fix PulseAudio volume limits
-  * Some other PulseAudio fixes
-  * Some fixes and improvements in alsa and oss backends
-  * Some more fixes and cleanups
-  * Translations update
-  * Create Changelog from git
-
-### libcafemixer 1.12.1
-
-  * Translations update
-
-### libcafemixer 1.12.0
-
-  * oss: Only use modify counter for polling on Linux, it is broken on BSDs
-  * alsa: Fix FTBFS with old versions of ALSA
-  * alsa: Fix fade
-  * Translations update
-
-### libcafemixer 1.10.0
-
-  * First stable release
-
-### libcafemixer 1.9.90
-
-  * New APIs: CafeMixerDeviceSwitch, CafeMixerStreamSwitch
-
-### libcafemixer 1.9.0
-
-  * Initial release
+  * initial commit: libmatemixer 1.24.1 fork
+  * rename MATE to CAFE
+  * ci: enable Github Actions
+  * cafemixer-context: reduce the scope of some variables
+  * cafemixer: declare parameter 'positions' with const
+  * po,Makevars: supress progress indicators
+  * Update Translations
