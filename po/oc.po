@@ -28,7 +28,7 @@ msgstr "Mèstre"
 
 #: backends/alsa/alsa-constants.c:42
 msgid "Hardware Master"
-msgstr "Mèstre caferial"
+msgstr "Mèstre material"
 
 #: backends/alsa/alsa-constants.c:43 backends/oss/oss-device.c:92
 msgid "PCM"
