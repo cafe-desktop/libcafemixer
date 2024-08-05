@@ -1,0 +1,2047 @@
+Checking backends/alsa/alsa-backend.c ...
+backends/alsa/alsa-backend.c:310:26: style: Local variable 'info' shadows outer variable [shadowVariable]
+    snd_ctl_card_info_t *info;
+                         ^
+backends/alsa/alsa-backend.c:95:29: note: Shadowed declaration
+static CafeMixerBackendInfo info;
+                            ^
+backends/alsa/alsa-backend.c:310:26: note: Shadow variable
+    snd_ctl_card_info_t *info;
+                         ^
+1/55 files checked 2% done
+Checking backends/alsa/alsa-constants.c ...
+2/55 files checked 5% done
+Checking backends/alsa/alsa-device.c ...
+backends/alsa/alsa-device.c:712:19: style: Same expression on both sides of '^' because 'cenum' and 'penum' represent the same value. [knownConditionTrueFalse]
+        if (cenum ^ penum) {
+                  ^
+backends/alsa/alsa-device.c:702:36: note: 'cenum' is assigned value 'FALSE' here.
+        gboolean           cenum = FALSE;
+                                   ^
+backends/alsa/alsa-device.c:703:36: note: 'penum' is assigned value 'FALSE' here.
+        gboolean           penum = FALSE;
+                                   ^
+backends/alsa/alsa-device.c:712:19: note: Same expression on both sides of '^' because 'cenum' and 'penum' represent the same value.
+        if (cenum ^ penum) {
+                  ^
+3/55 files checked 10% done
+Checking backends/alsa/alsa-element.c ...
+4/55 files checked 10% done
+Checking backends/alsa/alsa-stream-control.c ...
+backends/alsa/alsa-stream-control.c:33:23: style: struct member '_AlsaStreamControlPrivate::element' is never used. [unusedStructMember]
+    snd_mixer_elem_t *element;
+                      ^
+5/55 files checked 14% done
+Checking backends/alsa/alsa-stream-input-control.c ...
+6/55 files checked 16% done
+Checking backends/alsa/alsa-stream-output-control.c ...
+7/55 files checked 17% done
+Checking backends/alsa/alsa-stream.c ...
+8/55 files checked 19% done
+Checking backends/alsa/alsa-switch-option.c ...
+9/55 files checked 19% done
+Checking backends/alsa/alsa-switch.c ...
+10/55 files checked 20% done
+Checking backends/alsa/alsa-toggle.c ...
+11/55 files checked 21% done
+Checking backends/null/null-backend.c ...
+12/55 files checked 22% done
+Checking backends/oss/oss-backend.c ...
+Checking backends/oss/oss-backend.c: HAVE_MACHINE_SOUNDCARD_H...
+Checking backends/oss/oss-backend.c: HAVE_SOUNDCARD_H...
+Checking backends/oss/oss-backend.c: HAVE_SYS_SOUNDCARD_H...
+13/55 files checked 25% done
+Checking backends/oss/oss-device.c ...
+Checking backends/oss/oss-device.c: HAVE_MACHINE_SOUNDCARD_H...
+backends/oss/oss-device.c:595:26: style: Local variable 'name' shadows outer variable [shadowVariable]
+            const gchar *name =
+                         ^
+backends/oss/oss-device.c:550:23: note: Shadowed declaration
+    const gchar      *name;
+                      ^
+backends/oss/oss-device.c:595:26: note: Shadow variable
+            const gchar *name =
+                         ^
+Checking backends/oss/oss-device.c: HAVE_SOUNDCARD_H...
+Checking backends/oss/oss-device.c: HAVE_SYS_SOUNDCARD_H...
+14/55 files checked 28% done
+Checking backends/oss/oss-stream-control.c ...
+Checking backends/oss/oss-stream-control.c: HAVE_MACHINE_SOUNDCARD_H...
+Checking backends/oss/oss-stream-control.c: HAVE_SOUNDCARD_H...
+Checking backends/oss/oss-stream-control.c: HAVE_SYS_SOUNDCARD_H...
+15/55 files checked 30% done
+Checking backends/oss/oss-stream.c ...
+16/55 files checked 31% done
+Checking backends/oss/oss-switch-option.c ...
+17/55 files checked 32% done
+Checking backends/oss/oss-switch.c ...
+Checking backends/oss/oss-switch.c: HAVE_MACHINE_SOUNDCARD_H...
+Checking backends/oss/oss-switch.c: HAVE_SOUNDCARD_H...
+Checking backends/oss/oss-switch.c: HAVE_SYS_SOUNDCARD_H...
+18/55 files checked 33% done
+Checking backends/pulse/pulse-backend.c ...
+backends/pulse/pulse-backend.c:683:30: style: Local variable 'stream' shadows outer variable [shadowVariable]
+            CafeMixerStream *stream = g_hash_table_find (pulse->priv->sources,
+                             ^
+backends/pulse/pulse-backend.c:673:22: note: Shadowed declaration
+    CafeMixerStream *stream;
+                     ^
+backends/pulse/pulse-backend.c:683:30: note: Shadow variable
+            CafeMixerStream *stream = g_hash_table_find (pulse->priv->sources,
+                             ^
+backends/pulse/pulse-backend.c:719:30: style: Local variable 'stream' shadows outer variable [shadowVariable]
+            CafeMixerStream *stream = g_hash_table_find (pulse->priv->sinks,
+                             ^
+backends/pulse/pulse-backend.c:673:22: note: Shadowed declaration
+    CafeMixerStream *stream;
+                     ^
+backends/pulse/pulse-backend.c:719:30: note: Shadow variable
+            CafeMixerStream *stream = g_hash_table_find (pulse->priv->sinks,
+                             ^
+19/55 files checked 39% done
+Checking backends/pulse/pulse-connection.c ...
+20/55 files checked 47% done
+Checking backends/pulse/pulse-device-profile.c ...
+21/55 files checked 47% done
+Checking backends/pulse/pulse-device-switch.c ...
+22/55 files checked 48% done
+Checking backends/pulse/pulse-device.c ...
+23/55 files checked 50% done
+Checking backends/pulse/pulse-enum-types.c ...
+24/55 files checked 50% done
+Checking backends/pulse/pulse-ext-stream.c ...
+25/55 files checked 54% done
+Checking backends/pulse/pulse-helpers.c ...
+26/55 files checked 54% done
+Checking backends/pulse/pulse-monitor.c ...
+27/55 files checked 56% done
+Checking backends/pulse/pulse-port-switch.c ...
+28/55 files checked 57% done
+Checking backends/pulse/pulse-port.c ...
+29/55 files checked 57% done
+Checking backends/pulse/pulse-sink-control.c ...
+30/55 files checked 58% done
+Checking backends/pulse/pulse-sink-input.c ...
+31/55 files checked 59% done
+Checking backends/pulse/pulse-sink-switch.c ...
+32/55 files checked 59% done
+Checking backends/pulse/pulse-sink.c ...
+33/55 files checked 60% done
+Checking backends/pulse/pulse-source-control.c ...
+34/55 files checked 61% done
+Checking backends/pulse/pulse-source-output.c ...
+35/55 files checked 62% done
+Checking backends/pulse/pulse-source-switch.c ...
+36/55 files checked 63% done
+Checking backends/pulse/pulse-source.c ...
+37/55 files checked 64% done
+Checking backends/pulse/pulse-stream-control.c ...
+38/55 files checked 68% done
+Checking backends/pulse/pulse-stream.c ...
+39/55 files checked 69% done
+Checking examples/monitor.c ...
+Checking examples/monitor.c: G_OS_UNIX...
+40/55 files checked 71% done
+Checking libcafemixer/cafemixer-app-info.c ...
+41/55 files checked 71% done
+Checking libcafemixer/cafemixer-backend-module.c ...
+42/55 files checked 73% done
+Checking libcafemixer/cafemixer-backend.c ...
+libcafemixer/cafemixer-backend.c:36:27: style: struct member '_CafeMixerBackendPrivate::flags' is never used. [unusedStructMember]
+    CafeMixerBackendFlags flags;
+                          ^
+Checking libcafemixer/cafemixer-backend.c: INFINITY...
+43/55 files checked 76% done
+Checking libcafemixer/cafemixer-context.c ...
+libcafemixer/cafemixer-context.c:839:14: style: Condition 'info==NULL' is always true [knownConditionTrueFalse]
+    if (info == NULL)
+             ^
+libcafemixer/cafemixer-context.c:804:40: note: Assignment 'info=NULL', assigned value is 0
+    const CafeMixerBackendInfo *info = NULL;
+                                       ^
+libcafemixer/cafemixer-context.c:808:61: note: Assuming condition is false
+    if (context->priv->state == CAFE_MIXER_STATE_CONNECTING ||
+                                                            ^
+libcafemixer/cafemixer-context.c:839:14: note: Condition 'info==NULL' is always true
+    if (info == NULL)
+             ^
+libcafemixer/cafemixer-context.c:818:41: style: Local variable 'info' shadows outer variable [shadowVariable]
+            const CafeMixerBackendInfo *info;
+                                        ^
+libcafemixer/cafemixer-context.c:804:33: note: Shadowed declaration
+    const CafeMixerBackendInfo *info = NULL;
+                                ^
+libcafemixer/cafemixer-context.c:818:41: note: Shadow variable
+            const CafeMixerBackendInfo *info;
+                                        ^
+44/55 files checked 83% done
+Checking libcafemixer/cafemixer-device-switch.c ...
+libcafemixer/cafemixer-device-switch.c:34:31: style: struct member '_CafeMixerDeviceSwitchPrivate::device' is never used. [unusedStructMember]
+    CafeMixerDevice          *device;
+                              ^
+libcafemixer/cafemixer-device-switch.c:35:31: style: struct member '_CafeMixerDeviceSwitchPrivate::role' is never used. [unusedStructMember]
+    CafeMixerDeviceSwitchRole role;
+                              ^
+45/55 files checked 83% done
+Checking libcafemixer/cafemixer-device.c ...
+libcafemixer/cafemixer-device.c:39:12: style: struct member '_CafeMixerDevicePrivate::name' is never used. [unusedStructMember]
+    gchar *name;
+           ^
+libcafemixer/cafemixer-device.c:40:12: style: struct member '_CafeMixerDevicePrivate::label' is never used. [unusedStructMember]
+    gchar *label;
+           ^
+libcafemixer/cafemixer-device.c:41:12: style: struct member '_CafeMixerDevicePrivate::icon' is never used. [unusedStructMember]
+    gchar *icon;
+           ^
+46/55 files checked 85% done
+Checking libcafemixer/cafemixer-enum-types.c ...
+47/55 files checked 87% done
+Checking libcafemixer/cafemixer-stored-control.c ...
+libcafemixer/cafemixer-stored-control.c:28:24: style: struct member '_CafeMixerStoredControlPrivate::direction' is never used. [unusedStructMember]
+    CafeMixerDirection direction;
+                       ^
+Checking libcafemixer/cafemixer-stored-control.c: INFINITY...
+48/55 files checked 88% done
+Checking libcafemixer/cafemixer-stream-control.c ...
+libcafemixer/cafemixer-stream-control.c:523:0: information: Skipping configuration 'INFINITY' since the value of 'INFINITY' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+    g_return_val_if_fail (CAFE_MIXER_IS_STREAM_CONTROL (control), -CAFE_MIXER_INFINITY);
+^
+libcafemixer/cafemixer-stream-control.c:533:0: information: Skipping configuration 'INFINITY' since the value of 'INFINITY' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+    return -CAFE_MIXER_INFINITY;
+^
+libcafemixer/cafemixer-stream-control.c:650:0: information: Skipping configuration 'INFINITY' since the value of 'INFINITY' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+    g_return_val_if_fail (CAFE_MIXER_IS_STREAM_CONTROL (control), -CAFE_MIXER_INFINITY);
+^
+libcafemixer/cafemixer-stream-control.c:660:0: information: Skipping configuration 'INFINITY' since the value of 'INFINITY' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+    return -CAFE_MIXER_INFINITY;
+^
+Checking libcafemixer/cafemixer-stream-control.c: INFINITY...
+49/55 files checked 92% done
+Checking libcafemixer/cafemixer-stream-switch.c ...
+libcafemixer/cafemixer-stream-switch.c:34:32: style: struct member '_CafeMixerStreamSwitchPrivate::stream' is never used. [unusedStructMember]
+    CafeMixerStream           *stream;
+                               ^
+libcafemixer/cafemixer-stream-switch.c:35:32: style: struct member '_CafeMixerStreamSwitchPrivate::flags' is never used. [unusedStructMember]
+    CafeMixerStreamSwitchFlags flags;
+                               ^
+libcafemixer/cafemixer-stream-switch.c:36:32: style: struct member '_CafeMixerStreamSwitchPrivate::role' is never used. [unusedStructMember]
+    CafeMixerStreamSwitchRole  role;
+                               ^
+50/55 files checked 93% done
+Checking libcafemixer/cafemixer-stream-toggle.c ...
+libcafemixer/cafemixer-stream-toggle.c:33:28: style: struct member '_CafeMixerStreamTogglePrivate::options' is never used. [unusedStructMember]
+    GList                 *options;
+                           ^
+libcafemixer/cafemixer-stream-toggle.c:34:28: style: struct member '_CafeMixerStreamTogglePrivate::on' is never used. [unusedStructMember]
+    CafeMixerSwitchOption *on;
+                           ^
+libcafemixer/cafemixer-stream-toggle.c:35:28: style: struct member '_CafeMixerStreamTogglePrivate::off' is never used. [unusedStructMember]
+    CafeMixerSwitchOption *off;
+                           ^
+51/55 files checked 94% done
+Checking libcafemixer/cafemixer-stream.c ...
+Checking libcafemixer/cafemixer-stream.c: INFINITY...
+52/55 files checked 96% done
+Checking libcafemixer/cafemixer-switch-option.c ...
+53/55 files checked 97% done
+Checking libcafemixer/cafemixer-switch.c ...
+54/55 files checked 99% done
+Checking libcafemixer/cafemixer.c ...
+55/55 files checked 100% done
+nofile:0:0: information: Cppcheck cannot find all the include files (use --check-config for details) [missingInclude]
+
+/usr/bin/cafe-autogen
+checking for autoreconf >= 2.53...
+(B  testing autoreconf... found 2.71
+checking for pkg-config >= 0.14.0...
+(B  testing pkg-config... found 0.29.2
+checking for gtk-doc >= 1.9...
+(B  testing gtkdocize... found 1.33.1
+checking for cafe-common >= 0.0.1...
+(B  testing cafe-doc-common... found 1.25.0
+Checking for required M4 macros...
+(BChecking for forbidden M4 macros...
+(BProcessing ./configure.ac
+(BRunning gtkdocize...
+(BRunning cafe-doc-common...
+(BRunning autoreconf...
+(Bautoreconf: export WARNINGS=no-portability
+autoreconf: Entering directory '.'
+autoreconf: running: autopoint --force
+Copying file ABOUT-NLS
+Creating directory build-aux
+Copying file build-aux/config.rpath
+Copying file m4/codeset.m4
+Copying file m4/extern-inline.m4
+Copying file m4/fcntl-o.m4
+Copying file m4/gettext.m4
+Copying file m4/glibc2.m4
+Copying file m4/glibc21.m4
+Copying file m4/iconv.m4
+Copying file m4/intdiv0.m4
+Copying file m4/intl.m4
+Copying file m4/intldir.m4
+Copying file m4/intlmacosx.m4
+Copying file m4/intmax.m4
+Copying file m4/inttypes-pri.m4
+Copying file m4/inttypes_h.m4
+Copying file m4/lcmessage.m4
+Copying file m4/lib-ld.m4
+Copying file m4/lib-link.m4
+Copying file m4/lib-prefix.m4
+Copying file m4/lock.m4
+Copying file m4/longlong.m4
+Copying file m4/nls.m4
+Copying file m4/po.m4
+Copying file m4/printf-posix.m4
+Copying file m4/progtest.m4
+Copying file m4/size_max.m4
+Copying file m4/stdint_h.m4
+Copying file m4/threadlib.m4
+Copying file m4/uintmax_t.m4
+Copying file m4/visibility.m4
+Copying file m4/wchar_t.m4
+Copying file m4/wint_t.m4
+Copying file m4/xsize.m4
+Copying file po/Makefile.in.in
+Copying file po/Makevars.template
+Copying file po/Rules-quot
+Copying file po/boldquot.sed
+Copying file po/en@boldquot.header
+Copying file po/en@quot.header
+Copying file po/insert-header.sin
+Copying file po/quot.sed
+Copying file po/remove-potcdate.sin
+autoreconf: running: aclocal --force -I m4 ${ACLOCAL_FLAGS}
+autoreconf: configure.ac: tracing
+autoreconf: running: libtoolize --copy --force
+libtoolize: putting auxiliary files in AC_CONFIG_AUX_DIR, 'build-aux'.
+libtoolize: copying file 'build-aux/ltmain.sh'
+libtoolize: putting macros in AC_CONFIG_MACRO_DIRS, 'm4'.
+libtoolize: copying file 'm4/libtool.m4'
+libtoolize: copying file 'm4/ltoptions.m4'
+libtoolize: copying file 'm4/ltsugar.m4'
+libtoolize: copying file 'm4/ltversion.m4'
+libtoolize: copying file 'm4/lt~obsolete.m4'
+autoreconf: configure.ac: not using Intltool
+autoreconf: running: gtkdocize --copy
+autoreconf: running: aclocal --force -I m4 ${ACLOCAL_FLAGS}
+autoreconf: running: /usr/bin/autoconf --force
+autoreconf: running: /usr/bin/autoheader --force
+autoreconf: running: automake --add-missing --copy --force-missing
+configure.ac:57: installing 'build-aux/compile'
+configure.ac:69: installing 'build-aux/config.guess'
+configure.ac:69: installing 'build-aux/config.sub'
+configure.ac:45: installing 'build-aux/install-sh'
+configure.ac:45: installing 'build-aux/missing'
+backends/alsa/Makefile.am: installing 'build-aux/depcomp'
+autoreconf: Leaving directory '.'
+Skipping configure process.
+scan-build: Using '/usr/lib/llvm-13/bin/clang' for static analysis
+checking for a BSD-compatible install... /usr/bin/install -c
+checking whether build environment is sane... yes
+checking for a race-free mkdir -p... /bin/mkdir -p
+checking for gawk... no
+checking for mawk... mawk
+checking whether make sets $(MAKE)... yes
+checking whether make supports nested variables... yes
+checking whether UID '0' is supported by ustar format... yes
+checking whether GID '0' is supported by ustar format... yes
+checking how to create a ustar tar archive... gnutar
+checking whether make supports nested variables... (cached) yes
+checking whether make supports the include directive... yes (GNU style)
+checking for gcc... /usr/share/clang/scan-build-13/bin/../libexec/ccc-analyzer
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether the compiler supports GNU C... yes
+checking whether /usr/share/clang/scan-build-13/bin/../libexec/ccc-analyzer accepts -g... yes
+checking for /usr/share/clang/scan-build-13/bin/../libexec/ccc-analyzer option to enable C11 features... none needed
+checking whether /usr/share/clang/scan-build-13/bin/../libexec/ccc-analyzer understands -c and -o together... rm: cannot remove 'conftest.plist': Is a directory
+yes
+checking dependency style of /usr/share/clang/scan-build-13/bin/../libexec/ccc-analyzer... gcc3
+checking whether C compiler accepts -Werror=unknown-warning-option... no
+checking whether C compiler accepts -Wall... yes
+checking whether C compiler accepts -Wmissing-prototypes... yes
+checking whether C compiler accepts -Wbad-function-cast... yes
+checking whether C compiler accepts -Wcast-align... yes
+checking whether C compiler accepts -Wextra... yes
+checking whether C compiler accepts -Wformat-nonliteral... yes
+checking whether C compiler accepts -Wmissing-declarations... yes
+checking whether C compiler accepts -Wmissing-field-initializers... yes
+checking whether C compiler accepts -Wnested-externs... yes
+checking whether C compiler accepts -Wpointer-arith... yes
+checking whether C compiler accepts -Wredundant-decls... yes
+checking whether C compiler accepts -Wshadow... yes
+checking whether C compiler accepts -Wstrict-prototypes... yes
+checking whether C compiler accepts -Wunused-macros... yes
+checking whether C compiler accepts -Werror=format-security... yes
+checking flags to pass to the C compiler /usr/share/clang/scan-build-13/bin/../libexec/ccc-analyzer... -Wall -Wmissing-prototypes -Wbad-function-cast -Wcast-align -Wextra -Wformat-nonliteral -Wmissing-declarations -Wmissing-field-initializers -Wnested-externs -Wpointer-arith -Wredundant-decls -Wshadow -Wstrict-prototypes -Wunused-macros -Werror=format-security
+checking for gcc... (cached) /usr/share/clang/scan-build-13/bin/../libexec/ccc-analyzer
+checking whether the compiler supports GNU C... (cached) yes
+checking whether /usr/share/clang/scan-build-13/bin/../libexec/ccc-analyzer accepts -g... (cached) yes
+checking for /usr/share/clang/scan-build-13/bin/../libexec/ccc-analyzer option to enable C11 features... (cached) none needed
+checking whether /usr/share/clang/scan-build-13/bin/../libexec/ccc-analyzer understands -c and -o together... (cached) yes
+checking dependency style of /usr/share/clang/scan-build-13/bin/../libexec/ccc-analyzer... (cached) gcc3
+checking build system type... x86_64-pc-linux-gnu
+checking host system type... x86_64-pc-linux-gnu
+checking how to print strings... printf
+checking for a sed that does not truncate output... /bin/sed
+checking for grep that handles long lines and -e... /bin/grep
+checking for egrep... /bin/grep -E
+checking for fgrep... /bin/grep -F
+checking for ld used by /usr/share/clang/scan-build-13/bin/../libexec/ccc-analyzer... /usr/bin/ld
+checking if the linker (/usr/bin/ld) is GNU ld... yes
+checking for BSD- or MS-compatible name lister (nm)... /usr/bin/nm -B
+checking the name lister (/usr/bin/nm -B) interface... rm: cannot remove 'conftest.plist': Is a directory
+BSD nm
+checking whether ln -s works... yes
+checking the maximum length of command line arguments... 3145728
+checking how to convert x86_64-pc-linux-gnu file names to x86_64-pc-linux-gnu format... func_convert_file_noop
+checking how to convert x86_64-pc-linux-gnu file names to toolchain format... func_convert_file_noop
+checking for /usr/bin/ld option to reload object files... -r
+checking for file... file
+checking for objdump... objdump
+checking how to recognize dependent libraries... pass_all
+checking for dlltool... no
+checking how to associate runtime and link libraries... printf %s\n
+checking for ar... ar
+checking for archiver @FILE support... rm: cannot remove 'conftest.plist': Is a directory
+@
+checking for strip... strip
+checking for ranlib... ranlib
+checking command to parse /usr/bin/nm -B output from /usr/share/clang/scan-build-13/bin/../libexec/ccc-analyzer object... rm: cannot remove 'conftest.plist': Is a directory
+ok
+checking for sysroot... no
+checking for a working dd... /bin/dd
+checking how to truncate binary pipes... /bin/dd bs=4096 count=1
+checking for mt... no
+checking if : is a manifest tool... no
+checking for stdio.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for strings.h... yes
+checking for sys/stat.h... yes
+checking for sys/types.h... yes
+checking for unistd.h... yes
+checking for dlfcn.h... yes
+checking for objdir... .libs
+checking if /usr/share/clang/scan-build-13/bin/../libexec/ccc-analyzer supports -fno-rtti -fno-exceptions... no
+checking for /usr/share/clang/scan-build-13/bin/../libexec/ccc-analyzer option to produce PIC... -fPIC -DPIC
+checking if /usr/share/clang/scan-build-13/bin/../libexec/ccc-analyzer PIC flag -fPIC -DPIC works... yes
+checking if /usr/share/clang/scan-build-13/bin/../libexec/ccc-analyzer static flag -static works... yes
+checking if /usr/share/clang/scan-build-13/bin/../libexec/ccc-analyzer supports -c -o file.o... yes
+checking if /usr/share/clang/scan-build-13/bin/../libexec/ccc-analyzer supports -c -o file.o... (cached) yes
+checking whether the /usr/share/clang/scan-build-13/bin/../libexec/ccc-analyzer linker (/usr/bin/ld -m elf_x86_64) supports shared libraries... yes
+checking whether -lc should be explicitly linked in... no
+checking dynamic linker characteristics... GNU/Linux ld.so
+checking how to hardcode library paths into programs... immediate
+checking whether stripping libraries is possible... yes
+checking if libtool supports shared libraries... yes
+checking whether to build shared libraries... yes
+checking whether to build static libraries... yes
+checking whether NLS is requested... yes
+checking for msgfmt... /usr/bin/msgfmt
+checking for gmsgfmt... /usr/bin/msgfmt
+checking for xgettext... /usr/bin/xgettext
+checking for msgmerge... /usr/bin/msgmerge
+checking for ld used by /usr/share/clang/scan-build-13/bin/../libexec/ccc-analyzer... /usr/bin/ld -m elf_x86_64
+checking if the linker (/usr/bin/ld -m elf_x86_64) is GNU ld... yes
+checking for shared library run path origin... done
+checking how to run the C preprocessor... /usr/share/clang/scan-build-13/bin/../libexec/ccc-analyzer -E
+checking for CFPreferencesCopyAppValue... no
+checking for CFLocaleCopyCurrent... no
+checking for GNU gettext in libc... yes
+checking whether to use NLS... yes
+checking where the gettext function comes from... libc
+checking for pkg-config... /usr/bin/pkg-config
+checking pkg-config is at least version 0.9.0... yes
+checking for
+        glib-2.0 >= 2.50.0
+        gobject-2.0 >= 2.50.0
+        gmodule-2.0 >= 2.50.0
+... yes
+checking for gtk-doc... yes
+checking for gtkdoc-check... gtkdoc-check.test
+checking for gtkdoc-check... /usr/bin/gtkdoc-check
+checking for gtkdoc-rebase... /usr/bin/gtkdoc-rebase
+checking for gtkdoc-mkpdf... /usr/bin/gtkdoc-mkpdf
+checking whether to build gtk-doc documentation... no
+checking for glib-2.0 >= 2.10.0 gobject-2.0  >= 2.10.0... yes
+checking for
+          libpulse >= 5.0.0
+          libpulse-mainloop-glib >= 5.0.0
+          ... yes
+checking for
+          alsa >= 1.0.5
+          gthread-2.0 >= 2.50.0
+          ... yes
+checking that generated files are newer than configure... done
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: creating libcafemixer/Makefile
+config.status: creating backends/Makefile
+config.status: creating backends/null/Makefile
+config.status: creating backends/pulse/Makefile
+config.status: creating backends/alsa/Makefile
+config.status: creating backends/oss/Makefile
+config.status: creating data/Makefile
+config.status: creating data/libcafemixer.pc
+config.status: creating docs/Makefile
+config.status: creating docs/reference/Makefile
+config.status: creating docs/reference/version.xml
+config.status: creating examples/Makefile
+config.status: creating po/Makefile.in
+config.status: creating config.h
+config.status: executing depfiles commands
+config.status: executing libtool commands
+config.status: executing po-directories commands
+config.status: creating po/POTFILES
+config.status: creating po/Makefile
+
+
+                    libcafemixer 1.24.1
+                    ============
+
+
+        Prefix:                      /usr/local
+        Source code location:        .
+        Compiler:                    /usr/share/clang/scan-build-13/bin/../libexec/ccc-analyzer
+        Compiler flags:              -Wall -Wmissing-prototypes -Wbad-function-cast -Wcast-align -Wextra -Wformat-nonliteral -Wmissing-declarations -Wmissing-field-initializers -Wnested-externs -Wpointer-arith -Wredundant-decls -Wshadow -Wstrict-prototypes -Wunused-macros -Werror=format-security
+        Warning flags:               -Wall -Wmissing-prototypes -Wbad-function-cast -Wcast-align -Wextra -Wformat-nonliteral -Wmissing-declarations -Wmissing-field-initializers -Wnested-externs -Wpointer-arith -Wredundant-decls -Wshadow -Wstrict-prototypes -Wunused-macros -Werror=format-security
+
+        Build Null module:           yes
+        Build PulseAudio module:     yes
+        Build ALSA module:           yes
+        Build OSS module:            no
+
+scan-build: Analysis run complete.
+scan-build: Removing directory '/tmp/scan-build-2022-06-26-084400-8881-1' because it contains no reports.
+scan-build: No bugs found.
+scan-build: Using '/usr/lib/llvm-13/bin/clang' for static analysis
+make  all-recursive
+make[1]: Entering directory '/rootdir'
+Making all in po
+make[2]: Entering directory '/rootdir/po'
+make libcafemixer.pot-update
+make[3]: Entering directory '/rootdir/po'
+sed -e '/^#/d' remove-potcdate.sin > t-remove-potcdate.sed
+mv t-remove-potcdate.sed remove-potcdate.sed
+package_gnu=""; \
+test -n "$package_gnu" || { \
+  if { if (LC_ALL=C find --version) 2>/dev/null | grep GNU >/dev/null; then \
+	 LC_ALL=C find -L .. -maxdepth 1 -type f \
+		       -size -10000000c -exec grep 'GNU libcafemixer' \
+		       /dev/null '{}' ';' 2>/dev/null; \
+       else \
+	 LC_ALL=C grep 'GNU libcafemixer' ../* 2>/dev/null; \
+       fi; \
+     } | grep -v 'libtool:' >/dev/null; then \
+     package_gnu=yes; \
+   else \
+     package_gnu=no; \
+   fi; \
+}; \
+if test "$package_gnu" = "yes"; then \
+  package_prefix='GNU '; \
+else \
+  package_prefix=''; \
+fi; \
+if test -n '' || test 'https://cafe-desktop.org' = '@'PACKAGE_BUGREPORT'@'; then \
+  msgid_bugs_address=''; \
+else \
+  msgid_bugs_address='https://cafe-desktop.org'; \
+fi; \
+case `/usr/bin/xgettext --version | sed 1q | sed -e 's,^[^0-9]*,,'` in \
+  '' | 0.[0-9] | 0.[0-9].* | 0.1[0-5] | 0.1[0-5].* | 0.16 | 0.16.[0-1]*) \
+    /usr/bin/xgettext --default-domain=libcafemixer --directory=.. \
+      --add-comments=TRANSLATORS: --from-code=UTF-8 --keyword=_ --keyword=N_ --keyword=C_:1c,2 --keyword=NC_:1c,2 --keyword=g_dngettext:2,3 --add-comments=Translators:  \
+      --files-from=./POTFILES.in \
+      --copyright-holder='CAFE Desktop Environment team' \
+      --msgid-bugs-address="$msgid_bugs_address" \
+    ;; \
+  *) \
+    /usr/bin/xgettext --default-domain=libcafemixer --directory=.. \
+      --add-comments=TRANSLATORS: --from-code=UTF-8 --keyword=_ --keyword=N_ --keyword=C_:1c,2 --keyword=NC_:1c,2 --keyword=g_dngettext:2,3 --add-comments=Translators:  \
+      --files-from=./POTFILES.in \
+      --copyright-holder='CAFE Desktop Environment team' \
+      --package-name="${package_prefix}libcafemixer" \
+      --package-version='1.24.1' \
+      --msgid-bugs-address="$msgid_bugs_address" \
+    ;; \
+esac
+test ! -f libcafemixer.po || { \
+  if test -f ./libcafemixer.pot-header; then \
+    sed -e '1,/^#$/d' < libcafemixer.po > libcafemixer.1po && \
+    cat ./libcafemixer.pot-header libcafemixer.1po > libcafemixer.po; \
+    rm -f libcafemixer.1po; \
+  fi; \
+  if test -f ./libcafemixer.pot; then \
+    sed -f remove-potcdate.sed < ./libcafemixer.pot > libcafemixer.1po && \
+    sed -f remove-potcdate.sed < libcafemixer.po > libcafemixer.2po && \
+    if cmp libcafemixer.1po libcafemixer.2po >/dev/null 2>&1; then \
+      rm -f libcafemixer.1po libcafemixer.2po libcafemixer.po; \
+    else \
+      rm -f libcafemixer.1po libcafemixer.2po ./libcafemixer.pot && \
+      mv libcafemixer.po ./libcafemixer.pot; \
+    fi; \
+  else \
+    mv libcafemixer.po ./libcafemixer.pot; \
+  fi; \
+}
+make[3]: Leaving directory '/rootdir/po'
+test ! -f ./libcafemixer.pot || \
+  test -z "af.gmo am.gmo ar.gmo as.gmo ast.gmo az.gmo be.gmo bg.gmo bn.gmo bn_IN.gmo br.gmo bs.gmo ca.gmo ca@valencia.gmo cmn.gmo crh.gmo cs.gmo cy.gmo da.gmo de.gmo dz.gmo el.gmo en_AU.gmo en_CA.gmo en_GB.gmo eo.gmo es.gmo es_CL.gmo es_CO.gmo es_MX.gmo et.gmo eu.gmo fa.gmo fi.gmo fr.gmo fr_CA.gmo frp.gmo fur.gmo fy.gmo ga.gmo gl.gmo gu.gmo he.gmo hi.gmo hr.gmo hu.gmo hy.gmo ia.gmo id.gmo ie.gmo is.gmo it.gmo ja.gmo jv.gmo ka.gmo kk.gmo kn.gmo ko.gmo ku.gmo ku_IQ.gmo ky.gmo lt.gmo lv.gmo mai.gmo mg.gmo mk.gmo ml.gmo mn.gmo mr.gmo ms.gmo nb.gmo nds.gmo ne.gmo nl.gmo nn.gmo nso.gmo oc.gmo or.gmo pa.gmo pl.gmo pms.gmo ps.gmo pt.gmo pt_BR.gmo ro.gmo ru.gmo rw.gmo si.gmo sk.gmo sl.gmo sq.gmo sr.gmo sr@latin.gmo sv.gmo ta.gmo te.gmo th.gmo tk.gmo tr.gmo ug.gmo uk.gmo ur.gmo uz.gmo vi.gmo wa.gmo xh.gmo zh_CN.gmo zh_HK.gmo zh_TW.gmo zu.gmo" || make af.gmo am.gmo ar.gmo as.gmo ast.gmo az.gmo be.gmo bg.gmo bn.gmo bn_IN.gmo br.gmo bs.gmo ca.gmo ca@valencia.gmo cmn.gmo crh.gmo cs.gmo cy.gmo da.gmo de.gmo dz.gmo el.gmo en_AU.gmo en_CA.gmo en_GB.gmo eo.gmo es.gmo es_CL.gmo es_CO.gmo es_MX.gmo et.gmo eu.gmo fa.gmo fi.gmo fr.gmo fr_CA.gmo frp.gmo fur.gmo fy.gmo ga.gmo gl.gmo gu.gmo he.gmo hi.gmo hr.gmo hu.gmo hy.gmo ia.gmo id.gmo ie.gmo is.gmo it.gmo ja.gmo jv.gmo ka.gmo kk.gmo kn.gmo ko.gmo ku.gmo ku_IQ.gmo ky.gmo lt.gmo lv.gmo mai.gmo mg.gmo mk.gmo ml.gmo mn.gmo mr.gmo ms.gmo nb.gmo nds.gmo ne.gmo nl.gmo nn.gmo nso.gmo oc.gmo or.gmo pa.gmo pl.gmo pms.gmo ps.gmo pt.gmo pt_BR.gmo ro.gmo ru.gmo rw.gmo si.gmo sk.gmo sl.gmo sq.gmo sr.gmo sr@latin.gmo sv.gmo ta.gmo te.gmo th.gmo tk.gmo tr.gmo ug.gmo uk.gmo ur.gmo uz.gmo vi.gmo wa.gmo xh.gmo zh_CN.gmo zh_HK.gmo zh_TW.gmo zu.gmo
+make[3]: Entering directory '/rootdir/po'
+/usr/bin/msgmerge --update  --lang=af af.po libcafemixer.pot
+/usr/bin/msgmerge --update  --lang=am am.po libcafemixer.pot
+/usr/bin/msgmerge --update  --lang=ar ar.po libcafemixer.pot
+............. done.
+............. done.
+.............. done.
+/usr/bin/msgmerge --update  --lang=as as.po libcafemixer.pot
+/usr/bin/msgmerge --update  --lang=ast ast.po libcafemixer.pot
+/usr/bin/msgmerge --update  --lang=az az.po libcafemixer.pot
+............. done.
+............... done.
+.............. done.
+/usr/bin/msgmerge --update  --lang=bg bg.po libcafemixer.pot
+/usr/bin/msgmerge --update  --lang=bn bn.po libcafemixer.pot
+/usr/bin/msgmerge --update  --lang=be be.po libcafemixer.pot
+............. done.
+............. done.
+............. done.
+/usr/bin/msgmerge --update  --lang=br br.po libcafemixer.pot
+/usr/bin/msgmerge --update  --lang=bn_IN bn_IN.po libcafemixer.pot
+/usr/bin/msgmerge --update  --lang=bs bs.po libcafemixer.pot
+.............. done.
+............. done.
+/usr/bin/msgmerge --update  --lang=ca ca.po libcafemixer.pot
+............../usr/bin/msgmerge --update  --lang=ca@valencia ca@valencia.po libcafemixer.pot
+ done.
+.............. done.
+/usr/bin/msgmerge --update  --lang=cmn cmn.po libcafemixer.pot
+............. done.
+............./usr/bin/msgmerge --update  --lang=crh crh.po libcafemixer.pot
+ done.
+/usr/bin/msgmerge --update  --lang=cs cs.po libcafemixer.pot
+.............. done.
+............./usr/bin/msgmerge --update  --lang=cy cy.po libcafemixer.pot
+ done.
+/usr/bin/msgmerge --update  --lang=da da.po libcafemixer.pot
+................./usr/bin/msgmerge --update  --lang=de de.po libcafemixer.pot
+.. done.
+....... done.
+/usr/bin/msgmerge --update  --lang=el el.po libcafemixer.pot
+/usr/bin/msgmerge --update  --lang=dz dz.po libcafemixer.pot
+.............. done.
+.............. done.
+/usr/bin/msgmerge --update  --lang=en_AU en_AU.po libcafemixer.pot
+.............. done.
+/usr/bin/msgmerge --update  --lang=en_CA en_CA.po libcafemixer.pot
+/usr/bin/msgmerge --update  --lang=en_GB en_GB.po libcafemixer.pot
+............. done.
+/usr/bin/msgmerge --update  --lang=eo eo.po libcafemixer.pot
+........................ done.
+.. done.
+/usr/bin/msgmerge --update  --lang=es_CL es_CL.po libcafemixer.pot
+/usr/bin/msgmerge --update  --lang=es es.po libcafemixer.pot
+.............. done.
+/usr/bin/msgmerge --update  --lang=es_CO es_CO.po libcafemixer.pot
+.............. done.
+.............. done.
+............. done.
+/usr/bin/msgmerge --update  --lang=et et.po libcafemixer.pot
+/usr/bin/msgmerge --update  --lang=es_MX es_MX.po libcafemixer.pot
+/usr/bin/msgmerge --update  --lang=eu eu.po libcafemixer.pot
+.............. done.
+.............. done.
+/usr/bin/msgmerge --update  --lang=fa fa.po libcafemixer.pot
+............. done.
+/usr/bin/msgmerge --update  --lang=fr fr.po libcafemixer.pot
+./usr/bin/msgmerge --update  --lang=fi fi.po libcafemixer.pot
+............ done.
+/usr/bin/msgmerge --update  --lang=fr_CA fr_CA.po libcafemixer.pot
+............. done.
+............... done.
+............ done.
+/usr/bin/msgmerge --update  --lang=frp frp.po libcafemixer.pot
+/usr/bin/msgmerge --update  --lang=fur fur.po libcafemixer.pot
+/usr/bin/msgmerge --update  --lang=fy fy.po libcafemixer.pot
+............. done.
+/usr/bin/msgmerge --update  --lang=ga ga.po libcafemixer.pot
+.............. done.
+./usr/bin/msgmerge --update  --lang=gl gl.po libcafemixer.pot
+............. done.
+............. done.
+............. done.
+/usr/bin/msgmerge --update  --lang=he he.po libcafemixer.pot
+/usr/bin/msgmerge --update  --lang=gu gu.po libcafemixer.pot
+/usr/bin/msgmerge --update  --lang=hi hi.po libcafemixer.pot
+......................... done.
+. done.
+............. done.
+/usr/bin/msgmerge --update  --lang=hr hr.po libcafemixer.pot
+/usr/bin/msgmerge --update  --lang=hu hu.po libcafemixer.pot
+/usr/bin/msgmerge --update  --lang=hy hy.po libcafemixer.pot
+............. done.
+.............. done.
+/usr/bin/msgmerge --update  --lang=ia ia.po libcafemixer.pot
+/usr/bin/msgmerge --update  --lang=id id.po libcafemixer.pot
+.............. done.
+/usr/bin/msgmerge --update  --lang=ie ie.po libcafemixer.pot
+........................... done.
+ done.
+/usr/bin/msgmerge --update  --lang=is is.po libcafemixer.pot
+/usr/bin/msgmerge --update  --lang=it it.po libcafemixer.pot
+............. done.
+.............. done.
+............. done.
+/usr/bin/msgmerge --update  --lang=ja ja.po libcafemixer.pot
+/usr/bin/msgmerge --update  --lang=jv jv.po libcafemixer.pot
+/usr/bin/msgmerge --update  --lang=ka ka.po libcafemixer.pot
+............. done.
+.............. done.
+/usr/bin/msgmerge --update  --lang=kk kk.po libcafemixer.pot
+............../usr/bin/msgmerge --update  --lang=kn kn.po libcafemixer.pot
+ done.
+/usr/bin/msgmerge --update  --lang=ko ko.po libcafemixer.pot
+............. done.
+....................... done.
+... done.
+/usr/bin/msgmerge --update  --lang=ku ku.po libcafemixer.pot
+/usr/bin/msgmerge --update  --lang=ku_IQ ku_IQ.po libcafemixer.pot
+/usr/bin/msgmerge --update  --lang=ky ky.po libcafemixer.pot
+............. done.
+............. done.
+............../usr/bin/msgmerge --update  --lang=lv lv.po libcafemixer.pot
+ done.
+/usr/bin/msgmerge --update  --lang=lt lt.po libcafemixer.pot
+..../usr/bin/msgmerge --update  --lang=mai mai.po libcafemixer.pot
+......... done.
+............. done.
+............./usr/bin/msgmerge --update  --lang=mk mk.po libcafemixer.pot
+ done.
+/usr/bin/msgmerge --update  --lang=mg mg.po libcafemixer.pot
+/usr/bin/msgmerge --update  --lang=ml ml.po libcafemixer.pot
+............. done.
+............. done.
+......./usr/bin/msgmerge --update  --lang=mn mn.po libcafemixer.pot
+....... done.
+/usr/bin/msgmerge --update  --lang=ms ms.po libcafemixer.pot
+............./usr/bin/msgmerge --update  --lang=mr mr.po libcafemixer.pot
+ done.
+/usr/bin/msgmerge --update  --lang=nb nb.po libcafemixer.pot
+.............. done.
+............. done.
+/usr/bin/msgmerge --update  --lang=nds nds.po libcafemixer.pot
+/usr/bin/msgmerge --update  --lang=ne ne.po libcafemixer.pot
+............. done.
+............. done.
+/usr/bin/msgmerge --update  --lang=nn nn.po libcafemixer.pot
+/usr/bin/msgmerge --update  --lang=nl nl.po libcafemixer.pot
+............. done.
+............. done.
+/usr/bin/msgmerge --update  --lang=nso nso.po libcafemixer.pot
+............./usr/bin/msgmerge --update  --lang=oc oc.po libcafemixer.pot
+ done.
+./usr/bin/msgmerge --update  --lang=or or.po libcafemixer.pot
+............. done.
+.............. done.
+............./usr/bin/msgmerge --update  --lang=pa pa.po libcafemixer.pot
+. done.
+/usr/bin/msgmerge --update  --lang=pl pl.po libcafemixer.pot
+/usr/bin/msgmerge --update  --lang=pms pms.po libcafemixer.pot
+.............. done.
+.............. done.
+/usr/bin/msgmerge --update  --lang=ps ps.po libcafemixer.pot
+.............. done.
+/usr/bin/msgmerge --update  --lang=pt pt.po libcafemixer.pot
+.............. done.
+/usr/bin/msgmerge --update  --lang=pt_BR pt_BR.po libcafemixer.pot
+/usr/bin/msgmerge --update  --lang=ro ro.po libcafemixer.pot
+.............. done.
+........................... done.
+ done.
+/usr/bin/msgmerge --update  --lang=ru ru.po libcafemixer.pot
+/usr/bin/msgmerge --update  --lang=rw rw.po libcafemixer.pot
+/usr/bin/msgmerge --update  --lang=si si.po libcafemixer.pot
+.............. done.
+............. done.
+.............. done.
+/usr/bin/msgmerge --update  --lang=sk sk.po libcafemixer.pot
+/usr/bin/msgmerge --update  --lang=sq sq.po libcafemixer.pot
+/usr/bin/msgmerge --update  --lang=sl sl.po libcafemixer.pot
+............. done.
+.......................... done.
+ done.
+/usr/bin/msgmerge --update  --lang=sr sr.po libcafemixer.pot
+/usr/bin/msgmerge --update  --lang=sr@latin sr@latin.po libcafemixer.pot
+/usr/bin/msgmerge --update  --lang=sv sv.po libcafemixer.pot
+........................... done.
+ done.
+.............. done.
+/usr/bin/msgmerge --update  --lang=ta ta.po libcafemixer.pot
+/usr/bin/msgmerge --update  --lang=th th.po libcafemixer.pot
+/usr/bin/msgmerge --update  --lang=te te.po libcafemixer.pot
+.......................... done.
+ done.
+/usr/bin/msgmerge --update  --lang=tk tk.po libcafemixer.pot
+............. done.
+/usr/bin/msgmerge --update  --lang=tr tr.po libcafemixer.pot
+/usr/bin/msgmerge --update  --lang=ug ug.po libcafemixer.pot
+............. done.
+.......................... done.
+ done.
+/usr/bin/msgmerge --update  --lang=uk uk.po libcafemixer.pot
+/usr/bin/msgmerge --update  --lang=ur ur.po libcafemixer.pot
+/usr/bin/msgmerge --update  --lang=uz uz.po libcafemixer.pot
+............. done.
+............/usr/bin/msgmerge --update  --lang=vi vi.po libcafemixer.pot
+. done.
+.......................... done.
+ done.
+/usr/bin/msgmerge --update  --lang=wa wa.po libcafemixer.pot
+/usr/bin/msgmerge --update  --lang=xh xh.po libcafemixer.pot
+/usr/bin/msgmerge --update  --lang=zh_CN zh_CN.po libcafemixer.pot
+.............. done.
+.............. done.
+............. done.
+/usr/bin/msgmerge --update  --lang=zh_HK zh_HK.po libcafemixer.pot
+/usr/bin/msgmerge --update  --lang=zu zu.po libcafemixer.pot
+/usr/bin/msgmerge --update  --lang=zh_TW zh_TW.po libcafemixer.pot
+.............. done.
+.......................... done.
+ done.
+rm -f af.gmo && /usr/bin/msgfmt -c --statistics --verbose -o af.gmo af.po
+rm -f am.gmo && /usr/bin/msgfmt -c --statistics --verbose -o am.gmo am.po
+af.po: 10 translated messages, 116 untranslated messages.
+rm -f ar.gmo && /usr/bin/msgfmt -c --statistics --verbose -o ar.gmo ar.po
+am.po: 126 translated messages.
+ar.po: 109 translated messages, 17 untranslated messages.
+rm -f as.gmo && /usr/bin/msgfmt -c --statistics --verbose -o as.gmo as.po
+rm -f ast.gmo && /usr/bin/msgfmt -c --statistics --verbose -o ast.gmo ast.po
+as.po: 11 translated messages, 115 untranslated messages.
+ast.po: 11 translated messages, 115 untranslated messages.
+rm -f az.gmo && /usr/bin/msgfmt -c --statistics --verbose -o az.gmo az.po
+rm -f bg.gmo && /usr/bin/msgfmt -c --statistics --verbose -o bg.gmo bg.po
+az.po: 3 translated messages, 123 untranslated messages.
+rm -f be.gmo && /usr/bin/msgfmt -c --statistics --verbose -o be.gmo be.po
+bg.po: 126 translated messages.
+be.po: 126 translated messages.
+rm -f bn.gmo && /usr/bin/msgfmt -c --statistics --verbose -o bn.gmo bn.po
+bn.po: 11 translated messages, 115 untranslated messages.
+rm -f br.gmo && /usr/bin/msgfmt -c --statistics --verbose -o br.gmo br.po
+rm -f bn_IN.gmo && /usr/bin/msgfmt -c --statistics --verbose -o bn_IN.gmo bn_IN.po
+br.po: 6 translated messages, 120 untranslated messages.
+rm -f bs.gmo && /usr/bin/msgfmt -c --statistics --verbose -o bs.gmo bs.po
+bn_IN.po: 11 translated messages, 115 untranslated messages.
+rm -f ca.gmo && /usr/bin/msgfmt -c --statistics --verbose -o ca.gmo ca.po
+bs.po: 15 translated messages, 111 untranslated messages.
+rm -f ca@valencia.gmo && /usr/bin/msgfmt -c --statistics --verbose -o ca@valencia.gmo ca@valencia.po
+rm -f cmn.gmo && /usr/bin/msgfmt -c --statistics --verbose -o cmn.gmo cmn.po
+ca.po: 126 translated messages.
+ca@valencia.po: 126 translated messages.
+cmn.po: 11 translated messages, 115 untranslated messages.
+rm -f cs.gmo && /usr/bin/msgfmt -c --statistics --verbose -o cs.gmo cs.po
+rm -f crh.gmo && /usr/bin/msgfmt -c --statistics --verbose -o crh.gmo crh.po
+crh.po: 6 translated messages, 120 untranslated messages.
+cs.po: 126 translated messages.
+rm -f cy.gmo && /usr/bin/msgfmt -c --statistics --verbose -o cy.gmo cy.po
+rm -f da.gmo && /usr/bin/msgfmt -c --statistics --verbose -o da.gmo da.po
+rm -f de.gmo && /usr/bin/msgfmt -c --statistics --verbose -o de.gmo de.po
+cy.po: 7 translated messages, 119 untranslated messages.
+da.po: 126 translated messages.
+de.po: 126 translated messages.
+rm -f dz.gmo && /usr/bin/msgfmt -c --statistics --verbose -o dz.gmo dz.po
+rm -f el.gmo && /usr/bin/msgfmt -c --statistics --verbose -o el.gmo el.po
+rm -f en_AU.gmo && /usr/bin/msgfmt -c --statistics --verbose -o en_AU.gmo en_AU.po
+dz.po: 5 translated messages, 121 untranslated messages.
+en_AU.po: 126 translated messages.
+el.po: 126 translated messages.
+rm -f en_CA.gmo && /usr/bin/msgfmt -c --statistics --verbose -o en_CA.gmo en_CA.po
+rm -f en_GB.gmo && /usr/bin/msgfmt -c --statistics --verbose -o en_GB.gmo en_GB.po
+en_CA.po: 5 translated messages, 121 untranslated messages.
+rm -f eo.gmo && /usr/bin/msgfmt -c --statistics --verbose -o eo.gmo eo.po
+en_GB.po: 126 translated messages.
+rm -f es.gmo && /usr/bin/msgfmt -c --statistics --verbose -o es.gmo es.po
+rm -f es_CL.gmo && /usr/bin/msgfmt -c --statistics --verbose -o es_CL.gmo es_CL.po
+eo.po: 9 translated messages, 117 untranslated messages.
+es.po: 126 translated messages.
+es_CL.po: 3 translated messages, 123 untranslated messages.
+rm -f es_MX.gmo && /usr/bin/msgfmt -c --statistics --verbose -o es_MX.gmo es_MX.po
+rm -f es_CO.gmo && /usr/bin/msgfmt -c --statistics --verbose -o es_CO.gmo es_CO.po
+es_MX.po: 3 translated messages, 123 untranslated messages.
+rm -f et.gmo && /usr/bin/msgfmt -c --statistics --verbose -o et.gmo et.po
+es_CO.po: 5 translated messages, 121 untranslated messages.
+rm -f eu.gmo && /usr/bin/msgfmt -c --statistics --verbose -o eu.gmo eu.po
+et.po: 126 translated messages.
+rm -f fa.gmo && /usr/bin/msgfmt -c --statistics --verbose -o fa.gmo fa.po
+rm -f fi.gmo && /usr/bin/msgfmt -c --statistics --verbose -o fi.gmo fi.po
+eu.po: 63 translated messages, 63 untranslated messages.
+fi.po: 46 translated messages, 80 untranslated messages.
+fa.po: rm -f fr.gmo && /usr/bin/msgfmt -c --statistics --verbose -o fr.gmo fr.po
+116 translated messages, 10 untranslated messages.
+fr.po: 126 translated messages.
+rm -f fr_CA.gmo && /usr/bin/msgfmt -c --statistics --verbose -o fr_CA.gmo fr_CA.po
+rm -f frp.gmo && /usr/bin/msgfmt -c --statistics --verbose -o frp.gmo frp.po
+rm -f fur.gmo && /usr/bin/msgfmt -c --statistics --verbose -o fur.gmo fur.po
+fr_CA.po: 4 translated messages, 122 untranslated messages.
+fur.po: 4 translated messages, 122 untranslated messages.
+frp.po: 4 translated messages, 122 untranslated messages.
+rm -f fy.gmo && /usr/bin/msgfmt -c --statistics --verbose -o fy.gmo fy.po
+fy.po: 4 translated messages, 122 untranslated messages.
+rm -f ga.gmo && /usr/bin/msgfmt -c --statistics --verbose -o ga.gmo ga.po
+rm -f gu.gmo && /usr/bin/msgfmt -c --statistics --verbose -o gu.gmo gu.po
+rm -f gl.gmo && /usr/bin/msgfmt -c --statistics --verbose -o gl.gmo gl.po
+ga.po: 10 translated messages, 116 untranslated messages.
+gl.po: 126 translated messages.
+gu.po: 11 translated messages, 115 untranslated messages.
+rm -f he.gmo && /usr/bin/msgfmt -c --statistics --verbose -o he.gmo he.po
+rm -f hr.gmo && /usr/bin/msgfmt -c --statistics --verbose -o hr.gmo hr.po
+rm -f hi.gmo && /usr/bin/msgfmt -c --statistics --verbose -o hi.gmo hi.po
+he.po: 12 translated messages, 114 untranslated messages.
+hi.po: 21 translated messages, 105 untranslated messages.
+hr.po: 62 translated messages, 64 untranslated messages.
+rm -f hu.gmo && /usr/bin/msgfmt -c --statistics --verbose -o hu.gmo hu.po
+rm -f hy.gmo && /usr/bin/msgfmt -c --statistics --verbose -o hy.gmo hy.po
+rm -f ia.gmo && /usr/bin/msgfmt -c --statistics --verbose -o ia.gmo ia.po
+hu.po: 126 translated messages.
+hy.po: 126 translated messages.
+ia.po: 2 translated messages, 124 untranslated messages.
+rm -f id.gmo && /usr/bin/msgfmt -c --statistics --verbose -o id.gmo id.po
+rm -f ie.gmo && /usr/bin/msgfmt -c --statistics --verbose -o ie.gmo ie.po
+id.po: ie.po: 112 translated messages, 14 untranslated messages.
+126 translated messages.
+rm -f is.gmo && /usr/bin/msgfmt -c --statistics --verbose -o is.gmo is.po
+rm -f it.gmo && /usr/bin/msgfmt -c --statistics --verbose -o it.gmo it.po
+rm -f ja.gmo && /usr/bin/msgfmt -c --statistics --verbose -o ja.gmo ja.po
+it.po: 126 translated messages.
+is.po: 7 translated messages, 119 untranslated messages.
+ja.po: 126 translated messages.
+rm -f jv.gmo && /usr/bin/msgfmt -c --statistics --verbose -o jv.gmo jv.po
+rm -f ka.gmo && /usr/bin/msgfmt -c --statistics --verbose -o ka.gmo ka.po
+rm -f kk.gmo && /usr/bin/msgfmt -c --statistics --verbose -o kk.gmo kk.po
+kk.po: 55 translated messages, 71 untranslated messages.
+rm -f kn.gmo && /usr/bin/msgfmt -c --statistics --verbose -o kn.gmo kn.po
+jv.po: 2 translated messages, 124 untranslated messages.
+ka.po: 8 translated messages, 118 untranslated messages.
+kn.po: 11 translated messages, 115 untranslated messages.
+rm -f ko.gmo && /usr/bin/msgfmt -c --statistics --verbose -o ko.gmo ko.po
+rm -f ku.gmo && /usr/bin/msgfmt -c --statistics --verbose -o ku.gmo ku.po
+rm -f ku_IQ.gmo && /usr/bin/msgfmt -c --statistics --verbose -o ku_IQ.gmo ku_IQ.po
+ko.po: 126 translated messages.
+ku.po: 4 translated messages, 122 untranslated messages.
+ku_IQ.po: 20 translated messages, 106 untranslated messages.
+rm -f ky.gmo && /usr/bin/msgfmt -c --statistics --verbose -o ky.gmo ky.po
+rm -f lt.gmo && /usr/bin/msgfmt -c --statistics --verbose -o lt.gmo lt.po
+ky.po: 8 translated messages, 118 untranslated messages.
+rm -f lv.gmo && /usr/bin/msgfmt -c --statistics --verbose -o lv.gmo lv.po
+lt.po: 126 translated messages.
+rm -f mai.gmo && /usr/bin/msgfmt -c --statistics --verbose -o mai.gmo mai.po
+lv.po: 11 translated messages, 115 untranslated messages.
+mai.po: 9 translated messages, 117 untranslated messages.
+rm -f mg.gmo && /usr/bin/msgfmt -c --statistics --verbose -o mg.gmo mg.po
+rm -f mk.gmo && /usr/bin/msgfmt -c --statistics --verbose -o mk.gmo mk.po
+mg.po: 4 translated messages, 122 untranslated messages.
+rm -f ml.gmo && /usr/bin/msgfmt -c --statistics --verbose -o ml.gmo ml.po
+mk.po: 10 translated messages, 116 untranslated messages.
+rm -f mr.gmo && /usr/bin/msgfmt -c --statistics --verbose -o mr.gmo mr.po
+ml.po: 11 translated messages, 115 untranslated messages.
+rm -f mn.gmo && /usr/bin/msgfmt -c --statistics --verbose -o mn.gmo mn.po
+mr.po: 11 translated messages, 115 untranslated messages.
+mn.po: 5 translated messages, 121 untranslated messages.
+rm -f ms.gmo && /usr/bin/msgfmt -c --statistics --verbose -o ms.gmo ms.po
+rm -f nb.gmo && /usr/bin/msgfmt -c --statistics --verbose -o nb.gmo nb.po
+nb.po: 126 translated messages.
+ms.po: 126 translated messages.
+rm -f nds.gmo && /usr/bin/msgfmt -c --statistics --verbose -o nds.gmo nds.po
+rm -f ne.gmo && /usr/bin/msgfmt -c --statistics --verbose -o ne.gmo ne.po
+rm -f nl.gmo && /usr/bin/msgfmt -c --statistics --verbose -o nl.gmo nl.po
+nds.po: 7 translated messages, 119 untranslated messages.
+ne.po: 7 translated messages, 119 untranslated messages.
+nl.po: 126 translated messages.
+rm -f nn.gmo && /usr/bin/msgfmt -c --statistics --verbose -o nn.gmo nn.po
+rm -f nso.gmo && /usr/bin/msgfmt -c --statistics --verbose -o nso.gmo nso.po
+nso.po: 2 translated messages, 124 untranslated messages.
+rm -f oc.gmo && /usr/bin/msgfmt -c --statistics --verbose -o oc.gmo oc.po
+nn.po: 10 translated messages, 116 untranslated messages.
+oc.po: 85 translated messages, 41 untranslated messages.
+rm -f or.gmo && /usr/bin/msgfmt -c --statistics --verbose -o or.gmo or.po
+rm -f pa.gmo && /usr/bin/msgfmt -c --statistics --verbose -o pa.gmo pa.po
+rm -f pl.gmo && /usr/bin/msgfmt -c --statistics --verbose -o pl.gmo pl.po
+or.po: 11 translated messages, 115 untranslated messages.
+pl.po: 126 translated messages.
+rm -f pms.gmo && /usr/bin/msgfmt -c --statistics --verbose -o pms.gmo pms.po
+pa.po: 11 translated messages, 115 untranslated messages.
+pms.po: 3 translated messages, 123 untranslated messages.
+rm -f ps.gmo && /usr/bin/msgfmt -c --statistics --verbose -o ps.gmo ps.po
+rm -f pt.gmo && /usr/bin/msgfmt -c --statistics --verbose -o pt.gmo pt.po
+rm -f pt_BR.gmo && /usr/bin/msgfmt -c --statistics --verbose -o pt_BR.gmo pt_BR.po
+ps.po: 4 translated messages, 122 untranslated messages.
+pt.po: 126 translated messages.
+rm -f ro.gmo && /usr/bin/msgfmt -c --statistics --verbose -o ro.gmo ro.po
+pt_BR.po: 126 translated messages.
+ro.po: 126 translated messages.
+rm -f ru.gmo && /usr/bin/msgfmt -c --statistics --verbose -o ru.gmo ru.po
+rm -f rw.gmo && /usr/bin/msgfmt -c --statistics --verbose -o rw.gmo rw.po
+rw.po: ru.po: 126 translated messages.
+3 translated messages, 123 untranslated messages.
+rm -f si.gmo && /usr/bin/msgfmt -c --statistics --verbose -o si.gmo si.po
+rm -f sk.gmo && /usr/bin/msgfmt -c --statistics --verbose -o sk.gmo sk.po
+si.po: 4 translated messages, 122 untranslated messages.
+rm -f sl.gmo && /usr/bin/msgfmt -c --statistics --verbose -o sl.gmo sl.po
+sk.po: 126 translated messages.
+sl.po: 126 translated messages.
+rm -f sq.gmo && /usr/bin/msgfmt -c --statistics --verbose -o sq.gmo sq.po
+rm -f sr@latin.gmo && /usr/bin/msgfmt -c --statistics --verbose -o sr@latin.gmo sr@latin.po
+rm -f sr.gmo && /usr/bin/msgfmt -c --statistics --verbose -o sr.gmo sr.po
+sq.po: 10 translated messages, 116 untranslated messages.
+sr@latin.po: 11 translated messages, 115 untranslated messages.
+sr.po: 126 translated messages.
+rm -f sv.gmo && /usr/bin/msgfmt -c --statistics --verbose -o sv.gmo sv.po
+rm -f ta.gmo && /usr/bin/msgfmt -c --statistics --verbose -o ta.gmo ta.po
+rm -f te.gmo && /usr/bin/msgfmt -c --statistics --verbose -o te.gmo te.po
+ta.po: 11 translated messages, 115 untranslated messages.
+sv.po: 126 translated messages.
+te.po: 11 translated messages, 115 untranslated messages.
+rm -f tk.gmo && /usr/bin/msgfmt -c --statistics --verbose -o tk.gmo tk.po
+rm -f th.gmo && /usr/bin/msgfmt -c --statistics --verbose -o th.gmo th.po
+rm -f tr.gmo && /usr/bin/msgfmt -c --statistics --verbose -o tr.gmo tr.po
+tk.po: 2 translated messages, 124 untranslated messages.
+th.po: 11 translated messages, 115 untranslated messages.
+tr.po: 126 translated messages.
+rm -f ug.gmo && /usr/bin/msgfmt -c --statistics --verbose -o ug.gmo ug.po
+rm -f uk.gmo && /usr/bin/msgfmt -c --statistics --verbose -o uk.gmo uk.po
+ug.po: 11 translated messages, 115 untranslated messages.
+uk.po: 126 translated messages.
+rm -f ur.gmo && /usr/bin/msgfmt -c --statistics --verbose -o ur.gmo ur.po
+ur.po: 10 translated messages, 116 untranslated messages.
+rm -f vi.gmo && /usr/bin/msgfmt -c --statistics --verbose -o vi.gmo vi.po
+rm -f uz.gmo && /usr/bin/msgfmt -c --statistics --verbose -o uz.gmo uz.po
+rm -f wa.gmo && /usr/bin/msgfmt -c --statistics --verbose -o wa.gmo wa.po
+vi.po: 11 translated messages, 115 untranslated messages.
+wa.po: 3 translated messages, 123 untranslated messages.
+uz.po: 41 translated messages, 85 untranslated messages.
+rm -f xh.gmo && /usr/bin/msgfmt -c --statistics --verbose -o xh.gmo xh.po
+rm -f zh_CN.gmo && /usr/bin/msgfmt -c --statistics --verbose -o zh_CN.gmo zh_CN.po
+xh.po: 3 translated messages, 123 untranslated messages.
+zh_CN.po: 126 translated messages.
+rm -f zh_HK.gmo && /usr/bin/msgfmt -c --statistics --verbose -o zh_HK.gmo zh_HK.po
+rm -f zh_TW.gmo && /usr/bin/msgfmt -c --statistics --verbose -o zh_TW.gmo zh_TW.po
+zh_HK.po: 11 translated messages, 115 untranslated messages.
+zh_TW.po: rm -f zu.gmo && /usr/bin/msgfmt -c --statistics --verbose -o zu.gmo zu.po
+126 translated messages.
+zu.po: 2 translated messages, 124 untranslated messages.
+make[3]: Leaving directory '/rootdir/po'
+touch stamp-po
+make[2]: Leaving directory '/rootdir/po'
+Making all in libcafemixer
+make[2]: Entering directory '/rootdir/libcafemixer'
+  CC       libcafemixer_la-cafemixer.lo
+  CC       libcafemixer_la-cafemixer-app-info.lo
+  CC       libcafemixer_la-cafemixer-backend.lo
+  CC       libcafemixer_la-cafemixer-backend-module.lo
+cafemixer-backend-module.c: In function 'backend_module_unload':
+cafemixer-backend-module.c:278:37: warning: unused parameter 'type_module' [-Wunused-parameter]
+  278 | backend_module_unload (GTypeModule *type_module)
+      |                        ~~~~~~~~~~~~~^~~~~~~~~~~
+  CC       libcafemixer_la-cafemixer-context.lo
+cafemixer-context.c: In function 'cafe_mixer_context_open':
+cafemixer-context.c:818:41: warning: declaration of 'info' shadows a previous local [-Wshadow]
+  818 |             const CafeMixerBackendInfo *info;
+      |                                         ^~~~
+cafemixer-context.c:804:33: note: shadowed declaration is here
+  804 |     const CafeMixerBackendInfo *info = NULL;
+      |                                 ^~~~
+cafemixer-context.c: In function 'on_backend_state_notify':
+cafemixer-context.c:1215:44: warning: unused parameter 'pspec' [-Wunused-parameter]
+ 1215 |                          GParamSpec       *pspec,
+      |                          ~~~~~~~~~~~~~~~~~~^~~~~
+cafemixer-context.c: In function 'on_backend_device_added':
+cafemixer-context.c:1255:44: warning: unused parameter 'backend' [-Wunused-parameter]
+ 1255 | on_backend_device_added (CafeMixerBackend *backend,
+      |                          ~~~~~~~~~~~~~~~~~~^~~~~~~
+cafemixer-context.c: In function 'on_backend_device_removed':
+cafemixer-context.c:1266:46: warning: unused parameter 'backend' [-Wunused-parameter]
+ 1266 | on_backend_device_removed (CafeMixerBackend *backend,
+      |                            ~~~~~~~~~~~~~~~~~~^~~~~~~
+cafemixer-context.c: In function 'on_backend_stream_added':
+cafemixer-context.c:1277:44: warning: unused parameter 'backend' [-Wunused-parameter]
+ 1277 | on_backend_stream_added (CafeMixerBackend *backend,
+      |                          ~~~~~~~~~~~~~~~~~~^~~~~~~
+cafemixer-context.c: In function 'on_backend_stream_removed':
+cafemixer-context.c:1288:46: warning: unused parameter 'backend' [-Wunused-parameter]
+ 1288 | on_backend_stream_removed (CafeMixerBackend *backend,
+      |                            ~~~~~~~~~~~~~~~~~~^~~~~~~
+cafemixer-context.c: In function 'on_backend_stored_control_added':
+cafemixer-context.c:1299:52: warning: unused parameter 'backend' [-Wunused-parameter]
+ 1299 | on_backend_stored_control_added (CafeMixerBackend *backend,
+      |                                  ~~~~~~~~~~~~~~~~~~^~~~~~~
+cafemixer-context.c: In function 'on_backend_stored_control_removed':
+cafemixer-context.c:1310:54: warning: unused parameter 'backend' [-Wunused-parameter]
+ 1310 | on_backend_stored_control_removed (CafeMixerBackend *backend,
+      |                                    ~~~~~~~~~~~~~~~~~~^~~~~~~
+cafemixer-context.c: In function 'on_backend_default_input_stream_notify':
+cafemixer-context.c:1321:59: warning: unused parameter 'backend' [-Wunused-parameter]
+ 1321 | on_backend_default_input_stream_notify (CafeMixerBackend *backend,
+      |                                         ~~~~~~~~~~~~~~~~~~^~~~~~~
+cafemixer-context.c:1322:59: warning: unused parameter 'pspec' [-Wunused-parameter]
+ 1322 |                                         GParamSpec       *pspec,
+      |                                         ~~~~~~~~~~~~~~~~~~^~~~~
+cafemixer-context.c: In function 'on_backend_default_output_stream_notify':
+cafemixer-context.c:1329:60: warning: unused parameter 'backend' [-Wunused-parameter]
+ 1329 | on_backend_default_output_stream_notify (CafeMixerBackend *backend,
+      |                                          ~~~~~~~~~~~~~~~~~~^~~~~~~
+cafemixer-context.c:1330:60: warning: unused parameter 'pspec' [-Wunused-parameter]
+ 1330 |                                          GParamSpec       *pspec,
+      |                                          ~~~~~~~~~~~~~~~~~~^~~~~
+  CC       libcafemixer_la-cafemixer-device.lo
+  CC       libcafemixer_la-cafemixer-device-switch.lo
+  CC       libcafemixer_la-cafemixer-enum-types.lo
+  CC       libcafemixer_la-cafemixer-stored-control.lo
+  CC       libcafemixer_la-cafemixer-stream.lo
+  CC       libcafemixer_la-cafemixer-stream-control.lo
+  CC       libcafemixer_la-cafemixer-stream-switch.lo
+  CC       libcafemixer_la-cafemixer-stream-toggle.lo
+  CC       libcafemixer_la-cafemixer-switch.lo
+  CC       libcafemixer_la-cafemixer-switch-option.lo
+  CCLD     libcafemixer.la
+make[2]: Leaving directory '/rootdir/libcafemixer'
+Making all in backends
+make[2]: Entering directory '/rootdir/backends'
+Making all in null
+make[3]: Entering directory '/rootdir/backends/null'
+  CC       libcafemixer_null_la-null-backend.lo
+null-backend.c:29: warning: ignoring '#pragma clang diagnostic' [-Wunknown-pragmas]
+   29 | #pragma clang diagnostic push
+      | 
+null-backend.c:30: warning: ignoring '#pragma clang diagnostic' [-Wunknown-pragmas]
+   30 | #pragma clang diagnostic ignored "-Wunused-function"
+      | 
+null-backend.c:32: warning: ignoring '#pragma clang diagnostic' [-Wunknown-pragmas]
+   32 | #pragma clang diagnostic pop
+      | 
+null-backend.c: In function 'null_backend_class_finalize':
+null-backend.c:66:48: warning: unused parameter 'klass' [-Wunused-parameter]
+   66 | null_backend_class_finalize (NullBackendClass *klass)
+      |                              ~~~~~~~~~~~~~~~~~~^~~~~
+null-backend.c: In function 'null_backend_init':
+null-backend.c:71:33: warning: unused parameter 'null' [-Wunused-parameter]
+   71 | null_backend_init (NullBackend *null)
+      |                    ~~~~~~~~~~~~~^~~~
+  CCLD     libcafemixer-null.la
+make[3]: Leaving directory '/rootdir/backends/null'
+Making all in pulse
+make[3]: Entering directory '/rootdir/backends/pulse'
+  CC       libcafemixer_pulse_la-pulse-backend.lo
+  CC       libcafemixer_pulse_la-pulse-connection.lo
+  CC       libcafemixer_pulse_la-pulse-device.lo
+pulse-device.c: In function 'pulse_device_list_streams':
+pulse-device.c:346:57: warning: cast between incompatible function types from 'void * (*)(void *)' to 'void (*)(void *, void *)' [-Wcast-function-type]
+  346 |             g_list_foreach (device->priv->streams_list, (GFunc) g_object_ref, NULL);
+      |                                                         ^
+pulse-connection.c: In function 'load_lists':
+pulse-connection.c:1283:27: warning: cast between incompatible function types from 'void (*)(pa_operation *)' to 'void (*)(void *, void *)' [-Wcast-function-type]
+ 1283 |     g_slist_foreach (ops, (GFunc) pa_operation_unref, NULL);
+      |                           ^
+pulse-connection.c:1289:27: warning: cast between incompatible function types from 'void (*)(pa_operation *)' to 'void (*)(void *, void *)' [-Wcast-function-type]
+ 1289 |     g_slist_foreach (ops, (GFunc) pa_operation_cancel, NULL);
+      |                           ^
+pulse-connection.c:1290:27: warning: cast between incompatible function types from 'void (*)(pa_operation *)' to 'void (*)(void *, void *)' [-Wcast-function-type]
+ 1290 |     g_slist_foreach (ops, (GFunc) pa_operation_unref, NULL);
+      |                           ^
+In file included from /usr/lib/x86_64-linux-gnu/glib-2.0/include/glibconfig.h:9,
+                 from /usr/include/glib-2.0/glib/gtypes.h:32,
+                 from /usr/include/glib-2.0/glib/galloca.h:32,
+                 from /usr/include/glib-2.0/glib.h:30,
+                 from pulse-connection.c:20:
+pulse-connection.c: In function 'load_list_finished':
+pulse-connection.c:1303:51: warning: comparison of unsigned expression in '< 0' is always false [-Wtype-limits]
+ 1303 |     if (G_UNLIKELY (connection->priv->outstanding < 0)) {
+      |                                                   ^
+/usr/include/glib-2.0/glib/gmacros.h:1092:27: note: in definition of macro 'G_UNLIKELY'
+ 1092 | #define G_UNLIKELY(expr) (expr)
+      |                           ^~~~
+pulse-connection.c: In function 'pulse_subscribe_cb':
+pulse-connection.c:1387:51: warning: unused parameter 'c' [-Wunused-parameter]
+ 1387 | pulse_subscribe_cb (pa_context                   *c,
+      |                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+pulse-connection.c: In function 'pulse_restore_subscribe_cb':
+pulse-connection.c:1454:41: warning: unused parameter 'c' [-Wunused-parameter]
+ 1454 | pulse_restore_subscribe_cb (pa_context *c, void *userdata)
+      |                             ~~~~~~~~~~~~^
+pulse-connection.c: In function 'pulse_server_info_cb':
+pulse-connection.c:1464:45: warning: unused parameter 'c' [-Wunused-parameter]
+ 1464 | pulse_server_info_cb (pa_context           *c,
+      |                       ~~~~~~~~~~~~~~~~~~~~~~^
+pulse-connection.c: In function 'pulse_card_info_cb':
+pulse-connection.c:1484:41: warning: unused parameter 'c' [-Wunused-parameter]
+ 1484 | pulse_card_info_cb (pa_context         *c,
+      |                     ~~~~~~~~~~~~~~~~~~~~^
+pulse-connection.c: In function 'pulse_sink_info_cb':
+pulse-connection.c:1506:41: warning: unused parameter 'c' [-Wunused-parameter]
+ 1506 | pulse_sink_info_cb (pa_context         *c,
+      |                     ~~~~~~~~~~~~~~~~~~~~^
+pulse-connection.c: In function 'pulse_sink_input_info_cb':
+pulse-connection.c:1528:53: warning: unused parameter 'c' [-Wunused-parameter]
+ 1528 | pulse_sink_input_info_cb (pa_context               *c,
+      |                           ~~~~~~~~~~~~~~~~~~~~~~~~~~^
+pulse-connection.c: In function 'pulse_source_info_cb':
+pulse-connection.c:1550:45: warning: unused parameter 'c' [-Wunused-parameter]
+ 1550 | pulse_source_info_cb (pa_context           *c,
+      |                       ~~~~~~~~~~~~~~~~~~~~~~^
+pulse-connection.c: In function 'pulse_source_output_info_cb':
+pulse-connection.c:1572:59: warning: unused parameter 'c' [-Wunused-parameter]
+ 1572 | pulse_source_output_info_cb (pa_context                  *c,
+      |                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+pulse-connection.c: In function 'pulse_ext_stream_restore_cb':
+pulse-connection.c:1594:64: warning: unused parameter 'c' [-Wunused-parameter]
+ 1594 | pulse_ext_stream_restore_cb (pa_context                       *c,
+      |                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+pulse-backend.c:120: warning: ignoring '#pragma clang diagnostic' [-Wunknown-pragmas]
+  120 | #pragma clang diagnostic push
+      | 
+pulse-backend.c:121: warning: ignoring '#pragma clang diagnostic' [-Wunknown-pragmas]
+  121 | #pragma clang diagnostic ignored "-Wunused-function"
+      | 
+pulse-backend.c:123: warning: ignoring '#pragma clang diagnostic' [-Wunknown-pragmas]
+  123 | #pragma clang diagnostic pop
+      | 
+pulse-backend.c: In function 'pulse_backend_class_finalize':
+pulse-backend.c:255:50: warning: unused parameter 'klass' [-Wunused-parameter]
+  255 | pulse_backend_class_finalize (PulseBackendClass *klass)
+      |                               ~~~~~~~~~~~~~~~~~~~^~~~~
+pulse-backend.c: In function 'pulse_backend_set_app_info':
+pulse-backend.c:481:74: warning: declaration of 'info' shadows a global declaration [-Wshadow]
+  481 | pulse_backend_set_app_info (CafeMixerBackend *backend, CafeMixerAppInfo *info)
+      |                                                        ~~~~~~~~~~~~~~~~~~^~~~
+pulse-backend.c:212:29: note: shadowed declaration is here
+  212 | static CafeMixerBackendInfo info;
+      |                             ^~~~
+pulse-backend.c: In function 'pulse_backend_list_devices':
+pulse-backend.c:518:56: warning: cast between incompatible function types from 'void * (*)(void *)' to 'void (*)(void *, void *)' [-Wcast-function-type]
+  518 |             g_list_foreach (pulse->priv->devices_list, (GFunc) g_object_ref, NULL);
+      |                                                        ^
+pulse-backend.c: In function 'pulse_backend_list_streams':
+pulse-backend.c:538:36: warning: cast between incompatible function types from 'void * (*)(void *)' to 'void (*)(void *, void *)' [-Wcast-function-type]
+  538 |             g_list_foreach (sinks, (GFunc) g_object_ref, NULL);
+      |                                    ^
+pulse-backend.c:542:38: warning: cast between incompatible function types from 'void * (*)(void *)' to 'void (*)(void *, void *)' [-Wcast-function-type]
+  542 |             g_list_foreach (sources, (GFunc) g_object_ref, NULL);
+      |                                      ^
+pulse-backend.c: In function 'pulse_backend_list_stored_controls':
+pulse-backend.c:561:60: warning: cast between incompatible function types from 'void * (*)(void *)' to 'void (*)(void *, void *)' [-Wcast-function-type]
+  561 |             g_list_foreach (pulse->priv->ext_streams_list, (GFunc) g_object_ref, NULL);
+      |                                                            ^
+pulse-backend.c: In function 'on_connection_state_notify':
+pulse-backend.c:614:46: warning: unused parameter 'pspec' [-Wunused-parameter]
+  614 |                             GParamSpec      *pspec,
+      |                             ~~~~~~~~~~~~~~~~~^~~~~
+pulse-backend.c: In function 'on_connection_server_info':
+pulse-backend.c:670:50: warning: declaration of 'info' shadows a global declaration [-Wshadow]
+  670 |                            const pa_server_info *info,
+      |                            ~~~~~~~~~~~~~~~~~~~~~~^~~~
+pulse-backend.c:212:29: note: shadowed declaration is here
+  212 | static CafeMixerBackendInfo info;
+      |                             ^~~~
+pulse-backend.c:683:30: warning: declaration of 'stream' shadows a previous local [-Wshadow]
+  683 |             CafeMixerStream *stream = g_hash_table_find (pulse->priv->sources,
+      |                              ^~~~~~
+pulse-backend.c:673:22: note: shadowed declaration is here
+  673 |     CafeMixerStream *stream;
+      |                      ^~~~~~
+pulse-backend.c:719:30: warning: declaration of 'stream' shadows a previous local [-Wshadow]
+  719 |             CafeMixerStream *stream = g_hash_table_find (pulse->priv->sinks,
+      |                              ^~~~~~
+pulse-backend.c:673:22: note: shadowed declaration is here
+  673 |     CafeMixerStream *stream;
+      |                      ^~~~~~
+pulse-backend.c:669:50: warning: unused parameter 'connection' [-Wunused-parameter]
+  669 | on_connection_server_info (PulseConnection      *connection,
+      |                            ~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~
+pulse-backend.c: In function 'on_connection_card_info':
+pulse-backend.c:758:46: warning: declaration of 'info' shadows a global declaration [-Wshadow]
+  758 |                          const pa_card_info *info,
+      |                          ~~~~~~~~~~~~~~~~~~~~^~~~
+pulse-backend.c:212:29: note: shadowed declaration is here
+  212 | static CafeMixerBackendInfo info;
+      |                             ^~~~
+pulse-backend.c: In function 'on_connection_card_removed':
+pulse-backend.c:780:46: warning: unused parameter 'connection' [-Wunused-parameter]
+  780 | on_connection_card_removed (PulseConnection *connection,
+      |                             ~~~~~~~~~~~~~~~~~^~~~~~~~~~
+pulse-backend.c: In function 'on_connection_sink_info':
+pulse-backend.c:804:46: warning: declaration of 'info' shadows a global declaration [-Wshadow]
+  804 |                          const pa_sink_info *info,
+      |                          ~~~~~~~~~~~~~~~~~~~~^~~~
+pulse-backend.c:212:29: note: shadowed declaration is here
+  212 | static CafeMixerBackendInfo info;
+      |                             ^~~~
+pulse-backend.c: In function 'on_connection_sink_removed':
+pulse-backend.c:843:46: warning: unused parameter 'connection' [-Wunused-parameter]
+  843 | on_connection_sink_removed (PulseConnection *connection,
+      |                             ~~~~~~~~~~~~~~~~~^~~~~~~~~~
+pulse-backend.c: In function 'on_connection_sink_input_info':
+pulse-backend.c:884:58: warning: declaration of 'info' shadows a global declaration [-Wshadow]
+  884 |                                const pa_sink_input_info *info,
+      |                                ~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~
+pulse-backend.c:212:29: note: shadowed declaration is here
+  212 | static CafeMixerBackendInfo info;
+      |                             ^~~~
+pulse-backend.c:883:58: warning: unused parameter 'connection' [-Wunused-parameter]
+  883 | on_connection_sink_input_info (PulseConnection          *connection,
+      |                                ~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~
+pulse-backend.c: In function 'on_connection_sink_input_removed':
+pulse-backend.c:926:52: warning: unused parameter 'connection' [-Wunused-parameter]
+  926 | on_connection_sink_input_removed (PulseConnection *connection,
+      |                                   ~~~~~~~~~~~~~~~~~^~~~~~~~~~
+pulse-backend.c: In function 'on_connection_source_info':
+pulse-backend.c:941:50: warning: declaration of 'info' shadows a global declaration [-Wshadow]
+  941 |                            const pa_source_info *info,
+      |                            ~~~~~~~~~~~~~~~~~~~~~~^~~~
+pulse-backend.c:212:29: note: shadowed declaration is here
+  212 | static CafeMixerBackendInfo info;
+      |                             ^~~~
+pulse-backend.c: In function 'on_connection_source_removed':
+pulse-backend.c:980:48: warning: unused parameter 'connection' [-Wunused-parameter]
+  980 | on_connection_source_removed (PulseConnection *connection,
+      |                               ~~~~~~~~~~~~~~~~~^~~~~~~~~~
+pulse-backend.c: In function 'on_connection_source_output_info':
+pulse-backend.c:1021:64: warning: declaration of 'info' shadows a global declaration [-Wshadow]
+ 1021 |                                   const pa_source_output_info *info,
+      |                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~
+pulse-backend.c:212:29: note: shadowed declaration is here
+  212 | static CafeMixerBackendInfo info;
+      |                             ^~~~
+pulse-backend.c:1020:64: warning: unused parameter 'connection' [-Wunused-parameter]
+ 1020 | on_connection_source_output_info (PulseConnection             *connection,
+      |                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~
+pulse-backend.c: In function 'on_connection_source_output_removed':
+pulse-backend.c:1063:55: warning: unused parameter 'connection' [-Wunused-parameter]
+ 1063 | on_connection_source_output_removed (PulseConnection *connection,
+      |                                      ~~~~~~~~~~~~~~~~~^~~~~~~~~~
+pulse-backend.c: In function 'on_connection_ext_stream_info':
+pulse-backend.c:1078:66: warning: declaration of 'info' shadows a global declaration [-Wshadow]
+ 1078 |                                const pa_ext_stream_restore_info *info,
+      |                                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~
+pulse-backend.c:212:29: note: shadowed declaration is here
+  212 | static CafeMixerBackendInfo info;
+      |                             ^~~~
+pulse-backend.c: In function 'on_connection_ext_stream_loading':
+pulse-backend.c:1116:52: warning: unused parameter 'connection' [-Wunused-parameter]
+ 1116 | on_connection_ext_stream_loading (PulseConnection *connection, PulseBackend *pulse)
+      |                                   ~~~~~~~~~~~~~~~~~^~~~~~~~~~
+In file included from /usr/include/glib-2.0/glib/gtypes.h:32,
+                 from /usr/include/glib-2.0/glib/galloca.h:32,
+                 from /usr/include/glib-2.0/glib.h:30,
+                 from pulse-backend.c:19:
+pulse-backend.c: In function 'on_connection_ext_stream_loaded':
+/usr/lib/x86_64-linux-gnu/glib-2.0/include/glibconfig.h:101:42: warning: cast from function call of type 'gpointer' {aka 'void *'} to non-matching type 'long unsigned int' [-Wbad-function-cast]
+  101 | #define GPOINTER_TO_UINT(p)     ((guint) (gulong) (p))
+      |                                          ^
+pulse-backend.c:106:21: note: in expansion of macro 'GPOINTER_TO_UINT'
+  106 |         ((gboolean) GPOINTER_TO_UINT (g_object_get_data (G_OBJECT (o), "__cafemixer_pulse_hanging")))
+      |                     ^~~~~~~~~~~~~~~~
+pulse-backend.c:1137:13: note: in expansion of macro 'PULSE_GET_HANGING'
+ 1137 |         if (PULSE_GET_HANGING (ext) == FALSE)
+      |             ^~~~~~~~~~~~~~~~~
+pulse-backend.c:1128:51: warning: unused parameter 'connection' [-Wunused-parameter]
+ 1128 | on_connection_ext_stream_loaded (PulseConnection *connection, PulseBackend *pulse)
+      |                                  ~~~~~~~~~~~~~~~~~^~~~~~~~~~
+pulse-backend.c: In function 'compare_stream_names':
+pulse-backend.c:1256:32: warning: unused parameter 'key' [-Wunused-parameter]
+ 1256 | compare_stream_names (gpointer key, gpointer value, gpointer user_data)
+      |                       ~~~~~~~~~^~~
+  CC       libcafemixer_pulse_la-pulse-device-profile.lo
+pulse-device-profile.c: In function 'pulse_device_profile_class_init':
+pulse-device-profile.c:39:59: warning: unused parameter 'klass' [-Wunused-parameter]
+   39 | pulse_device_profile_class_init (PulseDeviceProfileClass *klass)
+      |                                  ~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~
+  CC       libcafemixer_pulse_la-pulse-device-switch.lo
+  CC       libcafemixer_pulse_la-pulse-enum-types.lo
+  CC       libcafemixer_pulse_la-pulse-ext-stream.lo
+pulse-ext-stream.c: In function 'pulse_ext_stream_get_min_volume':
+pulse-ext-stream.c:589:58: warning: unused parameter 'mmsc' [-Wunused-parameter]
+  589 | pulse_ext_stream_get_min_volume (CafeMixerStreamControl *mmsc)
+      |                                  ~~~~~~~~~~~~~~~~~~~~~~~~^~~~
+  CC       libcafemixer_pulse_la-pulse-helpers.lo
+  CC       libcafemixer_pulse_la-pulse-monitor.lo
+  CC       libcafemixer_pulse_la-pulse-port.lo
+  CC       libcafemixer_pulse_la-pulse-port-switch.lo
+  CC       libcafemixer_pulse_la-pulse-stream.lo
+pulse-port.c: In function 'pulse_port_class_init':
+pulse-port.c:38:40: warning: unused parameter 'klass' [-Wunused-parameter]
+   38 | pulse_port_class_init (PulsePortClass *klass)
+      |                        ~~~~~~~~~~~~~~~~^~~~~
+  CC       libcafemixer_pulse_la-pulse-stream-control.lo
+  CC       libcafemixer_pulse_la-pulse-sink.lo
+  CC       libcafemixer_pulse_la-pulse-sink-control.lo
+pulse-stream-control.c: In function 'pulse_stream_control_get_min_volume':
+pulse-stream-control.c:672:62: warning: unused parameter 'mmsc' [-Wunused-parameter]
+  672 | pulse_stream_control_get_min_volume (CafeMixerStreamControl *mmsc)
+      |                                      ~~~~~~~~~~~~~~~~~~~~~~~~^~~~
+pulse-stream-control.c: In function 'on_monitor_value':
+pulse-stream-control.c:724:33: warning: unused parameter 'monitor' [-Wunused-parameter]
+  724 | on_monitor_value (PulseMonitor *monitor, gdouble value, PulseStreamControl *control)
+      |                   ~~~~~~~~~~~~~~^~~~~~~
+pulse-sink.c: In function 'pulse_sink_list_controls':
+pulse-sink.c:278:54: warning: cast between incompatible function types from 'void * (*)(void *)' to 'void (*)(void *, void *)' [-Wcast-function-type]
+  278 |             g_list_foreach (sink->priv->inputs_list, (GFunc) g_object_ref, NULL);
+      |                                                      ^
+pulse-sink-control.c: In function 'pulse_sink_control_init':
+pulse-sink-control.c:51:44: warning: unused parameter 'control' [-Wunused-parameter]
+   51 | pulse_sink_control_init (PulseSinkControl *control)
+      |                          ~~~~~~~~~~~~~~~~~~^~~~~~~
+  CC       libcafemixer_pulse_la-pulse-sink-input.lo
+pulse-sink-input.c: In function 'pulse_sink_input_init':
+pulse-sink-input.c:59:40: warning: unused parameter 'input' [-Wunused-parameter]
+   59 | pulse_sink_input_init (PulseSinkInput *input)
+      |                        ~~~~~~~~~~~~~~~~^~~~~
+  CC       libcafemixer_pulse_la-pulse-sink-switch.lo
+  CC       libcafemixer_pulse_la-pulse-source.lo
+pulse-sink-switch.c: In function 'pulse_sink_switch_init':
+pulse-sink-switch.c:46:42: warning: unused parameter 'swtch' [-Wunused-parameter]
+   46 | pulse_sink_switch_init (PulseSinkSwitch *swtch)
+      |                         ~~~~~~~~~~~~~~~~~^~~~~
+pulse-source.c: In function 'pulse_source_list_controls':
+pulse-source.c:265:57: warning: cast between incompatible function types from 'void * (*)(void *)' to 'void (*)(void *, void *)' [-Wcast-function-type]
+  265 |             g_list_foreach (source->priv->outputs_list, (GFunc) g_object_ref, NULL);
+      |                                                         ^
+  CC       libcafemixer_pulse_la-pulse-source-control.lo
+pulse-source-control.c: In function 'pulse_source_control_init':
+pulse-source-control.c:51:48: warning: unused parameter 'control' [-Wunused-parameter]
+   51 | pulse_source_control_init (PulseSourceControl *control)
+      |                            ~~~~~~~~~~~~~~~~~~~~^~~~~~~
+  CC       libcafemixer_pulse_la-pulse-source-output.lo
+pulse-source-output.c: In function 'pulse_source_output_init':
+pulse-source-output.c:59:46: warning: unused parameter 'output' [-Wunused-parameter]
+   59 | pulse_source_output_init (PulseSourceOutput *output)
+      |                           ~~~~~~~~~~~~~~~~~~~^~~~~~
+  CC       libcafemixer_pulse_la-pulse-source-switch.lo
+pulse-source-switch.c: In function 'pulse_source_switch_init':
+pulse-source-switch.c:46:46: warning: unused parameter 'swtch' [-Wunused-parameter]
+   46 | pulse_source_switch_init (PulseSourceSwitch *swtch)
+      |                           ~~~~~~~~~~~~~~~~~~~^~~~~
+  CCLD     libcafemixer-pulse.la
+make[3]: Leaving directory '/rootdir/backends/pulse'
+Making all in alsa
+make[3]: Entering directory '/rootdir/backends/alsa'
+  CC       libcafemixer_alsa_la-alsa-backend.lo
+  CC       libcafemixer_alsa_la-alsa-constants.lo
+  CC       libcafemixer_alsa_la-alsa-device.lo
+alsa-backend.c:53: warning: ignoring '#pragma clang diagnostic' [-Wunknown-pragmas]
+   53 | #pragma clang diagnostic push
+      | 
+alsa-backend.c:54: warning: ignoring '#pragma clang diagnostic' [-Wunknown-pragmas]
+   54 | #pragma clang diagnostic ignored "-Wunused-function"
+      | 
+alsa-backend.c:60: warning: ignoring '#pragma clang diagnostic' [-Wunknown-pragmas]
+   60 | #pragma clang diagnostic pop
+      | 
+alsa-backend.c: In function 'alsa_backend_class_finalize':
+alsa-backend.c:133:48: warning: unused parameter 'klass' [-Wunused-parameter]
+  133 | alsa_backend_class_finalize (AlsaBackendClass *klass)
+      |                              ~~~~~~~~~~~~~~~~~~^~~~~
+alsa-backend.c: In function 'read_device':
+alsa-backend.c:310:26: warning: declaration of 'info' shadows a global declaration [-Wshadow]
+  310 |     snd_ctl_card_info_t *info;
+      |                          ^~~~
+alsa-backend.c:95:29: note: shadowed declaration is here
+   95 | static CafeMixerBackendInfo info;
+      |                             ^~~~
+alsa-backend.c: In function 'add_device':
+alsa-backend.c:371:41: warning: cast between incompatible function types from 'gint (*)(const void *, const void *)' {aka 'int (*)(const void *, const void *)'} to 'gint (*)(const void *, const void *, void *)' {aka 'int (*)(const void *, const void *, void *)'} [-Wcast-function-type]
+  371 |                                         (GCompareDataFunc) compare_devices,
+      |                                         ^
+alsa-device.c: In function 'alsa_device_load':
+alsa-device.c:390:32: warning: cast between incompatible function types from 'void (*)(AlsaDevice *)' {aka 'void (*)(struct _AlsaDevice *)'} to 'void * (*)(void *)' [-Wcast-function-type]
+  390 |                                (GThreadFunc) handle_poll,
+      |                                ^
+alsa-device.c: In function 'add_switch':
+alsa-device.c:573:19: warning: comparison of integer expressions of different signedness: 'guint' {aka 'unsigned int'} and 'gint' {aka 'int'} [-Wsign-compare]
+  573 |     for (i = 0; i < count; i++) {
+      |                   ^
+In file included from /usr/include/glib-2.0/glib/gtypes.h:32,
+                 from /usr/include/glib-2.0/glib/galloca.h:32,
+                 from /usr/include/glib-2.0/glib.h:30,
+                 from alsa-device.c:21:
+alsa-device.c: In function 'validate_default_controls':
+/usr/lib/x86_64-linux-gnu/glib-2.0/include/glibconfig.h:100:42: warning: cast from function call of type 'gpointer' {aka 'void *'} to non-matching type 'long int' [-Wbad-function-cast]
+  100 | #define GPOINTER_TO_INT(p)      ((gint)  (glong) (p))
+      |                                          ^
+alsa-device.c:42:10: note: in expansion of macro 'GPOINTER_TO_INT'
+   42 |         (GPOINTER_TO_INT (g_object_get_data (G_OBJECT (c),      \
+      |          ^~~~~~~~~~~~~~~
+alsa-device.c:939:25: note: in expansion of macro 'ALSA_STREAM_CONTROL_GET_SCORE'
+  939 |         best_score    = ALSA_STREAM_CONTROL_GET_SCORE (best);
+      |                         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/lib/x86_64-linux-gnu/glib-2.0/include/glibconfig.h:100:42: warning: cast from function call of type 'gpointer' {aka 'void *'} to non-matching type 'long int' [-Wbad-function-cast]
+  100 | #define GPOINTER_TO_INT(p)      ((gint)  (glong) (p))
+      |                                          ^
+alsa-device.c:42:10: note: in expansion of macro 'GPOINTER_TO_INT'
+   42 |         (GPOINTER_TO_INT (g_object_get_data (G_OBJECT (c),      \
+      |          ^~~~~~~~~~~~~~~
+alsa-device.c:51:10: note: in expansion of macro 'ALSA_STREAM_CONTROL_GET_SCORE'
+   51 |         (ALSA_STREAM_CONTROL_GET_SCORE (alsa_stream_get_default_control (ALSA_STREAM (s))))
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+alsa-device.c:940:25: note: in expansion of macro 'ALSA_STREAM_DEFAULT_CONTROL_GET_SCORE'
+  940 |         current_score = ALSA_STREAM_DEFAULT_CONTROL_GET_SCORE (device->priv->input);
+      |                         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/lib/x86_64-linux-gnu/glib-2.0/include/glibconfig.h:100:42: warning: cast from function call of type 'gpointer' {aka 'void *'} to non-matching type 'long int' [-Wbad-function-cast]
+  100 | #define GPOINTER_TO_INT(p)      ((gint)  (glong) (p))
+      |                                          ^
+alsa-device.c:42:10: note: in expansion of macro 'GPOINTER_TO_INT'
+   42 |         (GPOINTER_TO_INT (g_object_get_data (G_OBJECT (c),      \
+      |          ^~~~~~~~~~~~~~~
+alsa-device.c:956:25: note: in expansion of macro 'ALSA_STREAM_CONTROL_GET_SCORE'
+  956 |         best_score    = ALSA_STREAM_CONTROL_GET_SCORE (best);
+      |                         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/lib/x86_64-linux-gnu/glib-2.0/include/glibconfig.h:100:42: warning: cast from function call of type 'gpointer' {aka 'void *'} to non-matching type 'long int' [-Wbad-function-cast]
+  100 | #define GPOINTER_TO_INT(p)      ((gint)  (glong) (p))
+      |                                          ^
+alsa-device.c:42:10: note: in expansion of macro 'GPOINTER_TO_INT'
+   42 |         (GPOINTER_TO_INT (g_object_get_data (G_OBJECT (c),      \
+      |          ^~~~~~~~~~~~~~~
+alsa-device.c:51:10: note: in expansion of macro 'ALSA_STREAM_CONTROL_GET_SCORE'
+   51 |         (ALSA_STREAM_CONTROL_GET_SCORE (alsa_stream_get_default_control (ALSA_STREAM (s))))
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+alsa-device.c:957:25: note: in expansion of macro 'ALSA_STREAM_DEFAULT_CONTROL_GET_SCORE'
+  957 |         current_score = ALSA_STREAM_DEFAULT_CONTROL_GET_SCORE (device->priv->output);
+      |                         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+alsa-device.c: In function 'get_best_stream_control':
+/usr/lib/x86_64-linux-gnu/glib-2.0/include/glibconfig.h:100:42: warning: cast from function call of type 'gpointer' {aka 'void *'} to non-matching type 'long int' [-Wbad-function-cast]
+  100 | #define GPOINTER_TO_INT(p)      ((gint)  (glong) (p))
+      |                                          ^
+alsa-device.c:42:10: note: in expansion of macro 'GPOINTER_TO_INT'
+   42 |         (GPOINTER_TO_INT (g_object_get_data (G_OBJECT (c),      \
+      |          ^~~~~~~~~~~~~~~
+alsa-device.c:984:25: note: in expansion of macro 'ALSA_STREAM_CONTROL_GET_SCORE'
+  984 |         current_score = ALSA_STREAM_CONTROL_GET_SCORE (current);
+      |                         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+alsa-device.c:986:44: warning: comparison of integer expressions of different signedness: 'guint' {aka 'unsigned int'} and 'int' [-Wsign-compare]
+  986 |         if (best == NULL || (current_score != -1 &&
+      |                                            ^~
+alsa-device.c:987:44: warning: comparison of integer expressions of different signedness: 'guint' {aka 'unsigned int'} and 'int' [-Wsign-compare]
+  987 |                                (best_score == -1 || current_score < best_score))) {
+      |                                            ^~
+  CC       libcafemixer_alsa_la-alsa-element.lo
+alsa-element.c: In function 'alsa_element_default_init':
+alsa-element.c:27:50: warning: unused parameter 'iface' [-Wunused-parameter]
+   27 | alsa_element_default_init (AlsaElementInterface *iface)
+      |                            ~~~~~~~~~~~~~~~~~~~~~~^~~~~
+  CC       libcafemixer_alsa_la-alsa-stream.lo
+  CC       libcafemixer_alsa_la-alsa-stream-control.lo
+alsa-stream-control.c: In function 'alsa_stream_control_set_data':
+alsa-stream-control.c:179:31: warning: comparison of integer expressions of different signedness: 'gint' {aka 'int'} and 'guint' {aka 'unsigned int'} [-Wsign-compare]
+  179 |                 for (i = 0; i < data->channels; i++)
+      |                               ^
+alsa-stream-control.c: In function 'alsa_stream_control_set_mute':
+alsa-stream-control.c:272:23: warning: comparison of integer expressions of different signedness: 'gint' {aka 'int'} and 'guint' {aka 'unsigned int'} [-Wsign-compare]
+  272 |         for (i = 0; i < control->priv->data.channels; i++)
+      |                       ^
+alsa-stream-control.c:286:23: warning: comparison of integer expressions of different signedness: 'gint' {aka 'int'} and 'guint' {aka 'unsigned int'} [-Wsign-compare]
+  286 |         for (i = 0; i < control->priv->data.channels; i++)
+      |                       ^
+alsa-stream-control.c: In function 'alsa_stream_control_set_volume':
+alsa-stream-control.c:327:23: warning: comparison of integer expressions of different signedness: 'gint' {aka 'int'} and 'guint' {aka 'unsigned int'} [-Wsign-compare]
+  327 |         for (i = 0; i < control->priv->data.channels; i++)
+      |                       ^
+alsa-stream-control.c:341:23: warning: comparison of integer expressions of different signedness: 'gint' {aka 'int'} and 'guint' {aka 'unsigned int'} [-Wsign-compare]
+  341 |         for (i = 0; i < control->priv->data.channels; i++)
+      |                       ^
+  CC       libcafemixer_alsa_la-alsa-stream-input-control.lo
+alsa-stream-input-control.c: In function 'alsa_stream_input_control_init':
+alsa-stream-input-control.c:73:57: warning: unused parameter 'control' [-Wunused-parameter]
+   73 | alsa_stream_input_control_init (AlsaStreamInputControl *control)
+      |                                 ~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~
+  CC       libcafemixer_alsa_la-alsa-stream-output-control.lo
+alsa-stream-output-control.c: In function 'alsa_stream_output_control_init':
+alsa-stream-output-control.c:73:59: warning: unused parameter 'control' [-Wunused-parameter]
+   73 | alsa_stream_output_control_init (AlsaStreamOutputControl *control)
+      |                                  ~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~
+  CC       libcafemixer_alsa_la-alsa-switch.lo
+  CC       libcafemixer_alsa_la-alsa-switch-option.lo
+alsa-switch-option.c: In function 'alsa_switch_option_class_init':
+alsa-switch-option.c:33:55: warning: unused parameter 'klass' [-Wunused-parameter]
+   33 | alsa_switch_option_class_init (AlsaSwitchOptionClass *klass)
+      |                                ~~~~~~~~~~~~~~~~~~~~~~~^~~~~
+  CC       libcafemixer_alsa_la-alsa-toggle.lo
+  CCLD     libcafemixer-alsa.la
+make[3]: Leaving directory '/rootdir/backends/alsa'
+make[3]: Entering directory '/rootdir/backends'
+make[3]: Nothing to be done for 'all-am'.
+make[3]: Leaving directory '/rootdir/backends'
+make[2]: Leaving directory '/rootdir/backends'
+Making all in data
+make[2]: Entering directory '/rootdir/data'
+make[2]: Nothing to be done for 'all'.
+make[2]: Leaving directory '/rootdir/data'
+Making all in docs
+make[2]: Entering directory '/rootdir/docs'
+Making all in reference
+make[3]: Entering directory '/rootdir/docs/reference'
+make[3]: Nothing to be done for 'all'.
+make[3]: Leaving directory '/rootdir/docs/reference'
+make[3]: Entering directory '/rootdir/docs'
+make[3]: Nothing to be done for 'all-am'.
+make[3]: Leaving directory '/rootdir/docs'
+make[2]: Leaving directory '/rootdir/docs'
+Making all in examples
+make[2]: Entering directory '/rootdir/examples'
+  CC       cafemixer_monitor-monitor.o
+monitor.c: In function 'on_context_device_added':
+monitor.c:330:44: warning: declaration of 'context' shadows a global declaration [-Wshadow]
+  330 | on_context_device_added (CafeMixerContext *context, const gchar *name)
+      |                          ~~~~~~~~~~~~~~~~~~^~~~~~~
+monitor.c:29:26: note: shadowed declaration is here
+   29 | static CafeMixerContext *context;
+      |                          ^~~~~~~
+monitor.c:330:44: warning: unused parameter 'context' [-Wunused-parameter]
+  330 | on_context_device_added (CafeMixerContext *context, const gchar *name)
+      |                          ~~~~~~~~~~~~~~~~~~^~~~~~~
+monitor.c: In function 'on_context_device_removed':
+monitor.c:336:46: warning: declaration of 'context' shadows a global declaration [-Wshadow]
+  336 | on_context_device_removed (CafeMixerContext *context, const gchar *name)
+      |                            ~~~~~~~~~~~~~~~~~~^~~~~~~
+monitor.c:29:26: note: shadowed declaration is here
+   29 | static CafeMixerContext *context;
+      |                          ^~~~~~~
+monitor.c:336:46: warning: unused parameter 'context' [-Wunused-parameter]
+  336 | on_context_device_removed (CafeMixerContext *context, const gchar *name)
+      |                            ~~~~~~~~~~~~~~~~~~^~~~~~~
+monitor.c: In function 'on_context_stream_added':
+monitor.c:342:44: warning: declaration of 'context' shadows a global declaration [-Wshadow]
+  342 | on_context_stream_added (CafeMixerContext *context, const gchar *name)
+      |                          ~~~~~~~~~~~~~~~~~~^~~~~~~
+monitor.c:29:26: note: shadowed declaration is here
+   29 | static CafeMixerContext *context;
+      |                          ^~~~~~~
+monitor.c:342:44: warning: unused parameter 'context' [-Wunused-parameter]
+  342 | on_context_stream_added (CafeMixerContext *context, const gchar *name)
+      |                          ~~~~~~~~~~~~~~~~~~^~~~~~~
+monitor.c: In function 'on_context_stream_removed':
+monitor.c:348:46: warning: declaration of 'context' shadows a global declaration [-Wshadow]
+  348 | on_context_stream_removed (CafeMixerContext *context, const gchar *name)
+      |                            ~~~~~~~~~~~~~~~~~~^~~~~~~
+monitor.c:29:26: note: shadowed declaration is here
+   29 | static CafeMixerContext *context;
+      |                          ^~~~~~~
+monitor.c:348:46: warning: unused parameter 'context' [-Wunused-parameter]
+  348 | on_context_stream_removed (CafeMixerContext *context, const gchar *name)
+      |                            ~~~~~~~~~~~~~~~~~~^~~~~~~
+monitor.c: In function 'on_signal':
+monitor.c:355:21: warning: declaration of 'mainloop' shadows a global declaration [-Wshadow]
+  355 | on_signal (gpointer mainloop)
+      |            ~~~~~~~~~^~~~~~~~
+monitor.c:30:26: note: shadowed declaration is here
+   30 | static GMainLoop        *mainloop;
+      |                          ^~~~~~~~
+monitor.c:357:17: warning: cast between incompatible function types from 'void (*)(GMainLoop *)' {aka 'void (*)(struct _GMainLoop *)'} to 'gboolean (*)(void *)' {aka 'int (*)(void *)'} [-Wcast-function-type]
+  357 |     g_idle_add ((GSourceFunc) g_main_loop_quit, mainloop);
+      |                 ^
+  CCLD     cafemixer-monitor
+make[2]: Leaving directory '/rootdir/examples'
+make[2]: Entering directory '/rootdir'
+make[2]: Leaving directory '/rootdir'
+make[1]: Leaving directory '/rootdir'
+scan-build: Analysis run complete.
+scan-build: Removing directory '/rootdir/html-report/2022-06-26-084410-11634-1' because it contains no reports.
+scan-build: No bugs found.
+Making check in po
+make[1]: Entering directory '/rootdir/po'
+make[1]: Nothing to be done for 'check'.
+make[1]: Leaving directory '/rootdir/po'
+Making check in libcafemixer
+make[1]: Entering directory '/rootdir/libcafemixer'
+make[1]: Nothing to be done for 'check'.
+make[1]: Leaving directory '/rootdir/libcafemixer'
+Making check in backends
+make[1]: Entering directory '/rootdir/backends'
+Making check in null
+make[2]: Entering directory '/rootdir/backends/null'
+make[2]: Nothing to be done for 'check'.
+make[2]: Leaving directory '/rootdir/backends/null'
+Making check in pulse
+make[2]: Entering directory '/rootdir/backends/pulse'
+make[2]: Nothing to be done for 'check'.
+make[2]: Leaving directory '/rootdir/backends/pulse'
+Making check in alsa
+make[2]: Entering directory '/rootdir/backends/alsa'
+make[2]: Nothing to be done for 'check'.
+make[2]: Leaving directory '/rootdir/backends/alsa'
+make[2]: Entering directory '/rootdir/backends'
+make[2]: Nothing to be done for 'check-am'.
+make[2]: Leaving directory '/rootdir/backends'
+make[1]: Leaving directory '/rootdir/backends'
+Making check in data
+make[1]: Entering directory '/rootdir/data'
+make[1]: Nothing to be done for 'check'.
+make[1]: Leaving directory '/rootdir/data'
+Making check in docs
+make[1]: Entering directory '/rootdir/docs'
+Making check in reference
+make[2]: Entering directory '/rootdir/docs/reference'
+make[2]: Nothing to be done for 'check'.
+make[2]: Leaving directory '/rootdir/docs/reference'
+make[2]: Entering directory '/rootdir/docs'
+make[2]: Nothing to be done for 'check-am'.
+make[2]: Leaving directory '/rootdir/docs'
+make[1]: Leaving directory '/rootdir/docs'
+Making check in examples
+make[1]: Entering directory '/rootdir/examples'
+make[1]: Nothing to be done for 'check'.
+make[1]: Leaving directory '/rootdir/examples'
+make[1]: Entering directory '/rootdir'
+make[1]: Leaving directory '/rootdir'
+Listing... 0%Listing... 0%Listing... 0%Listing... Done
+adduser/testing,now 3.121 all [installed,automatic]
+alsa-topology-conf/testing,now 1.2.5.1-2 all [installed,automatic]
+alsa-ucm-conf/testing,now 1.2.6.3-1 all [installed,automatic]
+apt/testing,now 2.5.0 amd64 [installed,automatic]
+aptitude-common/testing,now 0.8.13-4 all [installed,automatic]
+aptitude/testing,now 0.8.13-4 amd64 [installed]
+autoconf-archive/testing,now 20210219-2.1 all [installed]
+autoconf/testing,now 2.71-2 all [installed,automatic]
+automake/testing,now 1:1.16.5-1.3 all [installed,automatic]
+autopoint/testing,now 0.21-6 all [installed]
+autotools-dev/testing,now 20220109.1 all [installed,automatic]
+base-files/testing,now 12.2 amd64 [installed,automatic]
+base-passwd/testing,now 3.5.52 amd64 [installed,automatic]
+bash/testing,now 5.1-6.1 amd64 [installed,automatic]
+binfmt-support/testing,now 2.2.2-1 amd64 [installed,automatic]
+binutils-common/testing,now 2.38-4 amd64 [installed,automatic]
+binutils-x86-64-linux-gnu/testing,now 2.38-4 amd64 [installed,automatic]
+binutils/testing,now 2.38-4 amd64 [installed,automatic]
+bsdutils/testing,now 1:2.38-4 amd64 [installed,automatic]
+bzip2/testing,now 1.0.8-5 amd64 [installed,automatic]
+ca-certificates/testing,now 20211016 all [installed,automatic]
+clang-13/testing,now 1:13.0.1-6 amd64 [installed,automatic]
+clang-tools-13/testing,now 1:13.0.1-6 amd64 [installed,automatic]
+clang-tools/testing,now 1:13.0-54 amd64 [installed]
+clang/testing,now 1:13.0-54 amd64 [installed]
+coreutils/testing,now 8.32-4.1 amd64 [installed,automatic]
+cpp-11/testing,now 11.3.0-3 amd64 [installed,automatic]
+cpp/testing,now 4:11.2.0-2 amd64 [installed,automatic]
+cppcheck/testing,now 2.8-1 amd64 [installed]
+curl/testing,now 7.83.1-2 amd64 [installed,automatic]
+dash/testing,now 0.5.11+git20210903+057cd650a4ed-8 amd64 [installed,automatic]
+dbus-bin/testing,now 1.14.0-1 amd64 [installed,automatic]
+dbus-daemon/testing,now 1.14.0-1 amd64 [installed,automatic]
+dbus-session-bus-common/testing,now 1.14.0-1 all [installed,automatic]
+dbus-system-bus-common/testing,now 1.14.0-1 all [installed,automatic]
+dbus/testing,now 1.14.0-1 amd64 [installed,automatic]
+debconf/testing,now 1.5.79 all [installed,automatic]
+debian-archive-keyring/testing,now 2021.1.1 all [installed,automatic]
+debianutils/testing,now 5.7-0.2 amd64 [installed,automatic]
+diffutils/testing,now 1:3.7-5 amd64 [installed,automatic]
+docbook-to-man/testing,now 1:2.0.0-45 amd64 [installed,automatic]
+docbook-xml/testing,now 4.5-12 all [installed,automatic]
+docbook-xsl/testing,now 1.79.2+dfsg-2 all [installed,automatic]
+docbook/testing,now 4.5-10 all [installed,automatic]
+dpkg/testing,now 1.21.8 amd64 [installed,automatic]
+e2fsprogs/testing,now 1.46.5-2 amd64 [installed,automatic]
+expect/testing,now 5.45.4-2+b1 amd64 [installed]
+file/testing,now 1:5.41-4 amd64 [installed,automatic]
+findutils/testing,now 4.9.0-3 amd64 [installed,automatic]
+fontconfig-config/testing,now 2.13.1-4.4 all [installed,automatic]
+fonts-dejavu-core/testing,now 2.37-2 all [installed,automatic]
+gcc-11-base/testing,now 11.3.0-3 amd64 [installed,automatic]
+gcc-11/testing,now 11.3.0-3 amd64 [installed,automatic]
+gcc-12-base/testing,now 12.1.0-2 amd64 [installed,automatic]
+gcc/testing,now 4:11.2.0-2 amd64 [installed]
+gettext-base/testing,now 0.21-6 amd64 [installed,automatic]
+gettext/testing,now 0.21-6 amd64 [installed]
+git-man/testing,now 1:2.35.1-1 all [installed,automatic]
+git/testing,now 1:2.35.1-1 amd64 [installed]
+gpgv/testing,now 2.2.35-2 amd64 [installed,automatic]
+grep/testing,now 3.7-1 amd64 [installed,automatic]
+gtk-doc-tools/testing,now 1.33.2-1 all [installed]
+gzip/testing,now 1.12-1 amd64 [installed,automatic]
+hostname/testing,now 3.23 amd64 [installed,automatic]
+icu-devtools/testing,now 71.1-3 amd64 [installed,automatic]
+init-system-helpers/testing,now 1.63 all [installed,automatic]
+krb5-locales/testing,now 1.19.2-2 all [installed,automatic]
+less/testing,now 590-1 amd64 [installed,automatic]
+lib32gcc-s1/testing,now 12.1.0-2 amd64 [installed,automatic]
+lib32stdc++6/testing,now 12.1.0-2 amd64 [installed,automatic]
+libacl1/testing,now 2.3.1-1 amd64 [installed,automatic]
+libapparmor1/testing,now 3.0.4-2 amd64 [installed,automatic]
+libapt-pkg6.0/testing,now 2.5.0 amd64 [installed,automatic]
+libasan6/testing,now 11.3.0-3 amd64 [installed,automatic]
+libasound2-data/testing,now 1.2.6.1-2 all [installed,automatic]
+libasound2-dev/testing,now 1.2.6.1-2+b1 amd64 [installed]
+libasound2/testing,now 1.2.6.1-2+b1 amd64 [installed,automatic]
+libasyncns0/testing,now 0.8-6+b2 amd64 [installed,automatic]
+libatomic1/testing,now 12.1.0-2 amd64 [installed,automatic]
+libattr1/testing,now 1:2.5.1-1 amd64 [installed,automatic]
+libaudit-common/testing,now 1:3.0.7-1 all [installed,automatic]
+libaudit1/testing,now 1:3.0.7-1+b1 amd64 [installed,automatic]
+libbinutils/testing,now 2.38-4 amd64 [installed,automatic]
+libblkid-dev/testing,now 2.38-4 amd64 [installed,automatic]
+libblkid1/testing,now 2.38-4 amd64 [installed,automatic]
+libboost-iostreams1.74.0/testing,now 1.74.0-16 amd64 [installed,automatic]
+libbrotli1/testing,now 1.0.9-2+b3 amd64 [installed,automatic]
+libbsd0/testing,now 0.11.6-1 amd64 [installed,automatic]
+libbz2-1.0/testing,now 1.0.8-5 amd64 [installed,automatic]
+libc-bin/testing,now 2.33-7 amd64 [installed,automatic]
+libc-dev-bin/testing,now 2.33-7 amd64 [installed,automatic]
+libc-devtools/testing,now 2.33-7 amd64 [installed,automatic]
+libc6-dev/testing,now 2.33-7 amd64 [installed,automatic]
+libc6-i386/testing,now 2.33-7 amd64 [installed,automatic]
+libc6/testing,now 2.33-7 amd64 [installed,automatic]
+libcap-ng0/now 0.7.9-2.2+b2 amd64 [installed,upgradable to: 0.7.9-4]
+libcap2/testing,now 1:2.44-1 amd64 [installed,automatic]
+libcbor0.8/testing,now 0.8.0-2 amd64 [installed,automatic]
+libcc1-0/testing,now 12.1.0-2 amd64 [installed,automatic]
+libclang-common-13-dev/testing,now 1:13.0.1-6 amd64 [installed,automatic]
+libclang-cpp13/testing,now 1:13.0.1-6 amd64 [installed,automatic]
+libclang1-13/testing,now 1:13.0.1-6 amd64 [installed,automatic]
+libcom-err2/testing,now 1.46.5-2 amd64 [installed,automatic]
+libcrypt-dev/testing,now 1:4.4.27-1.1 amd64 [installed,automatic]
+libcrypt1/testing,now 1:4.4.27-1.1 amd64 [installed,automatic]
+libctf-nobfd0/testing,now 2.38-4 amd64 [installed,automatic]
+libctf0/testing,now 2.38-4 amd64 [installed,automatic]
+libcurl3-gnutls/testing,now 7.83.1-2 amd64 [installed,automatic]
+libcurl4/testing,now 7.83.1-2 amd64 [installed,automatic]
+libcwidget4/testing,now 0.5.18-5 amd64 [installed,automatic]
+libdb5.3/testing,now 5.3.28+dfsg1-0.9 amd64 [installed,automatic]
+libdbus-1-3/testing,now 1.14.0-1 amd64 [installed,automatic]
+libdebconfclient0/testing,now 0.263 amd64 [installed,automatic]
+libdeflate0/testing,now 1.12-1 amd64 [installed,automatic]
+libdpkg-perl/testing,now 1.21.8 all [installed,automatic]
+libedit2/testing,now 3.1-20210910-1 amd64 [installed,automatic]
+libelf1/testing,now 0.187-1 amd64 [installed,automatic]
+liberror-perl/testing,now 0.17029-1 all [installed,automatic]
+libexpat1/testing,now 2.4.8-1 amd64 [installed,automatic]
+libext2fs2/testing,now 1.46.5-2 amd64 [installed,automatic]
+libffi-dev/testing,now 3.4.2-4 amd64 [installed,automatic]
+libffi8/testing,now 3.4.2-4 amd64 [installed,automatic]
+libfido2-1/testing,now 1.11.0-1+b1 amd64 [installed,automatic]
+libfile-fcntllock-perl/testing,now 0.22-4 amd64 [installed,automatic]
+libflac8/testing,now 1.3.4-2 amd64 [installed,automatic]
+libfontconfig1/testing,now 2.13.1-4.4 amd64 [installed,automatic]
+libfreetype6/testing,now 2.12.1+dfsg-3 amd64 [installed,automatic]
+libgc1/testing,now 1:8.0.6-1.1 amd64 [installed,automatic]
+libgcc-11-dev/testing,now 11.3.0-3 amd64 [installed,automatic]
+libgcc-s1/testing,now 12.1.0-2 amd64 [installed,automatic]
+libgcrypt20/testing,now 1.10.1-2 amd64 [installed,automatic]
+libgd3/testing,now 2.3.0-2+b1 amd64 [installed,automatic]
+libgdbm-compat4/testing,now 1.23-1 amd64 [installed,automatic]
+libgdbm6/testing,now 1.23-1 amd64 [installed,automatic]
+libglib2.0-0/testing,now 2.72.2-2 amd64 [installed,automatic]
+libglib2.0-bin/testing,now 2.72.2-2 amd64 [installed,automatic]
+libglib2.0-data/testing,now 2.72.2-2 all [installed,automatic]
+libglib2.0-dev-bin/testing,now 2.72.2-2 amd64 [installed,automatic]
+libglib2.0-dev/testing,now 2.72.2-2 amd64 [installed]
+libgmp10/testing,now 2:6.2.1+dfsg1-1 amd64 [installed,automatic]
+libgnutls30/now 3.7.4-2 amd64 [installed,upgradable to: 3.7.6-2]
+libgomp1/testing,now 12.1.0-2 amd64 [installed,automatic]
+libgpg-error0/testing,now 1.45-2 amd64 [installed,automatic]
+libgpm2/testing,now 1.20.7-10 amd64 [installed,automatic]
+libgssapi-krb5-2/testing,now 1.19.2-2+b2 amd64 [installed,automatic]
+libhogweed6/testing,now 3.7.3-1 amd64 [installed,automatic]
+libicu-dev/testing,now 71.1-3 amd64 [installed,automatic]
+libicu71/testing,now 71.1-3 amd64 [installed,automatic]
+libidn2-0/testing,now 2.3.2-2 amd64 [installed,automatic]
+libisl23/testing,now 0.24-2 amd64 [installed,automatic]
+libitm1/testing,now 12.1.0-2 amd64 [installed,automatic]
+libjbig0/testing,now 2.1-3.1+b2 amd64 [installed,automatic]
+libjpeg62-turbo/testing,now 1:2.1.2-1 amd64 [installed,automatic]
+libk5crypto3/testing,now 1.19.2-2+b2 amd64 [installed,automatic]
+libkeyutils1/testing,now 1.6.3-1 amd64 [installed,automatic]
+libkrb5-3/testing,now 1.19.2-2+b2 amd64 [installed,automatic]
+libkrb5support0/testing,now 1.19.2-2+b2 amd64 [installed,automatic]
+libldap-2.5-0/testing,now 2.5.12+dfsg-2 amd64 [installed,automatic]
+libldap-common/testing,now 2.5.12+dfsg-2 all [installed,automatic]
+liblerc3/testing,now 3.0+ds-1 amd64 [installed,automatic]
+libllvm13/testing,now 1:13.0.1-6 amd64 [installed,automatic]
+liblocale-gettext-perl/testing,now 1.07-4+b2 amd64 [installed,automatic]
+liblsan0/testing,now 12.1.0-2 amd64 [installed,automatic]
+libltdl-dev/testing,now 2.4.7-4 amd64 [installed,automatic]
+libltdl7/testing,now 2.4.7-4 amd64 [installed,automatic]
+liblz4-1/testing,now 1.9.3-2 amd64 [installed,automatic]
+liblzma5/testing,now 5.2.5-2.1 amd64 [installed,automatic]
+libmagic-mgc/testing,now 1:5.41-4 amd64 [installed,automatic]
+libmagic1/testing,now 1:5.41-4 amd64 [installed,automatic]
+libmd0/testing,now 1.0.4-1 amd64 [installed,automatic]
+libmount-dev/testing,now 2.38-4 amd64 [installed,automatic]
+libmount1/testing,now 2.38-4 amd64 [installed,automatic]
+libmpc3/testing,now 1.2.1-2 amd64 [installed,automatic]
+libmpdec3/testing,now 2.5.1-2 amd64 [installed,automatic]
+libmpfr6/testing,now 4.1.0-3 amd64 [installed,automatic]
+libncurses-dev/testing,now 6.3+20220423-2 amd64 [installed,automatic]
+libncurses6/testing,now 6.3+20220423-2 amd64 [installed,automatic]
+libncursesw6/testing,now 6.3+20220423-2 amd64 [installed,automatic]
+libnettle8/testing,now 3.7.3-1 amd64 [installed,automatic]
+libnghttp2-14/testing,now 1.47.0-1+b1 amd64 [installed,automatic]
+libnsl-dev/testing,now 1.3.0-2 amd64 [installed,automatic]
+libnsl2/testing,now 1.3.0-2 amd64 [installed,automatic]
+libobjc-11-dev/testing,now 11.3.0-3 amd64 [installed,automatic]
+libobjc4/testing,now 12.1.0-2 amd64 [installed,automatic]
+libogg0/testing,now 1.3.5-1 amd64 [installed,automatic]
+libopus0/testing,now 1.3.1-2 amd64 [installed,automatic]
+libosp5/testing,now 1.5.2-13+b2 amd64 [installed,automatic]
+libp11-kit0/testing,now 0.24.1-1 amd64 [installed,automatic]
+libpam-modules-bin/testing,now 1.4.0-13 amd64 [installed,automatic]
+libpam-modules/testing,now 1.4.0-13 amd64 [installed,automatic]
+libpam-runtime/testing,now 1.4.0-13 all [installed,automatic]
+libpam0g/testing,now 1.4.0-13 amd64 [installed,automatic]
+libpcre16-3/testing,now 2:8.39-14 amd64 [installed,automatic]
+libpcre2-16-0/testing,now 10.40-1 amd64 [installed,automatic]
+libpcre2-32-0/testing,now 10.40-1 amd64 [installed,automatic]
+libpcre2-8-0/testing,now 10.40-1 amd64 [installed,automatic]
+libpcre2-dev/testing,now 10.40-1 amd64 [installed,automatic]
+libpcre2-posix3/testing,now 10.40-1 amd64 [installed,automatic]
+libpcre3-dev/testing,now 2:8.39-14 amd64 [installed,automatic]
+libpcre32-3/testing,now 2:8.39-14 amd64 [installed,automatic]
+libpcre3/testing,now 2:8.39-14 amd64 [installed,automatic]
+libpcrecpp0v5/testing,now 2:8.39-14 amd64 [installed,automatic]
+libperl5.34/testing,now 5.34.0-4 amd64 [installed,automatic]
+libpfm4/testing,now 4.11.1+git32-gd0b85fb-1 amd64 [installed,automatic]
+libpipeline1/testing,now 1.5.6-1 amd64 [installed,automatic]
+libpng16-16/testing,now 1.6.37-5 amd64 [installed,automatic]
+libpsl5/testing,now 0.21.0-1.2 amd64 [installed,automatic]
+libpulse-dev/testing,now 15.0+dfsg1-4+b1 amd64 [installed]
+libpulse-mainloop-glib0/testing,now 15.0+dfsg1-4+b1 amd64 [installed,automatic]
+libpulse0/testing,now 15.0+dfsg1-4+b1 amd64 [installed,automatic]
+libpython3-stdlib/testing,now 3.10.4-1+b1 amd64 [installed,automatic]
+libpython3.10-minimal/testing,now 3.10.5-1 amd64 [installed,automatic]
+libpython3.10-stdlib/testing,now 3.10.5-1 amd64 [installed,automatic]
+libquadmath0/testing,now 12.1.0-2 amd64 [installed,automatic]
+libreadline8/testing,now 8.1.2-1.2 amd64 [installed,automatic]
+librtmp1/testing,now 2.4+20151223.gitfa8646d.1-2+b2 amd64 [installed,automatic]
+libsasl2-2/testing,now 2.1.28+dfsg-6 amd64 [installed,automatic]
+libsasl2-modules-db/testing,now 2.1.28+dfsg-6 amd64 [installed,automatic]
+libsasl2-modules/testing,now 2.1.28+dfsg-6 amd64 [installed,automatic]
+libseccomp2/testing,now 2.5.4-1 amd64 [installed,automatic]
+libselinux1-dev/testing,now 3.4-1 amd64 [installed,automatic]
+libselinux1/testing,now 3.4-1 amd64 [installed,automatic]
+libsemanage-common/testing,now 3.4-1 all [installed,automatic]
+libsemanage2/testing,now 3.4-1 amd64 [installed,automatic]
+libsepol-dev/testing,now 3.4-2 amd64 [installed,automatic]
+libsepol2/testing,now 3.4-2 amd64 [installed,automatic]
+libsigc++-2.0-0v5/testing,now 2.10.8-1 amd64 [installed,automatic]
+libsigsegv2/testing,now 2.14-1 amd64 [installed,automatic]
+libsmartcols1/testing,now 2.38-4 amd64 [installed,automatic]
+libsndfile1/testing,now 1.0.31-2 amd64 [installed,automatic]
+libsqlite3-0/testing,now 3.38.5-1 amd64 [installed,automatic]
+libss2/testing,now 1.46.5-2 amd64 [installed,automatic]
+libssh2-1/testing,now 1.10.0-3+b1 amd64 [installed,automatic]
+libssl3/testing,now 3.0.3-8 amd64 [installed,automatic]
+libstdc++-11-dev/testing,now 11.3.0-3 amd64 [installed,automatic]
+libstdc++6/testing,now 12.1.0-2 amd64 [installed,automatic]
+libsystemd0/now 251.2-5 amd64 [installed,upgradable to: 251.2-6]
+libtasn1-6/testing,now 4.18.0-4 amd64 [installed,automatic]
+libtcl8.6/testing,now 8.6.12+dfsg-1 amd64 [installed,automatic]
+libtiff5/testing,now 4.4.0-2 amd64 [installed,automatic]
+libtinfo-dev/testing,now 6.3+20220423-2 amd64 [installed,automatic]
+libtinfo6/testing,now 6.3+20220423-2 amd64 [installed,automatic]
+libtinyxml2-9/testing,now 9.0.0+dfsg-3.1 amd64 [installed,automatic]
+libtirpc-common/testing,now 1.3.2-2 all [installed,automatic]
+libtirpc-dev/testing,now 1.3.2-2 amd64 [installed,automatic]
+libtirpc3/testing,now 1.3.2-2 amd64 [installed,automatic]
+libtool/testing,now 2.4.7-4 all [installed]
+libtsan0/testing,now 11.3.0-3 amd64 [installed,automatic]
+libubsan1/testing,now 12.1.0-2 amd64 [installed,automatic]
+libudev1/now 251.2-5 amd64 [installed,upgradable to: 251.2-6]
+libunistring2/testing,now 1.0-1 amd64 [installed,automatic]
+libuuid1/testing,now 2.38-4 amd64 [installed,automatic]
+libvorbis0a/testing,now 1.3.7-1 amd64 [installed,automatic]
+libvorbisenc2/testing,now 1.3.7-1 amd64 [installed,automatic]
+libwebp7/testing,now 1.2.2-2+b1 amd64 [installed,automatic]
+libwrap0/testing,now 7.6.q-31 amd64 [installed,automatic]
+libx11-6/testing,now 2:1.7.5-1 amd64 [installed,automatic]
+libx11-data/testing,now 2:1.7.5-1 all [installed,automatic]
+libx11-xcb1/testing,now 2:1.7.5-1 amd64 [installed,automatic]
+libxapian30/testing,now 1.4.18-4 amd64 [installed,automatic]
+libxau6/testing,now 1:1.0.9-1 amd64 [installed,automatic]
+libxcb1/testing,now 1.14-3 amd64 [installed,automatic]
+libxdmcp6/testing,now 1:1.1.2-3 amd64 [installed,automatic]
+libxext6/testing,now 2:1.3.4-1 amd64 [installed,automatic]
+libxml2-dev/testing,now 2.9.14+dfsg-1 amd64 [installed,automatic]
+libxml2/testing,now 2.9.14+dfsg-1 amd64 [installed,automatic]
+libxmuu1/testing,now 2:1.1.3-3 amd64 [installed,automatic]
+libxpm4/testing,now 1:3.5.12-1 amd64 [installed,automatic]
+libxslt1.1/testing,now 1.1.34-4 amd64 [installed,automatic]
+libxxhash0/testing,now 0.8.1-1 amd64 [installed,automatic]
+libyaml-0-2/testing,now 0.2.2-1 amd64 [installed,automatic]
+libz3-4/testing,now 4.8.12-1+b1 amd64 [installed,automatic]
+libz3-dev/testing,now 4.8.12-1+b1 amd64 [installed,automatic]
+libzstd1/testing,now 1.5.2+dfsg-1 amd64 [installed,automatic]
+linux-libc-dev/testing,now 5.18.5-1 amd64 [installed,automatic]
+llvm-13-dev/testing,now 1:13.0.1-6 amd64 [installed,automatic]
+llvm-13-linker-tools/testing,now 1:13.0.1-6 amd64 [installed,automatic]
+llvm-13-runtime/testing,now 1:13.0.1-6 amd64 [installed,automatic]
+llvm-13-tools/testing,now 1:13.0.1-6 amd64 [installed,automatic]
+llvm-13/testing,now 1:13.0.1-6 amd64 [installed,automatic]
+login/testing,now 1:4.11.1+dfsg1-2 amd64 [installed,automatic]
+logsave/testing,now 1.46.5-2 amd64 [installed,automatic]
+lsb-base/testing,now 11.2 all [installed,automatic]
+m4/testing,now 1.4.18-5 amd64 [installed,automatic]
+make/testing,now 4.3-4.1 amd64 [installed]
+manpages-dev/testing,now 5.13-1 all [installed,automatic]
+manpages/testing,now 5.13-1 all [installed,automatic]
+mawk/testing,now 1.3.4.20200120-3.1 amd64 [installed,automatic]
+media-types/testing,now 8.0.0 all [installed,automatic]
+mount/testing,now 2.38-4 amd64 [installed,automatic]
+ncurses-base/testing,now 6.3+20220423-2 all [installed,automatic]
+ncurses-bin/testing,now 6.3+20220423-2 amd64 [installed,automatic]
+netbase/testing,now 6.3 all [installed,automatic]
+opensp/testing,now 1.5.2-13+b2 amd64 [installed,automatic]
+openssh-client/testing,now 1:9.0p1-1+b1 amd64 [installed,automatic]
+openssl/testing,now 3.0.3-8 amd64 [installed,automatic]
+passwd/testing,now 1:4.11.1+dfsg1-2 amd64 [installed,automatic]
+patch/testing,now 2.7.6-7 amd64 [installed,automatic]
+perl-base/testing,now 5.34.0-4 amd64 [installed,automatic]
+perl-modules-5.34/testing,now 5.34.0-4 all [installed,automatic]
+perl/testing,now 5.34.0-4 amd64 [installed,automatic]
+pkg-config/testing,now 0.29.2-1 amd64 [installed,automatic]
+publicsuffix/testing,now 20211207.1025-1 all [installed,automatic]
+python3-bs4/testing,now 4.11.1-1 all [installed,automatic]
+python3-chardet/testing,now 4.0.0-2 all [installed,automatic]
+python3-distutils/testing,now 3.9.12-1 all [installed,automatic]
+python3-html5lib/testing,now 1.1-3 all [installed,automatic]
+python3-lib2to3/testing,now 3.9.12-1 all [installed,automatic]
+python3-lxml/testing,now 4.8.0-1 amd64 [installed,automatic]
+python3-minimal/testing,now 3.10.4-1+b1 amd64 [installed,automatic]
+python3-pkg-resources/testing,now 59.6.0-1.2 all [installed,automatic]
+python3-pygments/testing,now 2.11.2+dfsg-2 all [installed,automatic]
+python3-six/testing,now 1.16.0-3 all [installed,automatic]
+python3-soupsieve/testing,now 2.3.2-1 all [installed,automatic]
+python3-webencodings/testing,now 0.5.1-4 all [installed,automatic]
+python3-yaml/testing,now 5.4.1-1+b1 amd64 [installed,automatic]
+python3.10-minimal/testing,now 3.10.5-1 amd64 [installed,automatic]
+python3.10/testing,now 3.10.5-1 amd64 [installed,automatic]
+python3/testing,now 3.10.4-1+b1 amd64 [installed,automatic]
+readline-common/testing,now 8.1.2-1.2 all [installed,automatic]
+rpcsvc-proto/testing,now 1.4.2-4 amd64 [installed,automatic]
+sed/testing,now 4.8-1 amd64 [installed,automatic]
+sensible-utils/testing,now 0.0.17 all [installed,automatic]
+sgml-base/testing,now 1.30 all [installed,automatic]
+sgml-data/testing,now 2.0.11+nmu1 all [installed,automatic]
+shared-mime-info/testing,now 2.2-1 amd64 [installed,automatic]
+sysvinit-utils/testing,now 3.03-1 amd64 [installed,automatic]
+tar/testing,now 1.34+dfsg-1 amd64 [installed,automatic]
+tcl-expect/testing,now 5.45.4-2+b1 amd64 [installed,automatic]
+tcl8.6/testing,now 8.6.12+dfsg-1 amd64 [installed,automatic]
+tzdata/testing,now 2022a-1 all [installed,automatic]
+ucf/testing,now 3.0043 all [installed,automatic]
+util-linux-extra/testing,now 2.38-4 amd64 [installed,automatic]
+util-linux/testing,now 2.38-4 amd64 [installed,automatic]
+uuid-dev/testing,now 2.38-4 amd64 [installed,automatic]
+xauth/testing,now 1:1.1.1-1 amd64 [installed,automatic]
+xdg-user-dirs/testing,now 0.17-2 amd64 [installed,automatic]
+xml-core/testing,now 0.18+nmu1 all [installed,automatic]
+xsltproc/testing,now 1.1.34-4 amd64 [installed,automatic]
+xz-utils/testing,now 5.2.5-2.1 amd64 [installed,automatic]
+zlib1g-dev/testing,now 1:1.2.11.dfsg-4 amd64 [installed,automatic]
+zlib1g/testing,now 1:1.2.11.dfsg-4 amd64 [installed,automatic]
+Errors detected in the build 0
+Warnings detected in the logs 113
+cppcheck defects detected in the logs 26
+TOTAL warnings detected in the logs 139
