@@ -117,10 +117,7 @@ struct _PulseBackendPrivate
 static void pulse_backend_dispose        (GObject           *object);
 static void pulse_backend_finalize       (GObject           *object);
 
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wunused-function"
 G_DEFINE_DYNAMIC_TYPE_EXTENDED (PulseBackend, pulse_backend, CAFE_MIXER_TYPE_BACKEND, 0, G_ADD_PRIVATE_DYNAMIC(PulseBackend))
-#pragma clang diagnostic pop
 
 static gboolean         pulse_backend_open                      (CafeMixerBackend *backend);
 static void             pulse_backend_close                     (CafeMixerBackend *backend);
