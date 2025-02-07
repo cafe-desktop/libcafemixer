@@ -11,9 +11,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: libcafemixer 1.23.0\n"
+"Project-Id-Version: libcafemixer 2.0.0\n"
 "Report-Msgid-Bugs-To: https://cafe-desktop.org\n"
-"POT-Creation-Date: 2022-06-30 20:47+0200\n"
+"POT-Creation-Date: 2025-02-07 13:19+0100\n"
 "PO-Revision-Date: 2020-02-14 12:44+0000\n"
 "Last-Translator: 6e833d5535e2fe0dd9dfa7fe5bf473f2_d78f422 "
 "<64c38a0ff10419c64e8e03d54c72b3bd_352524>, 2020\n"
@@ -476,7 +476,7 @@ msgstr "Zapnout"
 msgid "Off"
 msgstr "Vypnout"
 
-#: backends/oss/oss-backend.c:403
+#: backends/oss/oss-backend.c:399
 #, c-format
 msgid "OSS Mixer %d"
 msgstr "Směšovač OSS %d"
@@ -537,7 +537,7 @@ msgstr "Sluchátkový výstup"
 msgid "Radio"
 msgstr "Rádio"
 
-#: backends/oss/oss-stream.c:210 backends/pulse/pulse-sink.c:144
+#: backends/oss/oss-stream.c:208 backends/pulse/pulse-sink.c:144
 #: backends/pulse/pulse-source.c:141
 msgid "Connector"
 msgstr "Konektor"

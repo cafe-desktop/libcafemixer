@@ -8,9 +8,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: libcafemixer 1.23.0\n"
+"Project-Id-Version: libcafemixer 2.0.0\n"
 "Report-Msgid-Bugs-To: https://cafe-desktop.org\n"
-"POT-Creation-Date: 2022-06-30 20:47+0200\n"
+"POT-Creation-Date: 2025-02-07 13:19+0100\n"
 "PO-Revision-Date: 2020-02-14 12:44+0000\n"
 "Last-Translator: a8421664e61380eccf98265d27b51edb, 2020\n"
 "Language-Team: Persian (https://www.transifex.com/cafe/teams/13566/fa/)\n"
@@ -471,7 +471,7 @@ msgstr "روشن"
 msgid "Off"
 msgstr "خاموش"
 
-#: backends/oss/oss-backend.c:403
+#: backends/oss/oss-backend.c:399
 #, c-format
 msgid "OSS Mixer %d"
 msgstr "ترکیب کننده OSS %d"
@@ -532,7 +532,7 @@ msgstr ""
 msgid "Radio"
 msgstr "رادیو"
 
-#: backends/oss/oss-stream.c:210 backends/pulse/pulse-sink.c:144
+#: backends/oss/oss-stream.c:208 backends/pulse/pulse-sink.c:144
 #: backends/pulse/pulse-source.c:141
 msgid "Connector"
 msgstr ""
