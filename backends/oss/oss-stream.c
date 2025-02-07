@@ -35,8 +35,6 @@ struct _OssStreamPrivate
     GList     *controls;
 };
 
-static void oss_stream_class_init (OssStreamClass *klass);
-static void oss_stream_init       (OssStream      *stream);
 static void oss_stream_dispose    (GObject        *object);
 
 G_DEFINE_TYPE_WITH_PRIVATE (OssStream, oss_stream, CAFE_MIXER_TYPE_STREAM)

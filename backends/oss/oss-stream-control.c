@@ -47,8 +47,6 @@ struct _OssStreamControlPrivate
     gboolean stereo;
 };
 
-static void oss_stream_control_class_init (OssStreamControlClass *klass);
-static void oss_stream_control_init       (OssStreamControl      *control);
 static void oss_stream_control_finalize   (GObject               *object);
 
 G_DEFINE_TYPE_WITH_PRIVATE (OssStreamControl, oss_stream_control, CAFE_MIXER_TYPE_STREAM_CONTROL)

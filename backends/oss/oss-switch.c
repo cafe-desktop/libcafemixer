@@ -32,8 +32,6 @@ struct _OssSwitchPrivate
     GList *options;
 };
 
-static void oss_switch_class_init (OssSwitchClass *klass);
-static void oss_switch_init       (OssSwitch      *swtch);
 static void oss_switch_dispose    (GObject        *object);
 static void oss_switch_finalize   (GObject        *object);
 

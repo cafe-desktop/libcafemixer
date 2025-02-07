@@ -53,9 +53,6 @@ struct _OssBackendPrivate
     GHashTable *devices_paths;
 };
 
-static void oss_backend_class_init     (OssBackendClass *klass);
-static void oss_backend_class_finalize (OssBackendClass *klass);
-static void oss_backend_init           (OssBackend      *oss);
 static void oss_backend_dispose        (GObject         *object);
 static void oss_backend_finalize       (GObject         *object);
 

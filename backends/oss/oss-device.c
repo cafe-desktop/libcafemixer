@@ -179,8 +179,6 @@ enum {
 
 static guint signals[N_SIGNALS] = { 0, };
 
-static void oss_device_class_init (OssDeviceClass *klass);
-static void oss_device_init       (OssDevice      *device);
 static void oss_device_dispose    (GObject        *object);
 static void oss_device_finalize   (GObject        *object);
 
