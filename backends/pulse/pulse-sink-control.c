@@ -48,7 +48,7 @@ pulse_sink_control_class_init (PulseSinkControlClass *klass)
 }
 
 static void
-pulse_sink_control_init (PulseSinkControl *control)
+pulse_sink_control_init (PulseSinkControl *control G_GNUC_UNUSED)
 {
 }
 

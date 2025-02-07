@@ -43,7 +43,7 @@ pulse_source_switch_class_init (PulseSourceSwitchClass *klass)
 }
 
 static void
-pulse_source_switch_init (PulseSourceSwitch *swtch)
+pulse_source_switch_init (PulseSourceSwitch *swtch G_GNUC_UNUSED)
 {
 }
 

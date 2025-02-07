@@ -327,25 +327,29 @@ on_context_state_notify (void)
 }
 
 static void
-on_context_device_added (CafeMixerContext *context, const gchar *name)
+on_context_device_added (CafeMixerContext *context G_GNUC_UNUSED,
+			 const gchar      *name)
 {
     g_print ("Device added: %s\n", name);
 }
 
 static void
-on_context_device_removed (CafeMixerContext *context, const gchar *name)
+on_context_device_removed (CafeMixerContext *context G_GNUC_UNUSED,
+			   const gchar      *name)
 {
     g_print ("Device removed: %s\n", name);
 }
 
 static void
-on_context_stream_added (CafeMixerContext *context, const gchar *name)
+on_context_stream_added (CafeMixerContext *context G_GNUC_UNUSED,
+			 const gchar      *name)
 {
     g_print ("Stream added: %s\n", name);
 }
 
 static void
-on_context_stream_removed (CafeMixerContext *context, const gchar *name)
+on_context_stream_removed (CafeMixerContext *context G_GNUC_UNUSED,
+			   const gchar      *name)
 {
     g_print ("Stream removed: %s\n", name);
 }

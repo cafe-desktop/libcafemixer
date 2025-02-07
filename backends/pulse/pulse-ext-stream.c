@@ -586,7 +586,7 @@ pulse_ext_stream_set_fade (CafeMixerStreamControl *mmsc, gfloat fade)
 }
 
 static guint
-pulse_ext_stream_get_min_volume (CafeMixerStreamControl *mmsc)
+pulse_ext_stream_get_min_volume (CafeMixerStreamControl *mmsc G_GNUC_UNUSED)
 {
     return (guint) PA_VOLUME_MUTED;
 }

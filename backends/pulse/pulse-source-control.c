@@ -48,7 +48,7 @@ pulse_source_control_class_init (PulseSourceControlClass *klass)
 }
 
 static void
-pulse_source_control_init (PulseSourceControl *control)
+pulse_source_control_init (PulseSourceControl *control G_GNUC_UNUSED)
 {
 }
 

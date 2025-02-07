@@ -70,7 +70,7 @@ alsa_stream_output_control_class_init (AlsaStreamOutputControlClass *klass)
 }
 
 static void
-alsa_stream_output_control_init (AlsaStreamOutputControl *control)
+alsa_stream_output_control_init (AlsaStreamOutputControl *control G_GNUC_UNUSED)
 {
 }
 

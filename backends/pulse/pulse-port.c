@@ -35,7 +35,7 @@ struct _PulsePortPrivate
 G_DEFINE_TYPE_WITH_PRIVATE (PulsePort, pulse_port, CAFE_MIXER_TYPE_SWITCH_OPTION)
 
 static void
-pulse_port_class_init (PulsePortClass *klass)
+pulse_port_class_init (PulsePortClass *klass G_GNUC_UNUSED)
 {
 }
 

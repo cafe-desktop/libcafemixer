@@ -1212,8 +1212,8 @@ cafe_mixer_context_get_backend_flags (CafeMixerContext *context)
 
 static void
 on_backend_state_notify (CafeMixerBackend *backend,
-                         GParamSpec       *pspec,
-                         CafeMixerContext *context)
+			 GParamSpec       *pspec G_GNUC_UNUSED,
+			 CafeMixerContext *context)
 {
     CafeMixerState state = cafe_mixer_backend_get_state (backend);
 
@@ -1252,9 +1252,9 @@ on_backend_state_notify (CafeMixerBackend *backend,
 }
 
 static void
-on_backend_device_added (CafeMixerBackend *backend,
-                         const gchar      *name,
-                         CafeMixerContext *context)
+on_backend_device_added (CafeMixerBackend *backend G_GNUC_UNUSED,
+			 const gchar      *name,
+			 CafeMixerContext *context)
 {
     g_signal_emit (G_OBJECT (context),
                    signals[DEVICE_ADDED],
@@ -1263,9 +1263,9 @@ on_backend_device_added (CafeMixerBackend *backend,
 }
 
 static void
-on_backend_device_removed (CafeMixerBackend *backend,
-                           const gchar      *name,
-                           CafeMixerContext *context)
+on_backend_device_removed (CafeMixerBackend *backend G_GNUC_UNUSED,
+			   const gchar      *name,
+			   CafeMixerContext *context)
 {
     g_signal_emit (G_OBJECT (context),
                    signals[DEVICE_REMOVED],
@@ -1274,9 +1274,9 @@ on_backend_device_removed (CafeMixerBackend *backend,
 }
 
 static void
-on_backend_stream_added (CafeMixerBackend *backend,
-                         const gchar      *name,
-                         CafeMixerContext *context)
+on_backend_stream_added (CafeMixerBackend *backend G_GNUC_UNUSED,
+			 const gchar      *name,
+			 CafeMixerContext *context)
 {
     g_signal_emit (G_OBJECT (context),
                    signals[STREAM_ADDED],
@@ -1285,9 +1285,9 @@ on_backend_stream_added (CafeMixerBackend *backend,
 }
 
 static void
-on_backend_stream_removed (CafeMixerBackend *backend,
-                           const gchar      *name,
-                           CafeMixerContext *context)
+on_backend_stream_removed (CafeMixerBackend *backend G_GNUC_UNUSED,
+			   const gchar      *name,
+			   CafeMixerContext *context)
 {
     g_signal_emit (G_OBJECT (context),
                    signals[STREAM_REMOVED],
@@ -1296,9 +1296,9 @@ on_backend_stream_removed (CafeMixerBackend *backend,
 }
 
 static void
-on_backend_stored_control_added (CafeMixerBackend *backend,
-                                 const gchar      *name,
-                                 CafeMixerContext *context)
+on_backend_stored_control_added (CafeMixerBackend *backend G_GNUC_UNUSED,
+				 const gchar      *name,
+				 CafeMixerContext *context)
 {
     g_signal_emit (G_OBJECT (context),
                    signals[STORED_CONTROL_ADDED],
@@ -1307,9 +1307,9 @@ on_backend_stored_control_added (CafeMixerBackend *backend,
 }
 
 static void
-on_backend_stored_control_removed (CafeMixerBackend *backend,
-                                   const gchar      *name,
-                                   CafeMixerContext *context)
+on_backend_stored_control_removed (CafeMixerBackend *backend G_GNUC_UNUSED,
+				   const gchar      *name,
+				   CafeMixerContext *context)
 {
     g_signal_emit (G_OBJECT (context),
                    signals[STORED_CONTROL_REMOVED],
@@ -1318,17 +1318,17 @@ on_backend_stored_control_removed (CafeMixerBackend *backend,
 }
 
 static void
-on_backend_default_input_stream_notify (CafeMixerBackend *backend,
-                                        GParamSpec       *pspec,
-                                        CafeMixerContext *context)
+on_backend_default_input_stream_notify (CafeMixerBackend *backend G_GNUC_UNUSED,
+					GParamSpec       *pspec G_GNUC_UNUSED,
+					CafeMixerContext *context)
 {
     g_object_notify_by_pspec (G_OBJECT (context), properties[PROP_DEFAULT_INPUT_STREAM]);
 }
 
 static void
-on_backend_default_output_stream_notify (CafeMixerBackend *backend,
-                                         GParamSpec       *pspec,
-                                         CafeMixerContext *context)
+on_backend_default_output_stream_notify (CafeMixerBackend *backend G_GNUC_UNUSED,
+					 GParamSpec       *pspec G_GNUC_UNUSED,
+					 CafeMixerContext *context)
 {
     g_object_notify_by_pspec (G_OBJECT (context), properties[PROP_DEFAULT_OUTPUT_STREAM]);
 }

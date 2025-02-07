@@ -43,7 +43,7 @@ pulse_sink_switch_class_init (PulseSinkSwitchClass *klass)
 }
 
 static void
-pulse_sink_switch_init (PulseSinkSwitch *swtch)
+pulse_sink_switch_init (PulseSinkSwitch *swtch G_GNUC_UNUSED)
 {
 }
 

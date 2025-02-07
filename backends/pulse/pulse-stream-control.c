@@ -669,7 +669,7 @@ pulse_stream_control_set_monitor_enabled (CafeMixerStreamControl *mmsc, gboolean
 }
 
 static guint
-pulse_stream_control_get_min_volume (CafeMixerStreamControl *mmsc)
+pulse_stream_control_get_min_volume (CafeMixerStreamControl *mmsc G_GNUC_UNUSED)
 {
     return (guint) PA_VOLUME_MUTED;
 }
@@ -721,7 +721,9 @@ pulse_stream_control_get_base_volume (CafeMixerStreamControl *mmsc)
 }
 
 static void
-on_monitor_value (PulseMonitor *monitor, gdouble value, PulseStreamControl *control)
+on_monitor_value (PulseMonitor       *monitor G_GNUC_UNUSED,
+		  gdouble             value,
+		  PulseStreamControl *control)
 {
     g_signal_emit_by_name (G_OBJECT (control),
                            "monitor-value",

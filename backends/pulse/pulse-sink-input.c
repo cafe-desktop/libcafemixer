@@ -56,7 +56,7 @@ pulse_sink_input_class_init (PulseSinkInputClass *klass)
 }
 
 static void
-pulse_sink_input_init (PulseSinkInput *input)
+pulse_sink_input_init (PulseSinkInput *input G_GNUC_UNUSED)
 {
 }
 

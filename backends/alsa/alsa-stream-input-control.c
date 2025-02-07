@@ -70,7 +70,7 @@ alsa_stream_input_control_class_init (AlsaStreamInputControlClass *klass)
 }
 
 static void
-alsa_stream_input_control_init (AlsaStreamInputControl *control)
+alsa_stream_input_control_init (AlsaStreamInputControl *control G_GNUC_UNUSED)
 {
 }
 

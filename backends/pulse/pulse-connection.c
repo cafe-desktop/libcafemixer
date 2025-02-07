@@ -1384,10 +1384,10 @@ pulse_state_cb (pa_context *c, void *userdata)
 }
 
 static void
-pulse_subscribe_cb (pa_context                   *c,
-                    pa_subscription_event_type_t  t,
-                    uint32_t                      idx,
-                    void                         *userdata)
+pulse_subscribe_cb (pa_context                   *c G_GNUC_UNUSED,
+		    pa_subscription_event_type_t  t,
+		    uint32_t                      idx,
+		    void                         *userdata)
 {
     PulseConnection *connection;
 
@@ -1451,7 +1451,8 @@ pulse_subscribe_cb (pa_context                   *c,
 }
 
 static void
-pulse_restore_subscribe_cb (pa_context *c, void *userdata)
+pulse_restore_subscribe_cb (pa_context *c G_GNUC_UNUSED,
+			    void       *userdata)
 {
     PulseConnection *connection;
 
@@ -1461,9 +1462,9 @@ pulse_restore_subscribe_cb (pa_context *c, void *userdata)
 }
 
 static void
-pulse_server_info_cb (pa_context           *c,
-                      const pa_server_info *info,
-                      void                 *userdata)
+pulse_server_info_cb (pa_context           *c G_GNUC_UNUSED,
+		      const pa_server_info *info,
+		      void                 *userdata)
 {
     PulseConnection *connection;
 
@@ -1481,10 +1482,10 @@ pulse_server_info_cb (pa_context           *c,
 }
 
 static void
-pulse_card_info_cb (pa_context         *c,
-                    const pa_card_info *info,
-                    int                 eol,
-                    void               *userdata)
+pulse_card_info_cb (pa_context         *c G_GNUC_UNUSED,
+		    const pa_card_info *info,
+		    int                 eol,
+		    void               *userdata)
 {
     PulseConnection *connection;
 
@@ -1503,10 +1504,10 @@ pulse_card_info_cb (pa_context         *c,
 }
 
 static void
-pulse_sink_info_cb (pa_context         *c,
-                    const pa_sink_info *info,
-                    int                 eol,
-                    void               *userdata)
+pulse_sink_info_cb (pa_context         *c G_GNUC_UNUSED,
+		    const pa_sink_info *info,
+		    int                 eol,
+		    void               *userdata)
 {
     PulseConnection *connection;
 
@@ -1525,10 +1526,10 @@ pulse_sink_info_cb (pa_context         *c,
 }
 
 static void
-pulse_sink_input_info_cb (pa_context               *c,
-                          const pa_sink_input_info *info,
-                          int                       eol,
-                          void                     *userdata)
+pulse_sink_input_info_cb (pa_context               *c G_GNUC_UNUSED,
+			  const pa_sink_input_info *info,
+			  int                       eol,
+			  void                     *userdata)
 {
     PulseConnection *connection;
 
@@ -1547,10 +1548,10 @@ pulse_sink_input_info_cb (pa_context               *c,
 }
 
 static void
-pulse_source_info_cb (pa_context           *c,
-                      const pa_source_info *info,
-                      int                   eol,
-                      void                 *userdata)
+pulse_source_info_cb (pa_context           *c G_GNUC_UNUSED,
+		      const pa_source_info *info,
+		      int                   eol,
+		      void                 *userdata)
 {
     PulseConnection *connection;
 
@@ -1569,10 +1570,10 @@ pulse_source_info_cb (pa_context           *c,
 }
 
 static void
-pulse_source_output_info_cb (pa_context                  *c,
-                             const pa_source_output_info *info,
-                             int                          eol,
-                             void                        *userdata)
+pulse_source_output_info_cb (pa_context                  *c G_GNUC_UNUSED,
+			     const pa_source_output_info *info,
+			     int                          eol,
+			     void                        *userdata)
 {
     PulseConnection *connection;
 
@@ -1591,10 +1592,10 @@ pulse_source_output_info_cb (pa_context                  *c,
 }
 
 static void
-pulse_ext_stream_restore_cb (pa_context                       *c,
-                             const pa_ext_stream_restore_info *info,
-                             int                               eol,
-                             void                             *userdata)
+pulse_ext_stream_restore_cb (pa_context                       *c G_GNUC_UNUSED,
+			     const pa_ext_stream_restore_info *info,
+			     int                               eol,
+			     void                             *userdata)
 {
     PulseConnection *connection;
 

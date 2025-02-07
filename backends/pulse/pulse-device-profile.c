@@ -36,7 +36,7 @@ struct _PulseDeviceProfilePrivate
 G_DEFINE_TYPE_WITH_PRIVATE (PulseDeviceProfile, pulse_device_profile, CAFE_MIXER_TYPE_SWITCH_OPTION)
 
 static void
-pulse_device_profile_class_init (PulseDeviceProfileClass *klass)
+pulse_device_profile_class_init (PulseDeviceProfileClass *klass G_GNUC_UNUSED)
 {
 }
 

@@ -24,7 +24,7 @@
 G_DEFINE_INTERFACE (AlsaElement, alsa_element, G_TYPE_OBJECT)
 
 static void
-alsa_element_default_init (AlsaElementInterface *iface)
+alsa_element_default_init (AlsaElementInterface *iface G_GNUC_UNUSED)
 {
 }
 

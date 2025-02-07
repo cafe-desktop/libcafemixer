@@ -275,6 +275,6 @@ backend_module_load (GTypeModule *type_module)
 }
 
 static void
-backend_module_unload (GTypeModule *type_module)
+backend_module_unload (GTypeModule *type_module G_GNUC_UNUSED)
 {
 }

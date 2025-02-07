@@ -30,7 +30,7 @@ struct _AlsaSwitchOptionPrivate
 G_DEFINE_TYPE_WITH_PRIVATE (AlsaSwitchOption, alsa_switch_option, CAFE_MIXER_TYPE_SWITCH_OPTION)
 
 static void
-alsa_switch_option_class_init (AlsaSwitchOptionClass *klass)
+alsa_switch_option_class_init (AlsaSwitchOptionClass *klass G_GNUC_UNUSED)
 {
 }
 

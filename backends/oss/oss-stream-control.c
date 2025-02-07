@@ -361,7 +361,7 @@ oss_stream_control_set_balance (CafeMixerStreamControl *mmsc, gfloat balance)
 }
 
 static guint
-oss_stream_control_get_min_volume (CafeMixerStreamControl *mmsc)
+oss_stream_control_get_min_volume (CafeMixerStreamControl *mmsc G_GNUC_UNUSED)
 {
     return 0;
 }

@@ -56,7 +56,7 @@ pulse_source_output_class_init (PulseSourceOutputClass *klass)
 }
 
 static void
-pulse_source_output_init (PulseSourceOutput *output)
+pulse_source_output_init (PulseSourceOutput *output G_GNUC_UNUSED)
 {
 }
 
