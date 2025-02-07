@@ -1,3 +1,11 @@
+### libcafemixer 2.0.0
+
+  * ci: some improvements
+  * add G_GNUC_UNUSED in unused parameters
+  * Fix [-Wunknown-pragmas] warnings
+  * Fix [-Wredundant-decls] warnings
+  * update translations
+
 ### libcafemixer 1.25.0
 
   * initial commit: libmatemixer 1.24.1 fork

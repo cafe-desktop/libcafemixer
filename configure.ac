@@ -6,8 +6,8 @@ AC_PREREQ([2.60])
 # Versioning
 # =======================================================================
 
-m4_define(libcafemixer_major_version, 1)
-m4_define(libcafemixer_minor_version, 25)
+m4_define(libcafemixer_major_version, 2)
+m4_define(libcafemixer_minor_version, 0)
 m4_define(libcafemixer_micro_version, 0)
 m4_define(libcafemixer_version,
          [libcafemixer_major_version.libcafemixer_minor_version.libcafemixer_micro_version])
