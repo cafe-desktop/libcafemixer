@@ -1,3 +1,10 @@
+### libcafemixer 2.0.1
+
+  * ci: add debian stable build
+  * cafemixer-backend-module: Variable can be declared as pointer to const
+  * cafemixer-app-info: Parameters can be declared as pointer to const
+
+
 ### libcafemixer 2.0.0
 
   * ci: some improvements
@@ -5,6 +12,7 @@
   * Fix [-Wunknown-pragmas] warnings
   * Fix [-Wredundant-decls] warnings
   * update translations
+
 
 ### libcafemixer 1.25.0
 
