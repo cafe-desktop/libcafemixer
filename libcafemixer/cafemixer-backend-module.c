@@ -139,7 +139,7 @@ cafe_mixer_backend_module_init (CafeMixerBackendModule *module)
 static void
 cafe_mixer_backend_module_dispose (GObject *object)
 {
-    CafeMixerBackendModule *module;
+    const CafeMixerBackendModule *module;
 
     module = CAFE_MIXER_BACKEND_MODULE (object);
 
