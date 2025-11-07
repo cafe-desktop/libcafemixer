@@ -30,9 +30,9 @@ G_BEGIN_DECLS
 GType        cafe_mixer_app_info_get_type    (void) G_GNUC_CONST;
 
 const gchar *cafe_mixer_app_info_get_name    (CafeMixerAppInfo *info);
-const gchar *cafe_mixer_app_info_get_id      (CafeMixerAppInfo *info);
-const gchar *cafe_mixer_app_info_get_version (CafeMixerAppInfo *info);
-const gchar *cafe_mixer_app_info_get_icon    (CafeMixerAppInfo *info);
+const gchar *cafe_mixer_app_info_get_id      (const CafeMixerAppInfo *info);
+const gchar *cafe_mixer_app_info_get_version (const CafeMixerAppInfo *info);
+const gchar *cafe_mixer_app_info_get_icon    (const CafeMixerAppInfo *info);
 
 G_END_DECLS
 

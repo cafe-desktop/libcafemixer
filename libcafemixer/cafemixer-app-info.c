@@ -66,7 +66,7 @@ cafe_mixer_app_info_get_name (CafeMixerAppInfo *info)
  * Returns: identifier of the application or %NULL if it is unknown.
  */
 const gchar *
-cafe_mixer_app_info_get_id (CafeMixerAppInfo *info)
+cafe_mixer_app_info_get_id (const CafeMixerAppInfo *info)
 {
     g_return_val_if_fail (info != NULL, NULL);
 
@@ -82,7 +82,7 @@ cafe_mixer_app_info_get_id (CafeMixerAppInfo *info)
  * Returns: version of the application or %NULL if it is unknown.
  */
 const gchar *
-cafe_mixer_app_info_get_version (CafeMixerAppInfo *info)
+cafe_mixer_app_info_get_version (const CafeMixerAppInfo *info)
 {
     g_return_val_if_fail (info != NULL, NULL);
 
@@ -98,7 +98,7 @@ cafe_mixer_app_info_get_version (CafeMixerAppInfo *info)
  * Returns: icon name of the application or %NULL if it is unknown.
  */
 const gchar *
-cafe_mixer_app_info_get_icon (CafeMixerAppInfo *info)
+cafe_mixer_app_info_get_icon (const CafeMixerAppInfo *info)
 {
     g_return_val_if_fail (info != NULL, NULL);
 
