@@ -171,9 +171,9 @@ print_devices (void)
         /* Read a list of switches that belong to the device */
         switches = cafe_mixer_device_list_switches (device);
         while (switches != NULL) {
-            const GList           *options;
-            CafeMixerSwitch       *swtch  = CAFE_MIXER_SWITCH (switches->data);
-            CafeMixerSwitchOption *active = cafe_mixer_switch_get_active_option (swtch);
+            const GList                 *options;
+            CafeMixerSwitch             *swtch  = CAFE_MIXER_SWITCH (switches->data);
+            const CafeMixerSwitchOption *active = cafe_mixer_switch_get_active_option (swtch);
 
             g_print ("\tSwitch %s:\n"
                      "\t\tLabel : %s\n"
@@ -257,9 +257,9 @@ print_streams (void)
         /* Read a list of switches in the stream */
         switches = cafe_mixer_stream_list_switches (stream);
         while (switches != NULL) {
-            const GList           *options;
-            CafeMixerSwitch       *swtch  = CAFE_MIXER_SWITCH (switches->data);
-            CafeMixerSwitchOption *active = cafe_mixer_switch_get_active_option (swtch);
+            const GList                 *options;
+            CafeMixerSwitch             *swtch  = CAFE_MIXER_SWITCH (switches->data);
+            const CafeMixerSwitchOption *active = cafe_mixer_switch_get_active_option (swtch);
 
             g_print ("\tSwitch %s:\n"
                      "\t\tLabel      : %s\n"
