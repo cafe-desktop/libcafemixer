@@ -327,28 +327,28 @@ on_context_state_notify (void)
 }
 
 static void
-on_context_device_added (CafeMixerContext *context G_GNUC_UNUSED,
+on_context_device_added (CafeMixerContext *ctx G_GNUC_UNUSED,
 			 const gchar      *name)
 {
     g_print ("Device added: %s\n", name);
 }
 
 static void
-on_context_device_removed (CafeMixerContext *context G_GNUC_UNUSED,
+on_context_device_removed (CafeMixerContext *ctx G_GNUC_UNUSED,
 			   const gchar      *name)
 {
     g_print ("Device removed: %s\n", name);
 }
 
 static void
-on_context_stream_added (CafeMixerContext *context G_GNUC_UNUSED,
+on_context_stream_added (CafeMixerContext *ctx G_GNUC_UNUSED,
 			 const gchar      *name)
 {
     g_print ("Stream added: %s\n", name);
 }
 
 static void
-on_context_stream_removed (CafeMixerContext *context G_GNUC_UNUSED,
+on_context_stream_removed (CafeMixerContext *ctx G_GNUC_UNUSED,
 			   const gchar      *name)
 {
     g_print ("Stream removed: %s\n", name);
@@ -356,9 +356,9 @@ on_context_stream_removed (CafeMixerContext *context G_GNUC_UNUSED,
 
 #ifdef G_OS_UNIX
 static gboolean
-on_signal (gpointer mainloop)
+on_signal (gpointer loop)
 {
-    g_idle_add ((GSourceFunc) g_main_loop_quit, mainloop);
+    g_idle_add ((GSourceFunc) g_main_loop_quit, loop);
 
     return G_SOURCE_REMOVE;
 }
