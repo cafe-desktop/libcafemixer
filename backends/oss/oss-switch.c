@@ -183,6 +183,12 @@ oss_switch_load (OssSwitch *swtch)
 
     option = choose_default_option (swtch);
 
+    if (option == NULL) {
+        g_debug ("Switch %s has no options to select a default from",
+                 cafe_mixer_switch_get_name (CAFE_MIXER_SWITCH (swtch)));
+        return;
+    }
+
     g_debug ("Selecting default device %s as active for switch %s",
              cafe_mixer_switch_option_get_name (CAFE_MIXER_SWITCH_OPTION (option)),
              cafe_mixer_switch_get_name (CAFE_MIXER_SWITCH (swtch)));
@@ -246,6 +252,11 @@ static OssSwitchOption *
 choose_default_option (OssSwitch *swtch)
 {
     GList *list = swtch->priv->options;
+
+    if (list == NULL) {
+        g_warning ("choose_default_option called with no available options");
+        return NULL;
+    }
 
     /* Search for the preferred device */
     while (list != NULL) {
