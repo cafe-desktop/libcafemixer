@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <title>libcafemixer Code Analyzer results</title>
+</head>
+<body>
+<h1>
+  <a href="https://github.com/cafe-desktop">cafe-desktop</a>/<a href="https://github.com/cafe-desktop/libcafemixer">libcafemixer</a> Static analyzer results
+</h1>
+  <a href="https://github.com/cafe-desktop/libcafemixer" title="Github"><i class="fa fa-github fa-2x"></i>GitHub</a>
+  <a href="https://github.com/cafe-desktop/libcafemixer/actions/workflows/main.yml" title="Gihub Actions"><img src="https://github.com/cafe-desktop/libcafemixer/actions/workflows/main.yml/badge.svg" alt="Build Status" /></a>
+<hr/>
+Commit: <a href="https://github.com/cafe-desktop/libcafemixer/commit/d7304a2fb0b8d546bac44d188340b40ca11b61de">d7304a2fb0b8d546bac44d188340b40ca11b61de</a><br/>
+Compare: <a href="https://github.com/cafe-desktop/libcafemixer/compare/"></a><br/>
+Branch: <a href="https://github.com/cafe-desktop/libcafemixer/tree/devel">devel</a><br/>
+Time: 2026-08-15 09:46:49+00:00<br/>
+Messages:<br/>
+<pre>
+ci: test debs
+</pre>
+<a href="https://cafe-desktop.github.io/libcafemixer/output_d7304a2fb0b8d546bac44d188340b40ca11b61de">Logs</a><br/>
+<br/>
+Warnings: <br/>
+<hr/>
+<ul>
+<li><a href=2026-07-11-221138-3334-cppcheck@c261795f4eed_master title="Release 2.1.0">2026-07-11-221138-3334-cppcheck@c261795f4eed_master</a> <a href="2026-07-11-221138-3334-cppcheck@c261795f4eed_master/output_c261795f4eed434b8557ebb8b3ad2c0989ce093e">logs</a> 118</li>
+<li><a href=2026-07-11-194234-6843-cppcheck@c261795f4eed_devel title="Release 2.1.0">2026-07-11-194234-6843-cppcheck@c261795f4eed_devel</a> <a href="2026-07-11-194234-6843-cppcheck@c261795f4eed_devel/output_c261795f4eed434b8557ebb8b3ad2c0989ce093e">logs</a> 118</li>
+<li><a href=2026-07-11-192629-7522-cppcheck@463367bbadd9_devel title="monitor: Fix cppcheck [shadowVariable] warnings">2026-07-11-192629-7522-cppcheck@463367bbadd9_devel</a> <a href="2026-07-11-192629-7522-cppcheck@463367bbadd9_devel/output_463367bbadd9aaa3b022ea7a752ff5cbfb424b38">logs</a> 118</li>
+<li><a href=2026-07-11-192551-6629-cppcheck@3e19373eb295_devel title="monitor: Fix [shadowVariable] warnings">2026-07-11-192551-6629-cppcheck@3e19373eb295_devel</a> <a href="2026-07-11-192551-6629-cppcheck@3e19373eb295_devel/output_3e19373eb29525fa053f1425192f39f17ffefb34">logs</a> 118</li>
+<li><a href=2026-07-11-191410-7291-cppcheck@d41ce9152792_devel title="monitor: Fix cppcheck [constVariablePointer] warnings">2026-07-11-191410-7291-cppcheck@d41ce9152792_devel</a> <a href="2026-07-11-191410-7291-cppcheck@d41ce9152792_devel/output_d41ce91527924005e40b2b35e7cc6db22a4bbdd9">logs</a> 124</li>
+<li><a href=2026-07-11-124504-9757-cppcheck@7930c73cb057_devel title="oss-switch: avoid dereference of a null pointer
+
+Fixes the warning:
+
+oss-switch.c:264:12: warning: Access to field 'data' results in a dereference of a null pointer (loaded from field 'options') [core.NullDereference]
+  264 |     return OSS_SWITCH_OPTION (swtch->priv->options->data);
+      |            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./oss-switch-option.h:32:10: note: expanded from macro 'OSS_SWITCH_OPTION'
+   32 |         (G_TYPE_CHECK_INSTANCE_CAST ((o), OSS_TYPE_SWITCH_OPTION, OssSwitchOption))
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/glib-2.0/gobject/gtype.h:528:79: note: expanded from macro 'G_TYPE_CHECK_INSTANCE_CAST'
+  528 | #define G_TYPE_CHECK_INSTANCE_CAST(instance, g_type, c_type)    (_G_TYPE_CIC ((instance), (g_type), c_type))
+      |                                                                  ~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/glib-2.0/gobject/gtype.h:2666:66: note: expanded from macro '_G_TYPE_CIC'
+ 2666 |     ((ct*) (void *) g_type_check_instance_cast ((GTypeInstance*) ip, gt))
+      |                                                                  ^~">2026-07-11-124504-9757-cppcheck@7930c73cb057_devel</a> <a href="2026-07-11-124504-9757-cppcheck@7930c73cb057_devel/output_7930c73cb057a1ec3ac1a61d9c2480f6421f14c9">logs</a> 126</li>
+<li><a href=2026-07-11-084527-0154-cppcheck@8c783a8d363e_devel title="Release 2.0.1">2026-07-11-084527-0154-cppcheck@8c783a8d363e_devel</a> <a href="2026-07-11-084527-0154-cppcheck@8c783a8d363e_devel/output_8c783a8d363e32a36850db8bdd85278e3f3fc1c0">logs</a> 128</li>
+<li><a href=2026-07-11-084429-11933-1@8c783a8d363e_devel title="Release 2.0.1">2026-07-11-084429-11933-1@8c783a8d363e_devel</a> <a href="2026-07-11-084429-11933-1@8c783a8d363e_devel/output_8c783a8d363e32a36850db8bdd85278e3f3fc1c0">logs</a> 128</li>
+<li><a href=2025-11-07-105452-1674-cppcheck@8c783a8d363e_master title="Release 2.0.1">2025-11-07-105452-1674-cppcheck@8c783a8d363e_master</a> <a href="2025-11-07-105452-1674-cppcheck@8c783a8d363e_master/output_8c783a8d363e32a36850db8bdd85278e3f3fc1c0">logs</a> 121</li>
+<li><a href=2025-11-07-105434-2950-cppcheck@8c783a8d363e_devel title="Release 2.0.1">2025-11-07-105434-2950-cppcheck@8c783a8d363e_devel</a> <a href="2025-11-07-105434-2950-cppcheck@8c783a8d363e_devel/output_8c783a8d363e32a36850db8bdd85278e3f3fc1c0">logs</a> 121</li>
+<li><a href=2025-11-07-105334-11676-1@8c783a8d363e_master title="Release 2.0.1">2025-11-07-105334-11676-1@8c783a8d363e_master</a> <a href="2025-11-07-105334-11676-1@8c783a8d363e_master/output_8c783a8d363e32a36850db8bdd85278e3f3fc1c0">logs</a> 121</li>
+<li><a href=2025-11-07-105326-11676-1@8c783a8d363e_devel title="Release 2.0.1">2025-11-07-105326-11676-1@8c783a8d363e_devel</a> <a href="2025-11-07-105326-11676-1@8c783a8d363e_devel/output_8c783a8d363e32a36850db8bdd85278e3f3fc1c0">logs</a> 121</li>
+<li><a href=2025-11-07-104222-0354-cppcheck@8c783a8d363e_devel title="Release 2.0.1">2025-11-07-104222-0354-cppcheck@8c783a8d363e_devel</a> <a href="2025-11-07-104222-0354-cppcheck@8c783a8d363e_devel/output_8c783a8d363e32a36850db8bdd85278e3f3fc1c0">logs</a> 121</li>
+<li><a href=2025-11-07-104102-11676-1@8c783a8d363e_devel title="Release 2.0.1">2025-11-07-104102-11676-1@8c783a8d363e_devel</a> <a href="2025-11-07-104102-11676-1@8c783a8d363e_devel/output_8c783a8d363e32a36850db8bdd85278e3f3fc1c0">logs</a> 121</li>
+<li><a href=2025-11-07-104013-9986-cppcheck@1aa9131e884c_devel title="Release 2.0.1">2025-11-07-104013-9986-cppcheck@1aa9131e884c_devel</a> <a href="2025-11-07-104013-9986-cppcheck@1aa9131e884c_devel/output_1aa9131e884c2b1ced69288e5c9bb6593a07c5e7">logs</a> 121</li>
+<li><a href=2025-11-07-103853-11676-1@1aa9131e884c_devel title="Release 2.0.1">2025-11-07-103853-11676-1@1aa9131e884c_devel</a> <a href="2025-11-07-103853-11676-1@1aa9131e884c_devel/output_1aa9131e884c2b1ced69288e5c9bb6593a07c5e7">logs</a> 121</li>
+<li><a href=2025-11-07-101253-2619-cppcheck@d8ceef7ad676_devel title="cafemixer-app-info: Parameters can be declared as pointer to const">2025-11-07-101253-2619-cppcheck@d8ceef7ad676_devel</a> <a href="2025-11-07-101253-2619-cppcheck@d8ceef7ad676_devel/output_d8ceef7ad676c9deaf3af4fa7ce08200f1fb7fcd">logs</a> 121</li>
+<li><a href=2025-11-07-101132-11676-1@d8ceef7ad676_devel title="cafemixer-app-info: Parameters can be declared as pointer to const">2025-11-07-101132-11676-1@d8ceef7ad676_devel</a> <a href="2025-11-07-101132-11676-1@d8ceef7ad676_devel/output_d8ceef7ad676c9deaf3af4fa7ce08200f1fb7fcd">logs</a> 121</li>
+<li><a href=2025-11-07-100056-1859-cppcheck@b51dd1326440_devel title="cafemixer-backend-module: Variable can be declared as pointer to const">2025-11-07-100056-1859-cppcheck@b51dd1326440_devel</a> <a href="2025-11-07-100056-1859-cppcheck@b51dd1326440_devel/output_b51dd13264405b4f1d3546e22f9572b7a7560d82">logs</a> 124</li>
+<li><a href=2025-11-07-095934-11676-1@b51dd1326440_devel title="cafemixer-backend-module: Variable can be declared as pointer to const">2025-11-07-095934-11676-1@b51dd1326440_devel</a> <a href="2025-11-07-095934-11676-1@b51dd1326440_devel/output_b51dd13264405b4f1d3546e22f9572b7a7560d82">logs</a> 124</li>
+</ul>
+68M
+</body>
+</html>

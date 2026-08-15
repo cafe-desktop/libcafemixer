@@ -1,0 +1,16 @@
+oss-switch: avoid dereference of a null pointer
+
+Fixes the warning:
+
+oss-switch.c:264:12: warning: Access to field 'data' results in a dereference of a null pointer (loaded from field 'options') [core.NullDereference]
+  264 |     return OSS_SWITCH_OPTION (swtch->priv->options->data);
+      |            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./oss-switch-option.h:32:10: note: expanded from macro 'OSS_SWITCH_OPTION'
+   32 |         (G_TYPE_CHECK_INSTANCE_CAST ((o), OSS_TYPE_SWITCH_OPTION, OssSwitchOption))
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/glib-2.0/gobject/gtype.h:528:79: note: expanded from macro 'G_TYPE_CHECK_INSTANCE_CAST'
+  528 | #define G_TYPE_CHECK_INSTANCE_CAST(instance, g_type, c_type)    (_G_TYPE_CIC ((instance), (g_type), c_type))
+      |                                                                  ~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/glib-2.0/gobject/gtype.h:2666:66: note: expanded from macro '_G_TYPE_CIC'
+ 2666 |     ((ct*) (void *) g_type_check_instance_cast ((GTypeInstance*) ip, gt))
+      |                                                                  ^~
